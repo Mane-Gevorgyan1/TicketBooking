@@ -3,6 +3,24 @@ import React, { useEffect, useState } from 'react';
 const PhotoCoordinatesByColor = () => {
 
     const [coordinatesState, setCoordinatesState] = useState([])
+    const Price = [
+        [10, 20, 10, 20],
+        [24, 33, 11, 24],
+    ]
+
+    const getPrice = (y, i) => {
+        let row = null
+        let price = null
+        let set = null
+        if (y === 50) {
+            row = 0
+        }
+        else {
+            row = 1
+        }
+        price = Price[row][i]
+        console.log(`sharq ${row + 1}, gin ${price}, nstaran ${i + 1}`)
+    }
 
     useEffect(() => {
         const image = new Image();
@@ -17,9 +35,6 @@ const PhotoCoordinatesByColor = () => {
 
             const imageData = ctx.getImageData(0, 0, image.width, image.height);
             const pixelData = imageData.data;
-
-            const targetColor = [255, 1, 1]; // Replace with your desired color (e.g., red)
-
             const coordinates = [];
 
             for (let y = 0; y < image.height; y++) {
@@ -29,12 +44,6 @@ const PhotoCoordinatesByColor = () => {
                     const g = pixelData[offset + 1];
                     const b = pixelData[offset + 2];
 
-                    // console.log(r,g,b);
-
-                    // if (r === targetColor[0] && g === targetColor[1] && b === targetColor[2]) {
-                    //     coordinates.push({ x, y });
-                    // }
-
                     if (r >= 190 && g <= 30 && b <= 30) {
                         coordinates.push({ x, y });
 
@@ -42,8 +51,6 @@ const PhotoCoordinatesByColor = () => {
                 }
             }
 
-            // Now 'coordinates' contains the (x, y) coordinates of pixels with the desired color
-            console.log('Coordinates with target color:', coordinates);
             setCoordinatesState(coordinates)
         };
     }, []);
@@ -52,8 +59,7 @@ const PhotoCoordinatesByColor = () => {
         <div>
             <img alt='' src={require('../../assets/ActualPlan.png')} />
             {coordinatesState.map((e, i) => (
-                <button style={{ position: 'absolute', top: e?.y - 3.5, left: e?.x - 3.5, width: '8px', height: '8px', borderRadius: '50%', border: 'none' }}>
-                </button>
+                <button key={i} onClick={() => getPrice(e.y, i)} style={{ position: 'absolute', top: e?.y - 3.5, left: e?.x - 3.5, width: '8px', height: '8px', borderRadius: '50%', border: 'none' }} />
             ))}
 
         </div>
