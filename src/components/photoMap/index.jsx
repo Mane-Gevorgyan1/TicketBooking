@@ -1,5 +1,7 @@
-import './styles.css'
-import React, { useEffect, useState } from 'react';
+import './style.css'
+import { Cart } from '../svg'
+import { CartPopup } from '../popup/cart'
+import { useEffect, useState } from 'react'
 
 const PhotoCoordinatesByColor = () => {
 
@@ -9,6 +11,8 @@ const PhotoCoordinatesByColor = () => {
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
     const [positionleft, setPositionleft] = useState(3.5)
+    const [openCart, setOpenCart] = useState(false)
+
     const Price = [
         [10000, 20000, 10000, 20000],
         [24, 33, 11, 24],
@@ -33,47 +37,52 @@ const PhotoCoordinatesByColor = () => {
         setShowModal(true)
     }
 
-
     useEffect(() => {
         const image = new Image()
         image.src = require('../../assets/ActualPlan.png')
 
         image.onload = () => {
-            const canvas = document.createElement('canvas');
-            canvas.width = image.width;
-            canvas.height = image.height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(image, 0, 0, image.width, image.height);
+            const canvas = document.createElement('canvas')
+            canvas.width = image.width
+            canvas.height = image.height
+            const ctx = canvas.getContext('2d')
+            ctx.drawImage(image, 0, 0, image.width, image.height)
 
-            const imageData = ctx.getImageData(0, 0, image.width, image.height);
-            const pixelData = imageData.data;
-            const coordinates = [];
+            const imageData = ctx.getImageData(0, 0, image.width, image.height)
+            const pixelData = imageData.data
+            const coordinates = []
 
             for (let y = 0; y < image.height; y++) {
                 for (let x = 0; x < image.width; x++) {
-                    const offset = (y * image.width + x) * 4;
-                    const r = pixelData[offset];
-                    const g = pixelData[offset + 1];
-                    const b = pixelData[offset + 2];
+                    const offset = (y * image.width + x) * 4
+                    const r = pixelData[offset]
+                    const g = pixelData[offset + 1]
+                    const b = pixelData[offset + 2]
 
                     if (r >= 100 && g <= 30 && b <= 30) {
-                        coordinates.push({ x, y });
+                        coordinates.push({ x, y })
 
                     }
                 }
             }
 
             setCoordinatesState(coordinates)
-        };
-    }, []);
-    console.log(position)
+        }
+    }, [])
+
     return (
-        <div>
+        <div className='hall'>
+            {openCart &&
+                <CartPopup
+                    open={openCart}
+                    setOpen={setOpenCart}
+                />
+            }
             <img alt='' src={require('../../assets/ActualPlan.png')} />
             {coordinatesState.map((e, i) => {
                 return <button
                     key={i}
-                    onMouseEnter={() => {
+                    onMouseOver={() => {
                         getPrice(e.y, i, e.x)
                         setActiveButton(i)
                     }}
@@ -84,9 +93,10 @@ const PhotoCoordinatesByColor = () => {
                         width: '8px',
                         height: '8px',
                         borderRadius: '50%',
-                        border: 'none'
+                        border: 'none',
+                        cursor: 'pointer'
                     }}
-                    className={i == activeButton && 'activeButton'}
+                    className={i == activeButton ? 'activeButton' : ''}
                     onMouseLeave={() => {
                         setShowModal(false)
                         setActiveButton(null)
@@ -102,8 +112,9 @@ const PhotoCoordinatesByColor = () => {
                 </div>
             }
 
+            <div className='cartLine'><div onClick={() => setOpenCart(true)}><Cart /> 3</div></div>
         </div>
-    );
-};
+    )
+}
 
-export default PhotoCoordinatesByColor;
+export default PhotoCoordinatesByColor
