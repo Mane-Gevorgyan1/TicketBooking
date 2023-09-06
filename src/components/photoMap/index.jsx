@@ -1,27 +1,38 @@
-import './style.css'
-import React, { useEffect, useState } from 'react'
+import './styles.css'
+import React, { useEffect, useState } from 'react';
 
 const PhotoCoordinatesByColor = () => {
 
     const [coordinatesState, setCoordinatesState] = useState([])
+    const [activeTicket, setActiveTicket] = useState([])
+    const [position, setPosition] = useState({ x: '', y: '' })
+    const [showModal, setShowModal] = useState(false)
+    const [activeButton, setActiveButton] = useState(null)
+    const [positionleft, setPositionleft] = useState(3.5)
     const Price = [
-        [10, 20, 10, 20],
+        [10000, 20000, 10000, 20000],
         [24, 33, 11, 24],
     ]
 
-    const getPrice = (y, i) => {
+    const getPrice = (y, i, x) => {
+        setPosition({ x: x, y: y })
         let row = null
         let price = null
-        let set = null
-        if (y === 50) {
+        if (y === 62) {
             row = 0
         }
         else {
             row = 1
         }
         price = Price[row][i]
-        console.log(`sharq ${row + 1}, gin ${price}, nstaran ${i + 1}`)
+        setActiveTicket({
+            row: row + 1,
+            price: price,
+            bench: i + 1
+        })
+        setShowModal(true)
     }
+
 
     useEffect(() => {
         const image = new Image()
@@ -40,7 +51,7 @@ const PhotoCoordinatesByColor = () => {
 
             for (let y = 0; y < image.height; y++) {
                 for (let x = 0; x < image.width; x++) {
-                    const offset = (y * image.width + x) * 4; // 4 bytes per pixel (RGBA)
+                    const offset = (y * image.width + x) * 4;
                     const r = pixelData[offset];
                     const g = pixelData[offset + 1];
                     const b = pixelData[offset + 2];
@@ -55,13 +66,41 @@ const PhotoCoordinatesByColor = () => {
             setCoordinatesState(coordinates)
         };
     }, []);
-
+    console.log(position)
     return (
         <div>
             <img alt='' src={require('../../assets/ActualPlan.png')} />
-            {coordinatesState.map((e, i) => (
-                <button className='eachSeat' key={i} onClick={() => getPrice(e)} style={{ top: e?.y - 3.5, left: e?.x - 3.5 }} />
-            ))}
+            {coordinatesState.map((e, i) => {
+                return <button
+                    key={i}
+                    onMouseEnter={() => {
+                        getPrice(e.y, i, e.x)
+                        setActiveButton(i)
+                    }}
+                    style={{
+                        position: 'absolute',
+                        top: e?.y - 4,
+                        left: e?.x - 4,
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        border: 'none'
+                    }}
+                    className={i == activeButton && 'activeButton'}
+                    onMouseLeave={() => {
+                        setShowModal(false)
+                        setActiveButton(null)
+                    }}
+                />
+            })}
+
+            {showModal &&
+                <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
+                    <p className='text'>շարք {activeTicket.row}</p>
+                    <p className='text'>տեղ {activeTicket.bench}</p>
+                    <p className='text'>դրամ {activeTicket.price}</p>
+                </div>
+            }
 
         </div>
     );
