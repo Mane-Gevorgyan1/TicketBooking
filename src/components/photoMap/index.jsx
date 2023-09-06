@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import './style.css'
+import React, { useEffect, useState } from 'react'
 
 const PhotoCoordinatesByColor = () => {
 
@@ -23,8 +24,8 @@ const PhotoCoordinatesByColor = () => {
     }
 
     useEffect(() => {
-        const image = new Image();
-        image.src = require('../../assets/ActualPlan.png');
+        const image = new Image()
+        image.src = require('../../assets/ActualPlan.png')
 
         image.onload = () => {
             const canvas = document.createElement('canvas');
@@ -59,7 +60,7 @@ const PhotoCoordinatesByColor = () => {
         <div>
             <img alt='' src={require('../../assets/ActualPlan.png')} />
             {coordinatesState.map((e, i) => (
-                <button key={i} onClick={() => getPrice(e.y, i)} style={{ position: 'absolute', top: e?.y - 3.5, left: e?.x - 3.5, width: '8px', height: '8px', borderRadius: '50%', border: 'none' }} />
+                <button className='eachSeat' key={i} onClick={() => getPrice(e)} style={{ top: e?.y - 3.5, left: e?.x - 3.5 }} />
             ))}
 
         </div>

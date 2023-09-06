@@ -1,0 +1,14 @@
+.hall {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+    background: #c2beb4;
+}
+
+.eachSeat {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    position: absolute;
+}
