@@ -11,7 +11,6 @@ const PhotoCoordinatesByColor = () => {
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
     const [tickets, setTikets] = useState([])
-    const [positionleft, setPositionleft] = useState(3.5)
     const [openCart, setOpenCart] = useState(false)
 
     const Price = [
@@ -38,8 +37,12 @@ const PhotoCoordinatesByColor = () => {
         setShowModal(true)
     }
 
-    const addTicket = () => {
+    const addTicket = (i) => {
         let item = [...tickets]
+        let data = [...coordinatesState]
+        data[i].active = true
+        console.log(data[i])
+        setCoordinatesState(data)
         item.push(activeTicket)
         setTikets(item)
     }
@@ -67,7 +70,7 @@ const PhotoCoordinatesByColor = () => {
                     const b = pixelData[offset + 2]
 
                     if (r >= 100 && g <= 30 && b <= 30) {
-                        coordinates.push({ x, y })
+                        coordinates.push({ x, y, active: false })
 
                     }
                 }
@@ -76,53 +79,67 @@ const PhotoCoordinatesByColor = () => {
             setCoordinatesState(coordinates)
         };
     }, []);
+    const removeTicket = (i) => {
+        let item = [...tickets]
+        let data = [...coordinatesState]
+        console.log(item[i].bench)
+        data[item[i].bench - 1].active = false
+        item.splice(i, 1)
+        setTikets(item)
+        setCoordinatesState(data)
+    }
+    return (
+        <div className='hall'>
+            {openCart &&
+                <CartPopup
+                    open={openCart}
+                    setOpen={setOpenCart}
+                    data={tickets}
+                    removeTicket={(i) => removeTicket(i)}
+                />
+            }
+            <img alt='' src={require('../../assets/ActualPlan.png')} />
+            {coordinatesState.map((e, i) => {
+                return <button
+                    key={i}
+                    disabled={e.active}
+                    onMouseOver={() => {
+                        getPrice(e.y, i, e.x)
+                        setActiveButton(i)
+                    }}
+                    style={
+                        {
+                            position: 'absolute',
+                            top: e?.y - 4,
+                            left: e?.x - 4,
+                            width: '8px',
+                            height: '8px',
+                            borderRadius: '50%',
+                            border: 'none',
+                            cursor: 'pointer',
+                            backgroundColor: e.active && 'green'
+                        }
+                    }
+                    className={[
+                        i == activeButton ? 'activeButton' : '',
+                        e.active ? "addTicketButton" : '']}
+                    onMouseLeave={() => {
+                        setShowModal(false)
+                        setActiveButton(null)
+                    }}
+                    onClick={() => addTicket(i)}
+                />
+            })}
+
+            {showModal &&
+                <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
+                    <p className='text'>շարք {activeTicket.row}</p>
+                    <p className='text'>տեղ {activeTicket.bench}</p>
+                    <p className='text'>դրամ {activeTicket.price}</p>
+                </div>
+            }
+            <div className='cartLine'><div onClick={() => setOpenCart(true)}><Cart />{tickets.length}</div></div>
+        </div>
+    )
 }
-return (
-    <div className='hall'>
-        {openCart &&
-            <CartPopup
-                open={openCart}
-                setOpen={setOpenCart}
-            />
-        }
-        <img alt='' src={require('../../assets/ActualPlan.png')} />
-        {coordinatesState.map((e, i) => {
-            return <button
-                key={i}
-                onMouseOver={() => {
-                    getPrice(e.y, i, e.x)
-                    setActiveButton(i)
-                }}
-                style={{
-                    position: 'absolute',
-                    top: e?.y - 4,
-                    left: e?.x - 4,
-                    width: '8px',
-                    height: '8px',
-                    borderRadius: '50%',
-                    border: 'none',
-                    cursor: 'pointer'
-                }}
-                className={i == activeButton ? 'activeButton' : ''}
-                onMouseLeave={() => {
-                    setShowModal(false)
-                    setActiveButton(null)
-                }}
-                onClick={() => addTicket()}
-            />
-        })}
-
-        {showModal &&
-            <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
-                <p className='text'>շարք {activeTicket.row}</p>
-                <p className='text'>տեղ {activeTicket.bench}</p>
-                <p className='text'>դրամ {activeTicket.price}</p>
-            </div>
-        }
-
-        <div className='cartLine'><div onClick={() => setOpenCart(true)}><Cart /> 3</div></div>
-    </div>
-)
-
-
 export default PhotoCoordinatesByColor
