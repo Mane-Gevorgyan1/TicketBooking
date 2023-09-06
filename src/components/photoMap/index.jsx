@@ -4,14 +4,14 @@ import './styles.css'
 const PhotoCoordinatesByColor = () => {
 
     const [coordinatesState, setCoordinatesState] = useState([])
-    const [activeTicket, setActiveTicket] = useState([])
+    const [activeTicket, setActiveTicket] = useState({})
     const [position, setPosition] = useState({ x: '', y: '' })
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
-    const [positionleft, setPositionleft] = useState(3.5)
+    const [tickets, setTikets] = useState([])
     const Price = [
         [10000, 20000, 10000, 20000],
-        [24, 33, 11, 24],
+        [24000, 33000, 11000, 24000],
     ]
 
     const getPrice = (y, i, x) => {
@@ -33,6 +33,11 @@ const PhotoCoordinatesByColor = () => {
         setShowModal(true)
     }
 
+    const addTicket = () => {
+        let item = [...tickets]
+        item.push(activeTicket)
+        setTikets(item)
+    }
 
     useEffect(() => {
         const image = new Image();
@@ -66,7 +71,6 @@ const PhotoCoordinatesByColor = () => {
             setCoordinatesState(coordinates)
         };
     }, []);
-    console.log(position)
     return (
         <div>
             <img alt='' src={require('../../assets/ActualPlan.png')} />
@@ -91,6 +95,7 @@ const PhotoCoordinatesByColor = () => {
                         setShowModal(false)
                         setActiveButton(null)
                     }}
+                    onClick={() => addTicket()}
                 />
             })}
 
