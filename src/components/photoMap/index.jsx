@@ -44,7 +44,7 @@ const PhotoCoordinatesByColor = () => {
                     const g = pixelData[offset + 1];
                     const b = pixelData[offset + 2];
 
-                    if (r >= 190 && g <= 30 && b <= 30) {
+                    if (r >= 100 && g <= 30 && b <= 30) {
                         coordinates.push({ x, y });
 
                     }
