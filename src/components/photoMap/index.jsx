@@ -2,9 +2,11 @@ import './style.css'
 import { Cart } from '../svg'
 import { CartPopup } from '../popup/cart'
 import { useEffect, useState } from 'react'
+import { GetSeat } from '../../services/action/ticket_action'
+import { useDispatch } from 'react-redux'
 
 const PhotoCoordinatesByColor = () => {
-
+    const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
     const [position, setPosition] = useState({ x: '', y: '' })
@@ -19,7 +21,7 @@ const PhotoCoordinatesByColor = () => {
     ]
 
     const getPrice = (y, i, x) => {
-        setPosition({ x: x, y: y })
+        setPosition({ x, y })
         let row = null
         let price = null
         if (y === 62) {
@@ -79,6 +81,7 @@ const PhotoCoordinatesByColor = () => {
             setCoordinatesState(coordinates)
         };
     }, []);
+
     const removeTicket = (i) => {
         let item = [...tickets]
         let data = [...coordinatesState]
@@ -88,6 +91,7 @@ const PhotoCoordinatesByColor = () => {
         setTikets(item)
         setCoordinatesState(data)
     }
+
     return (
         <div className='hall'>
             {openCart &&
@@ -106,6 +110,8 @@ const PhotoCoordinatesByColor = () => {
                     onMouseOver={() => {
                         getPrice(e.y, i, e.x)
                         setActiveButton(i)
+                        console.log(e.y, i);
+                        dispatch(GetSeat({ row: 1, seat: 1 }))
                     }}
                     style={
                         {
