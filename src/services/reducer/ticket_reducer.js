@@ -6,6 +6,15 @@ export const Ticket_reducer = (state = store, action) => {
         case 'getSeat':
             console.log(action.payload);
             break;
+        case 'getSeatError':
+            console.log(action.payload);
+            break;
+        case 'checkoutSuccess':
+            console.log(action.payload);
+            break;
+        case 'checkoutError':
+            console.log(action.payload);
+            break;
         default:
             return temp;
     }
