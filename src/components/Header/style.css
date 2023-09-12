@@ -1,0 +1,33 @@
+.header {
+    background-color: #EAEBED;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 100px;
+    align-items: center;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 49px;
+    color: #02DAA0;
+}
+
+.text {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #12134A;
+    margin: 0 15px;
+}
+
+.textWrapper {
+    display: flex;
+}
+
+.buttonWrapper {
+    display: flex;
+    align-items: center;
+}

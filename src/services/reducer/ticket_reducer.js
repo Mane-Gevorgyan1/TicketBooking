@@ -4,7 +4,7 @@ export const Ticket_reducer = (state = store, action) => {
     let temp = { ...state }
     switch (action.type) {
         case 'getSeat':
-            console.log(action.payload);
+            temp.ticket = action.payload.seats
             break;
         case 'getSeatError':
             console.log(action.payload);

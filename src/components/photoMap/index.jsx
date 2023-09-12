@@ -3,7 +3,7 @@ import { Cart } from '../svg'
 import { CartPopup } from '../popup/cart'
 import { useEffect, useState } from 'react'
 import { GetSeat } from '../../services/action/ticket_action'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const PhotoCoordinatesByColor = () => {
     const dispatch = useDispatch()
@@ -14,27 +14,35 @@ const PhotoCoordinatesByColor = () => {
     const [activeButton, setActiveButton] = useState(null)
     const [tickets, setTikets] = useState([])
     const [openCart, setOpenCart] = useState(false)
-
+    const [set, setSit] = useState([])
     const Price = [
         [10000, 20000, 10000, 20000],
         [24000, 33000, 11000, 24000],
     ]
 
+    const ticket = useSelector((st) => st.Ticket_reducer)
+
     const getPrice = (y, i, x) => {
         setPosition({ x, y })
         let row = null
+        let seat = 0
         let price = null
-        if (y === 62) {
-            row = 0
+        let amfiteatr = false
+        if (y === 885) {
+            row = 1
+            seat = 2041 - i
+            amfiteatr = true
         }
         else {
-            row = 1
+            row = 2
+            amfiteatr = false
         }
-        price = Price[row][i]
+        // price = Price[row][i]
+        price = ticket?.ticket?.length > 0 && ticket?.ticket?.filter((item) => item.seat === seat && item.row === row);
         setActiveTicket({
-            row: row + 1,
-            price: price,
-            bench: i + 1
+            row: row,
+            price: price.length > 0 && price[0].price,
+            bench: seat
         })
         setShowModal(true)
     }
@@ -43,7 +51,6 @@ const PhotoCoordinatesByColor = () => {
         let item = [...tickets]
         let data = [...coordinatesState]
         data[i].active = true
-        console.log(data[i])
         setCoordinatesState(data)
         item.push(activeTicket)
         setTikets(item)
@@ -85,7 +92,6 @@ const PhotoCoordinatesByColor = () => {
     const removeTicket = (i) => {
         let item = [...tickets]
         let data = [...coordinatesState]
-        console.log(item[i].bench)
         data[item[i].bench - 1].active = false
         item.splice(i, 1)
         setTikets(item)
@@ -110,7 +116,6 @@ const PhotoCoordinatesByColor = () => {
                     onMouseOver={() => {
                         getPrice(e.y, i, e.x)
                         setActiveButton(i)
-                        console.log(e.y, i);
                         dispatch(GetSeat({ row: 1, seat: 1 }))
                     }}
                     style={
