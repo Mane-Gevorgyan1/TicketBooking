@@ -6,4 +6,11 @@
     background-color: #02DAA0;
     border-width: 0;
     border-radius: 4px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    #navBtn {
+        display: none;
+    }
 }

@@ -1,32 +1,16 @@
 import './style.css'
-import { Header } from '../../components/Header/index'
-import { SearchInput } from '../../components/SearchInput'
-import { Ticket } from '../../components/Ticket'
+import { AllEvents } from '../../components/AllEvents'
+import { TopEvents } from '../../components/TopEvents'
+import { MainAbout } from '../../components/MainAbout'
+import { SearchEvent } from '../../components/SearchEvent'
+
 export const Main = () => {
-    return <div>
-        <Header />
-        <div className='imgWrapper'>
-            <img className='img' src={require('../../assets/Rectangle 2.png')} />
-            <div className='imgtextWrapper'>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem  he industry's standard dummy text ever since the 1500s,</p>
-                <SearchInput />
-            </div>
-
+    return (
+        <div className='mainPage'>
+            <AllEvents />
+            <TopEvents />
+            <SearchEvent />
+            <MainAbout />
         </div>
-        <div className='ticketWrapper'>
-            <Ticket />
-            <Ticket />
-            <Ticket />
-            <Ticket />
-            <Ticket />
-            <Ticket />
-            <Ticket />
-            <Ticket />
-            <Ticket />
-            <Ticket />
-            <Ticket />
-            <Ticket />
-
-        </div>
-    </div>
+    )
 }

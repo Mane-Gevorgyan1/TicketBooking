@@ -1,8 +1,8 @@
 import { Search } from '../svg'
 import './style.css'
-export const SearchInput = () => {
+export const SearchInput = ({ placeholder }) => {
     return <div className='inputWrapper'>
-        <input className='input' placeholder='Search your favorite event or singer' />
+        <input className='input' placeholder={placeholder} />
         <div className='searchWrapper'>
             <Search />
         </div>

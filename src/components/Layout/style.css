@@ -1,0 +1,19 @@
+.copyright {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.findUs {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cursor {
+    cursor: pointer;
+}

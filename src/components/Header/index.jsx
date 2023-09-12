@@ -1,22 +1,25 @@
-import { Button } from '../Button'
-import { User } from '../svg'
 import './style.css'
+import { User } from '../svg'
+import { Button } from '../Button'
+
 export const Header = () => {
-    return <div className="header">
-        <div>
-            <p className='title'>Ticket.com</p>
-        </div>
-        <div className='textWrapper'>
-            <p className='text'>Star</p>
-            <p className='text'>Tickats</p>
-            <p className='text'>Help</p>
-            <p className='text'>Contact</p>
-        </div>
-        <div className='buttonWrapper'>
-            <Button title={'Buy Ticket'} />
-            <div style={{ marginLeft: 20 }}>
-                <User />
+    return (
+        <div className='headerContainer'>
+            <div className="header">
+                <p className='title'>Ticket.com</p>
+                <div className='textWrapper'>
+                    <p className='text'>Stars</p>
+                    <p className='text'>Tickets</p>
+                    <p className='text'>Help</p>
+                    <p className='text'>Contact Us</p>
+                </div>
+                <div className='buttonWrapper'>
+                    <Button title={'Buy Tickets'} />
+                    <div className='user'>
+                        <User />
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    )
 }

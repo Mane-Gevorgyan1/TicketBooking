@@ -1,11 +1,15 @@
+.headerContainer {
+    background: #EAEBED;
+}
+
 .header {
-    background-color: #EAEBED;
-    height: 80px;
-    width: 100%;
+    max-width: 1200px;
     display: flex;
     justify-content: space-between;
-    padding: 0 100px;
+    padding: 16px 0;
     align-items: center;
+    margin: 0 auto;
+    gap: 10px;
 }
 
 .title {
@@ -13,6 +17,7 @@
     font-size: 40px;
     line-height: 49px;
     color: #02DAA0;
+    cursor: pointer;
 }
 
 .text {
@@ -20,14 +25,30 @@
     font-size: 20px;
     line-height: 30px;
     color: #12134A;
-    margin: 0 15px;
+    cursor: pointer;
 }
 
 .textWrapper {
     display: flex;
+    align-items: center;
+    gap: 40px;
 }
 
 .buttonWrapper {
     display: flex;
     align-items: center;
+    gap: 20px;
+}
+
+.user {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 16px 20px;
+    }
+    .textWrapper {
+        display: none;
+    }
 }
