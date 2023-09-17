@@ -1,8 +1,12 @@
 import './style.css'
 import { CloseSvg, FreeSvg, MenuSvg, Search, Translate, User } from '../svg'
-import { Button } from '../Button'
+import { useDispatch, useSelector } from 'react-redux'
+import { OpenCategoryMenu } from '../../services/action/action'
 
 export const Header = ({ open, menu }) => {
+    const openMenu = useSelector((st) => st.StaticReducer)
+    console.log(openMenu)
+    const dispatch = useDispatch()
     return (
         <div className='headerContainer'>
             <div className="header">
@@ -14,15 +18,21 @@ export const Header = ({ open, menu }) => {
                     <p className='text'>Classic</p>
                     <p className='text'>Other</p>
                 </div>
-                <div className='buttonWrapperHeader'>
+                {!openMenu.categoryMenu ? <div className='buttonWrapperHeader'>
                     <Search />
                     <div className='Translate'>
                         <Translate />
                     </div>
                     <div className='menuSvg' onClick={() => open(!menu)}>
-                        {!menu ? <MenuSvg /> : <CloseSvg />}
+                        {!menu ? <MenuSvg /> : <div>
+                            <CloseSvg />
+                        </div>}
                     </div>
-                </div>
+                </div> :
+                    <div onClick={() => dispatch(OpenCategoryMenu(false))}>
+                        <CloseSvg />
+                    </div>
+                }
             </div>
             <div className='FreeSvg'>
                 <img src={require('../../assets/free.png')} />
