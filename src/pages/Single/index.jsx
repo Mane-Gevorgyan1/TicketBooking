@@ -13,7 +13,7 @@ export const Single = () => {
                     ris ut pretium volutpat. Eu at etiam purus non enim nam. Commodo pellentesque semper neque sene
                     ctus lectus enim turpis ornare. Pellentesque amet
                     ultricies nam venenatis quisque. </p>
-                <div className='buttonWrapper'>
+                <div className='buttonWrapperSingl'>
                     <Button title={'Buy Now'} />
                 </div>
             </div>

@@ -35,7 +35,7 @@
     padding-left: 30px;
 }
 
-.buttonWrapper {
+.buttonWrapperSingl {
     width: 120px;
 }
 
@@ -53,13 +53,24 @@
 
     }
 
-    .singelText {
-        text-align: center;
+    .singlTitle {
+        font-size: 30px;
     }
 
-    .buttonWrapper {
-        width: 100%;
-        justify-content: center;
+    .singelText {
+        font-size: 16px;
+    }
+
+    .buttonWrapperSingl {
         margin-bottom: 40px;
+    }
+
+    .singlImg {
+        padding: 0 20px;
+    }
+
+    .singlImg>img {
+        width: 100%;
+        height: 200px;
     }
 }

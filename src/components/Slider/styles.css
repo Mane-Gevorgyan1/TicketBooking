@@ -31,6 +31,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    /* align-items: center; */
 }
 
 .Desckription>div>span {
@@ -42,7 +43,7 @@
     line-height: normal;
 }
 
-.title {
+.titleCarusel {
     color: #121212;
     font-family: Arian AMU Serif;
     font-size: 32px;
@@ -51,6 +52,61 @@
     line-height: 40px;
 }
 
+@media screen and (max-width: 1170px) {
+    .alice-carousel {
+        padding: 0 80px;
+    }
+}
+
 @media screen and (max-width: 768px) {
-    .Desckription {}
+    .Desckription {
+        width: 45% !important;
+        height: 200px !important;
+        padding: 0 !important;
+        gap: 1px !important;
+        justify-content: space-around !important;
+        align-items: center !important;
+    }
+
+    .Desckription>div {
+        align-items: center;
+    }
+
+    .titleCarusel {
+        color: #121212;
+        font-family: Arian AMU Serif;
+        font-size: 11px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 16px;
+        text-align: center;
+    }
+
+    .alice-carousel__wrapper {
+        line-height: initial;
+        height: 180px;
+        border-radius: 6px;
+        padding: 0 20px;
+    }
+
+    .CaruselItem>img {
+        width: 100%;
+        height: 180px;
+    }
+
+    .Desckription>div>span {
+        font-size: 10px !important;
+    }
+
+    .ButtonWrapperCarusel {
+        height: 40px;
+    }
+
+    .alice-carousel {
+        padding: 0 20px !important;
+    }
+
+    .alice-carousel__dots {
+        margin: 5px 3px 5px;
+    }
 }

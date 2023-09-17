@@ -1,5 +1,5 @@
 import './style.css'
-import { Search, Translate, User } from '../svg'
+import { FreeSvg, MenuSvg, Search, Translate, User } from '../svg'
 import { Button } from '../Button'
 
 export const Header = () => {
@@ -14,10 +14,21 @@ export const Header = () => {
                     <p className='text'>Classic</p>
                     <p className='text'>Other</p>
                 </div>
-                <div className='buttonWrapper'>
+                <div className='buttonWrapperHeader'>
                     <Search />
-                    <Translate />
+                    <div className='Translate'>
+                        <Translate />
+                    </div>
+                    <div className='menuSvg'>
+                        <MenuSvg />
+                    </div>
                 </div>
+            </div>
+            <div className='FreeSvg'>
+                <img src={require('../../assets/free.png')} />
+            </div>
+            <div className='FreeSvg1'>
+                <img src={require('../../assets/free1.png')} />
             </div>
         </div>
     )

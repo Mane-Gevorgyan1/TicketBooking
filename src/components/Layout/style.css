@@ -23,3 +23,9 @@
 .cursor {
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px) {
+    .outlet {
+        margin-top: 30px;
+    }
+}

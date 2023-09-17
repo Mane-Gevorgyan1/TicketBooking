@@ -3,7 +3,8 @@ import './style.css'
 export const SearchEvent = () => {
     return (
         <div className='searchEvent'>
-            <p>You can find your preferred event with Ticket.com You can find your preferred event with Ticket.com</p>
+            <img src={require('../../assets/unsplash_RsmOYMxmlYU.png')} />
+            <p>You can find your preferred event with Ticket.com You c Ticket.com </p>
         </div>
     )
 }

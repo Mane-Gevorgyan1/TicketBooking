@@ -1,4 +1,4 @@
-import { FbSvg, InstagramSvg, TwitterSvg } from '../svg'
+import { FbSvg, InstagramSvg, MobilFb, MobileI, MobileT, TwitterSvg } from '../svg'
 import './style.css'
 
 export const Footer = () => {
@@ -8,7 +8,7 @@ export const Footer = () => {
                 <div className='eachFooterColumn'>
                     <p>Copyrigh© 2023 shineticket.am | ALL RIGHTS RESERVED</p>
                 </div>
-                <div className='eachFooterColumn'>
+                <div className='eachFooterColumnn'>
                     <p>Theater</p>
                     <p>Theater</p>
                     <p>Theater</p>
@@ -18,6 +18,16 @@ export const Footer = () => {
                     <FbSvg />
                     <InstagramSvg />
                     <TwitterSvg />
+                </div>
+                <div className='FotterMobile'>
+                    <div className='eachFooterColumnn'>
+                        <p>Copyrigh© 2023 shineticket.am | ALL RIGHTS RESERVED</p>
+                    </div>
+                    <div className='eachFooterColumnn'>
+                        <MobilFb />
+                        <MobileI />
+                        <MobileT />
+                    </div>
                 </div>
             </div>
         </div>

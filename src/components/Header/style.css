@@ -15,6 +15,7 @@
     align-items: center;
     margin: 0 auto;
     gap: 10px;
+    position: relative;
 }
 
 .infoHeader {
@@ -64,7 +65,7 @@
     gap: 40px;
 }
 
-.buttonWrapper {
+.buttonWrapperHeader {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -74,16 +75,80 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 768px) {
+.FreeSvg {
+    position: absolute;
+    right: 0;
+    top: 77px;
+}
+
+.FreeSvg1 {
+    position: absolute;
+    right: 20px;
+    top: 30px;
+}
+
+.Translate {
+    display: block;
+}
+
+.menuSvg {
+    display: none;
+}
+
+.FreeSvg1 {
+    display: block;
+}
+
+.FreeSvg {
+    display: none;
+}
+
+@media screen and (max-width: 1170px) {
+    .FreeSvg1 {
+        display: none;
+    }
+
     .header {
-        padding: 16px 20px;
+        padding: 5px 80px;
     }
 
     .infoHeader {
-        padding: 16px 20px;
+        padding: 5px 80px;
+    }
+
+    .FreeSvg {
+        display: block;
+        margin-top: -10px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 5px 20px;
+    }
+
+    .infoHeader {
+        padding: 5px 20px;
     }
 
     .textWrapper {
+        display: none;
+    }
+
+    .FreeSvg {
+        display: block;
+        top: 78px !important;
+    }
+
+    .Translate {
+        display: none;
+    }
+
+    .menuSvg {
+        display: block;
+    }
+
+    .FreeSvg1 {
         display: none;
     }
 }

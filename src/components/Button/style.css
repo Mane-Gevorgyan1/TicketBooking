@@ -18,3 +18,11 @@
     background-color: #FEE827;
     border: 1px solid transparent;
 }
+
+@media screen and (max-width: 768px) {
+    .button {
+        min-width: 80px !important;
+        padding: 5px 12px !important;
+        font-size: 10px !important;
+    }
+}

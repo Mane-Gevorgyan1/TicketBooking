@@ -11,7 +11,7 @@ export const Main = () => {
     return (
         <div className='mainPage'>
             <Carusel />
-            <TopEvents />
+            {/* <TopEvents /> */}
             {/* <CardSlider /> */}
             <ALLEvents />
             <SearchEvent />

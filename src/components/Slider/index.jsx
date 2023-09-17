@@ -9,11 +9,11 @@ const handleDragStart = (e) => e.preventDefault();
 const items = [
     <div className='CaruselItem'>
         <div className='Desckription'>
-            <p className='title'>Lorem ipsum dolor sit amet</p>
+            <p className='titleCarusel'>Lorem ipsum dolor sit amet</p>
             <div>
                 <span>Lorem Ipsum  Place</span>
                 <span>14.05.2022  19:00</span>
-                <div style={{ marginTop: 10 }}>
+                <div className='ButtonWrapperCarusel' style={{ marginTop: 10 }}>
                     <Button onClick={() => window.location = '/hall'} title={'Buy Ticket'} />
                 </div>
             </div>
@@ -22,11 +22,11 @@ const items = [
     </div>,
     <div className='CaruselItem'>
         <div className='Desckription'>
-            <p className='title'>Lorem ipsum dolor sit amet</p>
+            <p className='titleCarusel'>Lorem ipsum dolor sit amet</p>
             <div>
                 <span>Lorem Ipsum  Place</span>
                 <span>14.05.2022  19:00</span>
-                <div style={{ marginTop: 10 }}>
+                <div className='ButtonWrapperCarusel' style={{ marginTop: 10 }}>
                     <Button onClick={() => window.location = '/hall'} title={'Buy Ticket'} />
                 </div>
             </div>

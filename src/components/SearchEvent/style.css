@@ -1,7 +1,6 @@
 .searchEvent {
     width: 100%;
     height: 240px;
-    background: url('../../assets/unsplash_RsmOYMxmlYU.png') 100% / 100%;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
@@ -10,7 +9,13 @@
     gap: 30px;
 }
 
+.searchEvent>img {
+    height: 240px;
+    width: 100%;
+}
+
 .searchEvent>p {
+    position: absolute;
     color: #FFF;
     text-align: center;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.50);
@@ -19,5 +24,17 @@
     font-weight: 500;
     line-height: normal;
     line-height: 30px;
-    width: 70%;
+    width: 40%;
+}
+
+@media screen and (max-width: 768px) {
+    .searchEvent>img {
+        height: 120px;
+    }
+
+    .searchEvent>p {
+        font-size: 10px;
+        line-height: 16px;
+        width: 70%;
+    }
 }
