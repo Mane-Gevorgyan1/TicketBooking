@@ -1,3 +1,4 @@
+import { FbSvg, InstagramSvg, TwitterSvg } from '../svg'
 import './style.css'
 
 export const Footer = () => {
@@ -5,26 +6,18 @@ export const Footer = () => {
         <div className='footerWrapper'>
             <div className='footerColumns'>
                 <div className='eachFooterColumn'>
-                    <p>Quick Link</p>
-                    <span>Services</span>
-                    <span>About  Us</span>
-                    <span>Rooms</span>
+                    <p>Copyrigh© 2023 shineticket.am | ALL RIGHTS RESERVED</p>
                 </div>
                 <div className='eachFooterColumn'>
-                    <p>Hotel</p>
-                    <span>Mission</span>
-                    <span>Careers</span>
+                    <p>Theater</p>
+                    <p>Theater</p>
+                    <p>Theater</p>
+                    <p>Theater</p>
                 </div>
                 <div className='eachFooterColumn'>
-                    <p>Quick Link</p>
-                    <span>Services</span>
-                    <span>About  Us</span>
-                    <span>Rooms</span>
-                </div>
-                <div className='eachFooterColumn'>
-                    <p>Hotel</p>
-                    <span>Mission</span>
-                    <span>Careers</span>
+                    <FbSvg />
+                    <InstagramSvg />
+                    <TwitterSvg />
                 </div>
             </div>
         </div>

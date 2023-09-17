@@ -1,16 +1,18 @@
 import './style.css'
 import { Date, Location, TicketIcon } from '../svg'
 
-export const EachTicket = ({ width, id, image, title, date, location, price }) => {
-    return <div className='ticket'>
+export const CategoryTicket = ({ image, title, date, location, price, genre }) => {
+    return <div className='Categoryticket'>
         <div>
-            <img alt='' className='Ticketimg' src={require(`../../assets/${image}`)} />
+            <img alt='' className='CategoryImg' src={require(`../../assets/${image}`)} />
         </div>
-        <div className='ticketText'>
+        <div className='CategoryText'>
             <div className='ticketTextWrapper'>
                 <p className='ticketTitle'>{title}</p>
             </div>
-
+            <div>
+                <p className='ticketGenre'>{genre}</p>
+            </div>
             <div className='ticketTextWrapper'>
                 <Date />
                 <p className='ticketTextp'>{date}</p>

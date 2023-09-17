@@ -1,11 +1,17 @@
 .copyright {
-    width: 100%;
-    max-width: 1200px;
+    max-width: 1150px;
     margin: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 30px;
+}
+
+.outlet {
+    max-width: 1150px;
+    margin: auto;
+    margin-top: 60px;
+    min-height: calc(100vh - 220px);
 }
 
 .findUs {

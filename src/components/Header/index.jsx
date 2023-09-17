@@ -1,23 +1,22 @@
 import './style.css'
-import { User } from '../svg'
+import { Search, Translate, User } from '../svg'
 import { Button } from '../Button'
 
 export const Header = () => {
     return (
         <div className='headerContainer'>
             <div className="header">
-                <p className='title'>Ticket.com</p>
+                <p className='title'>Logo</p>
                 <div className='textWrapper'>
-                    <p className='text'>Stars</p>
-                    <p className='text'>Tickets</p>
-                    <p className='text'>Help</p>
-                    <p className='text'>Contact Us</p>
+                    <p className='text'>Cinema</p>
+                    <p className='text'>Концерт</p>
+                    <p className='text'>Թատրոն</p>
+                    <p className='text'>Classic</p>
+                    <p className='text'>Other</p>
                 </div>
                 <div className='buttonWrapper'>
-                    <Button title={'Buy Tickets'} />
-                    <div className='user'>
-                        <User />
-                    </div>
+                    <Search />
+                    <Translate />
                 </div>
             </div>
         </div>

@@ -1,14 +1,19 @@
 import './style.css'
-import { AllEvents } from '../../components/AllEvents'
 import { TopEvents } from '../../components/TopEvents'
 import { MainAbout } from '../../components/MainAbout'
 import { SearchEvent } from '../../components/SearchEvent'
+import { Carusel } from '../../components/Slider'
+import { CardSlider } from '../../components/CardSlider'
+import { ALLEvents } from '../../components/AllEvents'
+import { EachTicket } from '../../components/EachTicket'
 
 export const Main = () => {
     return (
         <div className='mainPage'>
-            <AllEvents />
+            <Carusel />
             <TopEvents />
+            {/* <CardSlider /> */}
+            <ALLEvents />
             <SearchEvent />
             <MainAbout />
         </div>

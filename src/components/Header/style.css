@@ -1,22 +1,52 @@
 .headerContainer {
-    background: #EAEBED;
+    background: #FEE827;
 }
 
+.infoHeaderContainer {
+    background: #000;
+}
+
+
 .header {
-    max-width: 1200px;
+    max-width: 1130px;
     display: flex;
     justify-content: space-between;
-    padding: 16px 0;
+    padding: 8px 0;
     align-items: center;
     margin: 0 auto;
     gap: 10px;
+}
+
+.infoHeader {
+    max-width: 1130px;
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    align-items: center;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.phonNumber {
+    color: #FFF;
+    font-family: Arian AMU Serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.social {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .title {
     font-weight: 400;
     font-size: 40px;
     line-height: 49px;
-    color: #02DAA0;
+    /* color: #02DAA0; */
     cursor: pointer;
 }
 
@@ -48,6 +78,11 @@
     .header {
         padding: 16px 20px;
     }
+
+    .infoHeader {
+        padding: 16px 20px;
+    }
+
     .textWrapper {
         display: none;
     }

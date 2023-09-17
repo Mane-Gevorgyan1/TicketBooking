@@ -20,14 +20,14 @@
 
 .topEventDetails {
     width: 90%;
-    padding: 10px 20px;
+    padding: 10px 20px 30px 20px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     border-radius: 4px;
     background: rgba(255, 255, 255, 0.80);
     position: absolute;
-    bottom: -60px;
+    bottom: -80px;
     left: 0;
     right: 0;
     margin: auto;
@@ -49,31 +49,13 @@
     line-height: normal;
 }
 
-.topEventDetails>button {
-    border-radius: 4px;
-    background: #FFF;
-    box-shadow: 0px 0px 4px 0px rgba(2, 218, 160, 0.16), 0px 0px 4px 0px #02DAA0;
-    color: #02DAA0;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    border: none;
-    padding: 15px 0;
-    cursor: pointer;
-    transition: 0.4s;
-}
-
-.topEventDetails>button:hover {
-    background: #02DAA0;
-    box-shadow: 0px 0px 4px 0px rgba(2, 218, 160, 0.16), 0px 0px 4px 0px #02DAA0;
-    color: #fff;
-}
+.topEventDetails>button {}
 
 @media screen and (max-width: 768px) {
     .eachTopEvent {
         max-width: 230px;
     }
+
     .topEventImage {
         height: 400px;
     }

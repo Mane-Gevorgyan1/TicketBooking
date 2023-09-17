@@ -7,7 +7,11 @@
     display: flex;
     align-items: center;
     padding: 5px;
-    flex: 1;
+    margin-bottom: 10px;
+}
+
+.ticket:hover {
+    background: #FEE827;
 }
 
 .Ticketimg {
@@ -47,8 +51,15 @@
     margin-left: 2px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1160px) {
     .ticket {
         min-width: 250px;
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ticket {
+        width: 100%;
     }
 }

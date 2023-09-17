@@ -1,3 +1,4 @@
+import { Button } from '../Button'
 import './style.css'
 
 export const EachTopEvent = ({ id, image, title, location, date, price }) => {
@@ -11,7 +12,7 @@ export const EachTopEvent = ({ id, image, title, location, date, price }) => {
                 <span>{location}</span>
                 <span>{date}</span>
                 <span>{price}</span>
-                <button onClick={() => window.location = '/hall'}>Buy Ticket</button>
+                <Button title={'Buy Ticket'} />
             </div>
         </div>
     )

@@ -1,0 +1,65 @@
+.singlImg>img {
+    width: 500px;
+    height: 300px;
+}
+
+.SinglDescription {
+    display: flex;
+    justify-content: space-between;
+}
+
+.singlTitle {
+    color: #12134A;
+    font-family: Kanit;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.singelText {
+    color: #12134A;
+    font-family: Kanit;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    width: 85%;
+}
+
+
+.singltextWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 30px;
+}
+
+.buttonWrapper {
+    width: 120px;
+}
+
+@media screen and (max-width: 768px) {
+    .SinglDescription {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .singltextWrapper {
+        align-items: center;
+        gap: 20px;
+        padding-left: 0;
+
+    }
+
+    .singelText {
+        text-align: center;
+    }
+
+    .buttonWrapper {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+}

@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     gap: 70px;
-    background: #EAEBED;
+    /* background: #EAEBED; */
     padding-bottom: 70px;
+    /* max-width: 1150px; */
 }
