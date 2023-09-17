@@ -1,19 +1,19 @@
 import { FbSvg, InstagramSvg, MobilFb, MobileI, MobileT, TwitterSvg } from '../svg'
 import './style.css'
 
-export const Footer = () => {
+export const Footer = ({ menu }) => {
     return (
         <div className='footerWrapper'>
             <div className='footerColumns'>
                 <div className='eachFooterColumn'>
                     <p>Copyrigh© 2023 shineticket.am | ALL RIGHTS RESERVED</p>
                 </div>
-                <div className='eachFooterColumnn'>
+                {!menu && <div className='eachFooterColumnn'>
                     <p>Theater</p>
                     <p>Theater</p>
                     <p>Theater</p>
                     <p>Theater</p>
-                </div>
+                </div>}
                 <div className='eachFooterColumn'>
                     <FbSvg />
                     <InstagramSvg />

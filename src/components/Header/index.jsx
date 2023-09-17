@@ -1,8 +1,8 @@
 import './style.css'
-import { FreeSvg, MenuSvg, Search, Translate, User } from '../svg'
+import { CloseSvg, FreeSvg, MenuSvg, Search, Translate, User } from '../svg'
 import { Button } from '../Button'
 
-export const Header = () => {
+export const Header = ({ open, menu }) => {
     return (
         <div className='headerContainer'>
             <div className="header">
@@ -19,8 +19,8 @@ export const Header = () => {
                     <div className='Translate'>
                         <Translate />
                     </div>
-                    <div className='menuSvg'>
-                        <MenuSvg />
+                    <div className='menuSvg' onClick={() => open(!menu)}>
+                        {!menu ? <MenuSvg /> : <CloseSvg />}
                     </div>
                 </div>
             </div>

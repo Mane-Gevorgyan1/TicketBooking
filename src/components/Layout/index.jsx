@@ -2,18 +2,23 @@ import './style.css'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
 import { Outlet } from 'react-router-dom'
-import { FacebookIcon, InstagramIcon, TwitterIcon } from '../svg'
 import { InfoHeader } from '../Header/InfoHeader'
+import { MenuMobile } from '../MenuMobile'
+import { useState } from 'react'
 
 export const Layout = () => {
+    const [openMenu, setOpenMenu] = useState(false)
     return (
         <>
             <InfoHeader />
-            <Header />
-            <div className='outlet'>
+            <Header open={(e) => setOpenMenu(e)} menu={openMenu} />
+            {!openMenu ? <div className='outlet'>
                 <Outlet />
-            </div>
-            <Footer />
+            </div> :
+                <div className='outletMenu'>
+                    <MenuMobile />
+                </div>}
+            <Footer menu={openMenu} />
         </>
     )
 }

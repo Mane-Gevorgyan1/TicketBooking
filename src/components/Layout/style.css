@@ -14,6 +14,12 @@
     min-height: calc(100vh - 220px);
 }
 
+.outletMenu {
+    margin-top: 0px;
+    min-height: calc(100vh - 157px);
+    background-color: #E7E7E7;
+}
+
 .findUs {
     display: flex;
     align-items: center;
