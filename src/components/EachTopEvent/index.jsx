@@ -5,7 +5,7 @@ export const EachTopEvent = ({ id, image, title, location, date, price }) => {
     return (
         <div className='eachTopEvent'>
             <div className='topEventImage'>
-                <img alt='' src={require(`../../assets/${image}`)} />
+                <img alt='' src={require('../../assets/Rectangle 19.png')} />
             </div>
             <div className='topEventDetails'>
                 <h3>{title}</h3>

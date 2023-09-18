@@ -27,6 +27,11 @@
     width: 85%;
 }
 
+.loading {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+}
 
 .singltextWrapper {
     display: flex;

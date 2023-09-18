@@ -3,15 +3,16 @@ import './styles.css'
 import { EachTopEvent } from '../EachTopEvent';
 import Carousel from 'react-elastic-carousel'
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { GetTopEvents } from '../../services/action/action';
 
 
 
 
-
-export const CardSlider = () => {
+export const CardSlider = ({ data }) => {
     const [count, setCount] = useState(3)
     const [windowSize, setWindowSize] = useState(getWindowSize())
-
+    const dispatch = useDispatch()
     function getWindowSize() {
         const { innerWidth, innerHeight } = window
         return { innerWidth, innerHeight }
@@ -27,9 +28,7 @@ export const CardSlider = () => {
 
     }, [])
     useEffect(() => {
-        console.log(windowSize.innerWidth)
         if (windowSize.innerWidth < 425) {
-            console.log('[]]]')
             setCount(1)
         }
         if (windowSize.innerWidth > 425 && windowSize.innerWidth < 1100) {
@@ -39,41 +38,31 @@ export const CardSlider = () => {
             setCount(3)
         }
     }, [windowSize])
-    console.log(count)
+    useEffect(() => {
+        dispatch(GetTopEvents())
+    }, [])
+    console.log(data)
     return <Carousel itemsToShow={count}>
-
-        <EachTopEvent
-            id={1}
-            image={'Rectangle 20.png'}
-            title={"Madonna"}
-            location={"Yerevan"}
-            date={"31 September 2023"}
-            price={"10.000 - 30.000 AMD"}
-        />
-        <EachTopEvent
-            id={1}
-            image={'Rectangle 20.png'}
-            title={"Madonna"}
-            location={"Yerevan"}
-            date={"31 September 2023"}
-            price={"10.000 - 30.000 AMD"}
-        />
-        <EachTopEvent
-            id={1}
-            image={'Rectangle 20.png'}
-            title={"Madonna"}
-            location={"Yerevan"}
-            date={"31 September 2023"}
-            price={"10.000 - 30.000 AMD"}
-        />
-        <EachTopEvent
-            id={1}
-            image={'Rectangle 20.png'}
-            title={"Madonna"}
-            location={"Yerevan"}
-            date={"31 September 2023"}
-            price={"10.000 - 30.000 AMD"}
-        />
+        {data?.map((elm, i) => {
+            const dateObject = new Date(elm.date);
+            let dayOfWeek = dateObject.getDay();
+            const year = dateObject.getFullYear();
+            let month = dateObject.getMonth() + 1;
+            if (dayOfWeek <= 9) {
+                dayOfWeek = `0${dayOfWeek}`
+            }
+            if (month <= 9) {
+                month = `0${month}`
+            }
+            return <EachTopEvent
+                id={1}
+                image={`http://localhost:8080/public/images/${elm.image}`}
+                title={elm.title}
+                location={elm.location}
+                date={`${dayOfWeek} ${month} ${year}`}
+                price={`${elm.priceStart} - ${elm.priceEnd}`}
+            />
+        })}
     </Carousel>
 
 }

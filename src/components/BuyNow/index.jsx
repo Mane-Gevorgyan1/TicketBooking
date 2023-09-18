@@ -4,7 +4,6 @@ import './style.css'
 export const BuyNow = () => {
     const [chedked, setChedker] = useState(false)
     const [selectPay, setSelectPay] = useState(null)
-    console.log(selectPay == 1)
     const Select = (i) => {
         setSelectPay(i)
     }

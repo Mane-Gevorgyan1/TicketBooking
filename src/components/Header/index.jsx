@@ -5,7 +5,6 @@ import { OpenCategoryMenu } from '../../services/action/action'
 
 export const Header = ({ open, menu }) => {
     const openMenu = useSelector((st) => st.StaticReducer)
-    console.log(openMenu)
     const dispatch = useDispatch()
     return (
         <div className='headerContainer'>
