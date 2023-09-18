@@ -12,7 +12,10 @@ export const Main = () => {
         <div className='mainPage'>
             <Carusel />
             {/* <TopEvents /> */}
-            {/* <CardSlider /> */}
+            <div className='EventTitle' style={{ flexDirection: 'column' }}>
+                <h2 style={{ marginBottom: 50 }}>All Events</h2>
+                <CardSlider />
+            </div>
             <ALLEvents />
             <SearchEvent />
             <MainAbout />

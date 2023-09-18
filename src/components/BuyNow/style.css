@@ -1,0 +1,185 @@
+.buyNowWrapper {
+    width: 80%;
+    background-color: white;
+    border-radius: 10px;
+    position: absolute;
+    padding: 50px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
+.BuyNowHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.BuyNowHeader>p {
+    color: #000;
+    font-family: Kanit;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.BuyNowWrapper {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.BuyNowTitle>p {
+    color: #000;
+    font-family: Arian AMU Serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.BuyNowDate>p {
+    color: #F00;
+    font-family: Kanit;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.BuyNowTickert {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.BuyNowTickertPrive {
+    color: #000;
+    font-family: Kanit;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.Seat {
+    color: #000;
+    font-family: Kanit;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-bottom: 10px;
+}
+
+.BuyInputsName {
+    display: flex;
+    justify-content: space-between;
+}
+
+.BuyInputsName>div {
+    width: 48%;
+}
+
+.InputsBuy {
+    margin-bottom: 20px;
+}
+
+.InputsBuy>input,
+.InputsBuy>textarea {
+    border-radius: 2px;
+    border: 1px solid #000;
+    width: 100%;
+    height: 32px;
+    padding: 5px;
+}
+
+.InputsBuy>textarea {
+    height: 80px;
+}
+
+.InputsBuy>label {
+    color: #000;
+    font-family: Kanit;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 5px;
+}
+
+.BuyButton {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.BuyButton>button {
+    width: 200px;
+    height: 50px;
+    border-radius: 8px;
+    background: #000;
+    color: #FEE827;
+    font-family: Libre Franklin;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    border: none;
+}
+
+.BuyCheck {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.BuyCheck>p {
+    color: #000;
+    font-family: Kanit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-right: 30px;
+}
+
+.BuyMethod {
+    display: flex;
+    align-items: center;
+    margin: 40px 0;
+    justify-content: space-between;
+}
+
+.BuyMethod>div {
+    display: flex;
+}
+
+.BuyMethodSelect {
+    margin-top: 4px;
+    margin-right: 20px;
+}
+
+.buyNowTotalPrice {
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px 0;
+}
+
+.buyNowTotalPrice>p {
+    color: #000;
+    font-family: Kanit;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.buyNowTotalPrice>p>span {
+    font-size: 30px;
+    font-weight: 500;
+
+}

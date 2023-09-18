@@ -6,6 +6,7 @@ import './style.css'
 import { CategoryMenu } from '../../components/CategoryMenu'
 import { OpenCategoryMenu } from '../../services/action/action'
 import { useDispatch, useSelector } from 'react-redux'
+import { BuyNow } from '../../components/BuyNow'
 export const Category = () => {
     const dispatch = useDispatch()
     const data = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},]
@@ -17,6 +18,7 @@ export const Category = () => {
         return <CategoryMenu />
     }
     return <div className='category'>
+        {/* <BuyNow /> */}
         <div className='CategoryButtonWrapper'>
             <button id='active' className='CateogryButton'>Classical</button>
             <button className='CateogryButton'>Classical</button>
@@ -57,6 +59,7 @@ export const Category = () => {
             {data.map((elm, i) => {
 
                 return <CategoryTicket
+                    key={i}
                     title={'Aretha Fanklin'}
                     image='Rectangle 19.png'
                     date={'31 September 2023'}
