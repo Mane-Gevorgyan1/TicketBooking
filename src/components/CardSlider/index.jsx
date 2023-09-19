@@ -41,7 +41,6 @@ export const CardSlider = ({ data }) => {
     useEffect(() => {
         dispatch(GetTopEvents())
     }, [])
-    console.log(data)
     return <Carousel itemsToShow={count}>
         {data?.map((elm, i) => {
             const dateObject = new Date(elm.date);
@@ -55,7 +54,7 @@ export const CardSlider = ({ data }) => {
                 month = `0${month}`
             }
             return <EachTopEvent
-                id={1}
+                id={elm._id}
                 image={`http://localhost:8080/public/images/${elm.image}`}
                 title={elm.title}
                 location={elm.location}

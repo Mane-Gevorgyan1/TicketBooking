@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../Button'
 import './style.css'
 
 export const EachTopEvent = ({ id, image, title, location, date, price }) => {
+    const navigation = useNavigate()
     return (
-        <div className='eachTopEvent'>
+        <div className='eachTopEvent' onClick={() => navigation(`Single/${id}`)}>
             <div className='topEventImage'>
                 <img alt='' src={require('../../assets/Rectangle 19.png')} />
             </div>

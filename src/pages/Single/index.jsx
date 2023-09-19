@@ -5,14 +5,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GetSinglPage } from '../../services/action/action'
 import { CardSlider } from '../../components/CardSlider'
 import { PuffLoader } from 'react-spinners'
+import { useParams } from 'react-router-dom'
 export const Single = () => {
     const dispatch = useDispatch()
+    const { id } = useParams()
     useEffect(() => {
-        dispatch(GetSinglPage("65061546e6b8d726f0b3f426"))
+        dispatch(GetSinglPage(id))
     }, [])
     const getSinglPage = useSelector((st) => st.getSinglPage)
     let { event } = getSinglPage.events
     let { recomended } = getSinglPage.events
+
     if (getSinglPage.loading) {
         return <div className='loading'>
             <PuffLoader color="#36d7b7" />
@@ -33,7 +36,7 @@ export const Single = () => {
             </div>
         </div>
         <div className='EventTitle' style={{ flexDirection: 'column', marginBottom: 40 }}>
-            <h2 style={{ marginBottom: 50 }}>All Events</h2>
+            <h2 style={{ margin: " 50px  0" }}>All Events</h2>
             <CardSlider data={recomended} />
         </div>
     </div >

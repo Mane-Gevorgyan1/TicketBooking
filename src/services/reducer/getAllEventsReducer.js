@@ -11,7 +11,7 @@ export const GetAllEventsReducer = (state = store, action) => {
             temp.error = ''
             temp.events = []
             break;
-        case 'SuccessSearch':
+        case 'SuccessGetCategoris':
             temp.loading = false
             temp.error = ''
             temp.events = action.data

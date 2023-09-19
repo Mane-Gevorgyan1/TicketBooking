@@ -73,7 +73,6 @@ export const Carusel = () => {
                 if (minute < 9) {
                     minute = `0${minute}`
                 }
-                console.log(elm)
                 item.push(<div className='CaruselItem'>
                     <div className='Desckription'>
                         <p className='titleCarusel'>{elm.title}</p>
@@ -91,7 +90,6 @@ export const Carusel = () => {
         }
         setData(item)
     }, [general.events])
-    console.log(data.length, 'data')
     // const items = [
     //     <div className='CaruselItem'>
     //         <div className='Desckription'>

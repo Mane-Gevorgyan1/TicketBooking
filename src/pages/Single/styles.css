@@ -8,6 +8,10 @@
     justify-content: space-between;
 }
 
+.single {
+    /* padding: 0 80px; */
+}
+
 .singlTitle {
     color: #12134A;
     font-family: Kanit;
@@ -57,6 +61,22 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .single {
+        padding: 0 80px;
+    }
+
+    .singelText {
+        font-size: 14px;
+    }
+
+    .singlImg>img {
+        width: 400px;
+        height: 250px;
+    }
 }
 
 @media screen and (max-width: 768px) {

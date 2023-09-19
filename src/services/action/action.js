@@ -50,7 +50,6 @@ export const GetSinglPage = (id) => {
         dispatch(StartGetSinglPage())
         axios.get(`${api}/singleEvent/${id}`).then((r) => {
             if (r.data.success) {
-                console.log(r.data)
                 dispatch(SuccessSinglPage(r.data))
             } else {
                 dispatch(ErrorSinglPage())
@@ -67,6 +66,7 @@ export const SearchAction = (search) => {
         dispatch(StartSearch())
         axios.post(`${api}/search`, { search: search }).then((r) => {
             if (r.data.success) {
+                console.log(r.data)
                 dispatch(SuccessSearch(r.data.events))
             }
             else {

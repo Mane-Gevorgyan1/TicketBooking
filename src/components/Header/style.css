@@ -18,6 +18,11 @@
     position: relative;
 }
 
+.inputWRapper {
+    position: relative;
+    width: 100%;
+}
+
 .infoHeader {
     max-width: 1130px;
     display: flex;
@@ -107,7 +112,29 @@
     display: none;
 }
 
-@media screen and (max-width: 1170px) {
+.searchDivWrapper {
+    background-color: rgba(234, 235, 237, 1);
+    height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 33;
+
+}
+
+.searchDivWrapper>div {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.searchDivWrapper>div:hover {
+    background-color: rgba(217, 217, 217, 1);
+}
+
+
+@media screen and (max-width: 1200px) {
     .FreeSvg1 {
         display: none;
     }
@@ -125,6 +152,13 @@
         margin-top: -10px;
     }
 }
+
+/* @media screen and (max-width: 1200px) {
+    .header {
+        padding: 5px 80px;
+    }
+
+} */
 
 
 @media screen and (max-width: 768px) {
@@ -144,11 +178,11 @@
     }
 
     .header {
-        padding: 5px 20px;
+        padding: 5px 20px !important;
     }
 
     .infoHeader {
-        padding: 5px 20px;
+        padding: 5px 20px !important;
     }
 
     .textWrapper {

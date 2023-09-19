@@ -7,12 +7,9 @@ import { ALLEvents } from '../../components/AllEvents'
 import { useSelector } from 'react-redux'
 
 export const Main = () => {
-
     const topEvents = useSelector((st) => st.topEvents)
-
     return (
         <div className='mainPage'>
-            {/* <SearchInput /> */}
             <Carusel />
             <div className='EventTitle' style={{ flexDirection: 'column' }}>
                 <h2 style={{ marginBottom: 50 }}>All Events</h2>

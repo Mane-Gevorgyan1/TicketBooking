@@ -10,14 +10,12 @@ export const ALLEvents = () => {
         dispatch(GetAllEvents())
     }, [])
     const events = useSelector((st) => st.getAllEventes)
-    console.log(events.events)
     return <div>
         <div className='EventTitle'>
             <h2>All Events</h2>
         </div>
         <div className="Allevents">
             {events?.events?.map((elm, i) => {
-                console.log(elm)
                 const dateObject = new Date(elm.date);
                 let dayOfWeek = dateObject.getDay();
                 const year = dateObject.getFullYear();
@@ -29,6 +27,7 @@ export const ALLEvents = () => {
                     month = `0${month}`
                 }
                 return <EachTicket
+                    id={elm._id}
                     image='Rectangle 19.png'
                     date={`${dayOfWeek} ${month} ${year}`}
                     location={elm.location}

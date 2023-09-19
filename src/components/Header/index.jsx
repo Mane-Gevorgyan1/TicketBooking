@@ -4,25 +4,36 @@ import { useDispatch, useSelector } from 'react-redux'
 import { OpenCategoryMenu, SearchAction } from '../../services/action/action'
 import { useEffect, useState } from 'react'
 import { SearchInput } from '../SearchInput'
+import { useNavigate } from 'react-router-dom'
 
 export const Header = ({ open, menu }) => {
     const openMenu = useSelector((st) => st.StaticReducer)
     const dispatch = useDispatch()
     const [serchInput, setSearchInput] = useState(false)
     const [value, setValue] = useState('')
-
+    const navigation = useNavigate()
+    const search = useSelector((st) => st.search)
     useEffect(() => {
+        console.log('22')
         dispatch(SearchAction(value))
     }, [value])
-
     if (serchInput) {
-        return <SearchInput value={value} changeValue={(e) => setValue(e)} close={() => setSearchInput(false)} />
+        return <div className='inputWRapper' >
+            <div>
+                <SearchInput value={value} changeValue={(e) => setValue(e)} close={() => setSearchInput(false)} />
+                {search.events.length > 0 && value && < div className='searchDivWrapper'>
+                    {search.events?.map((elm, i) => {
+                        return <div onClick={() => window.location = (`/Single/${elm._id}`)}>{elm.title}</div>
+                    })}
+                </div>
+                }
+            </div>
+        </div >
     }
     return (
-
         <div className='headerContainer'>
             <div className="header">
-                <p className='title'>Logo</p>
+                <p onClick={() => navigation('/')} className='title'>Logo</p>
                 <div className='textWrapper'>
                     <p className='text'>Cinema</p>
                     <p className='text'>Концерт</p>
