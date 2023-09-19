@@ -14,3 +14,13 @@ export const ErrorSinglPage = () => {
         type: 'ErrorSinglPage'
     }
 }
+export const ErrorSearch = () => {
+    return {
+        type: 'ErrorSearch'
+    }
+}
+export const ErrorGetCategoris = () => {
+    return {
+        type: 'ErrorGetCategoris'
+    }
+}

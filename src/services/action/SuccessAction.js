@@ -18,3 +18,17 @@ export const SuccessSinglPage = (data) => {
         data
     }
 }
+
+export const SuccessSearch = (data) => {
+    return {
+        type: 'SuccessSearch',
+        data
+    }
+}
+
+export const SuccessGetCategoris = (data) => {
+    return {
+        type: 'SuccessGetCategoris',
+        data
+    }
+}

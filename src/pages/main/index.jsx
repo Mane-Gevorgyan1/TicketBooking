@@ -12,6 +12,7 @@ export const Main = () => {
 
     return (
         <div className='mainPage'>
+            {/* <SearchInput /> */}
             <Carusel />
             <div className='EventTitle' style={{ flexDirection: 'column' }}>
                 <h2 style={{ marginBottom: 50 }}>All Events</h2>

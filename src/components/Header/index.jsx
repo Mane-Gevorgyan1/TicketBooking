@@ -1,12 +1,25 @@
 import './style.css'
 import { CloseSvg, FreeSvg, MenuSvg, Search, Translate, User } from '../svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { OpenCategoryMenu } from '../../services/action/action'
+import { OpenCategoryMenu, SearchAction } from '../../services/action/action'
+import { useEffect, useState } from 'react'
+import { SearchInput } from '../SearchInput'
 
 export const Header = ({ open, menu }) => {
     const openMenu = useSelector((st) => st.StaticReducer)
     const dispatch = useDispatch()
+    const [serchInput, setSearchInput] = useState(false)
+    const [value, setValue] = useState('')
+
+    useEffect(() => {
+        dispatch(SearchAction(value))
+    }, [value])
+
+    if (serchInput) {
+        return <SearchInput value={value} changeValue={(e) => setValue(e)} close={() => setSearchInput(false)} />
+    }
     return (
+
         <div className='headerContainer'>
             <div className="header">
                 <p className='title'>Logo</p>
@@ -18,7 +31,9 @@ export const Header = ({ open, menu }) => {
                     <p className='text'>Other</p>
                 </div>
                 {!openMenu.categoryMenu ? <div className='buttonWrapperHeader'>
-                    <Search />
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 'auto' }} onClick={() => setSearchInput(true)}>
+                        <Search />
+                    </div>
                     <div className='Translate'>
                         <Translate />
                     </div>

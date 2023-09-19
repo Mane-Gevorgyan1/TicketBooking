@@ -1,7 +1,7 @@
 import axios from "axios"
-import { StartGetGeneralEvents, StartGetGetTopEvents, StartGetSinglPage } from "./StartAction"
-import { ErrorGetGeneralEvents, ErrorGetTopEvents, ErrorSinglPage } from "./ErrorAction"
-import { SuccessGetGeneralEvents, SuccessGetTopEvents, SuccessSinglPage } from "./SuccessAction"
+import { StartGetCategoris, StartGetGeneralEvents, StartGetGetTopEvents, StartGetSinglPage, StartSearch } from "./StartAction"
+import { ErrorGetCategoris, ErrorGetGeneralEvents, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
+import { SuccessGetCategoris, SuccessGetGeneralEvents, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
 
 const api = 'http://localhost:8080'
 export const OpenCategoryMenu = (data) => {
@@ -58,6 +58,40 @@ export const GetSinglPage = (id) => {
         })
             .catch((error) => {
                 dispatch(ErrorSinglPage())
+            })
+    }
+}
+
+export const SearchAction = (search) => {
+    return (dispatch) => {
+        dispatch(StartSearch())
+        axios.post(`${api}/search`, { search: search }).then((r) => {
+            if (r.data.success) {
+                dispatch(SuccessSearch(r.data.events))
+            }
+            else {
+                dispatch(ErrorSearch())
+            }
+        })
+            .catch((error) => {
+                dispatch(ErrorSearch())
+            })
+    }
+}
+
+export const GetAllEvents = (page) => {
+    return (dispatch) => {
+        dispatch(StartGetCategoris())
+        axios.post(`${api}/getAllEvents?currentPage=${page}`).then((r) => {
+            if (r.data.success) {
+                dispatch(SuccessGetCategoris(r.data.events))
+            }
+            else {
+                dispatch(ErrorGetCategoris())
+            }
+        })
+            .catch((error) => {
+                dispatch(ErrorGetCategoris())
             })
     }
 }

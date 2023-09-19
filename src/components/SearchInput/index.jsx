@@ -1,10 +1,13 @@
-import { Search } from '../svg'
+import { Search, SearchCloseSvg } from '../svg'
 import './style.css'
-export const SearchInput = ({ placeholder }) => {
+export const SearchInput = ({ placeholder, close, changeValue, value }) => {
     return <div className='inputWrapper'>
-        <input className='input' placeholder={placeholder} />
-        <div className='searchWrapper'>
+        <input value={value} className='input' placeholder={placeholder} onChange={(e) => changeValue(e.target.value)} />
+        <div className='searchWrapper' >
             <Search />
+        </div>
+        <div className='searchCloseWrapper' onClick={() => close()}>
+            <SearchCloseSvg />
         </div>
     </div>
 }

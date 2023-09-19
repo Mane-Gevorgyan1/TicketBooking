@@ -15,3 +15,15 @@ export const StartGetSinglPage = () => {
         type: 'StartGetSinglPage'
     }
 }
+
+export const StartSearch = () => {
+    return {
+        type: 'StartSearch'
+    }
+}
+
+export const StartGetCategoris = () => {
+    return {
+        type: 'StartGetCategoris'
+    }
+}
