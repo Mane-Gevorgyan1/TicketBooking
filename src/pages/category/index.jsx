@@ -1,24 +1,40 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CategoryTicket } from '../../components/CategoryTicket'
 import { MultySelect } from '../../components/MultySelect'
 import { FilterSvg, MFilter, MultysElectSvg, OpenMulTyselect } from '../../components/svg'
 import './style.css'
 import { CategoryMenu } from '../../components/CategoryMenu'
-import { OpenCategoryMenu } from '../../services/action/action'
+import { GetAllEvents, OpenCategoryMenu } from '../../services/action/action'
 import { useDispatch, useSelector } from 'react-redux'
-import { BuyNow } from '../../components/BuyNow'
+import { useParams } from 'react-router-dom'
+import { PuffLoader } from 'react-spinners'
 export const Category = () => {
+    const { id } = useParams()
     const dispatch = useDispatch()
-    const data = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {},]
     const [open, setOpen] = useState(false)
-    const [categoryMenu, setCategoryMenu] = useState(false)
     const openMenu = useSelector((st) => st.StaticReducer)
+    const events = useSelector((st) => st.getAllEventes)
+    const [startDate, setStartDate] = useState('')
+    const [endData, setEndDate] = useState('')
+    const SetDate = (type, value) => {
+        const [year, month, day] = value.split("-");
+        const formattedDate = `${month}-${day}-${year}`;
+        if (type == 'start') {
+            setStartDate(formattedDate)
+        }
+        else {
+            setEndDate(formattedDate)
+        }
+    }
+    useEffect(() => {
+        dispatch(GetAllEvents(1, { category: id, startDate, endData }))
+    }, [startDate, endData])
 
     if (openMenu.categoryMenu) {
         return <CategoryMenu />
     }
+
     return <div className='category'>
-        {/* <BuyNow /> */}
         <div className='CategoryButtonWrapper'>
             <button id='active' className='CateogryButton'>Classical</button>
             <button className='CateogryButton'>Classical</button>
@@ -31,10 +47,18 @@ export const Category = () => {
             <div className='SelectorDivWrapper'>
                 <MultySelect title='Hall' />
             </div>
+            <div className='DateInput'>
+                {/* <label for="start">Start date:</label> */}
+                <input onChange={(e) => SetDate('start', e.target.value)} type="date" id="start" name="trip-start" />
+
+            </div>
+            <div className='DateInput'>
+                {/* <label for="start">End date:</label> */}
+                <input onChange={(e) => SetDate('end', e.target.value)} type="date" id="start" name="trip-start" />
+            </div>
         </div>
         <div className='mFilterWrapper' onClick={() => {
             setOpen(!open)
-
         }}>
             <MFilter />
             <MultysElectSvg />
@@ -43,32 +67,54 @@ export const Category = () => {
             open && <div className='MultyselectItemCategory'>
                 <div onClick={() => {
                     dispatch(OpenCategoryMenu(true))
-                    setCategoryMenu(true)
                 }}>Big Hall</div>
                 <div onClick={() => {
                     dispatch(OpenCategoryMenu(true))
-                    setCategoryMenu(true)
                 }}>Big Hall</div>
                 <div onClick={() => {
                     dispatch(OpenCategoryMenu(true))
-                    setCategoryMenu(true)
                 }}>Big Hall</div>
             </div>
         }
-        <div className='Category'>
-            {data.map((elm, i) => {
-
+        <div className='mobileDate'>
+            <div className='DateInput'>
+                {/* <label for="start">Start date:</label> */}
+                <input onChange={(e) =>
+                    SetDate('start', e.target.value)} type="date" id="start" name="trip-start" value={startDate} placeholder='' />
+            </div>
+            <div className='DateInput'>
+                {/* <label for="start">End date:</label> */}
+                <input onChange={(e) => SetDate('end', e.target.value)} type="date" id="start" name="trip-start" value={endData} />
+            </div>
+        </div>
+        {!events.loading ? <div className='Category'>
+            {events?.events?.map((elm, i) => {
+                const dateObject = new Date(elm.date);
+                let dayOfWeek = dateObject.getDay();
+                const year = dateObject.getFullYear();
+                let month = dateObject.getMonth() + 1;
+                if (dayOfWeek <= 9) {
+                    dayOfWeek = `0${dayOfWeek}`
+                }
+                if (month <= 9) {
+                    month = `0${month}`
+                }
                 return <CategoryTicket
                     key={i}
-                    title={'Aretha Fanklin'}
+                    id={elm._id}
                     image='Rectangle 19.png'
-                    date={'31 September 2023'}
-                    location={'Yerevan'}
-                    price={'10.000 - 30.000 AMD'}
-                    genre='Comedy'
+                    date={`${dayOfWeek}-${month}-${year}`}
+                    location={elm.location}
+                    price={`${elm.priceStart} - ${elm.priceEnd} AMD`}
+                    title={elm.title}
                 />
             })}
-        </div>
+        </div> :
+            <div className='loading'>
+                <PuffLoader color="#36d7b7" />
+            </div>
+
+        }
         <div style={{ marginBottom: 100 }}>
 
         </div>

@@ -54,7 +54,7 @@ export const Carusel = () => {
     useEffect(() => {
         let item = [...data]
         if (!item.length) {
-            general.events.map((elm, i) => {
+            general?.events?.map((elm, i) => {
                 const dateObject = new Date(elm.date);
                 let dayOfWeek = dateObject.getDay();
                 const year = dateObject.getFullYear();
@@ -73,7 +73,7 @@ export const Carusel = () => {
                 if (minute < 9) {
                     minute = `0${minute}`
                 }
-                item.push(<div className='CaruselItem'>
+                item.push(<div key={i} className='CaruselItem'>
                     <div className='Desckription'>
                         <p className='titleCarusel'>{elm.title}</p>
                         <div>
@@ -90,34 +90,6 @@ export const Carusel = () => {
         }
         setData(item)
     }, [general.events])
-    // const items = [
-    //     <div className='CaruselItem'>
-    //         <div className='Desckription'>
-    //             <p className='titleCarusel'>Lorem ipsum dolor sit amet</p>
-    //             <div>
-    //                 <span>Lorem Ipsum  Place</span>
-    //                 <span>14.05.2022  19:00</span>
-    //                 <div className='ButtonWrapperCarusel' style={{ marginTop: 10 }}>
-    //                     <Button onClick={() => window.location = '/hall'} title={'Buy Ticket'} />
-    //                 </div>
-    //             </div>
-    //         </div>
-    //         <img src={require('../../assets/Rectangle 2.png')} height={400} width={'99%'} style={{ borderRadius: 6 }} onDragStart={handleDragStart} role="presentation" />
-    //     </div>,
-    //     <div className='CaruselItem'>
-    //         <div className='Desckription'>
-    //             <p className='titleCarusel'>Lorem ipsum dolor sit amet</p>
-    //             <div>
-    //                 <span>Lorem Ipsum  Place</span>
-    //                 <span>14.05.2022  19:00</span>
-    //                 <div className='ButtonWrapperCarusel' style={{ marginTop: 10 }}>
-    //                     <Button onClick={() => window.location = '/hall'} title={'Buy Ticket'} />
-    //                 </div>
-    //             </div>
-    //         </div>
-    //         <img src={require('../../assets/Rectangle 2.png')} height={400} width={'99%'} style={{ borderRadius: 6 }} onDragStart={handleDragStart} role="presentation" />
-    //     </div>
-    // ];
     return (
         <AliceCarousel
             disableButtonsControls={true}

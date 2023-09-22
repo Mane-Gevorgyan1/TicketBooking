@@ -66,7 +66,6 @@ export const SearchAction = (search) => {
         dispatch(StartSearch())
         axios.post(`${api}/search`, { search: search }).then((r) => {
             if (r.data.success) {
-                console.log(r.data)
                 dispatch(SuccessSearch(r.data.events))
             }
             else {
@@ -79,10 +78,10 @@ export const SearchAction = (search) => {
     }
 }
 
-export const GetAllEvents = (page) => {
+export const GetAllEvents = (page, data) => {
     return (dispatch) => {
         dispatch(StartGetCategoris())
-        axios.post(`${api}/getAllEvents?currentPage=${page}`).then((r) => {
+        axios.post(`${api}/getAllEvents?currentPage=${page}`, { data }).then((r) => {
             if (r.data.success) {
                 dispatch(SuccessGetCategoris(r.data.events))
             }

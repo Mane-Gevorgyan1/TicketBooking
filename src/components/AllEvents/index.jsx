@@ -27,6 +27,7 @@ export const ALLEvents = () => {
                     month = `0${month}`
                 }
                 return <EachTicket
+                    key={i}
                     id={elm._id}
                     image='Rectangle 19.png'
                     date={`${dayOfWeek} ${month} ${year}`}

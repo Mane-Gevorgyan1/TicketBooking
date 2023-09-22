@@ -14,7 +14,6 @@ export const Header = ({ open, menu }) => {
     const navigation = useNavigate()
     const search = useSelector((st) => st.search)
     useEffect(() => {
-        console.log('22')
         dispatch(SearchAction(value))
     }, [value])
     if (serchInput) {
@@ -35,7 +34,7 @@ export const Header = ({ open, menu }) => {
             <div className="header">
                 <p onClick={() => navigation('/')} className='title'>Logo</p>
                 <div className='textWrapper'>
-                    <p className='text'>Cinema</p>
+                    <p onClick={() => navigation('/Category/Cinema')} className='text'>Cinema</p>
                     <p className='text'>Концерт</p>
                     <p className='text'>Թատրոն</p>
                     <p className='text'>Classic</p>

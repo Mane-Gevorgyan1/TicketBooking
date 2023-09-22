@@ -11,7 +11,7 @@ export const CartPopup = ({ open, setOpen, data, removeTicket }) => {
                 <h1>Ձեր տոմսերը ({data.length})</h1>
                 <div className='separator' />
                 <div className='currentTickets'>
-                    {data.map((elm, i) => {
+                    {data?.map((elm, i) => {
                         return <div key={i} className='eachTicket'>
                             <span>Շարք - {elm.row}</span>
                             <span>Տեղ - {elm.bench}</span>
