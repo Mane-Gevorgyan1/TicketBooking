@@ -1,8 +1,8 @@
 import './style.css'
 import { Date, Location, TicketIcon } from '../svg'
 
-export const CategoryTicket = ({ image, title, date, location, price, genre }) => {
-    return <div className='Categoryticket'>
+export const CategoryTicket = ({ image, title, date, location, price, genre, onClick }) => {
+    return <div className='Categoryticket' onClick={() => onClick()}>
         <div>
             <img alt='' className='CategoryImg' src={require(`../../assets/${image}`)} />
         </div>

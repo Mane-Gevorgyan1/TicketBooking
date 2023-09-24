@@ -6,7 +6,7 @@ import './style.css'
 import { CategoryMenu } from '../../components/CategoryMenu'
 import { GetAllEvents, OpenCategoryMenu } from '../../services/action/action'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { PuffLoader } from 'react-spinners'
 export const Category = () => {
     const { id } = useParams()
@@ -16,6 +16,8 @@ export const Category = () => {
     const events = useSelector((st) => st.getAllEventes)
     const [startDate, setStartDate] = useState('')
     const [endData, setEndDate] = useState('')
+    const navigation = useNavigate()
+    const [title, setTitle] = useState('Hall')
     const SetDate = (type, value) => {
         const [year, month, day] = value.split("-");
         const formattedDate = `${month}-${day}-${year}`;
@@ -45,7 +47,7 @@ export const Category = () => {
         <div className='FilterWrapper'>
             <FilterSvg />
             <div className='SelectorDivWrapper'>
-                <MultySelect title='Hall' />
+                <MultySelect onClick={(e) => setTitle(e)} title={title} />
             </div>
             <div className='DateInput'>
                 {/* <label for="start">Start date:</label> */}
@@ -76,17 +78,18 @@ export const Category = () => {
                 }}>Big Hall</div>
             </div>
         }
-        <div className='mobileDate'>
+
+        {/* <div className='mobileDate'>
             <div className='DateInput'>
-                {/* <label for="start">Start date:</label> */}
                 <input onChange={(e) =>
                     SetDate('start', e.target.value)} type="date" id="start" name="trip-start" value={startDate} placeholder='' />
             </div>
             <div className='DateInput'>
-                {/* <label for="start">End date:</label> */}
                 <input onChange={(e) => SetDate('end', e.target.value)} type="date" id="start" name="trip-start" value={endData} />
             </div>
-        </div>
+        </div> */}
+
+
         {!events.loading ? <div className='Category'>
             {events?.events?.map((elm, i) => {
                 const dateObject = new Date(elm.date);
@@ -100,6 +103,7 @@ export const Category = () => {
                     month = `0${month}`
                 }
                 return <CategoryTicket
+                    onClick={() => navigation(`/Single/${elm._id}`)}
                     key={i}
                     id={elm._id}
                     image='Rectangle 19.png'

@@ -34,7 +34,7 @@ export const CardSlider = ({ data }) => {
         if (windowSize.innerWidth > 425 && windowSize.innerWidth < 1100) {
             setCount(2)
         }
-        else {
+        else if (windowSize.innerWidth > 1100) {
             setCount(3)
         }
     }, [windowSize])

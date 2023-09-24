@@ -1,6 +1,11 @@
 .cYcnau {
     background: white !important;
     border-color: white !important;
+    display: block;
+}
+
+.DkxSo {
+    display: block;
 }
 
 .DkxSo:disabled {
@@ -10,4 +15,15 @@
 
 .hgxHVR {
     display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+
+    .cYcnau {
+        display: none;
+    }
+
+    .DkxSo {
+        display: none;
+    }
 }

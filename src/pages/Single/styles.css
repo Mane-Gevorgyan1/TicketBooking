@@ -113,4 +113,9 @@
         width: 100%;
         height: 200px;
     }
+
+    .single {
+        padding: 0 20px;
+    }
+
 }

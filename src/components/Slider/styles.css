@@ -61,7 +61,7 @@
 @media screen and (max-width: 768px) {
     .Desckription {
         width: 45% !important;
-        height: 200px !important;
+        /* height: 200px !important; */
         padding: 0 !important;
         gap: 1px !important;
         justify-content: space-around !important;
@@ -96,6 +96,8 @@
 
     .Desckription>div>span {
         font-size: 10px !important;
+        text-align: center;
+        padding: 0 3px;
     }
 
     .ButtonWrapperCarusel {

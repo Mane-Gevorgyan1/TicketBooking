@@ -16,7 +16,7 @@ export const Layout = () => {
                 <Outlet />
             </div> :
                 <div className='outletMenu'>
-                    <MenuMobile />
+                    <MenuMobile onClose={() => setOpenMenu(false)} />
                 </div>}
             <Footer menu={openMenu} />
         </>
