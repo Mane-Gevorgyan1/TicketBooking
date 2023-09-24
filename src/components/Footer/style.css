@@ -20,6 +20,10 @@
     gap: 15px;
 }
 
+.eachFooterColumn > svg {
+    cursor: pointer;
+}
+
 .eachFooterColumnn {
     display: flex;
     gap: 15px;
@@ -41,6 +45,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    cursor: pointer;
 }
 
 .eachFooterColumn>span {

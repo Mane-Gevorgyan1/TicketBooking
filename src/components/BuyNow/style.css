@@ -7,6 +7,10 @@
     left: 0;
     right: 0;
     margin: auto;
+    z-index: 2;
+    max-height: calc(100vh - 100px);
+    overflow: auto;
+    margin: 40px auto;
 }
 
 

@@ -15,7 +15,7 @@ export const InfoHeader = () => {
                 <MobileT />
             </div>
             <div>
-                <p className='phonNumber'>+374 77 58 48 98</p>
+                <a href='tel:+37477584898' className='phonNumber'>+374 77 58 48 98</a>
             </div>
         </div>
     </div>

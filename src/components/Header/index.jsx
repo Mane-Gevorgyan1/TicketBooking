@@ -19,7 +19,10 @@ export const Header = ({ open, menu }) => {
     if (serchInput) {
         return <div className='inputWRapper' >
             <div>
-                <SearchInput value={value} changeValue={(e) => setValue(e)} close={() => setSearchInput(false)} />
+                <SearchInput value={value} changeValue={(e) => setValue(e)} close={() => {
+                    setSearchInput(false)
+                    setValue('')
+                }} />
                 {search.events.length > 0 && value && < div className='searchDivWrapper'>
                     {search.events?.map((elm, i) => {
                         return <div onClick={() => window.location = (`/Single/${elm._id}`)}>{elm.title}</div>
@@ -35,16 +38,16 @@ export const Header = ({ open, menu }) => {
                 <p onClick={() => navigation('/')} className='title'>Logo</p>
                 <div className='textWrapper'>
                     <p onClick={() => navigation('/Category/Cinema')} className='text'>Cinema</p>
-                    <p className='text'>Концерт</p>
-                    <p className='text'>Թատրոն</p>
-                    <p className='text'>Classic</p>
+                    <p className='text'>Cinema</p>
+                    <p className='text'>Cinema</p>
+                    <p className='text'>Cinema</p>
                     <p className='text'>Other</p>
                 </div>
                 {!openMenu.categoryMenu ? <div className='buttonWrapperHeader'>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 'auto' }} onClick={() => setSearchInput(true)}>
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 'auto', cursor: 'pointer' }} onClick={() => setSearchInput(true)}>
                         <Search />
                     </div>
-                    <div className='Translate'>
+                    <div className='Translate' style={{ cursor: 'pointer' }}>
                         <Translate />
                     </div>
                     <div className='menuSvg' onClick={() => open(!menu)}>

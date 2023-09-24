@@ -6,9 +6,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetTopEvents } from '../../services/action/action';
 
-
-
-
 export const CardSlider = ({ data }) => {
     const [count, setCount] = useState(3)
     const [windowSize, setWindowSize] = useState(getWindowSize())
@@ -28,10 +25,10 @@ export const CardSlider = ({ data }) => {
 
     }, [])
     useEffect(() => {
-        if (windowSize.innerWidth < 425) {
+        if (windowSize.innerWidth <= 375) {
             setCount(1)
         }
-        if (windowSize.innerWidth > 425 && windowSize.innerWidth < 1100) {
+        if (windowSize.innerWidth >= 425 && windowSize.innerWidth <= 1100) {
             setCount(2)
         }
         else if (windowSize.innerWidth > 1100) {

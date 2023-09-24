@@ -1,5 +1,8 @@
 .headerContainer {
     background: #FEE827;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .infoHeaderContainer {
@@ -40,12 +43,16 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    text-decoration: none;
 }
 
 .social {
     width: 100px;
     display: flex;
     justify-content: space-between;
+}
+.social > svg {
+    cursor: pointer;
 }
 
 .title {
@@ -89,7 +96,7 @@
 .FreeSvg1 {
     position: absolute;
     right: 20px;
-    top: 30px;
+    top: 10px;
 }
 
 .Translate {
@@ -149,7 +156,7 @@
 
     .FreeSvg {
         display: block;
-        margin-top: -10px;
+        margin-top: -40px;
     }
 }
 
@@ -191,7 +198,7 @@
 
     .FreeSvg {
         display: block;
-        top: 68px !important;
+        top: 80px !important;
     }
 
     .Translate {

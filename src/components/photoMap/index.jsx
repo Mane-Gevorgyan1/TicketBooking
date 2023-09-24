@@ -4,6 +4,7 @@ import { CartPopup } from '../popup/cart'
 import { useEffect, useState } from 'react'
 import { GetSeat } from '../../services/action/ticket_action'
 import { useDispatch, useSelector } from 'react-redux'
+import { BuyNow } from '../BuyNow'
 
 const PhotoCoordinatesByColor = () => {
     const dispatch = useDispatch()
@@ -100,6 +101,7 @@ const PhotoCoordinatesByColor = () => {
 
     return (
         <div className='hall'>
+            <BuyNow />
             {openCart &&
                 <CartPopup
                     open={openCart}
@@ -144,9 +146,9 @@ const PhotoCoordinatesByColor = () => {
 
             {showModal &&
                 <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
-                    <p className='text'>շարք {activeTicket.row}</p>
-                    <p className='text'>տեղ {activeTicket.bench}</p>
-                    <p className='text'>դրամ {activeTicket.price}</p>
+                    <p className='Teatertext'>շարք {activeTicket.row}</p>
+                    <p className='Teatertext'>տեղ {activeTicket.bench}</p>
+                    <p className='Teatertext'>դրամ {activeTicket.price}</p>
                 </div>
             }
             <div className='cartLine'><div onClick={() => setOpenCart(true)}><Cart />{tickets.length}</div></div>

@@ -12,7 +12,7 @@ export const Main = () => {
         <div className='mainPage'>
             <Carusel />
             <div className='EventTitle' style={{ flexDirection: 'column' }}>
-                <h2 style={{ marginBottom: 50 }}>All Events</h2>
+                <h2 style={{ marginBottom: 50 }}>Top Events</h2>
                 <CardSlider data={topEvents?.events} />
             </div>
             <ALLEvents />

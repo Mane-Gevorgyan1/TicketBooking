@@ -94,7 +94,7 @@ export const BuyNow = () => {
             </div>
         </div>
         <div className='BuyButton'>
-            <button >Buy Ticket</button>
+            <button onClick={() => window.location = '/hall'}>Buy Ticket</button>
         </div>
         <div className='BuyCheck'>
             <p>Lorem ipsum dolor sit amet consectetur.</p>

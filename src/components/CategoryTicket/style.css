@@ -24,9 +24,13 @@
 }
 
 .CategoryImg {
-
     width: 130px;
     height: 165px;
+    transition: .5s;
+}
+
+.CategoryImg:hover {
+    scale: 1.5;
 }
 
 .CategoryText {
@@ -35,6 +39,7 @@
     flex-direction: column;
     height: 165px;
     justify-content: space-evenly;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {
