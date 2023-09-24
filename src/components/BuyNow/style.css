@@ -3,16 +3,19 @@
     background-color: white;
     border-radius: 10px;
     position: absolute;
-    padding: 50px;
     left: 0;
     right: 0;
     margin: auto;
     z-index: 2;
-    max-height: calc(100vh - 100px);
-    overflow: auto;
     margin: 40px auto;
 }
 
+.buyNowWrapper2 {
+    padding: 30px 50px;
+    overflow: auto;
+    max-height: calc(100vh - 100px);
+    margin: 20px 0;
+}
 
 .BuyNowHeader {
     display: flex;
@@ -156,6 +159,7 @@
     align-items: center;
     margin: 40px 0;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .BuyMethod>div {
@@ -165,6 +169,7 @@
 .BuyMethodSelect {
     margin-top: 4px;
     margin-right: 20px;
+
 }
 
 .buyNowTotalPrice {
@@ -186,4 +191,58 @@
     font-size: 30px;
     font-weight: 500;
 
+}
+
+
+@media screen and (max-width: 1100px) {
+    .BuyNowTitle>p {
+        font-size: 30px
+    }
+
+    .buyNowTotalPrice>p {
+        font-size: 20px;
+    }
+
+    .buyNowTotalPrice>p>span {
+        font-size: 22px;
+    }
+
+    .BuyNowTickert {
+        width: 60%;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .BuyNowTitle>p {
+        font-size: 16px
+    }
+
+    .buyNowTotalPrice>p {
+        font-size: 16px;
+    }
+
+    .buyNowTotalPrice>p>span {
+        font-size: 18px;
+    }
+
+    .BuyNowTickert {
+        width: 100%;
+    }
+
+    .BuyNowTickertPrive {
+        font-size: 13px;
+    }
+
+    .Seat {
+        font-size: 13px;
+    }
+
+    .buyNowWrapper2 {
+        padding: 30px 20px;
+    }
+
+    #Amd {
+        text-align: end;
+    }
 }

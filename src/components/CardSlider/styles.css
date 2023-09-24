@@ -17,7 +17,7 @@
     display: none !important;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 550px) {
 
     .cYcnau {
         display: none;
@@ -28,8 +28,8 @@
     }
 }
 
-@media screen and (max-width: 1200px) {
+/* @media screen and (max-width: 1200px) {
     .dZZVaH {
         padding: 0 80px;
     }
-}
+} */

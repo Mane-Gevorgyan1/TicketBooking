@@ -15,12 +15,7 @@ const PhotoCoordinatesByColor = () => {
     const [activeButton, setActiveButton] = useState(null)
     const [tickets, setTikets] = useState([])
     const [openCart, setOpenCart] = useState(false)
-    const [set, setSit] = useState([])
-    const Price = [
-        [10000, 20000, 10000, 20000],
-        [24000, 33000, 11000, 24000],
-    ]
-
+    const [open, setOpen] = useState(true)
     const ticket = useSelector((st) => st.Ticket_reducer)
 
     const getPrice = (y, i, x) => {
@@ -38,7 +33,6 @@ const PhotoCoordinatesByColor = () => {
             row = 2
             amfiteatr = false
         }
-        // price = Price[row][i]
         price = ticket?.ticket?.length > 0 && ticket?.ticket?.filter((item) => item.seat === seat && item.row === row);
         setActiveTicket({
             row: row,
@@ -99,59 +93,73 @@ const PhotoCoordinatesByColor = () => {
         setCoordinatesState(data)
     }
 
-    return (
-        <div className='hall'>
-            <BuyNow />
-            {openCart &&
-                <CartPopup
-                    open={openCart}
-                    setOpen={setOpenCart}
-                    data={tickets}
-                    removeTicket={(i) => removeTicket(i)}
-                />
-            }
-            <img alt='' src={require('../../assets/ActualPlan.png')} />
-            {coordinatesState.map((e, i) => {
-                return <button
-                    key={i}
-                    disabled={e.active}
-                    onMouseOver={() => {
-                        getPrice(e.y, i, e.x)
-                        setActiveButton(i)
-                        dispatch(GetSeat({ row: 1, seat: 1 }))
-                    }}
-                    style={
-                        {
-                            position: 'absolute',
-                            top: e?.y - 4,
-                            left: e?.x - 4,
-                            width: '8px',
-                            height: '8px',
-                            borderRadius: '50%',
-                            border: 'none',
-                            cursor: 'pointer',
-                            backgroundColor: e.active && 'green'
-                        }
-                    }
-                    className={[
-                        i == activeButton ? 'activeButton' : '',
-                        e.active ? "addTicketButton" : '']}
-                    onMouseLeave={() => {
-                        setShowModal(false)
-                        setActiveButton(null)
-                    }}
-                    onClick={() => addTicket(i)}
-                />
-            })}
+    useEffect(() => {
+        if (open) {
+            document.body.classList.add('hidden');
+        } else {
+            document.body.classList.remove('hidden');
+        }
+        return () => {
+            document.body.classList.remove('hidden');
+        };
+    }, [open])
 
-            {showModal &&
-                <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
-                    <p className='Teatertext'>շարք {activeTicket.row}</p>
-                    <p className='Teatertext'>տեղ {activeTicket.bench}</p>
-                    <p className='Teatertext'>դրամ {activeTicket.price}</p>
-                </div>
-            }
-            <div className='cartLine'><div onClick={() => setOpenCart(true)}><Cart />{tickets.length}</div></div>
+    return (
+        <div className='hall' >
+            {open && <BuyNow close={() => setOpen(false)} />}
+            <div id={open ? 'hall' : ''}>
+
+                {openCart &&
+                    <CartPopup
+                        open={openCart}
+                        setOpen={setOpenCart}
+                        data={tickets}
+                        removeTicket={(i) => removeTicket(i)}
+                    />
+                }
+                <img alt='' src={require('../../assets/ActualPlan.png')} />
+                {coordinatesState.map((e, i) => {
+                    return <button
+                        key={i}
+                        disabled={e.active}
+                        onMouseOver={() => {
+                            getPrice(e.y, i, e.x)
+                            setActiveButton(i)
+                            dispatch(GetSeat({ row: 1, seat: 1 }))
+                        }}
+                        style={
+                            {
+                                position: 'absolute',
+                                top: e?.y - 4,
+                                left: e?.x - 4,
+                                width: '8px',
+                                height: '8px',
+                                borderRadius: '50%',
+                                border: 'none',
+                                cursor: 'pointer',
+                                backgroundColor: e.active && 'green'
+                            }
+                        }
+                        className={[
+                            i == activeButton ? 'activeButton' : '',
+                            e.active ? "addTicketButton" : '']}
+                        onMouseLeave={() => {
+                            setShowModal(false)
+                            setActiveButton(null)
+                        }}
+                        onClick={() => addTicket(i)}
+                    />
+                })}
+
+                {showModal &&
+                    <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
+                        <p className='Teatertext'>շարք {activeTicket.row}</p>
+                        <p className='Teatertext'>տեղ {activeTicket.bench}</p>
+                        <p className='Teatertext'>դրամ {activeTicket.price}</p>
+                    </div>
+                }
+                <div className='cartLine'><div onClick={() => setOpenCart(true)}><Cart />{tickets.length}</div></div>
+            </div>
         </div>
     )
 }

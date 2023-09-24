@@ -5,9 +5,22 @@
     padding-bottom: 70px;
 }
 
+.topEventsMain {
+    width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .topEventsMain {
+        padding: 0 80px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .mainPage {
         gap: 20px;
     }
 
+    .topEventsMain {
+        padding: 0 20px;
+    }
 }

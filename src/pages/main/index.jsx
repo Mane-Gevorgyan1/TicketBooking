@@ -26,7 +26,9 @@ export const Main = () => {
             <Carusel />
             <div className='EventTitle' style={{ flexDirection: 'column' }}>
                 <h2 style={{ marginBottom: 50 }}>Top Events</h2>
-                <CardSlider data={topEvents?.events} />
+                <div className='topEventsMain'>
+                    <CardSlider data={topEvents?.events} />
+                </div>
             </div>
             <ALLEvents />
             <SearchEvent />

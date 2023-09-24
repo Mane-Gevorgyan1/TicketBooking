@@ -8,6 +8,14 @@ import { GetAllEvents, OpenCategoryMenu } from '../../services/action/action'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PuffLoader } from 'react-spinners'
+import { DateRangeCalendar, DateRangePicker } from '@mui/x-date-pickers-pro'
+import { LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import dayjs, { Dayjs } from 'dayjs';
+import { DateRange } from '@mui/icons-material'
+
+
 export const Category = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
@@ -18,6 +26,9 @@ export const Category = () => {
     const [endData, setEndDate] = useState('')
     const navigation = useNavigate()
     const [title, setTitle] = useState('Hall')
+    const [value, setValue] = useState([
+        ('2022-04-17'),
+        ('2022-04-21'),]);
     const SetDate = (type, value) => {
         const [year, month, day] = value.split("-");
         const formattedDate = `${month}-${day}-${year}`;
@@ -28,6 +39,7 @@ export const Category = () => {
             setEndDate(formattedDate)
         }
     }
+
     useEffect(() => {
         dispatch(GetAllEvents(1, { category: id, startDate, endData }))
     }, [startDate, endData])
@@ -49,13 +61,18 @@ export const Category = () => {
             <div className='SelectorDivWrapper'>
                 <MultySelect onClick={(e) => setTitle(e)} title={title} />
             </div>
+            <div>
+                {/* <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DemoContainer components={['DateRangeCalendar']}>
+                        <DateRangeCalendar calendars={1} />
+                    </DemoContainer>
+                </LocalizationProvider> */}
+            </div>
             <div className='DateInput'>
-                {/* <label for="start">Start date:</label> */}
                 <input onChange={(e) => SetDate('start', e.target.value)} type="date" id="start" name="trip-start" />
 
             </div>
             <div className='DateInput'>
-                {/* <label for="start">End date:</label> */}
                 <input onChange={(e) => SetDate('end', e.target.value)} type="date" id="start" name="trip-start" />
             </div>
         </div>

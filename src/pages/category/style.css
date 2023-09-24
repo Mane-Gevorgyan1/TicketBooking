@@ -19,6 +19,7 @@
     line-height: normal;
     border: none;
     margin-bottom: 5px;
+    cursor: pointer;
 }
 
 .mobileDate {
@@ -50,7 +51,7 @@
     display: flex;
     margin-top: 40px;
     align-items: center;
-
+    flex-wrap: wrap;
 }
 
 .SelectorDivWrapper {
@@ -90,6 +91,7 @@
 .MultyselectItemCategory>div:hover {
     background: #FEE827;
 }
+
 
 @media screen and (max-width: 768px) {
     .category {
@@ -139,12 +141,11 @@
 
 @media screen and (max-width: 1200px) {
     .Category {
-        justify-content: space-between;
         padding: 0 20px;
     }
 
     .CateogryButton {
-        min-width: 100px;
+        min-width: 150px;
         font-size: 16px;
     }
 

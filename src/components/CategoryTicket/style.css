@@ -43,6 +43,13 @@
     cursor: pointer;
 }
 
+@media screen and (max-width: 1100px) {
+    .Categoryticket {
+        width: 48%;
+        height: 170px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .Categoryticket {
         width: 100%;
