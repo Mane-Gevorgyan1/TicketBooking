@@ -20,7 +20,7 @@
     gap: 15px;
 }
 
-.eachFooterColumn > svg {
+.eachFooterColumn>svg {
     cursor: pointer;
 }
 
@@ -61,7 +61,11 @@
     display: none;
 }
 
-@media screen and (max-width: 1160px) {}
+@media screen and (max-width: 1200px) {
+    .footerWrapper {
+        padding: 20px 80px;
+    }
+}
 
 @media screen and (max-width: 768px) {
     .eachFooterColumn {

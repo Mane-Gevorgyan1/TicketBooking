@@ -78,18 +78,6 @@ export const Category = () => {
                 }}>Big Hall</div>
             </div>
         }
-
-        {/* <div className='mobileDate'>
-            <div className='DateInput'>
-                <input onChange={(e) =>
-                    SetDate('start', e.target.value)} type="date" id="start" name="trip-start" value={startDate} placeholder='' />
-            </div>
-            <div className='DateInput'>
-                <input onChange={(e) => SetDate('end', e.target.value)} type="date" id="start" name="trip-start" value={endData} />
-            </div>
-        </div> */}
-
-
         {!events.loading ? <div className='Category'>
             {events?.events?.map((elm, i) => {
                 const dateObject = new Date(elm.date);

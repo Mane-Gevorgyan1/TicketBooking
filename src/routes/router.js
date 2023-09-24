@@ -8,7 +8,7 @@ import { Single } from "../pages/Single"
 export const Router = () => {
     return (
         <BrowserRouter>
-            <Routes>    
+            <Routes>
                 <Route path="/" element={<Layout />}>
                     <Route path="/" element={<Main />} />
                     <Route path="/Category/:id" element={<Category />} />
@@ -19,5 +19,3 @@ export const Router = () => {
         </BrowserRouter>
     )
 }
-// Category
-// Single

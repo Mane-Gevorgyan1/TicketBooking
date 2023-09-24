@@ -52,7 +52,7 @@
     line-height: 40px;
 }
 
-@media screen and (max-width: 1170px) {
+@media screen and (max-width: 1200px) {
     .alice-carousel {
         padding: 0 80px;
     }

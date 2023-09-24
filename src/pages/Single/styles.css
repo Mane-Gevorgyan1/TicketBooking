@@ -8,10 +8,6 @@
     justify-content: space-between;
 }
 
-.single {
-    /* padding: 0 80px; */
-}
-
 .singlTitle {
     color: #12134A;
     font-family: Kanit;
@@ -34,6 +30,9 @@
 .loading {
     width: 100%;
     justify-content: center;
+    display: flex;
+    height: calc(100vh - 219px);
+    align-items: center;
     display: flex;
 }
 

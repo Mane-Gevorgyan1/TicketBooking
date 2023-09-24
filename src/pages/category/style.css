@@ -137,7 +137,7 @@
     margin-top: 6px;
 }
 
-@media screen and (max-width: 1160px) {
+@media screen and (max-width: 1200px) {
     .Category {
         justify-content: space-between;
         padding: 0 20px;

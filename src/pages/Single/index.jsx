@@ -18,7 +18,7 @@ export const Single = () => {
 
     if (getSinglPage.loading) {
         return <div className='loading'>
-            <PuffLoader color="#36d7b7" />
+            <PuffLoader color="#FEE827" />
         </div>
     }
     return <div className='single'>

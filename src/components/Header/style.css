@@ -51,7 +51,8 @@
     display: flex;
     justify-content: space-between;
 }
-.social > svg {
+
+.social>svg {
     cursor: pointer;
 }
 
@@ -126,6 +127,10 @@
     position: absolute;
     width: 100%;
     z-index: 33;
+    max-width: 1200px;
+    margin: auto;
+    left: 0;
+    right: 0;
 
 }
 
