@@ -32,3 +32,10 @@ export const SuccessGetCategoris = (data) => {
         data
     }
 }
+
+export const SuccessGetCategory = (data) => {
+    return {
+        type: 'SuccessGetCategory',
+        data
+    }
+}

@@ -1,7 +1,7 @@
 import axios from "axios"
-import { StartGetCategoris, StartGetGeneralEvents, StartGetGetTopEvents, StartGetSinglPage, StartSearch } from "./StartAction"
-import { ErrorGetCategoris, ErrorGetGeneralEvents, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
-import { SuccessGetCategoris, SuccessGetGeneralEvents, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
+import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetSinglPage, StartSearch } from "./StartAction"
+import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
+import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
 
 const api = 'http://localhost:8080'
 export const OpenCategoryMenu = (data) => {
@@ -106,5 +106,23 @@ export const RemoveTicketsAction = (data) => {
     return {
         type: 'RemoveTicketsAction',
         data
+    }
+}
+
+export const GetCategory = () => {
+    return (dispatch) => {
+        dispatch(StartGetCategory())
+        axios.get(`${api}/getCategories`).then((r) => {
+            console.log(r)
+            if (r.data.success) {
+                dispatch(SuccessGetCategory(r.data.categories))
+            }
+            else {
+                dispatch(ErrorGetCategory())
+            }
+        })
+            .catch((error) => {
+                dispatch(ErrorGetCategory())
+            })
     }
 }

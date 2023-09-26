@@ -2,7 +2,7 @@ import './style.css'
 import { Cart, CloseIcon } from '../../svg'
 import { useSelector } from 'react-redux'
 
-export const CartPopup = ({ open, setOpen, children, openCard }) => {
+export const CartPopup = ({ open, setOpen, children, openCard, show = true }) => {
     const tickets = useSelector((st) => st.tiketsForBuy)
     return (
         <div className={open ? 'activePopup' : 'inactive'}>
@@ -11,7 +11,10 @@ export const CartPopup = ({ open, setOpen, children, openCard }) => {
                     <CloseIcon />
                 </div>
                 {children}
-                <div className='cartLine' onClick={() => openCard()}><div ><Cart />{tickets.tickets.length}</div></div>
+
+                {
+                    show && <div className='cartLine' onClick={() => openCard()}><div ><Cart />{tickets.tickets.length}</div></div>
+                }
             </div>
         </div>
     )

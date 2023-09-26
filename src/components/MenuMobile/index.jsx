@@ -1,15 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 import './style.css'
+import { useSelector } from 'react-redux'
 export const MenuMobile = ({ onClose }) => {
+    const getCategory = useSelector((st) => st.getCategory)
     const navigation = useNavigate()
     return <div className='MenuMobile'>
-        <div onClick={() => {
-            navigation('/Category/Cinema')
-            onClose()
-        }} >Cinema</div>
-        <div>Concert</div>
-        <div>Theater</div>
-        <div>Classic</div>
-        <div>Other</div>
+        {getCategory.category.map((elm, i) => {
+            return <div onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)}>{elm.name}</div>
+        })}
     </div>
 }

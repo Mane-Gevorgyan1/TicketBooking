@@ -1,7 +1,7 @@
 import './style.css'
 import { CloseSvg, FreeSvg, MenuSvg, Search, Translate, User } from '../svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { OpenCategoryMenu, SearchAction } from '../../services/action/action'
+import { GetCategory, OpenCategoryMenu, SearchAction } from '../../services/action/action'
 import { useEffect, useState } from 'react'
 import { SearchInput } from '../SearchInput'
 import { useNavigate } from 'react-router-dom'
@@ -13,9 +13,13 @@ export const Header = ({ open, menu }) => {
     const [value, setValue] = useState('')
     const navigation = useNavigate()
     const search = useSelector((st) => st.search)
+    const getCategory = useSelector((st) => st.getCategory)
     useEffect(() => {
         dispatch(SearchAction(value))
     }, [value])
+    useEffect(() => {
+        dispatch(GetCategory())
+    }, [])
     if (serchInput) {
         return <div className='inputWRapper' >
             <div>
@@ -37,11 +41,9 @@ export const Header = ({ open, menu }) => {
             <div className="header">
                 <p onClick={() => navigation('/')} className='title'>Logo</p>
                 <div className='textWrapper'>
-                    <p onClick={() => navigation('/Category/Cinema')} className='text'>Cinema</p>
-                    <p className='text'>Cinema</p>
-                    <p className='text'>Cinema</p>
-                    <p className='text'>Cinema</p>
-                    <p className='text'>Other</p>
+                    {getCategory.category.map((elm, i) => {
+                        return <p onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)} className='text'>{elm.name}</p>
+                    })}
                 </div>
                 {!openMenu.categoryMenu ? <div className='buttonWrapperHeader'>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 'auto', cursor: 'pointer' }} onClick={() => setSearchInput(true)}>

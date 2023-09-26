@@ -27,3 +27,9 @@ export const StartGetCategoris = () => {
         type: 'StartGetCategoris'
     }
 }
+
+export const StartGetCategory = () => {
+    return {
+        type: 'StartGetCategory'
+    }
+}

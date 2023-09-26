@@ -38,9 +38,6 @@ export const Single = () => {
                 >
                     <PhotoCoordinatesByColor />
                 </CartPopup>
-
-                {/* <BuyNow /> */}
-
                 <div className='cartLine'><div ><Cart />0</div></div>
             </div>
         }
@@ -66,9 +63,9 @@ export const Single = () => {
                 </div>
             </div>
         </div>
-        <div className='EventTitle' style={{ flexDirection: 'column', marginBottom: 40 }}>
+        {recomended?.length > 0 && <div className='EventTitle' style={{ flexDirection: 'column', marginBottom: 40 }}>
             <h2 style={{ margin: " 50px  0" }}>All Events</h2>
             <CardSlider data={recomended} />
-        </div>
+        </div>}
     </div >
 }

@@ -24,3 +24,9 @@ export const ErrorGetCategoris = () => {
         type: 'ErrorGetCategoris'
     }
 }
+
+export const ErrorGetCategory = () => {
+    return {
+        type: 'ErrorGetCategory'
+    }
+}

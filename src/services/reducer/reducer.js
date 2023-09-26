@@ -8,6 +8,7 @@ import { GetSinglPageReducer } from './getSinglPageReducer'
 import { SearchReducer } from './searchReducer'
 import { GetAllEventsReducer } from './getAllEventsReducer'
 import { TicketsForBuyReducer } from './TicketsForBuyReducer'
+import { GetCategoryReducer } from './getCategoryReducer'
 
 export default combineReducers({
     Ticket_reducer,
@@ -18,5 +19,6 @@ export default combineReducers({
     getSinglPage: GetSinglPageReducer,
     search: SearchReducer,
     getAllEventes: GetAllEventsReducer,
-    tiketsForBuy: TicketsForBuyReducer
+    tiketsForBuy: TicketsForBuyReducer,
+    getCategory: GetCategoryReducer,
 })

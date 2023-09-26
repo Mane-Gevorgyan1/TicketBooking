@@ -94,12 +94,7 @@ const PhotoCoordinatesByColor = () => {
 
     }, [tickets])
 
-    const removeTicket = (i) => {
-        let item = [...tickets]
-        let data = [...coordinatesState]
-        data[item[i].bench - 1].active = false
-        setCoordinatesState(data)
-    }
+
     return (
         <div className='hallWrapper'>
             <div className='hall' >
@@ -108,7 +103,6 @@ const PhotoCoordinatesByColor = () => {
                     {coordinatesState.map((e, i) => {
                         return <button
                             key={i}
-                            // disabled={e.active}
                             onMouseOver={() => {
                                 getPrice(e.y, i, e.x)
                                 setActiveButton(i)
