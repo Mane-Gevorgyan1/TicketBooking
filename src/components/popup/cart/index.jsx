@@ -1,28 +1,17 @@
 import './style.css'
-import { CloseIcon, MinusSign } from '../../svg'
+import { Cart, CloseIcon } from '../../svg'
+import { useSelector } from 'react-redux'
 
-export const CartPopup = ({ open, setOpen, data, removeTicket }) => {
+export const CartPopup = ({ open, setOpen, children, openCard }) => {
+    const tickets = useSelector((st) => st.tiketsForBuy)
     return (
         <div className={open ? 'activePopup' : 'inactive'}>
-            <div className='pop' style={{ width: '570px' }}>
+            <div className='pop' >
                 <div className='close' onClick={() => setOpen(false)}>
                     <CloseIcon />
                 </div>
-                <h1>Ձեր տոմսերը ({data.length})</h1>
-                <div className='separator' />
-                <div className='currentTickets'>
-                    {data?.map((elm, i) => {
-                        return <div key={i} className='eachTicket'>
-                            <span>Շարք - {elm.row}</span>
-                            <span>Տեղ - {elm.bench}</span>
-                            <span>{elm.price} դրամ</span>
-                            <div onClick={() => removeTicket(i)} className='minusSign'>
-                                <MinusSign />
-                            </div>
-                        </div>
-                    })}
-                </div>
-                <button className='ticketBtn'>Շարունակել</button>
+                {children}
+                <div className='cartLine' onClick={() => openCard()}><div ><Cart />{tickets.tickets.length}</div></div>
             </div>
         </div>
     )

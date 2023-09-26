@@ -47,6 +47,17 @@
     width: 120px;
 }
 
+.ByTicketWrapper {
+    position: absolute;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+}
+
+
 .EventTitle {
     width: 100%;
     display: flex;

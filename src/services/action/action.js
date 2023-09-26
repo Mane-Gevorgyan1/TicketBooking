@@ -94,3 +94,17 @@ export const GetAllEvents = (page, data) => {
             })
     }
 }
+
+export const SetTicketsAction = (data) => {
+    return {
+        type: 'SetTicketsAction',
+        data
+    }
+}
+
+export const RemoveTicketsAction = (data) => {
+    return {
+        type: 'RemoveTicketsAction',
+        data
+    }
+}

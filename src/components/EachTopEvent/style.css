@@ -52,6 +52,15 @@
     line-height: normal;
 }
 
+/* @media screen and (max-width: 1100px) {
+    .eachTopEvent {
+        max-width: 270px;
+        height: 400px;
+    }
+
+    .topEventDetails {}
+} */
+
 @media screen and (max-width: 768px) {
     .eachTopEvent {
         max-width: 230px;

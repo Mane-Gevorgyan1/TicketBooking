@@ -1,8 +1,22 @@
+.hallWrapper {
+    height: 500px;
+    overflow-y: scroll;
+    overflow-y: scroll;
+    z-index: 333;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 100%;
+    background: #c2beb4;
+}
+
+
 .hall {
     display: flex;
     gap: 30px;
     width: 100%;
-    /* background: #c2beb4; */
+    background: #c2beb4;
     padding-bottom: 50px;
 }
 
@@ -13,6 +27,7 @@
 
 .hidden {
     overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .eachSeat {

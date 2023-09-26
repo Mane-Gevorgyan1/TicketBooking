@@ -7,6 +7,7 @@ import { GetGeneralEventsReducer } from './getGeneralEventsReducer'
 import { GetSinglPageReducer } from './getSinglPageReducer'
 import { SearchReducer } from './searchReducer'
 import { GetAllEventsReducer } from './getAllEventsReducer'
+import { TicketsForBuyReducer } from './TicketsForBuyReducer'
 
 export default combineReducers({
     Ticket_reducer,
@@ -16,5 +17,6 @@ export default combineReducers({
     general: GetGeneralEventsReducer,
     getSinglPage: GetSinglPageReducer,
     search: SearchReducer,
-    getAllEventes: GetAllEventsReducer
+    getAllEventes: GetAllEventsReducer,
+    tiketsForBuy: TicketsForBuyReducer
 })

@@ -1,5 +1,5 @@
 import './style.css'
 
-export const Button = ({ title }) => {
-    return <button className='button' onClick={() => window.location = '/hall'}>{title}</button>
+export const Button = ({ title, onClick }) => {
+    return <button className='button' onClick={onClick}>{title}</button>
 }

@@ -1,47 +1,65 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CheckSvg, CheckedSvg, SelectSvg, SelectedSvg } from '../svg'
 import './style.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { RemoveTicketsAction } from '../../services/action/action'
 export const BuyNow = ({ close }) => {
     const [chedked, setChedker] = useState(false)
     const [selectPay, setSelectPay] = useState(null)
     const Select = (i) => {
         setSelectPay(i)
     }
-    return <div className='buyNowWrapper'>
+    const tickets = useSelector((st) => st.tiketsForBuy)
+    const [totoal, setTotal] = useState(0)
+    useEffect(() => {
+        let price = 0
+        tickets.tickets.map((elm, i) => {
+            price += elm.price
+        })
+        setTotal(price)
+    }, [tickets])
+    const dispatch = useDispatch()
+    return <div >
         <div className='buyNowWrapper2'>
             <div className='BuyNowHeader'>
                 <p>Lorem ipsum dolor sit amet consectetur.</p>
-                <p onClick={() => close()} style={{ cursor: 'pointer' }}>x</p>
             </div>
             <div className='BuyNowWrapper'>
                 <div className='BuyNowTitle'>
                     <p>Lorem ipsum dolor sit amet consectetur.</p>
                 </div>
-                <div className='BuyNowDate'>
+                {/* <div className='BuyNowDate'>
                     <p>14.09.2023  /  19:00</p>
-                </div>
+                </div> */}
                 <div>
                     <div className='BuyNowTickert'>
                         <p className='Seat'>Seat</p>
                         <p className='Seat'>Price</p>
                     </div>
-                    <div className='BuyNowTickert'>
-                        <p className='BuyNowTickertPrive'>Parter  4  Line  15  Seat</p>
-                        <p className='BuyNowTickertPrive' id='Amd' > 15.000 AMD</p>
-                    </div>
-                    <div>
-                    </div>
+                    {tickets?.tickets?.map((elm, i) => {
+                        return <div className='BuyNowTickert'>
+                            <p className='BuyNowTickertPrive'>Parter  {elm.row}  Line  {elm.bench}  Seat</p>
+                            <p className='BuyNowTickertPrive' id='Amd' > {elm.price} AMD</p>
+                            <p style={{ cursor: 'pointer' }} onClick={() => dispatch(RemoveTicketsAction(elm))}> x</p>
+                        </div>
+                    })
+
+                    }
                 </div>
             </div>
             <div className='buyNowTotalPrice'>
-                <p>General : <span>60.000 AMD</span></p>
+                <p>General : <span>{totoal} AMD</span></p>
             </div>
             <div className='BuyMethod'>
                 <div onClick={() => Select(1)}>
                     <div className='BuyMethodSelect'>
                         {selectPay == 1 ? <SelectedSvg /> : <SelectSvg />}
                     </div>
-                    <img width={100} height={30} src={require('../../assets/idram.png')} />
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <img width={45} height={20} src={require('../../assets/visa.png')} />
+                        <img width={45} height={20} src={require('../../assets/master.png')} />
+                        <img width={45} height={20} src={require('../../assets/arca.png')} />
+                    </div>
                 </div>
                 <div onClick={() => Select(2)}>
                     <div className='BuyMethodSelect'>
@@ -53,13 +71,13 @@ export const BuyNow = ({ close }) => {
                     <div className='BuyMethodSelect'>
                         {selectPay == 3 ? <SelectedSvg /> : <SelectSvg />}
                     </div>
-                    <img width={100} height={30} src={require('../../assets/idram.png')} />
+                    <img width={80} height={30} src={require('../../assets/telsel.png')} />
                 </div>
                 <div onClick={() => Select(4)}>
                     <div className='BuyMethodSelect'>
                         {selectPay == 4 ? <SelectedSvg /> : <SelectSvg />}
                     </div>
-                    <img width={100} height={30} src={require('../../assets/idram.png')} />
+                    <img width={80} height={30} src={require('../../assets/take.png')} />
                 </div>
             </div>
             <div className='BuyInputs'>
