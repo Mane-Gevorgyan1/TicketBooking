@@ -29,7 +29,7 @@ export const ALLEvents = () => {
                 return <EachTicket
                     key={i}
                     id={elm._id}
-                    image='Rectangle 19.png'
+                    image={elm.image}
                     date={`${dayOfWeek} ${month} ${year}`}
                     location={elm.location}
                     price={`${elm.priceStart} - ${elm.priceEnd} AMD`}

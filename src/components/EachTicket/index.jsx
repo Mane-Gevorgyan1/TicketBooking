@@ -3,10 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Date, Location, TicketIcon } from '../svg'
 
 export const EachTicket = ({ width, id, image, title, date, location, price }) => {
+    console.log(image)
     const navigation = useNavigate()
     return <div className='ticket' onClick={() => navigation(`/Single/${id}`)}>
         <div>
-            <img alt='' className='Ticketimg' src={require(`../../assets/${image}`)} />
+            <img alt='' className='Ticketimg' src={` http://localhost:8080/images/${image}`} />
         </div>
         <div className='ticketText'>
             <div className='ticketTextWrapper'>

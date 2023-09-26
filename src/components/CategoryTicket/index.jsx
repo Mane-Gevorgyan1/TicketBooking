@@ -4,7 +4,7 @@ import { Date, Location, TicketIcon } from '../svg'
 export const CategoryTicket = ({ image, title, date, location, price, genre, onClick }) => {
     return <div className='Categoryticket' onClick={() => onClick()}>
         <div>
-            <img alt='' className='CategoryImg' src={require(`../../assets/${image}`)} />
+            <img alt='' className='CategoryImg' src={` http://localhost:8080/images/${image}`} />
         </div>
         <div className='CategoryText'>
             <div className='ticketTextWrapper'>

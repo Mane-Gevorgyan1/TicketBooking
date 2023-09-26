@@ -83,7 +83,7 @@ const PhotoCoordinatesByColor = () => {
 
     useEffect(() => {
         let data = [...coordinatesState]
-        data.map((elm, i) => {
+        data?.map((elm, i) => {
             const index = tickets.tickets.findIndex(({ id }) => id === elm.id);
             if (index >= 0) {
                 elm.active = true
