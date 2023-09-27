@@ -9,6 +9,7 @@ import { SearchReducer } from './searchReducer'
 import { GetAllEventsReducer } from './getAllEventsReducer'
 import { TicketsForBuyReducer } from './TicketsForBuyReducer'
 import { GetCategoryReducer } from './getCategoryReducer'
+import { GetSubCategoryReducer } from './getSubCategoryReducer'
 
 export default combineReducers({
     Ticket_reducer,
@@ -21,4 +22,5 @@ export default combineReducers({
     getAllEventes: GetAllEventsReducer,
     tiketsForBuy: TicketsForBuyReducer,
     getCategory: GetCategoryReducer,
+    getSubCAtegory: GetSubCategoryReducer,
 })

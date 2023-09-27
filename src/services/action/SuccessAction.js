@@ -39,3 +39,10 @@ export const SuccessGetCategory = (data) => {
         data
     }
 }
+
+export const SuccessGetSubCategory = (data) => {
+    return {
+        type: 'SuccessGetSubCategory',
+        data
+    }
+}

@@ -38,7 +38,6 @@ export const Single = () => {
                 >
                     <PhotoCoordinatesByColor />
                 </CartPopup>
-                <div className='cartLine'><div ><Cart />0</div></div>
             </div>
         }
         {openBuy &&
@@ -52,7 +51,7 @@ export const Single = () => {
         }
         <div className='SinglDescription'>
             <div className='singlImg'>
-                <img src={require('../../assets/Vector.png')} />
+                <img src={`http://localhost:8080/images/${event.image}`} />
             </div>
             <div className='singltextWrapper'>
                 <div></div>

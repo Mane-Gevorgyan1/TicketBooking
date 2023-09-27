@@ -1,7 +1,7 @@
 import axios from "axios"
-import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetSinglPage, StartSearch } from "./StartAction"
-import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
-import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
+import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetSinglPage, StartSearch, StartSubCategory } from "./StartAction"
+import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
+import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
 
 const api = 'http://localhost:8080'
 export const OpenCategoryMenu = (data) => {
@@ -113,7 +113,6 @@ export const GetCategory = () => {
     return (dispatch) => {
         dispatch(StartGetCategory())
         axios.get(`${api}/getCategories`).then((r) => {
-            console.log(r)
             if (r.data.success) {
                 dispatch(SuccessGetCategory(r.data.categories))
             }
@@ -123,6 +122,18 @@ export const GetCategory = () => {
         })
             .catch((error) => {
                 dispatch(ErrorGetCategory())
+            })
+    }
+}
+
+export const SubCategory = (data) => {
+    return (dispatch) => {
+        dispatch(StartSubCategory())
+        axios.post(`${api}/getSubcategories`, data).then((r) => {
+            dispatch(SuccessGetSubCategory(r.data.category))
+        })
+            .catch((error) => {
+                dispatch(ErrorGetSubCategory())
             })
     }
 }

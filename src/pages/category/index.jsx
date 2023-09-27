@@ -4,7 +4,7 @@ import { MultySelect } from '../../components/MultySelect'
 import { FilterSvg, MFilter, MultysElectSvg } from '../../components/svg'
 import './style.css'
 import { CategoryMenu } from '../../components/CategoryMenu'
-import { GetAllEvents, OpenCategoryMenu } from '../../services/action/action'
+import { GetAllEvents, OpenCategoryMenu, SubCategory } from '../../services/action/action'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PuffLoader } from 'react-spinners'
@@ -25,10 +25,14 @@ export const Category = () => {
     const [openCalendar, setOpenCalendar] = useState(false)
     const navigation = useNavigate()
     const [title, setTitle] = useState('Hall')
+    const getSubCategory = useSelector((st) => st.getSubCAtegory)
+
+    const [activeButton, setActiveButton] = useState('Բոլորը')
+
     const [selectedDate, setSelectedDate] = useState([
         {
-            startDate: new Date(),
-            endDate: new Date(),
+            startDate: '',
+            endDate: '',
             key: 'selection',
         },
     ]);
@@ -51,7 +55,12 @@ export const Category = () => {
 
     useEffect(() => {
         dispatch(GetAllEvents(1, { category: id, startDate, endData }))
-    }, [startDate, endData])
+    }, [startDate, endData, id])
+
+
+    useEffect(() => {
+        dispatch(SubCategory({ id: id }))
+    }, [])
 
     if (openMenu.categoryMenu) {
         return <CategoryMenu />
@@ -71,11 +80,10 @@ export const Category = () => {
             />
         </CartPopup>
         <div className='CategoryButtonWrapper'>
-            <button id='active' className='CateogryButton'>Classical</button>
-            <button className='CateogryButton'>Classical</button>
-            <button className='CateogryButton'>Classical</button>
-            <button className='CateogryButton'>Classical</button>
-            <button className='CateogryButton'>Classical</button>
+            <button id={activeButton == 'Բոլորը' && 'active'} className='CateogryButton'>Բոլորը</button>
+            {getSubCategory.data?.subcategories?.map((elm, i) => {
+                return <button onClick={() => setActiveButton(elm.name)} id={activeButton == elm.name && 'active'} className='CateogryButton'>{elm.name}</button>
+            })}
         </div>
         <div className='FilterWrapper'>
             <FilterSvg />

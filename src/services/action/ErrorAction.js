@@ -30,3 +30,9 @@ export const ErrorGetCategory = () => {
         type: 'ErrorGetCategory'
     }
 }
+
+export const ErrorGetSubCategory = () => {
+    return {
+        type: 'ErrorGetSubCategory'
+    }
+}

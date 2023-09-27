@@ -33,3 +33,9 @@ export const StartGetCategory = () => {
         type: 'StartGetCategory'
     }
 }
+
+export const StartSubCategory = () => {
+    return {
+        type: 'StartSubCategory'
+    }
+}

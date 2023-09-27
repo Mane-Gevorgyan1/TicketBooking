@@ -4,6 +4,7 @@ import './styles.css'
 import { Button } from '../Button';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const handleDragStart = (e) => e.preventDefault();
 
@@ -16,6 +17,7 @@ export const Carusel = () => {
         }
         return text;
     }
+    const navigation = useNavigate()
 
     useEffect(() => {
         let item = [...data]
@@ -46,11 +48,11 @@ export const Carusel = () => {
                             <span>{truncateText(elm.description, 30)}</span>
                             <span>{`${dayOfWeek}.${month}.${year}`}  {`${hour}:${minute}`}</span>
                             <div className='ButtonWrapperCarusel' style={{ marginTop: 10 }}>
-                                <Button onClick={() => window.location = '/hall'} title={'Buy Ticket'} />
+                                <Button onClick={() => navigation(`Single/${elm._id}`)} title={'Buy Ticket'} />
                             </div>
                         </div>
                     </div>
-                    <img src={require('../../assets/Rectangle 2.png')} height={400} width={'99%'} style={{ borderRadius: 6 }} onDragStart={handleDragStart} role="presentation" />
+                    <img src={`http://localhost:8080/images/${elm.image}`} height={400} width={'99%'} style={{ borderRadius: 6 }} onDragStart={handleDragStart} role="presentation" />
                 </div>)
             })
         }
