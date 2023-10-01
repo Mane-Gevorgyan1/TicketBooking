@@ -1,7 +1,7 @@
 import axios from "axios"
-import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetSinglPage, StartSearch, StartSubCategory } from "./StartAction"
-import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
-import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
+import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartSearch, StartSubCategory } from "./StartAction"
+import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
+import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
 
 const api = 'http://localhost:8080'
 export const OpenCategoryMenu = (data) => {
@@ -81,7 +81,7 @@ export const SearchAction = (search) => {
 export const GetAllEvents = (page, data) => {
     return (dispatch) => {
         dispatch(StartGetCategoris())
-        axios.post(`${api}/getAllEvents?currentPage=${page}`, { data }).then((r) => {
+        axios.post(`${api}/getCategoryEvents?currentPage=${page}`, data).then((r) => {
             if (r.data.success) {
                 dispatch(SuccessGetCategoris(r.data.events))
             }
@@ -91,6 +91,24 @@ export const GetAllEvents = (page, data) => {
         })
             .catch((error) => {
                 dispatch(ErrorGetCategoris())
+            })
+    }
+}
+
+export const GetRandomEvents = () => {
+    return (dispatch) => {
+        dispatch(StartGetRadnomEvents())
+        axios.get(`${api}/randomEvents`).then((r) => {
+            console.log(r.data)
+            if (r.data.success) {
+                dispatch(SuccessGetRandomEvents(r.data.randomEvents))
+            }
+            else {
+                dispatch(ErrorGetRandomEvetns())
+            }
+        })
+            .catch((error) => {
+                dispatch(ErrorGetRandomEvetns())
             })
     }
 }

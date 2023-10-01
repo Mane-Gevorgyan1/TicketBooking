@@ -10,6 +10,7 @@ import { GetAllEventsReducer } from './getAllEventsReducer'
 import { TicketsForBuyReducer } from './TicketsForBuyReducer'
 import { GetCategoryReducer } from './getCategoryReducer'
 import { GetSubCategoryReducer } from './getSubCategoryReducer'
+import { GetRadnomEventsReducer } from './getRadnomEventsReducer'
 
 export default combineReducers({
     Ticket_reducer,
@@ -23,4 +24,5 @@ export default combineReducers({
     tiketsForBuy: TicketsForBuyReducer,
     getCategory: GetCategoryReducer,
     getSubCAtegory: GetSubCategoryReducer,
+    getRandomEvents: GetRadnomEventsReducer,
 })

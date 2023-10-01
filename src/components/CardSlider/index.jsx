@@ -39,7 +39,7 @@ export const CardSlider = ({ data }) => {
         dispatch(GetTopEvents())
     }, [])
     return <Carousel itemsToShow={count}>
-        {data?.map((elm, i) => {
+        {data.length > 0 && data?.map((elm, i) => {
             const dateObject = new Date(elm.date);
             let dayOfWeek = dateObject.getDay();
             const year = dateObject.getFullYear();

@@ -39,3 +39,9 @@ export const StartSubCategory = () => {
         type: 'StartSubCategory'
     }
 }
+
+export const StartGetRadnomEvents = () => {
+    return {
+        type: 'StartGetRadnomEvents'
+    }
+}

@@ -36,3 +36,9 @@ export const ErrorGetSubCategory = () => {
         type: 'ErrorGetSubCategory'
     }
 }
+
+export const ErrorGetRandomEvetns = () => {
+    return {
+        type: 'ErrorGetRandomEvetns'
+    }
+}

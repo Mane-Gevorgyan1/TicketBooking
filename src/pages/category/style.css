@@ -24,6 +24,23 @@
     font-size: 16px;
 }
 
+.loadingCategory {
+    width: 100%;
+    justify-content: center;
+    display: flex;
+    height: calc(100vh - 220px);
+    align-items: center;
+    display: flex;
+}
+
+.paginationDiv {
+    margin: 70px auto 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .mobileDate {
     display: none;
 }
@@ -41,7 +58,7 @@
 
 .CategoryButtonWrapper {
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
 }
 
 .CateogryButton:hover {
@@ -95,6 +112,9 @@
     background: #FEE827;
 }
 
+.css-19micn4-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected {
+    background-color: #FEE827 !important;
+}
 
 @media screen and (max-width: 768px) {
     .category {
@@ -114,7 +134,9 @@
     }
 
     .CategoryButtonWrapper {
-        justify-content: flex-start !important;
+        gap: 0 !important;
+
+        /* justify-content: flex-start !important; */
     }
 
     .mobileDate {
@@ -168,8 +190,8 @@
 
     .CategoryButtonWrapper {
         flex-wrap: wrap;
-        justify-content: space-between;
         padding: 0 20px;
+        gap: 10px;
         margin-top: 40px;
     }
 

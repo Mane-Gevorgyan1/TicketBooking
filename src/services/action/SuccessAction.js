@@ -46,3 +46,10 @@ export const SuccessGetSubCategory = (data) => {
         data
     }
 }
+
+export const SuccessGetRandomEvents = (data) => {
+    return {
+        type: "SuccessGetRandomEvents",
+        data
+    }
+}

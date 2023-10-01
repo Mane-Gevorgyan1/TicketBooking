@@ -8,12 +8,12 @@ import { PuffLoader } from 'react-spinners'
 import { useParams } from 'react-router-dom'
 import PhotoCoordinatesByColor from '../../components/photoMap'
 import { CartPopup } from '../../components/popup/cart'
-import { Cart } from '../../components/svg'
 import { BuyNow } from '../../components/BuyNow'
 export const Single = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
     useEffect(() => {
+        window.scrollTo(0, 0)
         dispatch(GetSinglPage(id))
     }, [])
     const getSinglPage = useSelector((st) => st.getSinglPage)
@@ -51,7 +51,7 @@ export const Single = () => {
         }
         <div className='SinglDescription'>
             <div className='singlImg'>
-                <img src={`http://localhost:8080/images/${event.image}`} />
+                <img src={`http://localhost:8080/images/${event?.image}`} />
             </div>
             <div className='singltextWrapper'>
                 <div></div>

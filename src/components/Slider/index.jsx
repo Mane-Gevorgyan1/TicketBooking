@@ -22,7 +22,7 @@ export const Carusel = () => {
     useEffect(() => {
         let item = [...data]
         if (!item.length) {
-            general?.events?.map((elm, i) => {
+            general?.events?.length > 0 && general?.events?.map((elm, i) => {
                 const dateObject = new Date(elm.date);
                 let dayOfWeek = dateObject.getDay();
                 const year = dateObject.getFullYear();

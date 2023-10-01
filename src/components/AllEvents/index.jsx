@@ -2,20 +2,21 @@ import { useEffect } from "react"
 import { EachTicket } from "../EachTicket"
 import './styles.css'
 import { useDispatch, useSelector } from "react-redux"
-import { GetAllEvents } from "../../services/action/action"
+import { GetAllEvents, GetRandomEvents } from "../../services/action/action"
 
 export const ALLEvents = () => {
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(GetAllEvents())
+        dispatch(GetRandomEvents())
     }, [])
-    const events = useSelector((st) => st.getAllEventes)
+    const events = useSelector((st) => st.getRandomEvents)
+    console.log(events)
     return <div>
         <div className='EventTitle'>
             <h2>All Events</h2>
         </div>
         <div className="Allevents">
-            {events?.events?.map((elm, i) => {
+            {events?.events.length > 0 && events?.events?.map((elm, i) => {
                 const dateObject = new Date(elm.date);
                 let dayOfWeek = dateObject.getDay();
                 const year = dateObject.getFullYear();

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { GetCategory, OpenCategoryMenu, SearchAction } from '../../services/action/action'
 import { useEffect, useState } from 'react'
 import { SearchInput } from '../SearchInput'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export const Header = ({ open, menu }) => {
     const openMenu = useSelector((st) => st.StaticReducer)
@@ -14,6 +14,7 @@ export const Header = ({ open, menu }) => {
     const navigation = useNavigate()
     const search = useSelector((st) => st.search)
     const getCategory = useSelector((st) => st.getCategory)
+    const { id } = useParams()
     useEffect(() => {
         dispatch(SearchAction(value))
     }, [value])
@@ -42,7 +43,7 @@ export const Header = ({ open, menu }) => {
                 <p onClick={() => navigation('/')} className='title'>Logo</p>
                 <div className='textWrapper'>
                     {getCategory.category.map((elm, i) => {
-                        return <p onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)} className='text'>{elm.name}</p>
+                        return <p id={id == elm._id ? 'activeHeader' : ''} onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)} className='Headertext'>{elm.name}</p>
                     })}
                 </div>
                 {!openMenu.categoryMenu ? <div className='buttonWrapperHeader'>

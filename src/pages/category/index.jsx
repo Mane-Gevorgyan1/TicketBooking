@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { CategoryTicket } from '../../components/CategoryTicket'
 import { MultySelect } from '../../components/MultySelect'
 import { FilterSvg, MFilter, MultysElectSvg } from '../../components/svg'
@@ -13,8 +13,10 @@ import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { CartPopup } from '../../components/popup/cart'
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 export const Category = () => {
-
+    const containerRef = useRef(null);
     const { id } = useParams()
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
@@ -26,7 +28,7 @@ export const Category = () => {
     const navigation = useNavigate()
     const [title, setTitle] = useState('Hall')
     const getSubCategory = useSelector((st) => st.getSubCAtegory)
-
+    const [subcategoryId, setSubcategoryId] = useState('')
     const [activeButton, setActiveButton] = useState('Բոլորը')
 
     const [selectedDate, setSelectedDate] = useState([
@@ -36,6 +38,7 @@ export const Category = () => {
             key: 'selection',
         },
     ]);
+
 
     useEffect(() => {
         let date = new Date(selectedDate[0].endDate)
@@ -52,20 +55,23 @@ export const Category = () => {
         setStartDate(statDate)
         setEndDate(endDate)
     }, [selectedDate])
-
+    const [page, setPage] = useState(1)
     useEffect(() => {
-        dispatch(GetAllEvents(1, { category: id, startDate, endData }))
-    }, [startDate, endData, id])
-
+        if (containerRef.current) {
+            window.scrollTo(0, 0)
+        }
+        dispatch(GetAllEvents(page, { categoryId: id, subcategoryId: subcategoryId, startDate, endData }))
+    }, [startDate, endData, id, subcategoryId, page])
 
     useEffect(() => {
         dispatch(SubCategory({ id: id }))
-    }, [])
+        setActiveButton('Բոլորը')
+    }, [id])
 
     if (openMenu.categoryMenu) {
         return <CategoryMenu />
     }
-    return <div className='category'>
+    return <div ref={containerRef} className='category'>
         <CartPopup
             open={openCalendar}
             setOpen={setOpenCalendar}
@@ -79,24 +85,29 @@ export const Category = () => {
                 moveRangeOnFirstSelection={false}
             />
         </CartPopup>
-        <div className='CategoryButtonWrapper'>
-            <button id={activeButton == 'Բոլորը' && 'active'} className='CateogryButton'>Բոլորը</button>
+        {!events.loading && <div className='CategoryButtonWrapper'>
+            {getSubCategory.data?.subcategories?.length && <button onClick={() => {
+                setActiveButton('Բոլորը')
+                setSubcategoryId('')
+            }} id={activeButton == 'Բոլորը' && 'active'} className='CateogryButton'>Բոլորը</button>}
             {getSubCategory.data?.subcategories?.map((elm, i) => {
-                return <button onClick={() => setActiveButton(elm.name)} id={activeButton == elm.name && 'active'} className='CateogryButton'>{elm.name}</button>
+                return <button onClick={() => {
+                    setActiveButton(elm.name)
+                    setSubcategoryId(elm._id)
+                }} id={activeButton == elm.name && 'active'} className='CateogryButton'>{elm.name}</button>
             })}
-        </div>
-        <div className='FilterWrapper'>
+        </div>}
+        {!events.loading && <div className='FilterWrapper'>
             <FilterSvg />
-            <div className='SelectorDivWrapper'>
+            {id !== '651568e7c6d0c9ab5a69365b' && <div className='SelectorDivWrapper'>
                 <MultySelect onClick={(e) => setTitle(e)} title={title} />
-            </div>
+            </div>}
             <div>
                 <div style={{ marginLeft: 40 }} onClick={() => setOpenCalendar(true)}>
                     <img src={require('../../assets/calendar.png')} />
                 </div>
-
             </div>
-        </div>
+        </div>}
         <div className='mFilterWrapper' onClick={() => {
             setOpen(!open)
         }}>
@@ -118,7 +129,8 @@ export const Category = () => {
         }
         {
             !events.loading ? <div className='Category'>
-                {events?.events?.map((elm, i) => {
+
+                {events?.events.length > 0 && events?.events?.map((elm, i) => {
                     const dateObject = new Date(elm.date);
                     let dayOfWeek = dateObject.getDay();
                     const year = dateObject.getFullYear();
@@ -141,13 +153,19 @@ export const Category = () => {
                     />
                 })}
             </div> :
-                <div className='loading'>
+                <div className='loadingCategory'>
                     <PuffLoader color="#36d7b7" />
                 </div>
 
         }
-        <div style={{ marginBottom: 100 }}>
-
+        <div className='paginationDiv'>
+            {events?.events.length > 21 && <Stack spacing={2}>
+                <Pagination
+                    onChange={(e, value) => setPage(value)}
+                    count={10}
+                    color="secondary"
+                />
+            </Stack>}
         </div>
     </div >
 }
