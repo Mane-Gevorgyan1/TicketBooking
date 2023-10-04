@@ -1,10 +1,13 @@
+import { useDispatch } from 'react-redux'
 import './style.css'
-export const CategoryMenu = () => {
+import { OpenCategoryMenu } from '../../services/action/action'
+export const CategoryMenu = ({ close }) => {
+    const dispatch = useDispatch()
     return <div className="categoryMenu">
-        <div>Small Hall</div>
-        <div>Big Hall</div>
-        <div>Small Hall</div>
-        <div>Small Hall</div>
-        <div>Small Hall</div>
+        <div onClick={() => {
+            close()
+            dispatch(OpenCategoryMenu(false))
+        }
+        }>Small Hall</div>
     </div>
 }

@@ -6,7 +6,11 @@ export const MenuMobile = ({ onClose }) => {
     const navigation = useNavigate()
     return <div className='MenuMobile'>
         {getCategory.category.map((elm, i) => {
-            return <div onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)}>{elm.name}</div>
+            return <div onClick={() => {
+                onClose()
+                navigation(`/Category/${elm.name}/${elm._id}`)
+            }}
+            >{elm.name}</div>
         })}
     </div>
 }

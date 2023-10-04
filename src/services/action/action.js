@@ -82,6 +82,7 @@ export const GetAllEvents = (page, data) => {
     return (dispatch) => {
         dispatch(StartGetCategoris())
         axios.post(`${api}/getCategoryEvents?currentPage=${page}`, data).then((r) => {
+            console.log(r)
             if (r.data.success) {
                 dispatch(SuccessGetCategoris(r.data.events))
             }
@@ -99,7 +100,6 @@ export const GetRandomEvents = () => {
     return (dispatch) => {
         dispatch(StartGetRadnomEvents())
         axios.get(`${api}/randomEvents`).then((r) => {
-            console.log(r.data)
             if (r.data.success) {
                 dispatch(SuccessGetRandomEvents(r.data.randomEvents))
             }

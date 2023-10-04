@@ -1,22 +1,21 @@
-import { useEffect, useRef, useState } from 'react'
+import './style.css'
+import 'react-date-range/dist/styles.css';
+import 'react-date-range/dist/theme/default.css';
+import { useEffect, useState } from 'react'
 import { CategoryTicket } from '../../components/CategoryTicket'
 import { MultySelect } from '../../components/MultySelect'
 import { FilterSvg, MFilter, MultysElectSvg } from '../../components/svg'
-import './style.css'
 import { CategoryMenu } from '../../components/CategoryMenu'
 import { GetAllEvents, OpenCategoryMenu, SubCategory } from '../../services/action/action'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { PuffLoader } from 'react-spinners'
 import { DateRangePicker } from 'react-date-range';
-
-import 'react-date-range/dist/styles.css';
-import 'react-date-range/dist/theme/default.css';
 import { CartPopup } from '../../components/popup/cart'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+
 export const Category = () => {
-    const containerRef = useRef(null);
     const { id } = useParams()
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
@@ -30,36 +29,21 @@ export const Category = () => {
     const getSubCategory = useSelector((st) => st.getSubCAtegory)
     const [subcategoryId, setSubcategoryId] = useState('')
     const [activeButton, setActiveButton] = useState('Բոլորը')
-
-    const [selectedDate, setSelectedDate] = useState([
-        {
-            startDate: '',
-            endDate: '',
-            key: 'selection',
-        },
-    ]);
+    const [selectedDate, setSelectedDate] = useState([{ startDate: '', endDate: '', key: 'selection', },]);
+    const [page, setPage] = useState(1)
 
 
     useEffect(() => {
         let date = new Date(selectedDate[0].endDate)
         let startDate = new Date(selectedDate[0].startDate)
-        let emm = date.getMonth()
-        let edd = date.getDay()
-        let eyy = date.getFullYear()
-        let endDate = `${emm}-${edd}-${eyy}`
-
-        let smm = startDate.getMonth()
-        let sdd = startDate.getDay()
-        let syy = startDate.getFullYear()
-        let statDate = `${smm}-${sdd}-${syy}`
+        let endDate = `${date.getMonth()}-${date.getDay()}-${date.getFullYear()}`
+        let statDate = `${startDate.getMonth()}-${startDate.getDay()}-${startDate.getFullYear()}`
         setStartDate(statDate)
         setEndDate(endDate)
     }, [selectedDate])
-    const [page, setPage] = useState(1)
+
     useEffect(() => {
-        if (containerRef.current) {
-            window.scrollTo(0, 0)
-        }
+        window.scrollTo(0, 0)
         dispatch(GetAllEvents(page, { categoryId: id, subcategoryId: subcategoryId, startDate, endData }))
     }, [startDate, endData, id, subcategoryId, page])
 
@@ -69,9 +53,14 @@ export const Category = () => {
     }, [id])
 
     if (openMenu.categoryMenu) {
-        return <CategoryMenu />
+        return <CategoryMenu close={() => setOpen(!open)} />
     }
-    return <div ref={containerRef} className='category'>
+    return <div className='category'>
+        {!events.loading && !events?.events.length > 0 &&
+            <div className='notfound'>
+                <p>Tvyalner gtnvac chen</p>
+            </div>
+        }
         <CartPopup
             open={openCalendar}
             setOpen={setOpenCalendar}
@@ -85,7 +74,7 @@ export const Category = () => {
                 moveRangeOnFirstSelection={false}
             />
         </CartPopup>
-        {!events.loading && <div className='CategoryButtonWrapper'>
+        {!events.loading && events?.events.length > 0 && <div className='CategoryButtonWrapper'>
             {getSubCategory.data?.subcategories?.length && <button onClick={() => {
                 setActiveButton('Բոլորը')
                 setSubcategoryId('')
@@ -97,7 +86,7 @@ export const Category = () => {
                 }} id={activeButton == elm.name && 'active'} className='CateogryButton'>{elm.name}</button>
             })}
         </div>}
-        {!events.loading && <div className='FilterWrapper'>
+        {!events.loading && events?.events.length > 0 && <div className='FilterWrapper'>
             <FilterSvg />
             {id !== '651568e7c6d0c9ab5a69365b' && <div className='SelectorDivWrapper'>
                 <MultySelect onClick={(e) => setTitle(e)} title={title} />
@@ -108,12 +97,12 @@ export const Category = () => {
                 </div>
             </div>
         </div>}
-        <div className='mFilterWrapper' onClick={() => {
+        {events?.events.length > 0 && <div className='mFilterWrapper' onClick={() => {
             setOpen(!open)
         }}>
             <MFilter />
             <MultysElectSvg />
-        </div>
+        </div>}
         {
             open && <div className='MultyselectItemCategory'>
                 <div onClick={() => {
@@ -121,15 +110,11 @@ export const Category = () => {
                 }}>Big Hall</div>
                 <div onClick={() => {
                     setOpenCalendar(true)
-                }}>Big Hall</div>
-                <div onClick={() => {
-                    dispatch(OpenCategoryMenu(true))
-                }}>Big Hall</div>
+                }}>Calendar</div>
             </div>
         }
         {
             !events.loading ? <div className='Category'>
-
                 {events?.events.length > 0 && events?.events?.map((elm, i) => {
                     const dateObject = new Date(elm.date);
                     let dayOfWeek = dateObject.getDay();
@@ -154,7 +139,7 @@ export const Category = () => {
                 })}
             </div> :
                 <div className='loadingCategory'>
-                    <PuffLoader color="#36d7b7" />
+                    <PuffLoader color="#FEE827" />
                 </div>
 
         }
