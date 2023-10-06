@@ -39,9 +39,8 @@ export const CardSlider = ({ data }) => {
         dispatch(GetTopEvents())
     }, [])
     return <Carousel itemsToShow={count}>
-        {data.length > 0 && data?.map((elm, i) => {
-            console.log(elm.sessions[0].date)
-            const dateObject = new Date(elm.sessions[0].date);
+        {data?.length > 0 && data?.map((elm, i) => {
+            const dateObject = new Date(elm.sessions[0]?.date);
             let dayOfWeek = dateObject.getDay();
             const year = dateObject.getFullYear();
             let month = dateObject.getMonth() + 1;
@@ -52,13 +51,13 @@ export const CardSlider = ({ data }) => {
                 month = `0${month}`
             }
             return <EachTopEvent
-                id={elm._id}
+                id={elm?._id}
                 key={i}
                 image={`http://localhost:8080/images/${elm.image}`}
                 title={elm.title}
                 location={elm.location}
                 date={`${dayOfWeek}-${month}-${year}`}
-                price={`${elm.sessions[0].priceStart} - ${elm.sessions[0].priceEnd} AMD`}
+                price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
             />
         })}
     </Carousel>

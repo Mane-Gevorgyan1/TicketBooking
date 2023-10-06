@@ -1,7 +1,13 @@
+import { useSelector } from 'react-redux'
 import { FbSvg, InstagramSvg, MobilFb, MobileI, MobileT, TwitterSvg } from '../svg'
 import './style.css'
+import { useNavigate } from 'react-router-dom'
 
 export const Footer = ({ menu }) => {
+
+    const getCategory = useSelector((st) => st.getCategory)
+    const navigation = useNavigate()
+
     return (
         <div className='footerWrapper'>
             <div className='footerColumns'>
@@ -9,10 +15,9 @@ export const Footer = ({ menu }) => {
                     <p>Copyrigh© 2023 shineticket.am | ALL RIGHTS RESERVED</p>
                 </div>
                 {!menu && <div className='eachFooterColumnn'>
-                    <p>Theater</p>
-                    <p>Theater</p>
-                    <p>Theater</p>
-                    <p>Theater</p>
+                    {getCategory.category.map((elm, i) => {
+                        return <p onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)} className='Headertext'>{elm.name}</p>
+                    })}
                 </div>}
                 <div className='eachFooterColumn'>
                     <FbSvg />

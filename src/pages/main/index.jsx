@@ -10,7 +10,6 @@ import { GetGenerealEvents } from '../../services/action/action'
 import { useEffect } from 'react'
 
 export const Main = () => {
-    console.log('2')
     const topEvents = useSelector((st) => st.topEvents)
     const general = useSelector((st) => st.general)
     const dispatch = useDispatch()

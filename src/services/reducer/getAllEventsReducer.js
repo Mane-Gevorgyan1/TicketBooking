@@ -1,7 +1,8 @@
 const store = {
     events: [],
     loading: false,
-    error: ''
+    error: '',
+    hall: []
 }
 export const GetAllEventsReducer = (state = store, action) => {
     let temp = { ...state }
@@ -20,6 +21,9 @@ export const GetAllEventsReducer = (state = store, action) => {
             temp.loading = false
             temp.error = ''
             temp.events = ''
+            break
+        case 'SuccessGetHall':
+            temp.hall = action.data
             break
         default:
             return temp;

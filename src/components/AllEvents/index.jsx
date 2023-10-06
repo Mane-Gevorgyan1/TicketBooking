@@ -16,9 +16,7 @@ export const ALLEvents = () => {
         </div>
         <div className="Allevents">
             {events?.events.length > 0 && events?.events?.map((elm, i) => {
-                console.log(elm.sessions[0].priceEnd
-                )
-                const dateObject = new Date(elm.sessions[0].date);
+                const dateObject = new Date(elm?.sessions[0]?.date);
                 let dayOfWeek = dateObject.getDay();
                 const year = dateObject.getFullYear();
                 let month = dateObject.getMonth() + 1;
@@ -32,9 +30,9 @@ export const ALLEvents = () => {
                     key={i}
                     id={elm._id}
                     image={elm.image}
-                    date={`${dayOfWeek} ${month} ${year}`}
-                    location={elm.location}
-                    price={`${elm.sessions[0].priceStart} - ${elm.sessions[0].priceStart} AMD`}
+                    date={`${dayOfWeek}-${month}-${year}`}
+                    location={elm.sessions[0]?.hallId.location}
+                    price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceStart} AMD`}
                     title={elm.title}
                 />
             })}

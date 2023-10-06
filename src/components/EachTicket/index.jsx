@@ -2,7 +2,7 @@ import './style.css'
 import { useNavigate } from 'react-router-dom';
 import { Date, Location, TicketIcon } from '../svg'
 
-export const EachTicket = ({ width, id, image, title, date, location, price }) => {
+export const EachTicket = ({ id, image, title, date, location, price }) => {
     const navigation = useNavigate()
     return <div className='ticket' onClick={() => navigation(`/Single/${id}`)}>
         <div>

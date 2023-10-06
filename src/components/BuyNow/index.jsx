@@ -32,13 +32,13 @@ export const BuyNow = ({ close }) => {
                     <p>14.09.2023  /  19:00</p>
                 </div> */}
                 <div>
-                    <div className='BuyNowTickert'>
+                    <div className='BuyNowTickert' id='BuyNowTickert'>
                         <p className='Seat'>Seat</p>
                         <p className='Seat'>Price</p>
                     </div>
                     {tickets?.tickets?.map((elm, i) => {
                         return <div className='BuyNowTickert'>
-                            <p className='BuyNowTickertPrive'>Parter  {elm.row}  Line  {elm.bench}  Seat</p>
+                            <p className='BuyNowTickertPrive' id='parter'>Parter  {elm.row}  Line  {elm.bench}  Seat</p>
                             <p className='BuyNowTickertPrive' id='Amd' > {elm.price} AMD</p>
                             <p style={{ cursor: 'pointer' }} onClick={() => dispatch(RemoveTicketsAction(elm))}> x</p>
                         </div>
@@ -48,7 +48,7 @@ export const BuyNow = ({ close }) => {
                 </div>
             </div>
             <div className='buyNowTotalPrice'>
-                <p>General : <span>{totoal} AMD</span></p>
+                <p>Total : <span>{totoal} AMD</span></p>
             </div>
             <div className='BuyMethod'>
                 <div onClick={() => Select(1)}>

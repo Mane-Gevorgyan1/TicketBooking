@@ -1,10 +1,16 @@
 import { useState } from 'react'
 import { MultysElectSvg, OpenMulTyselect } from '../svg'
 import './styles.css'
-export const MultySelect = ({ title, onClick }) => {
-    const item = ['Big Hall', 'Big Hall', 'Big Hall', 'Big Hall', 'Big Hall']
+export const MultySelect = ({ title, onClick, item = [] }) => {
     const [open, setOpen] = useState(false)
-    return <div>
+    document.body.addEventListener('click', function () {
+        setOpen(false)
+    });
+    return <div onClick={(e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        setOpen(!open)
+    }}>
         <div className='Multyselect'>
             <p>{title}</p>
             {open ?
@@ -18,8 +24,7 @@ export const MultySelect = ({ title, onClick }) => {
         </div>
         {open && <div className='MultyselectItem'>
             {item.map((elm, i) => {
-
-                return <div onClick={() => onClick(elm)}>{elm}</div>
+                return <div onClick={() => onClick(elm)}>{elm?.hall}</div>
             })}
         </div>}
     </div>

@@ -49,6 +49,11 @@
     width: 50%;
     justify-content: space-between;
     margin-bottom: 10px;
+    gap: 30px;
+}
+
+#BuyNowTickert {
+    justify-content: space-evenly;
 }
 
 .BuyNowTickertPrive {
@@ -58,6 +63,10 @@
     font-style: normal;
     font-weight: 300;
     line-height: normal;
+}
+
+#parter {
+    min-width: 170px;
 }
 
 .Seat {
@@ -216,6 +225,7 @@
 
     .BuyNowTickert {
         width: 100%;
+        gap: 10px;
     }
 
     .BuyNowTickertPrive {
@@ -232,5 +242,13 @@
 
     #Amd {
         text-align: end;
+    }
+
+    #parter {
+        min-width: 0;
+    }
+
+    .BuyMethod {
+        gap: 20px;
     }
 }

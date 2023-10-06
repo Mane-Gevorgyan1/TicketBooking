@@ -1,7 +1,7 @@
 import axios from "axios"
 import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartSearch, StartSubCategory } from "./StartAction"
 import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
-import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
+import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
 
 const api = 'http://localhost:8080'
 export const OpenCategoryMenu = (data) => {
@@ -81,10 +81,9 @@ export const SearchAction = (search) => {
 export const GetAllEvents = (page, data) => {
     return (dispatch) => {
         dispatch(StartGetCategoris())
-        axios.post(`${api}/getCategoryEvents?currentPage=${page}`, data).then((r) => {
-            console.log(r)
+        axios.post(`${api}/filterEvents?currentPage=${page}`, data).then((r) => {
             if (r.data.success) {
-                dispatch(SuccessGetCategoris(r.data.events))
+                dispatch(SuccessGetCategoris(r.data))
             }
             else {
                 dispatch(ErrorGetCategoris())
@@ -153,5 +152,19 @@ export const SubCategory = (data) => {
             .catch((error) => {
                 dispatch(ErrorGetSubCategory())
             })
+    }
+}
+
+export const GetHall = () => {
+    return (dispatch) => {
+        axios.get(`${api}/getAllHalls`).then((r) => {
+            dispatch(SuccessGetHall(r.data.halls))
+        })
+    }
+}
+
+export const RemoveAllTickets = () => {
+    return {
+        type: 'RemoveAllTickets'
     }
 }

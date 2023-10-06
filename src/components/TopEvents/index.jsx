@@ -10,17 +10,17 @@ export const TopEvents = () => {
                 <h2>Top Events</h2>
             </div>
             <div className='topEventsWrapper'>
-                {events?.length > 0 && events?.map((e, i) => (
-                    <EachTopEvent
+                {events?.length > 0 && events?.map((e, i) => {
+                    return <EachTopEvent
                         key={i}
-                        id={e?.id}
+                        id={e?.sessions[0]?._id}
                         image={e?.image}
                         title={e?.title}
                         location={e?.location}
                         date={e?.date}
                         price={e?.price}
                     />
-                ))}
+                })}
             </div>
         </div>
     )

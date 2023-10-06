@@ -76,7 +76,7 @@
     line-height: 30px;
     color: #12134A;
     cursor: pointer;
-    padding: 0 20px;
+    /* padding: 0 20px; */
 }
 
 .textWrapper {
@@ -129,7 +129,7 @@
 
 .searchDivWrapper {
     background-color: rgba(234, 235, 237, 1);
-    height: 200px;
+    max-height: 250px;
     overflow-y: auto;
     position: absolute;
     width: 100%;

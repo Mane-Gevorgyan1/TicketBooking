@@ -1,7 +1,8 @@
 const store = {
     category: [],
     loading: false,
-    error: ''
+    error: '',
+    hall: []
 }
 export const GetCategoryReducer = (state = store, action) => {
     let temp = { ...state }
@@ -20,6 +21,9 @@ export const GetCategoryReducer = (state = store, action) => {
             temp.loading = false
             temp.error = ''
             temp.category = []
+            break
+        case 'SuccessGetHall':
+            temp.hall = action.data
             break
         default:
             return temp;

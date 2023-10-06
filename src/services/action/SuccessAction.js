@@ -53,3 +53,10 @@ export const SuccessGetRandomEvents = (data) => {
         data
     }
 }
+
+export const SuccessGetHall = (data) => {
+    return {
+        type: 'SuccessGetHall',
+        data
+    }
+}

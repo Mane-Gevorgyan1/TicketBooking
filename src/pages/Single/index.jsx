@@ -16,6 +16,7 @@ export const Single = () => {
         window.scrollTo(0, 0)
         dispatch(GetSinglPage(id))
     }, [])
+
     const getSinglPage = useSelector((st) => st.getSinglPage)
     let { event } = getSinglPage.events
     let { recomended } = getSinglPage.events
@@ -36,7 +37,7 @@ export const Single = () => {
                         setOpenBuy(true)
                     }}
                 >
-                    <PhotoCoordinatesByColor />
+                    <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0].price} />
                 </CartPopup>
             </div>
         }

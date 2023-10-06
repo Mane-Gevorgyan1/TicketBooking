@@ -23,7 +23,8 @@ export const Carusel = () => {
         let item = [...data]
         if (!item.length) {
             general?.events?.length > 0 && general?.events?.map((elm, i) => {
-                const dateObject = new Date(elm.date);
+
+                const dateObject = new Date(elm?.sessions[0]?.date);
                 let dayOfWeek = dateObject.getDay();
                 const year = dateObject.getFullYear();
                 let month = dateObject.getMonth() + 1;
