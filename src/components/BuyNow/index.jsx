@@ -87,7 +87,7 @@ export const BuyNow = ({ close }) => {
                         <input />
                     </div>
                     <div className='InputsBuy'>
-                        <label>Phone Namber</label>
+                        <label>Phone Number</label>
                         <input />
                     </div>
                 </div>

@@ -64,7 +64,7 @@ export const Single = () => {
             </div>
         </div>
         {recomended?.length > 0 && <div className='EventTitle' style={{ flexDirection: 'column', marginBottom: 40 }}>
-            <h2 style={{ margin: " 50px  0" }}>All Events</h2>
+            <h2 style={{ margin: "50px  0" }}>Recommend Tickets</h2>
             <CardSlider data={recomended} />
         </div>}
     </div >
