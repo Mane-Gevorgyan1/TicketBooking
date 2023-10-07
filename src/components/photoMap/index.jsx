@@ -1,7 +1,6 @@
 import './style.css'
 import { useEffect, useState } from 'react'
-import { GetSeat } from '../../services/action/ticket_action'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 
 const PhotoCoordinatesByColor = ({ secion }) => {
@@ -11,8 +10,6 @@ const PhotoCoordinatesByColor = ({ secion }) => {
     const [position, setPosition] = useState({ x: '', y: '' })
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
-    const ticket = useSelector((st) => st.Ticket_reducer)
-    const tickets = useSelector((st) => st.tiketsForBuy)
 
     const [seansArr, setSeansArr] = useState([
         {
@@ -6159,208 +6156,166 @@ const PhotoCoordinatesByColor = ({ secion }) => {
         let row = null
         let seat = 0
         let price = null
-        let amfiteatr = false
-        let seats = []
         const result = coordinatesState.filter((elm) => elm.y === y);
         const index = result.findIndex((elm) => elm.x === x)
         if (y === 885) {
             row = 1
             seat = 2041 - i
-            amfiteatr = true
         }
         else if (y === 866) {
             row = 2
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 847) {
             row = 3
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 828) {
             row = 4
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 809) {
             row = 5
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 789) {
             row = 6
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 770) {
             row = 7
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 751) {
             row = 8
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 732) {
             row = 9
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 713) {
             row = 10
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 674) {
             row = 11
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 655) {
             row = 12
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 635) {
             row = 13
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 616) {
             row = 14
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 597) {
             row = 15
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 559) {
             row = 16
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 540) {
             row = 17
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 521) {
             row = 18
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 502) {
             row = 19
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 483) {
             row = 20
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 432) {
             row = 1
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 413) {
             row = 2
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 394) {
             row = 3
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 375) {
             row = 4
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 355) {
             row = 5
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 336) {
             row = 6
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 317) {
             row = 7
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 273) {
             row = 8
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 253) {
             row = 9
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 234) {
             row = 10
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 215) {
             row = 11
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 196) {
             row = 12
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 177) {
             row = 13
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 158) {
             row = 14
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 139) {
             row = 15
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 120) {
             row = 16
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 101) {
             row = 17
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 82) {
             row = 18
             seat = result.length - index
-            amfiteatr = true
         }
         else if (y === 62) {
             row = 19
             seat = result.length - index
-            amfiteatr = true
         }
         else {
             row = 2
-            amfiteatr = false
         }
         price = seansArr[2040 - i].price
         setActiveTicket({
@@ -6415,20 +6370,6 @@ const PhotoCoordinatesByColor = ({ secion }) => {
         };
     }, []);
 
-    // useEffect(() => {
-    //     let data = [...coordinatesState]
-    //     data?.map((elm, i) => {
-    //         const index = tickets.tickets.findIndex(({ id }) => id === elm.id);
-    //         if (index >= 0) {
-    //             elm.active = true
-    //         } else {
-    //             elm.active = false
-    //         }
-    //     })
-
-    // }, [tickets])
-
-
     return (
         <div className='hallWrapper'>
             <div className='hall' >
@@ -6441,21 +6382,15 @@ const PhotoCoordinatesByColor = ({ secion }) => {
                                 onMouseOver={() => {
                                     getPrice(e.y, i, e.x)
                                     setActiveButton(i)
-                                    dispatch(GetSeat({ row: 1, seat: 1 }))
                                 }}
                                 style={
                                     {
-                                        position: 'absolute',
                                         top: e?.y - 4,
                                         left: e?.x - 4,
-                                        width: '8px',
-                                        height: '8px',
-                                        borderRadius: '50%',
-                                        border: 'none',
-                                        cursor: 'pointer',
                                         backgroundColor: e.active && 'green'
                                     }
                                 }
+                                id='seatStyle'
                                 className={[
                                     i == activeButton ? 'activeButton' : '',
                                     e.active ? "addTicketButton" : '']}

@@ -3,7 +3,7 @@ import './styles.css'
 import { EachTopEvent } from '../EachTopEvent';
 import Carousel from 'react-elastic-carousel'
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { GetTopEvents } from '../../services/action/action';
 
 export const CardSlider = ({ data }) => {
@@ -15,6 +15,7 @@ export const CardSlider = ({ data }) => {
         return { innerWidth, innerHeight }
     }
     useEffect(() => {
+        dispatch(GetTopEvents())
         function handleWindowResize() {
             setWindowSize(getWindowSize())
         }
@@ -25,27 +26,23 @@ export const CardSlider = ({ data }) => {
 
     }, [])
     useEffect(() => {
-        if (windowSize.innerWidth <= 375) {
+        if (windowSize.innerWidth <= 632) {
             setCount(1)
         }
-        if (windowSize.innerWidth >= 425 && windowSize.innerWidth <= 1100) {
+        if (windowSize.innerWidth >= 633 && windowSize.innerWidth <= 1100) {
             setCount(2)
         }
         else if (windowSize.innerWidth > 1100) {
             setCount(3)
         }
     }, [windowSize])
-    useEffect(() => {
-        dispatch(GetTopEvents())
-    }, [])
     return <Carousel itemsToShow={count}>
         {data?.length > 0 && data?.map((elm, i) => {
             const dateObject = new Date(elm.sessions[0]?.date);
-            let dayOfWeek = dateObject.getDay();
-            const year = dateObject.getFullYear();
+            let day = dateObject.getDate();
             let month = dateObject.getMonth() + 1;
-            if (dayOfWeek <= 9) {
-                dayOfWeek = `0${dayOfWeek}`
+            if (day <= 9) {
+                day = `0${day}`
             }
             if (month <= 9) {
                 month = `0${month}`
@@ -56,7 +53,7 @@ export const CardSlider = ({ data }) => {
                 image={`http://localhost:8080/images/${elm.image}`}
                 title={elm.title}
                 location={elm.location}
-                date={`${dayOfWeek}-${month}-${year}`}
+                date={`${day}-${month}-${dateObject.getFullYear()}`}
                 price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
             />
         })}

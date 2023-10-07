@@ -17,11 +17,10 @@ export const ALLEvents = () => {
         <div className="Allevents">
             {events?.events.length > 0 && events?.events?.map((elm, i) => {
                 const dateObject = new Date(elm?.sessions[0]?.date);
-                let dayOfWeek = dateObject.getDay();
-                const year = dateObject.getFullYear();
+                let day = dateObject.getDate();
                 let month = dateObject.getMonth() + 1;
-                if (dayOfWeek <= 9) {
-                    dayOfWeek = `0${dayOfWeek}`
+                if (day <= 9) {
+                    day = `0${day}`
                 }
                 if (month <= 9) {
                     month = `0${month}`
@@ -30,7 +29,7 @@ export const ALLEvents = () => {
                     key={i}
                     id={elm._id}
                     image={elm.image}
-                    date={`${dayOfWeek}-${month}-${year}`}
+                    date={`${day}-${month}-${dateObject.getFullYear()}`}
                     location={elm.sessions[0]?.hallId.location}
                     price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceStart} AMD`}
                     title={elm.title}

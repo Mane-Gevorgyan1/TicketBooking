@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Seats } from "../pages/seats"
 import { Layout } from "../components/Layout"
 import { Main } from '../pages/main/index.jsx'
 import { Category } from "../pages/category"

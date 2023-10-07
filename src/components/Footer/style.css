@@ -68,6 +68,10 @@
 }
 
 @media screen and (max-width: 768px) {
+    .footerWrapper {
+        padding: 20px;
+    }
+
     .eachFooterColumn {
         display: none;
     }

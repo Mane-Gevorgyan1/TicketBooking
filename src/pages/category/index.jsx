@@ -66,7 +66,10 @@ export const Category = () => {
     }, [id])
 
     if (openMenu.categoryMenu) {
-        return <CategoryMenu close={() => setOpen(!open)} />
+        return <CategoryMenu onClick={(e) => {
+            setTitle(e.hall)
+            setHallId(e._id)
+        }} item={events.hall} close={() => setOpen(!open)} />
     }
     return <div className='category'>
 
@@ -83,18 +86,20 @@ export const Category = () => {
                 moveRangeOnFirstSelection={false}
             />
         </CartPopup>
-        {!events.loading && <div className='CategoryButtonWrapper'>
-            {getSubCategory.data?.subcategories?.length && <button onClick={() => {
-                setActiveButton('Բոլորը')
-                setSubcategoryId('')
-            }} id={activeButton == 'Բոլորը' && 'active'} className='CateogryButton'>Բոլորը</button>}
-            {getSubCategory.data?.subcategories?.map((elm, i) => {
-                return <button onClick={() => {
-                    setActiveButton(elm.name)
-                    setSubcategoryId(elm._id)
-                }} id={activeButton == elm.name && 'active'} className='CateogryButton'>{elm.name}</button>
-            })}
-        </div>}
+        {!events.loading &&
+            <div className='CategoryButtonWrapper'>
+                {getSubCategory.data?.subcategories?.length &&
+                    <button onClick={() => {
+                        setActiveButton('Բոլորը')
+                        setSubcategoryId('')
+                    }} id={activeButton == 'Բոլորը' && 'active'} className='CateogryButton'>Բոլորը</button>}
+                {getSubCategory.data?.subcategories?.map((elm, i) => {
+                    return <button onClick={() => {
+                        setActiveButton(elm.name)
+                        setSubcategoryId(elm._id)
+                    }} id={activeButton == elm.name && 'active'} className='CateogryButton'>{elm.name}</button>
+                })}
+            </div>}
 
         {!events.loading && <div className='FilterWrapper'>
             <FilterSvg />
@@ -104,10 +109,8 @@ export const Category = () => {
                     setHallId(e._id)
                 }} title={title} />
             </div>}
-            <div>
-                <div style={{ marginLeft: 40 }} onClick={() => setOpenCalendar(true)}>
-                    <img src={require('../../assets/calendar.png')} />
-                </div>
+            <div style={{ marginLeft: 40 }} onClick={() => setOpenCalendar(true)}>
+                <img src={require('../../assets/calendar.png')} />
             </div>
         </div>}
         {!events?.loading && !events?.events.sessions
@@ -126,7 +129,7 @@ export const Category = () => {
             open && <div className='MultyselectItemCategory'>
                 <div onClick={() => {
                     dispatch(OpenCategoryMenu(true))
-                }}>Big Hall</div>
+                }}>Hall</div>
                 <div onClick={() => {
                     setOpenCalendar(true)
                 }}>Calendar</div>
@@ -136,11 +139,10 @@ export const Category = () => {
             !events.loading ? <div className='Category'>
                 {events?.events?.sessions?.length > 0 && events?.events?.sessions?.map((elm, i) => {
                     const dateObject = new Date(elm.date);
-                    let dayOfWeek = dateObject.getDate();
-                    const year = dateObject.getFullYear();
+                    let day = dateObject.getDate();
                     let month = dateObject.getMonth() + 1;
-                    if (dayOfWeek <= 9) {
-                        dayOfWeek = `0${dayOfWeek}`
+                    if (day <= 9) {
+                        day = `0${day}`
                     }
                     if (month <= 9) {
                         month = `0${month}`
@@ -150,7 +152,7 @@ export const Category = () => {
                         key={i}
                         id={elm._id}
                         image={elm.eventId[0].image}
-                        date={`${dayOfWeek}-${month}-${year}`}
+                        date={`${day}-${month}-${dateObject.getFullYear()}`}
                         location={elm.hallId.location}
                         price={`${elm.priceStart} - ${elm.priceEnd} AMD`}
                         title={elm.eventId[0].title}

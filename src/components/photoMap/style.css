@@ -82,5 +82,13 @@
 
 .addTicketButton {
     background-color: 'green';
+}
 
+#seatStyle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
 }
