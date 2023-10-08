@@ -32,6 +32,7 @@ export const GetGenerealEvents = () => {
     return (dispatch) => {
         dispatch(StartGetGeneralEvents())
         axios.get(`${api}/getGeneralEvents`).then((r) => {
+            console.log(r.data)
             if (r.data.success) {
                 dispatch(SuccessGetGeneralEvents(r.data.events))
             }

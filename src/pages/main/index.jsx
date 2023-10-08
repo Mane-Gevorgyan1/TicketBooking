@@ -16,7 +16,7 @@ export const Main = () => {
     useEffect(() => {
         dispatch(GetGenerealEvents())
     }, [])
-    if (general.loading) {
+    if (general.loading || !general?.events[0]?.generalEvent) {
         return <div className='loading'>
             <PuffLoader color="#FEE827" />
         </div>
