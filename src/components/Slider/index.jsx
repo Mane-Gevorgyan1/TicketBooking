@@ -53,7 +53,7 @@ export const Carusel = () => {
                             </div>
                         </div>
                     </div>
-                    <img src={`164.92.202.112/images/${elm.image}`} height={400} width={'99%'} style={{ borderRadius: 6 }} onDragStart={handleDragStart} role="presentation" />
+                    <img src={`164.92.202.112::8080/images/${elm.image}`} height={400} width={'99%'} style={{ borderRadius: 6 }} onDragStart={handleDragStart} role="presentation" />
                 </div>)
             })
         }

@@ -3,7 +3,7 @@ import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGet
 import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
 import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
 
-const api = '164.92.202.112'
+const api = '164.92.202.112::8080'
 export const OpenCategoryMenu = (data) => {
     return {
         type: 'OpenCategoryMenu',

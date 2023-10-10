@@ -53,7 +53,7 @@ export const Single = () => {
         }
         <div className='SinglDescription'>
             <div className='singlImg'>
-                <img src={`164.92.202.112/images/${event?.image}`} />
+                <img src={`164.92.202.112::8080/images/${event?.image}`} />
             </div>
             <div className='singltextWrapper'>
                 <div></div>
