@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom'
 import PhotoCoordinatesByColor from '../../components/photoMap'
 import { CartPopup } from '../../components/popup/cart'
 import { BuyNow } from '../../components/BuyNow'
+import AramKhachatryan from '../../components/photoMap/AramKhachatryanHall'
 export const Single = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
@@ -52,7 +53,7 @@ export const Single = () => {
         }
         <div className='SinglDescription'>
             <div className='singlImg'>
-                <img src={`http://localhost:8080/images/${event?.image}`} />
+                <img src={`164.92.202.112/images/${event?.image}`} />
             </div>
             <div className='singltextWrapper'>
                 <div></div>
