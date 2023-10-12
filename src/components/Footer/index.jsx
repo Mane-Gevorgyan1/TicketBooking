@@ -7,6 +7,10 @@ export const Footer = ({ menu }) => {
 
     const getCategory = useSelector((st) => st.getCategory)
     const navigation = useNavigate()
+    const { language } = useSelector((st) => st.StaticReducer)
+
+
+
 
     return (
         <div className='footerWrapper'>
@@ -16,7 +20,18 @@ export const Footer = ({ menu }) => {
                 </div>
                 {!menu && <div className='eachFooterColumnn'>
                     {getCategory.category.map((elm, i) => {
-                        return <p onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)} className='Headertext'>{elm.name}</p>
+                        let title = ''
+                        if (language === 'am') {
+                            console.log(elm, '222221')
+                            title = elm.name
+                        }
+                        else if (language === 'en') {
+                            title = elm.name_en
+                        }
+                        else if (language === 'ru') {
+                            title = elm.name_ru
+                        }
+                        return <p onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)} className='Headertext'>{title}</p>
                     })}
                 </div>}
                 <div className='eachFooterColumn'>

@@ -14,6 +14,9 @@ export const Header = ({ open, menu }) => {
     const navigation = useNavigate()
     const search = useSelector((st) => st.search)
     const getCategory = useSelector((st) => st.getCategory)
+    const { language } = useSelector((st) => st.StaticReducer)
+
+
     const { id } = useParams()
     useEffect(() => {
         dispatch(SearchAction(value))
@@ -43,6 +46,16 @@ export const Header = ({ open, menu }) => {
                 <p onClick={() => navigation('/')} className='title'>Logo</p>
                 <div className='textWrapper'>
                     {getCategory.category.map((elm, i) => {
+                        let title = ''
+                        if (language === 'am') {
+                            title = elm.name
+                        }
+                        else if (language === 'en') {
+                            title = elm.name_en
+                        }
+                        else if (language === 'ru') {
+                            title = elm.name_en
+                        }
                         return <p id={id == elm._id ? 'activeHeader' : ''} onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)} className='Headertext'>{elm.name}</p>
                     })}
                 </div>

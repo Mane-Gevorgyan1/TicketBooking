@@ -3,7 +3,7 @@ import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGet
 import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
 import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
 
-const api = 'http://164.92.202.112:8080'
+const api = 'http://localhost:8080'
 export const OpenCategoryMenu = (data) => {
     return {
         type: 'OpenCategoryMenu',
@@ -32,7 +32,6 @@ export const GetGenerealEvents = () => {
     return (dispatch) => {
         dispatch(StartGetGeneralEvents())
         axios.get(`${api}/getGeneralEvents`).then((r) => {
-            console.log(r.data)
             if (r.data.success) {
                 dispatch(SuccessGetGeneralEvents(r.data.events))
             }
@@ -167,5 +166,12 @@ export const GetHall = () => {
 export const RemoveAllTickets = () => {
     return {
         type: 'RemoveAllTickets'
+    }
+}
+
+export const ChangeLanguageAction = (data) => {
+    return {
+        type: 'ChangeLanguageAction',
+        data
     }
 }

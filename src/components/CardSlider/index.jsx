@@ -3,7 +3,7 @@ import './styles.css'
 import { EachTopEvent } from '../EachTopEvent';
 import Carousel from 'react-elastic-carousel'
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { GetTopEvents } from '../../services/action/action';
 
 export const CardSlider = ({ data }) => {
@@ -36,6 +36,8 @@ export const CardSlider = ({ data }) => {
             setCount(3)
         }
     }, [windowSize])
+
+
     return <Carousel itemsToShow={count}>
         {data?.length > 0 && data?.map((elm, i) => {
             const dateObject = new Date(elm.sessions[0]?.date);
@@ -47,13 +49,15 @@ export const CardSlider = ({ data }) => {
             if (month <= 9) {
                 month = `0${month}`
             }
+
             return <EachTopEvent
                 id={elm?._id}
                 key={i}
-                image={`http://164.92.202.112:8080/images/${elm.image}`}
+                image={`http://localhost:8080/images/${elm.image}`}
                 title={elm.title}
                 location={elm.location}
                 date={`${day}-${month}-${dateObject.getFullYear()}`}
+                data={elm}
                 price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
             />
         })}

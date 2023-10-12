@@ -29,5 +29,6 @@
     .EventTitle>h2 {
         font-size: 25px !important;
         margin-bottom: 20px !important;
+        text-align: center;
     }
 }

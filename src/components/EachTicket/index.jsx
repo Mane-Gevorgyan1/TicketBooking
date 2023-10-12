@@ -1,16 +1,35 @@
 import './style.css'
 import { useNavigate } from 'react-router-dom';
 import { Date, Location, TicketIcon } from '../svg'
+import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
-export const EachTicket = ({ id, image, title, date, location, price }) => {
+export const EachTicket = ({ id, date, price, data }) => {
+    const [languageData, setLanguageData] = useState({ title: '' })
+    const { language } = useSelector((st) => st.StaticReducer)
+
+    useEffect(() => {
+        let item = { ...languageData }
+        if (language === 'am') {
+            item.title = data.title
+        }
+        else if (language === 'en') {
+            item.title = data.title_en
+        }
+        else if (language === 'ru') {
+            item.title = data.title_ru
+        }
+        setLanguageData(item)
+    }, [language])
+
     const navigation = useNavigate()
     return <div className='ticket' onClick={() => navigation(`/Single/${id}`)}>
         <div>
-            <img alt='' className='Ticketimg' src={`http://164.92.202.112:8080/images/${image}`} />
+            <img alt='' className='Ticketimg' src={`http://localhost:8080/images/${data.image}`} />
         </div>
         <div className='ticketText'>
             <div className='ticketTextWrapper'>
-                <p className='ticketTitle'>{title}</p>
+                <p className='ticketTitle'>{languageData.title}</p>
             </div>
 
             <div className='ticketTextWrapper'>
@@ -19,7 +38,7 @@ export const EachTicket = ({ id, image, title, date, location, price }) => {
             </div>
             <div className='ticketTextWrapper'>
                 <Location />
-                <p className='ticketTextp'>{location}</p>
+                <p className='ticketTextp'>{data.sessions[0]?.hallId.location}</p>
             </div>
             <div className='ticketTextWrapper'>
                 <TicketIcon />

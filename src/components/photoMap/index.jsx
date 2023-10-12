@@ -2,6 +2,7 @@ import './style.css'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
+import { PuffLoader } from 'react-spinners'
 
 const PhotoCoordinatesByColor = ({ secion }) => {
     const dispatch = useDispatch()
@@ -10,6 +11,7 @@ const PhotoCoordinatesByColor = ({ secion }) => {
     const [position, setPosition] = useState({ x: '', y: '' })
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     const [seansArr, setSeansArr] = useState([
         {
@@ -6366,10 +6368,16 @@ const PhotoCoordinatesByColor = ({ secion }) => {
                     }
                 }
             }
+            setLoading(false)
             setCoordinatesState(coordinates)
         };
     }, []);
 
+    if (loading) {
+        return <div className='loading'>
+            <PuffLoader color="#FEE827" />
+        </div>
+    }
     return (
         <div className='hallWrapper'>
             <div className='hall' >

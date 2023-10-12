@@ -8,15 +8,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { PuffLoader } from 'react-spinners'
 import { GetGenerealEvents } from '../../services/action/action'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export const Main = () => {
+    const { t } = useTranslation();
     const topEvents = useSelector((st) => st.topEvents)
     const general = useSelector((st) => st.general)
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(GetGenerealEvents())
     }, [])
-    if (general.loading || !general?.events[0]?.generalEvent) {
+    if (general.loading) {
         return <div className='loading'>
             <PuffLoader color="#FEE827" />
         </div>
@@ -25,7 +27,7 @@ export const Main = () => {
         <div className='mainPage'>
             <Carusel />
             <div className='EventTitle' style={{ flexDirection: 'column' }}>
-                <h2 style={{ marginBottom: 50 }}>Top Events</h2>
+                <h2 style={{ marginBottom: 50 }}>{t('TopEvents')}</h2>
                 <div className='topEventsMain'>
                     <CardSlider data={topEvents?.events} />
                 </div>

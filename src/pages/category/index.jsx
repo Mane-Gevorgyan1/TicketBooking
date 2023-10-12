@@ -148,6 +148,7 @@ export const Category = () => {
                         month = `0${month}`
                     }
                     return <CategoryTicket
+                        data={elm.eventId[0]}
                         onClick={() => navigation(`/Single/${elm.eventId[0]._id}`)}
                         key={i}
                         id={elm._id}

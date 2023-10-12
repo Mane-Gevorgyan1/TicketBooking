@@ -3,16 +3,20 @@ import { EachTicket } from "../EachTicket"
 import './styles.css'
 import { useDispatch, useSelector } from "react-redux"
 import { GetRandomEvents } from "../../services/action/action"
+import { useTranslation } from "react-i18next"
+
 
 export const ALLEvents = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(GetRandomEvents())
     }, [])
+    const { t } = useTranslation();
+
     const events = useSelector((st) => st.getRandomEvents)
     return <div>
         <div className='EventTitle'>
-            <h2>All Events</h2>
+            <h2>{t('AllEvents')}</h2>
         </div>
         <div className="Allevents">
             {events?.events.length > 0 && events?.events?.map((elm, i) => {
@@ -28,11 +32,9 @@ export const ALLEvents = () => {
                 return <EachTicket
                     key={i}
                     id={elm._id}
-                    image={elm.image}
+                    data={elm}
                     date={`${day}-${month}-${dateObject.getFullYear()}`}
-                    location={elm.sessions[0]?.hallId.location}
                     price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceStart} AMD`}
-                    title={elm.title}
                 />
             })}
         </div>

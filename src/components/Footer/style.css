@@ -13,6 +13,7 @@
     max-width: 1150px;
     width: 100%;
     margin: 0 auto;
+    align-items: center;
 }
 
 .eachFooterColumn {
@@ -63,7 +64,11 @@
 
 @media screen and (max-width: 1200px) {
     .footerWrapper {
-        padding: 20px 80px;
+        padding: 20px;
+    }
+
+    .eachFooterColumn>p {
+        font-size: 12px !important;
     }
 }
 
@@ -94,5 +99,9 @@
 
     .eachFooterColumnn>p {
         font-size: 8px;
+    }
+
+    .eachFooterColumn>p {
+        font-size: 8px !important;
     }
 }
