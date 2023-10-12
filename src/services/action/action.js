@@ -170,6 +170,7 @@ export const RemoveAllTickets = () => {
 }
 
 export const ChangeLanguageAction = (data) => {
+    localStorage.setItem('lang', data)
     return {
         type: 'ChangeLanguageAction',
         data

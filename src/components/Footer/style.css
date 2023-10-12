@@ -64,7 +64,7 @@
 
 @media screen and (max-width: 1200px) {
     .footerWrapper {
-        padding: 20px;
+        padding: 20px 80px;
     }
 
     .eachFooterColumn>p {

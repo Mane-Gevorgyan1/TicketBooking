@@ -27,6 +27,36 @@
     position: relative;
 }
 
+.translateDiv {
+    height: auto;
+    position: absolute;
+    width: 150px;
+    background: white;
+    left: -100px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 1;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.languageWrapper {
+    display: flex;
+    height: 40px;
+    justify-content: space-around;
+}
+
+.languageWrapper:last-child {
+    height: 20px;
+}
+
+.languageWrapper>p {
+    width: 80px;
+}
+
+.languageWrapperImg {
+    width: 30px;
+}
+
 .inputWRapper {
     position: relative;
     width: 100%;
@@ -108,6 +138,7 @@
 }
 
 .Translate {
+    position: relative;
     display: block;
 }
 

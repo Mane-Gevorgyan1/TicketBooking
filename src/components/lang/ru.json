@@ -1,8 +1,11 @@
 {
     "AllEvents": "Все события",
     "TopEvents": "Лучшие события",
-    "With": "С помощью Ticket.com",
+    "WithTicket.com": "С помощью Ticket.com",
     "RecommendTickets": "Рекомендуемые события",
     "BuyTicket": "Купить билет",
-    "BuyNow": "Купить сейчас"
+    "BuyNow": "Купить сейчас",
+    "Nodatafound": "Данные не найдены",
+    "Hall": "Зал",
+    "All": "Все"
 }

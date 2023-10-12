@@ -14,6 +14,7 @@ import { DateRangePicker } from 'react-date-range';
 import { CartPopup } from '../../components/popup/cart'
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { useTranslation } from 'react-i18next';
 
 export const Category = () => {
     const { id } = useParams()
@@ -25,13 +26,15 @@ export const Category = () => {
     const [endDate, setEndDate] = useState('')
     const [openCalendar, setOpenCalendar] = useState(false)
     const navigation = useNavigate()
-    const [title, setTitle] = useState('Hall')
+    const { t } = useTranslation();
+    const [title, setTitle] = useState(t('Hall'))
     const [hallId, setHallId] = useState('')
     const getSubCategory = useSelector((st) => st.getSubCAtegory)
     const [subcategoryId, setSubcategoryId] = useState('')
     const [activeButton, setActiveButton] = useState('Բոլորը')
     const [selectedDate, setSelectedDate] = useState([{ startDate: '', endDate: '', key: 'selection', },]);
     const [page, setPage] = useState(1)
+    const { language } = useSelector((st) => st.StaticReducer)
 
     useEffect(() => {
         let date = new Date(selectedDate[0].endDate)
@@ -92,12 +95,23 @@ export const Category = () => {
                     <button onClick={() => {
                         setActiveButton('Բոլորը')
                         setSubcategoryId('')
-                    }} id={activeButton == 'Բոլորը' && 'active'} className='CateogryButton'>Բոլորը</button>}
+                    }} id={activeButton == 'Բոլորը' && 'active'} className='CateogryButton'>{t('All')}</button>}
                 {getSubCategory.data?.subcategories?.map((elm, i) => {
+                    let name = ''
+                    console.log(elm)
+                    if (language === 'am') {
+                        name = elm.name
+                    }
+                    else if (language === 'en') {
+                        name = elm.name_en
+                    }
+                    else if (language === 'ru') {
+                        name = elm.name_ru
+                    }
                     return <button onClick={() => {
                         setActiveButton(elm.name)
                         setSubcategoryId(elm._id)
-                    }} id={activeButton == elm.name && 'active'} className='CateogryButton'>{elm.name}</button>
+                    }} id={activeButton == elm.name && 'active'} className='CateogryButton'>{name}</button>
                 })}
             </div>}
 
@@ -116,7 +130,7 @@ export const Category = () => {
         {!events?.loading && !events?.events.sessions
             ?.length > 0 &&
             <div className='notfound'>
-                <p>Տվյալներ չեն գտնվել</p>
+                <p>{t('Nodatafound')}</p>
             </div>
         }
         {events?.events?.sessions?.length > 0 && <div className='mFilterWrapper' onClick={() => {

@@ -9,9 +9,6 @@ export const Footer = ({ menu }) => {
     const navigation = useNavigate()
     const { language } = useSelector((st) => st.StaticReducer)
 
-
-
-
     return (
         <div className='footerWrapper'>
             <div className='footerColumns'>
@@ -22,7 +19,6 @@ export const Footer = ({ menu }) => {
                     {getCategory.category.map((elm, i) => {
                         let title = ''
                         if (language === 'am') {
-                            console.log(elm, '222221')
                             title = elm.name
                         }
                         else if (language === 'en') {

@@ -10,7 +10,6 @@ export const CartPopup = ({ open, setOpen, children, openCard, show = true }) =>
     const dispatch = useDispatch()
 
     useEffect(() => {
-        console.log(open)
         if (open) {
             bodyElement.style.overflow = 'hidden';
         }
@@ -27,7 +26,6 @@ export const CartPopup = ({ open, setOpen, children, openCard, show = true }) =>
                     <CloseIcon />
                 </div>
                 {children}
-
                 {
                     show && <div className='cartLine' onClick={() => openCard()}><div ><Cart />{tickets.tickets.length}</div></div>
                 }

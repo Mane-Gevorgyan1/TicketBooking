@@ -1,7 +1,7 @@
 import './style.css'
 import { CloseSvg, FreeSvg, MenuSvg, Search, Translate, User } from '../svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { GetCategory, OpenCategoryMenu, SearchAction } from '../../services/action/action'
+import { ChangeLanguageAction, GetCategory, OpenCategoryMenu, SearchAction } from '../../services/action/action'
 import { useEffect, useState } from 'react'
 import { SearchInput } from '../SearchInput'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -15,7 +15,11 @@ export const Header = ({ open, menu }) => {
     const search = useSelector((st) => st.search)
     const getCategory = useSelector((st) => st.getCategory)
     const { language } = useSelector((st) => st.StaticReducer)
+    const [openLanguage, setOpenLanguage] = useState(false)
 
+    document.body.addEventListener('click', function () {
+        setOpenLanguage(false)
+    });
 
     const { id } = useParams()
     useEffect(() => {
@@ -54,17 +58,42 @@ export const Header = ({ open, menu }) => {
                             title = elm.name_en
                         }
                         else if (language === 'ru') {
-                            title = elm.name_en
+                            title = elm.name_ru
                         }
-                        return <p id={id == elm._id ? 'activeHeader' : ''} onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)} className='Headertext'>{elm.name}</p>
+                        return <p id={id == elm._id ? 'activeHeader' : ''} onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)} className='Headertext'>{title}</p>
                     })}
                 </div>
                 {!openMenu.categoryMenu ? <div className='buttonWrapperHeader'>
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: 'auto', cursor: 'pointer' }} onClick={() => setSearchInput(true)}>
                         <Search />
                     </div>
-                    <div className='Translate' style={{ cursor: 'pointer' }}>
+                    <div className='Translate' onClick={(e) => {
+                        e.preventDefault()
+                        e.stopPropagation()
+                        setOpenLanguage(!openLanguage)
+                    }} style={{ cursor: 'pointer' }}>
                         <Translate />
+                        {openLanguage && <div className='translateDiv'>
+                            <div onClick={() => dispatch(ChangeLanguageAction('am'))} className='languageWrapper'>
+                                <div className='languageWrapperImg'>
+                                    <img style={{ width: 20, height: 20 }} src={require('../../assets/armenia.png')} />
+                                </div>
+                                <p>հայերեն</p>
+                            </div>
+                            <div onClick={() => dispatch(ChangeLanguageAction('ru'))} className='languageWrapper'>
+                                <div className='languageWrapperImg'>
+                                    <img style={{ width: 20, height: 20 }} src={require('../../assets/russia.png')} />
+                                </div>
+                                <p>Русский</p>
+                            </div>
+                            <div onClick={() => dispatch(ChangeLanguageAction('en'))} className='languageWrapper'>
+                                <div className='languageWrapperImg'>
+                                    <img style={{ width: 20, height: 20 }} src={require('../../assets/united-kingdom.png')} />
+
+                                </div>
+                                <p>English</p>
+                            </div>
+                        </div>}
                     </div>
                     <div className='menuSvg' onClick={() => open(!menu)}>
                         {!menu ? <MenuSvg /> : <div>

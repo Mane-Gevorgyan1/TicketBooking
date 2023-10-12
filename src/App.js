@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import i18n from "i18next";
 
 import en from "./components/lang/en.json";
@@ -9,19 +9,27 @@ import ru from "./components/lang/ru.json";
 import { Router } from './routes/router'
 import { useEffect, useState } from 'react';
 import { I18nextProvider } from 'react-i18next';
+import { ChangeLanguageAction } from './services/action/action';
 
 function App() {
   const [lang, setLang] = useState('')
+  const { language } = useSelector((st) => st.StaticReducer)
+  const disable = useDispatch()
   useEffect(() => {
     let item = localStorage.getItem('lang')
-    if (!item) {
-      setLang('am')
+    if (language) {
+      setLang(language)
+    }
+    else if (item) {
+      setLang(item)
+      disable(ChangeLanguageAction(item))
     }
     else {
-      setLang(item)
+      setLang('am')
+      disable(ChangeLanguageAction('am'))
     }
-  }, [lang])
 
+  }, [language])
 
   console.error = function () { };
   console.warn = function () { };

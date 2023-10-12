@@ -21,7 +21,7 @@ export const CategoryTicket = ({ image, title, date, location, price, genre, onC
     }, [language])
     return <div className='Categoryticket' onClick={() => onClick()}>
         <div>
-            <img alt='' className='CategoryImg' src={`http://164.92.202.112:8080/images/${image}`} />
+            <img alt='' className='CategoryImg' src={`http://localhost:8080/images/${image}`} />
         </div>
         <div className='CategoryText'>
             <div className='ticketTextWrapper'>
