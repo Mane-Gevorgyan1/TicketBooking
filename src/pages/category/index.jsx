@@ -98,7 +98,6 @@ export const Category = () => {
                     }} id={activeButton == 'Բոլորը' && 'active'} className='CateogryButton'>{t('All')}</button>}
                 {getSubCategory.data?.subcategories?.map((elm, i) => {
                     let name = ''
-                    console.log(elm)
                     if (language === 'am') {
                         name = elm.name
                     }

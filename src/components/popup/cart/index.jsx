@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RemoveAllTickets } from '../../../services/action/action'
 import { useEffect } from 'react'
 
-export const CartPopup = ({ open, setOpen, children, openCard, show = true }) => {
+export const CartPopup = ({ open, setOpen, children, openCard, show = true, type }) => {
     const tickets = useSelector((st) => st.tiketsForBuy)
     const bodyElement = document.body;
     const dispatch = useDispatch()
@@ -17,7 +17,9 @@ export const CartPopup = ({ open, setOpen, children, openCard, show = true }) =>
     const Close = () => {
         bodyElement.style.overflow = 'auto';
         setOpen(false)
-        dispatch(RemoveAllTickets())
+        if (type == 'hall') {
+            dispatch(RemoveAllTickets())
+        }
     }
     return (
         <div className={open ? 'activePopup' : 'inactive'}>

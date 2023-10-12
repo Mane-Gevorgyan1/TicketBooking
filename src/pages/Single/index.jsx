@@ -59,11 +59,12 @@ export const Single = () => {
                 <CartPopup
                     open={openPopUp}
                     setOpen={setOpenPopUp}
+                    type='hall'
                     openCard={() => {
                         setOpenBuy(true)
                     }}
                 >
-                    <AramKhachatryan secion={getSinglPage.events.event?.sessions[0].price} />
+                    <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} />
                 </CartPopup>
             </div>
         }

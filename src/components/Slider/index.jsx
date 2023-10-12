@@ -35,7 +35,6 @@ export const Carusel = () => {
             let title = ''
             let description = ''
             general?.events?.length > 0 && general?.events?.map((elm, i) => {
-                console.log(elm.title, '111111')
                 if (language === 'am') {
                     title = elm.title
                     description = elm.description

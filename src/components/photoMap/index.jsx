@@ -1,6 +1,6 @@
 import './style.css'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 import { PuffLoader } from 'react-spinners'
 
@@ -12,6 +12,8 @@ const PhotoCoordinatesByColor = ({ secion }) => {
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
     const [loading, setLoading] = useState(true)
+
+    const { tickets } = useSelector((st) => st.tiketsForBuy)
 
     const [seansArr, setSeansArr] = useState([
         {
@@ -6395,7 +6397,7 @@ const PhotoCoordinatesByColor = ({ secion }) => {
                                     {
                                         top: e?.y - 4,
                                         left: e?.x - 4,
-                                        backgroundColor: e.active && 'green'
+                                        backgroundColor: tickets.find((elm) => elm.id == e.id) && 'green'
                                     }
                                 }
                                 id='seatStyle'
