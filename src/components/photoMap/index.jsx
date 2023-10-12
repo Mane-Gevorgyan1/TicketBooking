@@ -6144,8 +6144,8 @@ const PhotoCoordinatesByColor = ({ secion }) => {
 
     useEffect(() => {
         let arr = [...seansArr]
-        secion.map((elm, index) => {
-            arr.map((e, i) => {
+        secion?.map((elm, index) => {
+            arr?.map((e, i) => {
                 if (e.section === elm.section) {
                     e.price = elm.price
                 }
@@ -6385,7 +6385,7 @@ const PhotoCoordinatesByColor = ({ secion }) => {
             <div className='hall' >
                 <div >
                     <img alt='' src={require('../../assets/ActualPlan.png')} />
-                    {coordinatesState.map((e, i) => {
+                    {coordinatesState?.map((e, i) => {
                         if (seansArr[2040 - i].price)
                             return <button
                                 key={i}
