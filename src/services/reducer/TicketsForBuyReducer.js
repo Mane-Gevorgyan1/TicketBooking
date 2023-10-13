@@ -13,6 +13,7 @@ export const TicketsForBuyReducer = (state = store, action) => {
             break
         case 'RemoveAllTickets':
             temp.tickets = []
+            break
         default:
             return temp;
     }

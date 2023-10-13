@@ -92,3 +92,54 @@
     border: none;
     cursor: pointer;
 }
+
+.HallWithoutSeat {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.HallTitle {
+    font-size: 24px;
+    font-weight: 700;
+    min-width: 170px;
+}
+
+.HallDate {
+    font-size: 15px;
+}
+
+.HallBuyTicket {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.HallWithoutSeatButton>input {
+    width: 40px;
+    height: 30px;
+    text-align: center;
+}
+
+.HallWithoutSeatText {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    width: 400px;
+}
+
+.HallWithoutSeatButton {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.ButtonHallWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -12,7 +12,6 @@ const PhotoCoordinatesByColor = ({ secion }) => {
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
     const [loading, setLoading] = useState(true)
-
     const { tickets } = useSelector((st) => st.tiketsForBuy)
 
     const [seansArr, setSeansArr] = useState([

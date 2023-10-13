@@ -11,6 +11,7 @@ import { CartPopup } from '../../components/popup/cart'
 import { BuyNow } from '../../components/BuyNow'
 import AramKhachatryan from '../../components/photoMap/AramKhachatryanHall'
 import { useTranslation } from 'react-i18next'
+import { Hall } from '../../components/photoMap/Hall'
 export const Single = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
@@ -64,7 +65,8 @@ export const Single = () => {
                         setOpenBuy(true)
                     }}
                 >
-                    <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} />
+                    <Hall buy={() => setOpenBuy(true)} />
+                    {/* <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} /> */}
                 </CartPopup>
             </div>
         }
