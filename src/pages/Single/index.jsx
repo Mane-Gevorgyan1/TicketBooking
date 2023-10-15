@@ -26,10 +26,11 @@ export const Single = () => {
     let { recomended } = getSinglPage.events
     const [openPopUp, setOpenPopUp] = useState(false)
     const [openBuy, setOpenBuy] = useState(false)
-
+    console.log(event?.description)
     const [languageData, setLanguageData] = useState({ title: '', description: '' })
     const { language } = useSelector((st) => st.StaticReducer)
     useEffect(() => {
+        console.log('22')
         let item = { ...languageData }
         if (language === 'am') {
             item.title = event?.title
@@ -47,7 +48,7 @@ export const Single = () => {
 
         }
         setLanguageData(item)
-    }, [language])
+    }, [language, event])
 
     if (getSinglPage.loading) {
         return <div className='loading'>
@@ -65,8 +66,8 @@ export const Single = () => {
                         setOpenBuy(true)
                     }}
                 >
-                    <Hall buy={() => setOpenBuy(true)} />
-                    {/* <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} /> */}
+                    {/* <Hall buy={() => setOpenBuy(true)} /> */}
+                    <AramKhachatryan secion={getSinglPage.events.event?.sessions[0]?.price} />
                 </CartPopup>
             </div>
         }

@@ -22,6 +22,8 @@ export const EachTicket = ({ id, date, price, data }) => {
         setLanguageData(item)
     }, [language])
 
+    console.log(data.sessions)
+
     const navigation = useNavigate()
     return <div className='ticket' onClick={() => navigation(`/Single/${id}`)}>
         <div>
@@ -38,7 +40,7 @@ export const EachTicket = ({ id, date, price, data }) => {
             </div>
             <div className='ticketTextWrapper'>
                 <Location />
-                <p className='ticketTextp'>{data.sessions[0]?.hallId.location}</p>
+                <p className='ticketTextp'>{data.sessions[0]?.hallId?.location}</p>
             </div>
             <div className='ticketTextWrapper'>
                 <TicketIcon />

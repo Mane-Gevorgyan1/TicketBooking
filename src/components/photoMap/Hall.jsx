@@ -3,7 +3,6 @@ import { Button } from '../../components/Button'
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RemoveAllTickets, SetTicketsAction } from '../../services/action/action';
-import { CommitSharp } from '@mui/icons-material';
 
 
 function countOccurrences(arr, itemToCount) {

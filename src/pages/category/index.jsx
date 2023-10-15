@@ -99,26 +99,30 @@ export const Category = () => {
                 {getSubCategory.data?.subcategories?.map((elm, i) => {
                     let name = ''
                     if (language === 'am') {
-                        name = elm.name
+                        name = elm?.name
                     }
                     else if (language === 'en') {
-                        name = elm.name_en
+                        name = elm?.name_en
                     }
                     else if (language === 'ru') {
-                        name = elm.name_ru
+                        name = elm?.name_ru
                     }
                     return <button onClick={() => {
-                        setActiveButton(elm.name)
-                        setSubcategoryId(elm._id)
-                    }} id={activeButton == elm.name && 'active'} className='CateogryButton'>{name}</button>
+                        setActiveButton(elm?.name)
+                        setSubcategoryId(elm?._id)
+                    }} id={activeButton == elm?.name && 'active'} className='CateogryButton'>{name}</button>
                 })}
             </div>}
 
         {!events.loading && <div className='FilterWrapper'>
             <FilterSvg />
             {id !== '651568e7c6d0c9ab5a69365b' && <div className='SelectorDivWrapper'>
-                <MultySelect item={events.hall} onClick={(e) => {
-                    setTitle(e.hall)
+                <MultySelect item={
+                    events?.hall
+                } onClick={(e) => {
+                    setTitle(language === 'am' ? e?.hall :
+                        language === 'ru' ? e?.hall_ru :
+                            e?.hall_en)
                     setHallId(e._id)
                 }} title={title} />
             </div>}
@@ -160,16 +164,17 @@ export const Category = () => {
                     if (month <= 9) {
                         month = `0${month}`
                     }
+                    console.log(elm?.eventId)
                     return <CategoryTicket
                         data={elm.eventId[0]}
-                        onClick={() => navigation(`/Single/${elm.eventId[0]._id}`)}
+                        onClick={() => navigation(`/Single/${elm?.eventId[0]?._id}`)}
                         key={i}
-                        id={elm._id}
-                        image={elm.eventId[0].image}
+                        id={elm?._id}
+                        image={elm?.eventId[0].image}
                         date={`${day}-${month}-${dateObject.getFullYear()}`}
-                        location={elm.hallId.location}
-                        price={`${elm.priceStart} - ${elm.priceEnd} AMD`}
-                        title={elm.eventId[0].title}
+                        location={elm?.hallId?.location}
+                        price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}
+                        title={elm?.eventId[0]?.title}
                     />
                 })}
             </div> :
