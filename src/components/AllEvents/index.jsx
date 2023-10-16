@@ -33,7 +33,7 @@ export const ALLEvents = () => {
                     key={i}
                     id={elm._id}
                     data={elm}
-                    date={`${day}-${month}-${dateObject.getFullYear()}`}
+                    date={`${day}-${month}-${dateObject.getFullYear()} ${elm.sessions[0].time}`}
                     price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceEnd} AMD`}
                 />
             })}

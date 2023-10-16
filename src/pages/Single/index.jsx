@@ -26,11 +26,9 @@ export const Single = () => {
     let { recomended } = getSinglPage.events
     const [openPopUp, setOpenPopUp] = useState(false)
     const [openBuy, setOpenBuy] = useState(false)
-    console.log(event?.description)
     const [languageData, setLanguageData] = useState({ title: '', description: '' })
     const { language } = useSelector((st) => st.StaticReducer)
     useEffect(() => {
-        console.log('22')
         let item = { ...languageData }
         if (language === 'am') {
             item.title = event?.title
@@ -67,7 +65,10 @@ export const Single = () => {
                     }}
                 >
                     {/* <Hall buy={() => setOpenBuy(true)} /> */}
-                    <AramKhachatryan secion={getSinglPage.events.event?.sessions[0]?.price} />
+                    {
+                        event?.sessions[0].hallId._id == '652a6e93cebdd7a4ac8fc020' &&
+                        <PhotoCoordinatesByColor secion={event?.sessions[0].price} />
+                    }
                 </CartPopup>
             </div>
         }

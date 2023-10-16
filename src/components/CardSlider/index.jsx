@@ -49,14 +49,13 @@ export const CardSlider = ({ data }) => {
             if (month <= 9) {
                 month = `0${month}`
             }
-
             return <EachTopEvent
                 id={elm?._id}
                 key={i}
                 image={`http://localhost:8080/images/${elm.image}`}
                 title={elm.title}
                 location={elm.location}
-                date={`${day}-${month}-${dateObject.getFullYear()}`}
+                date={`${day}-${month}-${dateObject.getFullYear()} ${elm.sessions[0].time}`}
                 data={elm}
                 price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
             />

@@ -14,7 +14,7 @@ export const BuyNow = ({ close }) => {
     useEffect(() => {
         let price = 0
         tickets.tickets?.map((elm, i) => {
-            price += elm.price
+            price += +elm.price
         })
         setTotal(price)
     }, [tickets])

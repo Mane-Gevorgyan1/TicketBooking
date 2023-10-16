@@ -48,10 +48,10 @@ export const Carusel = () => {
                     description = elm.description_ru
                 }
                 const dateObject = new Date(elm?.sessions[0]?.date);
-                let dayOfWeek = dateObject.getDay();
+                let dayOfWeek = dateObject.getDate();
                 const year = dateObject.getFullYear();
                 let month = dateObject.getMonth() + 1;
-                // let hour = dateObject.getHours();
+                console.log(elm.sessions[0].time)
                 let minute = dateObject.getMinutes();
                 if (dayOfWeek <= 9) {
                     dayOfWeek = `0${dayOfWeek}`
@@ -71,7 +71,7 @@ export const Carusel = () => {
                             <p className='titleCarusel'>{title}</p>
                             <div>
                                 <span>{truncateText(description, 30)}</span>
-                                <span>{`${dayOfWeek}.${month}.${year}`}  {elm?.sessions?.time}</span>
+                                <span>{`${dayOfWeek}.${month}.${year}`}  {elm.sessions[0].time}</span>
                                 <div className='ButtonWrapperCarusel' style={{ marginTop: 10 }}>
                                     {language === 'am' &&
                                         <Button onClick={() => navigation(`Single/${elm._id}`)} title={'Գնել տոմս'} />

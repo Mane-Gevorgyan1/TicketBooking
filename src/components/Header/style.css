@@ -140,6 +140,7 @@
 .Translate {
     position: relative;
     display: block;
+    z-index: 999;
 }
 
 .menuSvg {
@@ -242,10 +243,6 @@
     .FreeSvg {
         display: block;
         top: 80px !important;
-    }
-
-    .Translate {
-        display: none;
     }
 
     .menuSvg {
