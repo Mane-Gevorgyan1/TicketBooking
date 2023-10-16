@@ -121,6 +121,14 @@
     gap: 20px;
 }
 
+.buttonWrapperHeaderDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    cursor: pointer;
+}
+
 .user {
     cursor: pointer;
 }

@@ -79,10 +79,15 @@
 
 .FilterWrapper {
     display: flex;
+    gap: 40px;
     margin-top: 40px;
     align-items: center;
     flex-wrap: wrap;
     position: relative;
+}
+
+.FilterWrapper>div>img {
+    cursor: pointer;
 }
 
 .SelectorDivWrapper {

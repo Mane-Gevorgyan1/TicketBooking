@@ -1,10 +1,10 @@
 import './style.css'
+import { useState } from 'react'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
 import { Outlet } from 'react-router-dom'
-import { InfoHeader } from '../Header/InfoHeader'
 import { MenuMobile } from '../MenuMobile'
-import { useState } from 'react'
+import { InfoHeader } from '../Header/InfoHeader'
 
 export const Layout = () => {
     const [openMenu, setOpenMenu] = useState(false)
