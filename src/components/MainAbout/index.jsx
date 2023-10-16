@@ -1,8 +1,9 @@
-import { useTranslation } from 'react-i18next';
 import './style.css'
+import { useTranslation } from 'react-i18next'
 
 export const MainAbout = () => {
-    const { t } = useTranslation();
+    const { t } = useTranslation()
+
     return (
         <div className='mainAbout'>
             <div className='aboutTitle'>

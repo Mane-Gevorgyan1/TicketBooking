@@ -4,6 +4,7 @@ import { EachTopEvent } from '../EachTopEvent'
 
 export const TopEvents = () => {
     const events = useSelector(st => st.Event_reducer.topEvents)
+
     return (
         <div className='topEvents'>
             <div className='EventTitle'>

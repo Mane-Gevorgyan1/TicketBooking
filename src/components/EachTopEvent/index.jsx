@@ -1,25 +1,24 @@
-import { useEffect, useState } from 'react'
-import { Button } from '../Button'
 import './style.css'
+import { Button } from '../Button'
 import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 export const EachTopEvent = ({ id, image, title, location, date, price, data }) => {
-    const [languageData, setLanguageData] = useState({ title: '' })
+    const { t } = useTranslation()
     const { language } = useSelector((st) => st.StaticReducer)
-    const { t } = useTranslation();
-
+    const [languageData, setLanguageData] = useState({ title: '' })
 
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
-            item.title = data.title
+            item.title = data?.title
         }
         else if (language === 'en') {
-            item.title = data.title_en
+            item.title = data?.title_en
         }
         else if (language === 'ru') {
-            item.title = data.title_ru
+            item.title = data?.title_ru
         }
         setLanguageData(item)
     }, [language])

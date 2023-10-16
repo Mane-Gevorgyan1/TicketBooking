@@ -9,13 +9,13 @@ export const CategoryTicket = ({ image, title, date, location, price, genre, onC
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
-            item.title = data.title
+            item.title = data?.title
         }
         else if (language === 'en') {
-            item.title = data.title_en
+            item.title = data?.title_en
         }
         else if (language === 'ru') {
-            item.title = data.title_ru
+            item.title = data?.title_ru
         }
         setLanguageData(item)
     }, [language])

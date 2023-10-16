@@ -1,26 +1,27 @@
 import './style.css'
+import { useEffect } from 'react'
 import { Cart, CloseIcon } from '../../svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveAllTickets } from '../../../services/action/action'
-import { useEffect } from 'react'
 
 export const CartPopup = ({ open, setOpen, children, openCard, show = true, type }) => {
-    const tickets = useSelector((st) => st.tiketsForBuy)
-    const bodyElement = document.body;
     const dispatch = useDispatch()
+    const tickets = useSelector((st) => st.tiketsForBuy)
 
     useEffect(() => {
         if (open) {
-            bodyElement.style.overflow = 'hidden';
+            document.body.style.overflow = 'hidden'
         }
     }, [open])
+
     const Close = () => {
-        bodyElement.style.overflow = 'auto';
+        document.body.style.overflow = 'auto'
         setOpen(false)
         if (type == 'hall') {
             dispatch(RemoveAllTickets())
         }
     }
+
     return (
         <div className={open ? 'activePopup' : 'inactive'}>
             <div className='pop' >
@@ -28,8 +29,10 @@ export const CartPopup = ({ open, setOpen, children, openCard, show = true, type
                     <CloseIcon />
                 </div>
                 {children}
-                {
-                    show && <div className='cartLine' onClick={() => openCard()}><div ><Cart />{tickets.tickets.length}</div></div>
+                {show &&
+                    <div className='cartLine' onClick={() => openCard()}>
+                        <div ><Cart />{tickets?.tickets?.length}</div>
+                    </div>
                 }
             </div>
         </div>

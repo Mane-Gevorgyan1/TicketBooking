@@ -1,28 +1,18 @@
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
 import './styles.css'
-import { Button } from '../Button';
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Button } from '../Button'
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import AliceCarousel from 'react-alice-carousel'
+import 'react-alice-carousel/lib/alice-carousel.css'
 
-const handleDragStart = (e) => e.preventDefault();
+const handleDragStart = (e) => e.preventDefault()
 
 export const Carusel = () => {
-    const { t } = useTranslation();
-
-    const general = useSelector((st) => st.general)
-    const [data, setData] = useState([])
-    function truncateText(text, maxLength) {
-        if (text.length > maxLength) {
-            return text.substring(0, maxLength) + '...';
-        }
-        return text;
-    }
     const navigation = useNavigate()
+    const general = useSelector((st) => st.general)
     const { language } = useSelector((st) => st.StaticReducer)
-
+    const [data, setData] = useState([])
 
     useEffect(() => {
         setData([])
@@ -47,12 +37,12 @@ export const Carusel = () => {
                     title = elm.title_ru
                     description = elm.description_ru
                 }
-                const dateObject = new Date(elm?.sessions[0]?.date);
-                let dayOfWeek = dateObject.getDate();
-                const year = dateObject.getFullYear();
-                let month = dateObject.getMonth() + 1;
-                console.log(elm.sessions[0].time)
-                let minute = dateObject.getMinutes();
+                const dateObject = new Date(elm?.sessions[0]?.date)
+                let dayOfWeek = dateObject.getDate()
+                const year = dateObject.getFullYear()
+                let month = dateObject.getMonth() + 1
+                // let hour = dateObject.getHours()
+                let minute = dateObject.getMinutes()
                 if (dayOfWeek <= 9) {
                     dayOfWeek = `0${dayOfWeek}`
                 }
@@ -71,8 +61,8 @@ export const Carusel = () => {
                             <p className='titleCarusel'>{title}</p>
                             <div>
                                 <span>{truncateText(description, 30)}</span>
-                                <span>{`${dayOfWeek}.${month}.${year}`}  {elm.sessions[0].time}</span>
-                                <div className='ButtonWrapperCarusel' style={{ marginTop: 10 }}>
+                                <span>{`${dayOfWeek}.${month}.${year}`}  {elm?.sessions?.time}</span>
+                                <div className='ButtonWrapperCarusel'>
                                     {language === 'am' &&
                                         <Button onClick={() => navigation(`Single/${elm._id}`)} title={'Գնել տոմս'} />
                                     }
@@ -85,16 +75,20 @@ export const Carusel = () => {
                                 </div>
                             </div>
                         </div>
-                        <img src={`http://localhost:8080/images/${elm.image}`} alt='' height={400} width={'99%'} style={{ borderRadius: 6 }} onDragStart={handleDragStart} role="presentation" />
-                    </div>)
+                        <img src={`${process.env.REACT_APP_IMAGE}/${elm.image}`} alt='' height={400} width={'99%'} onDragStart={handleDragStart} role="presentation" />
+                    </div>
+                )
             })
         }
         setData(item)
     }, [general.events, language])
 
-
-
-
+    function truncateText(text, maxLength) {
+        if (text.length > maxLength) {
+            return text.substring(0, maxLength) + '...'
+        }
+        return text
+    }
 
     return (
         <AliceCarousel
