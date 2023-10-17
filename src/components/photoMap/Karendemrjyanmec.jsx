@@ -11,6 +11,18 @@ const AramKhachatryan = ({ secion }) => {
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
 
+    // useEffect(() => {
+    //     let arr = [...seansArr]
+    //     secion.map((elm, index) => {
+    //         arr.map((e, i) => {
+    //             if (e.section === elm.section) {
+    //                 e.price = elm.price
+    //             }
+    //         })
+    //     })
+    //     setSeansArr(arr)
+    // }, [])
+
     const [seansArr, setSeansArr] = useState([
         { "id": 1247, "price": "", "row": 7, "section": 1, "seat": 1 },
         { "id": 1231, "price": "", "row": 7, "section": 1, "seat": 2 },
@@ -1455,18 +1467,6 @@ const AramKhachatryan = ({ secion }) => {
 
     ])
 
-    useEffect(() => {
-        let item = [...seansArr]
-        secion.map((elm, i) => {
-            elm.price.map((e, index) => {
-                item.filter((e) => e.section === elm.section).filter((el) => el.row === e.row).map((ell, ii) => {
-                    ell.price = e.price
-                })
-            })
-        })
-        setSeansArr(item)
-    }, [secion])
-
 
     const getPrice = (y, i, x) => {
         setPosition({ x, y })
@@ -1499,7 +1499,7 @@ const AramKhachatryan = ({ secion }) => {
 
     useEffect(() => {
         const image = new Image()
-        image.src = require('../../assets/AramKhachatryan.png')
+        image.src = require('../../assets/mec.png')
 
         image.onload = () => {
             const canvas = document.createElement('canvas')
@@ -1524,9 +1524,11 @@ const AramKhachatryan = ({ secion }) => {
                     }
                 }
             }
+            console.log(coordinates.length)
             setCoordinatesState(coordinates)
         };
     }, []);
+
 
     return (
 
@@ -1534,7 +1536,7 @@ const AramKhachatryan = ({ secion }) => {
 
             <div className='hall' >
                 <div >
-                    <img alt='' src={require('../../assets/AramKhachatryan.png')} />
+                    <img alt='' src={require('../../assets/mec.png')} />
                     {coordinatesState.map((e, i) => {
                         // if (seansArr[2040 - i].price)
                         return <button

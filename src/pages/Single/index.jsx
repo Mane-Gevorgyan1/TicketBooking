@@ -11,6 +11,7 @@ import { CardSlider } from '../../components/CardSlider'
 import { GetSinglPage } from '../../services/action/action'
 import AramKhachatryan from '../../components/photoMap/AramKhachatryanHall'
 import PhotoCoordinatesByColor from '../../components/photoMap'
+import KarenDemerchyanMec from '../../components/photoMap/Karendemrjyanmec'
 
 export const Single = () => {
     const dispatch = useDispatch()
@@ -23,7 +24,6 @@ export const Single = () => {
     const [openPopUp, setOpenPopUp] = useState(false)
     const [openBuy, setOpenBuy] = useState(false)
     const [languageData, setLanguageData] = useState({ title: '', description: '' })
-    console.log(event)
     useEffect(() => {
         window.scrollTo(0, 0)
         dispatch(GetSinglPage(id))
@@ -70,6 +70,19 @@ export const Single = () => {
                         {
                             event.sessions[0.].hallId._id === '652a6e93cebdd7a4ac8fc020' &&
                             <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} />
+                            // <AramKhachatryan secion={[{
+                            //     section: 1, price: [
+                            //         { row: 1, price: '10000' },
+                            //         { row: 2, price: '20000' },
+                            //         { row: 3, price: '30000' },
+                            //         { row: 4, price: '40000' },
+                            //         { row: 5, price: '50000' },
+                            //         { row: 6, price: '60000' },
+                            //         { row: 7, price: '70000' },
+
+                            //     ]
+                            // }]} />
+                            // <KarenDemerchyanMec />
                         }
                     </CartPopup>
                 </div>
