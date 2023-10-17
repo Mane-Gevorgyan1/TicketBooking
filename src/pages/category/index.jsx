@@ -174,7 +174,6 @@ export const Category = () => {
                         if (month <= 9) {
                             month = `0${month}`
                         }
-                        console.log('elm --->>>', elm)
                         return <CategoryTicket
                             data={elm.eventId}
                             onClick={() => navigation(`/Single/${elm?.eventId?._id}`)}

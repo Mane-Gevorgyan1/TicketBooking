@@ -7,6 +7,25 @@
 
 .topEventsMain {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.EventTitleMain {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.EventTitleMain>h2 {
+    color: #12134A;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 50px;
 }
 
 @media screen and (max-width: 1200px) {

@@ -61,7 +61,7 @@ export const Carusel = () => {
                             <p className='titleCarusel'>{title}</p>
                             <div>
                                 <span>{truncateText(description, 30)}</span>
-                                <span>{`${dayOfWeek}.${month}.${year}`}  {elm?.sessions?.time}</span>
+                                <span>{`${dayOfWeek}.${month}.${year}`}  {elm?.sessions?.time} {elm.sessions[0].time} </span>
                                 <div className='ButtonWrapperCarusel'>
                                     {language === 'am' &&
                                         <Button onClick={() => navigation(`Single/${elm._id}`)} title={'Գնել տոմս'} />

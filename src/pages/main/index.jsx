@@ -31,7 +31,7 @@ export const Main = () => {
     return (
         <div className='mainPage'>
             <Carusel />
-            <div className='EventTitle'>
+            <div className='EventTitleMain'>
                 <h2 style={{ marginBottom: 50 }}>{t('TopEvents')}</h2>
                 <div className='topEventsMain'>
                     <CardSlider data={topEvents?.events} />

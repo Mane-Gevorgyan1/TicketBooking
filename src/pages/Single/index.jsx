@@ -10,6 +10,7 @@ import { CartPopup } from '../../components/popup/cart'
 import { CardSlider } from '../../components/CardSlider'
 import { GetSinglPage } from '../../services/action/action'
 import AramKhachatryan from '../../components/photoMap/AramKhachatryanHall'
+import PhotoCoordinatesByColor from '../../components/photoMap'
 
 export const Single = () => {
     const dispatch = useDispatch()
@@ -22,7 +23,7 @@ export const Single = () => {
     const [openPopUp, setOpenPopUp] = useState(false)
     const [openBuy, setOpenBuy] = useState(false)
     const [languageData, setLanguageData] = useState({ title: '', description: '' })
-
+    console.log(event)
     useEffect(() => {
         window.scrollTo(0, 0)
         dispatch(GetSinglPage(id))
@@ -37,8 +38,6 @@ export const Single = () => {
         else if (language === 'en') {
             item.title = event?.title_en
             item.description = event?.description_en
-
-
         }
         else if (language === 'ru') {
             item.title = event?.title_ru
@@ -68,7 +67,10 @@ export const Single = () => {
                         }}
                     >
                         {/* <Hall buy={() => setOpenBuy(true)} /> */}
-                        <AramKhachatryan secion={getSinglPage.events.event?.sessions[0]?.price} />
+                        {
+                            event.sessions[0.].hallId._id === '652a6e93cebdd7a4ac8fc020' &&
+                            <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} />
+                        }
                     </CartPopup>
                 </div>
             }
@@ -86,7 +88,11 @@ export const Single = () => {
                     <img src={`${process.env.REACT_APP_IMAGE}/${event?.image}`} alt='' />
                 </div>
                 <div className='singltextWrapper'>
-                    <div></div>
+                    <div className='sponsorDiv'>
+                        {event?.sponsors?.map((elm, i) => {
+                            return <img className='sposnorsImg' src={`${process.env.REACT_APP_IMAGE}/${elm.image}`} />
+                        })}
+                    </div>
                     <p className='singlTitle'>{languageData?.title}</p >
                     <p className='singelText'>{languageData?.description}</p>
                     <div className='buttonWrapperSingl'>
