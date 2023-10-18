@@ -69,7 +69,8 @@ export const Single = () => {
                         {/* <Hall buy={() => setOpenBuy(true)} /> */}
                         {
                             event.sessions[0.].hallId._id === '652a6e93cebdd7a4ac8fc020' &&
-                            <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} />
+                            <KarenDemerchyanMec />
+                            // <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} />
                             // <AramKhachatryan secion={[{
                             //     section: 1, price: [
                             //         { row: 1, price: '10000' },

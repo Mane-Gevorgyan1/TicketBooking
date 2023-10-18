@@ -1499,7 +1499,7 @@ const AramKhachatryan = ({ secion }) => {
 
     useEffect(() => {
         const image = new Image()
-        image.src = require('../../assets/mec.png')
+        image.src = require('../../assets/hamalir7000.png')
 
         image.onload = () => {
             const canvas = document.createElement('canvas')
@@ -1536,7 +1536,7 @@ const AramKhachatryan = ({ secion }) => {
 
             <div className='hall' >
                 <div >
-                    <img alt='' src={require('../../assets/mec.png')} />
+                    <img alt='' src={require('../../assets/hamalir7000.png')} />
                     {coordinatesState.map((e, i) => {
                         // if (seansArr[2040 - i].price)
                         return <button
