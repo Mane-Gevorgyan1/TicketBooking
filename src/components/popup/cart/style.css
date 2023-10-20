@@ -28,7 +28,7 @@
     margin: 20px;
     border-radius: 8px;
     position: relative;
-    max-height: calc(100vh - 40px);
+    height: calc(100vh - 40px);
     gap: 10px;
     min-width: 200px;
     min-height: 200px;
