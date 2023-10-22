@@ -31,7 +31,7 @@ export const Header = ({ open, menu }) => {
     }, [dispatch])
 
     if (serchInput) {
-        return <div className='inputWRapper' >
+        return <div className='headerContainer' >
             <div>
                 <SearchInput value={value} changeValue={(e) => setValue(e)} close={() => {
                     setSearchInput(false)
@@ -40,7 +40,9 @@ export const Header = ({ open, menu }) => {
                 {search.events.length > 0 && value &&
                     <div className='searchDivWrapper'>
                         {search.events?.map((elm, i) => {
-                            return <div onClick={() => window.location = (`/Single/${elm._id}`)}>{elm.title}</div>
+                            if (elm.sessions.length) {
+                                return <div onClick={() => window.location = (`/Single/${elm._id}`)}>{elm.title}</div>
+                            }
                         })}
                     </div>
                 }
@@ -51,7 +53,7 @@ export const Header = ({ open, menu }) => {
     return (
         <div className='headerContainer'>
             <div className="header">
-                <p onClick={() => navigation('/')} className='title'>Logo</p>
+                <p onClick={() => window.location = '/'} className='title'>Logo</p>
                 <div className='textWrapper'>
                     {getCategory.category.map(elm => {
                         let title = ''

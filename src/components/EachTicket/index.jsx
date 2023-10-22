@@ -21,7 +21,7 @@ export const EachTicket = ({ id, date, price, data }) => {
             item.title = data?.title_ru
         }
         setLanguageData(item)
-    }, [language])
+    }, [language, data])
 
     return (
         <div className='ticket' onClick={() => navigation(`/Single/${id}`)}>

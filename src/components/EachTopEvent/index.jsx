@@ -24,7 +24,7 @@ export const EachTopEvent = ({ id, image, title, location, date, price, data }) 
     }, [language])
 
     return (
-        <div className='eachTopEvent' onClick={() => window.location = (`/Single/${id}`)}>
+        <div className='eachTopEvent' >
             <div className='topEventImage'>
                 <img alt='' src={image} />
             </div>
@@ -33,7 +33,7 @@ export const EachTopEvent = ({ id, image, title, location, date, price, data }) 
                 <span>{location}</span>
                 <span>{date}</span>
                 <span>{price}</span>
-                <Button title={t('BuyTicket')} />
+                <Button onClick={() => window.location = (`/Single/${id}`)} title={t('BuyTicket')} />
             </div>
         </div>
     )
