@@ -69,55 +69,14 @@ export const Single = () => {
                         }}
                     >
                         {/* <Hall buy={() => setOpenBuy(true)} /> */}
-                        {
-                            event.sessions[0.].hallId._id === '652a6e93cebdd7a4ac8fc020' &&
-                            // <KarenDemerchyanMec secion={[
-                            //     {
-                            //         section: 10, price: [
-                            //             { row: 1, price: 10 },
-                            //             { row: 2, price: 20 },
-                            //             { row: 3, price: 30 },
-                            //             { row: 4, price: 40 },
-                            //             { row: 5, price: 50 },
-                            //             { row: 6, price: 60 },
-                            //             { row: 7, price: 70 },
-                            //             { row: 8, price: 80 },
-                            //             { row: 9, price: 90 },
-                            //             { row: 10, price: 100 },
-                            //             { row: 11, price: 110 },
-                            //             { row: 12, price: 120 },
-                            //             { row: 13, price: 130 },
-                            //             { row: 14, price: 140 },
-                            //             { row: 15, price: 150 },
-                            //             { row: 16, price: 160 },
-                            //             { row: 17, price: 170 },
-                            //             { row: 18, price: 180 },
-                            //             { row: 19, price: 190 },
-                            //             { row: 20, price: 200 },
-                            //             { row: 21, price: 210 },
-                            //             { row: 22, price: 220 },
-                            //             { row: 23, price: 230 },
-
-
-
-
-                            //         ]
-                            //     }
-                            // ]} />
-                            // <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} />
-
-
-                            <AramKhachatryan secion={[{
-                                section: 17, price: [
-                                    { row: 1, price: '10000' },
-                                    { row: 2, price: '20000' },
-                                    { row: 3, price: '30000' },
-                                    { row: 4, price: '40000' },
-                                    { row: 5, price: '50000' },
-                                    { row: 6, price: '60000' },
-                                    { row: 7, price: '70000' },
-                                ]
-                            }]} />
+                        {event.sessions[0].hallId._id === '652a6e93cebdd7a4ac8fc020' &&
+                            <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} />
+                        }
+                        {event.sessions[0].hallId._id === '6535168ca55183559e145875' &&
+                            <KarenDemerchyanMec secion={getSinglPage.events.event?.sessions[0]?.price} />
+                        }
+                        {event.sessions[0].hallId._id === '6535260033a1489cc6af5c6a' &&
+                            <AramKhachatryan secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
                     </CartPopup>
                 </div>
