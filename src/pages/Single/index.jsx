@@ -12,6 +12,7 @@ import { GetSinglPage } from '../../services/action/action'
 import AramKhachatryan from '../../components/photoMap/AramKhachatryanHall'
 import PhotoCoordinatesByColor from '../../components/photoMap'
 import KarenDemerchyanMec from '../../components/photoMap/Karendemrjyanmec'
+import { Hall } from '../../components/photoMap/Hall'
 
 export const Single = () => {
     const dispatch = useDispatch()
@@ -28,8 +29,6 @@ export const Single = () => {
         window.scrollTo(0, 0)
         dispatch(GetSinglPage(id))
     }, [])
-
-    console.log(recomended);
 
     useEffect(() => {
         let item = { ...languageData }
@@ -62,6 +61,7 @@ export const Single = () => {
                 <div className='ByTicketWrapper'>
                     <CartPopup
                         open={openPopUp}
+                        openBuy={openBuy}
                         setOpen={setOpenPopUp}
                         type='hall'
                         openCard={() => {
@@ -69,21 +69,26 @@ export const Single = () => {
                         }}
                     >
                         {/* <Hall buy={() => setOpenBuy(true)} /> */}
-                        {event.sessions[0].hallId._id === '652a6e93cebdd7a4ac8fc020' &&
+                        {event.sessions[0]?.hallId._id === '652a6e93cebdd7a4ac8fc020' &&
                             <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
-                        {event.sessions[0].hallId._id === '6535168ca55183559e145875' &&
+                        {event.sessions[0]?.hallId?._id === '653554d8709652928c006a15' &&
                             <KarenDemerchyanMec secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
-                        {event.sessions[0].hallId._id === '6535260033a1489cc6af5c6a' &&
+                        {event.sessions[0]?.hallId?._id === '6535520e0dc8b78f78b56997' &&
                             <AramKhachatryan secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
+                        {event.sessions[0]?.hallId?._id === '653563a0369cf9fb4627aaf8' &&
+                            <Hall buy={() => setOpenBuy(true)} section={getSinglPage.events.event?.sessions[0]?.price} />
+                        }
+
                     </CartPopup>
                 </div>
             }
             {openBuy &&
                 <CartPopup
                     open={openBuy}
+                    type='openBuy'
                     setOpen={setOpenBuy}
                 >
                     <BuyNow />

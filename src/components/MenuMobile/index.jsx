@@ -22,7 +22,7 @@ export const MenuMobile = ({ onClose }) => {
                     <div
                         onClick={() => {
                             onClose()
-                            navigation(`/Category/${elm.name}/${elm._id}`)
+                            navigation(`/Category/${elm.name}/${elm?._id}`)
                         }}
                     >
                         {title}

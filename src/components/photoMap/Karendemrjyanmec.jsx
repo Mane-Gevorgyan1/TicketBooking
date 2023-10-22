@@ -13,7 +13,6 @@ const AramKhachatryan = ({ secion }) => {
 
 
     const getPrice = (y, i, x, price, row) => {
-        console.log(x, y)
         setPosition({ x, y })
         let seat = 0
         let result = []
@@ -31,7 +30,6 @@ const AramKhachatryan = ({ secion }) => {
             }
         }
         else {
-            console.log('22')
             result = coordinatesState.filter((elm) => elm.y === y);
             index = result.findIndex((elm) => elm.x === x)
             seat = result.length - (result.length - index - 1)
@@ -560,7 +558,6 @@ const AramKhachatryan = ({ secion }) => {
                 setCoordinatesState(coordinates)
             };
     }, [secion]);
-
 
     return (
 

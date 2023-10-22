@@ -9,7 +9,6 @@ export const ALLEvents = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const events = useSelector((st) => st.getRandomEvents)
-    console.log(events);
     useEffect(() => {
         dispatch(GetRandomEvents())
     }, [dispatch])
@@ -30,11 +29,11 @@ export const ALLEvents = () => {
                     if (month <= 9) {
                         month = `0${month}`
                     }
-                    if (elm.sessions.length) {
+                    if (elm?.sessions.length) {
                         return (
                             <EachTicket
                                 key={i}
-                                id={elm._id}
+                                id={elm?._id}
                                 data={elm}
                                 title={elm.title}
                                 date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}

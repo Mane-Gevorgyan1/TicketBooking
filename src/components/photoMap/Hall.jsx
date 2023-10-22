@@ -14,28 +14,28 @@ function countOccurrences(arr, itemToCount) {
     return count
 }
 
-export const Hall = ({ price = [{ price: 30000, _id: 1 }, { price: 20000, _id: 2 }], title, buy }) => {
+export const Hall = ({ section, title, buy }) => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const tickets = useSelector((st) => st.tiketsForBuy)
     const [value, setValue] = useState([])
-
+    const [price, setPrice] = useState(section[0].price)
     useEffect(() => {
         let item = [...value]
         price?.forEach(elm => {
-            item.push({ value: 0, price: elm.price, _id: elm._id })
+            item.push({ value: 0, price: elm.price, _id: elm.row })
         })
         setValue(item)
     }, [])
 
-    const AddTicket = (i, e, price) => {
+    const AddTicket = (i, e, price, type) => {
         dispatch(RemoveAllTickets())
         let item = [...value]
         item[i].value = e
         value?.forEach(elm => {
             for (let i = 0; i < elm?.value; i++) {
                 dispatch(SetTicketsAction({
-                    row: 0,
+                    row: type,
                     price: elm?.price,
                     bench: 0,
                     id: elm._id
@@ -62,12 +62,11 @@ export const Hall = ({ price = [{ price: 30000, _id: 1 }, { price: 20000, _id: 2
             {price?.map((elm, i) => (
                 <div key={i} className='HallWithoutSeat'>
                     <div className='HallWithoutSeatText'>
-                        <p className='HallTitle'>Մոխրոտը </p>
-                        <p className='HallDate'>20.02.2020</p>
+                        <p className='HallTitle'>{elm.type} </p>
                         <p className='HallPice'>Price:{elm?.price}</p>
                     </div>
                     <div className='HallWithoutSeatButton'>
-                        <input onChange={(e) => AddTicket(i, e.target.value, elm?.price)}
+                        <input onChange={(e) => AddTicket(i, e.target.value, elm?.price, elm.type)}
                             value={value[i]?.value}
                             type='number' />
                     </div>

@@ -5,6 +5,7 @@ import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/act
 import { PuffLoader } from 'react-spinners'
 
 const PhotoCoordinatesByColor = ({ secion, }) => {
+    console.log(secion, 'secion')
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})

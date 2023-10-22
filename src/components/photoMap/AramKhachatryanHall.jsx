@@ -161,14 +161,14 @@ const AramKhachatryan = ({ secion }) => {
         { "id": 802, "price": "", "row": 12, "section": 2, "seat": 1 },
 
 
-        { "id": 1166, "price": "", "row": 1, "section": 2, "seat": 12 },
-        { "id": 1158, "price": "", "row": 1, "section": 2, "seat": 13 },
-        { "id": 1152, "price": "", "row": 1, "section": 2, "seat": 14 },
-        { "id": 1148, "price": "", "row": 1, "section": 2, "seat": 15 },
-        { "id": 1138, "price": "", "row": 1, "section": 2, "seat": 16 },
-        { "id": 1135, "price": "", "row": 1, "section": 2, "seat": 17 },
-        { "id": 1133, "price": "", "row": 1, "section": 2, "seat": 18 },
-        { "id": 1129, "price": "", "row": 1, "section": 2, "seat": 19 },
+        { "id": 1166, "price": "", "row": 1, "section": 3, "seat": 12 },
+        { "id": 1158, "price": "", "row": 1, "section": 3, "seat": 13 },
+        { "id": 1152, "price": "", "row": 1, "section": 3, "seat": 14 },
+        { "id": 1148, "price": "", "row": 1, "section": 3, "seat": 15 },
+        { "id": 1138, "price": "", "row": 1, "section": 3, "seat": 16 },
+        { "id": 1135, "price": "", "row": 1, "section": 3, "seat": 17 },
+        { "id": 1133, "price": "", "row": 1, "section": 3, "seat": 18 },
+        { "id": 1129, "price": "", "row": 1, "section": 3, "seat": 19 },
 
         { "id": 1121, "price": "", "row": 2, "section": 3, "seat": 14 },
         { "id": 1115, "price": "", "row": 2, "section": 3, "seat": 15 },
@@ -317,7 +317,6 @@ const AramKhachatryan = ({ secion }) => {
         { "id": 744, "price": "", "row": 13, "section": 3, "seat": 2 },
         { "id": 739, "price": "", "row": 13, "section": 3, "seat": 3 },
         { "id": 731, "price": "", "row": 13, "section": 3, "seat": 4 },
-        { "id": 431, "price": "", "row": 13, "section": 3, "seat": 5 },
         { "id": 724, "price": "", "row": 13, "section": 3, "seat": 6 },
         { "id": 715, "price": "", "row": 13, "section": 3, "seat": 7 },
         { "id": 711, "price": "", "row": 13, "section": 3, "seat": 8 },
@@ -691,7 +690,6 @@ const AramKhachatryan = ({ secion }) => {
         { "id": 537, "price": "", "row": 4, "section": 8, "seat": 7 },
         { "id": 533, "price": "", "row": 4, "section": 8, "seat": 8 },
         { "id": 527, "price": "", "row": 4, "section": 8, "seat": 9 },
-        { "id": 528, "price": "", "row": 4, "section": 8, "seat": 10 },
         { "id": 518, "price": "", "row": 4, "section": 8, "seat": 11 },
         { "id": 514, "price": "", "row": 4, "section": 8, "seat": 12 },
         { "id": 512, "price": "", "row": 4, "section": 8, "seat": 13 },
@@ -732,7 +730,6 @@ const AramKhachatryan = ({ secion }) => {
         { "id": 442, "price": "", "row": 6, "section": 8, "seat": 15 },
         { "id": 437, "price": "", "row": 6, "section": 8, "seat": 16 },
 
-        { "id": 598, "price": "", "row": 7, "section": 8, "seat": 1 },
         { "id": 498, "price": "", "row": 7, "section": 8, "seat": 1 },
         { "id": 490, "price": "", "row": 7, "section": 8, "seat": 2 },
 
@@ -806,6 +803,8 @@ const AramKhachatryan = ({ secion }) => {
         { "id": 302, "price": "", "row": 10, "section": 8, "seat": 16 },
         { "id": 300, "price": "", "row": 10, "section": 8, "seat": 17 },
         { "id": 296, "price": "", "row": 10, "section": 8, "seat": 18 },
+        { "id": 522, "price": "", "row": 4, "section": 8, "seat": 10 },
+
 
         { "id": 624, "price": "", "row": 1, "section": 9, "seat": 15 },
         { "id": 627, "price": "", "row": 1, "section": 9, "seat": 16 },
@@ -908,7 +907,7 @@ const AramKhachatryan = ({ secion }) => {
         { "id": 401, "price": "", "row": 7, "section": 9, "seat": 18 },
         { "id": 403, "price": "", "row": 7, "section": 9, "seat": 19 },
         { "id": 407, "price": "", "row": 7, "section": 9, "seat": 20 },
-        { "id": 443, "price": "", "row": 7, "section": 9, "seat": 21 },
+        { "id": 413, "price": "", "row": 7, "section": 9, "seat": 21 },
         { "id": 416, "price": "", "row": 7, "section": 9, "seat": 22 },
         { "id": 420, "price": "", "row": 7, "section": 9, "seat": 23 },
         { "id": 423, "price": "", "row": 7, "section": 9, "seat": 24 },
@@ -1473,7 +1472,6 @@ const AramKhachatryan = ({ secion }) => {
     const getPrice = (y, i, x) => {
         setPosition({ x, y })
         let item = seansArr.find((elm) => elm.id === i)
-        console.log(i)
         setActiveTicket({
             row: item?.row,
             price: item?.price,

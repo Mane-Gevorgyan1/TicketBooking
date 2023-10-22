@@ -4,7 +4,7 @@ import { Cart, CloseIcon } from '../../svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveAllTickets } from '../../../services/action/action'
 
-export const CartPopup = ({ open, setOpen, children, openCard, show = true, type }) => {
+export const CartPopup = ({ open, setOpen, children, openCard, show = true, type, openBuy, }) => {
     const dispatch = useDispatch()
     const tickets = useSelector((st) => st.tiketsForBuy)
 
@@ -21,7 +21,6 @@ export const CartPopup = ({ open, setOpen, children, openCard, show = true, type
             dispatch(RemoveAllTickets())
         }
     }
-
     return (
         <div className={open ? 'activePopup' : 'inactive'}>
             <div className='pop' >
@@ -29,11 +28,18 @@ export const CartPopup = ({ open, setOpen, children, openCard, show = true, type
                     <CloseIcon />
                 </div>
                 {children}
-                {show &&
-                    <div className='cartLine' onClick={() => openCard()}>
+                {type == 'hall' &&
+                    show &&
+                    <div className='cartLine' onClick={() => {
+                        if (!openBuy) {
+                            openCard()
+                        }
+                    }
+                    }>
                         <div ><Cart />{tickets?.tickets?.length}</div>
                     </div>
                 }
+
             </div>
         </div>
     )

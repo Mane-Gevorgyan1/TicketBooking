@@ -19,7 +19,6 @@ export const BuyNow = ({ close }) => {
         })
         setTotal(price)
     }, [tickets])
-
     return (
         <div>
             <div className='buyNowWrapper2'>
@@ -40,7 +39,12 @@ export const BuyNow = ({ close }) => {
                         </div>
                         {tickets?.tickets?.map((elm, i) => (
                             <div className='BuyNowTickert' key={i}>
-                                <p className='BuyNowTickertPrive' id='parter'>Parter  {elm?.row}  Line  {elm?.bench}  Seat</p>
+                                {elm.row > 0 ?
+                                    <p className='BuyNowTickertPrive' id='parter'>Parter  {elm?.row}  Line  {elm?.bench}  Seat</p> :
+                                    <p className='BuyNowTickertPrive' id='parter'>  {elm?.row} </p>
+
+                                }
+
                                 <p className='BuyNowTickertPrive' id='Amd' > {elm?.price} AMD</p>
                                 <p style={{ cursor: 'pointer' }} onClick={() => dispatch(RemoveTicketsAction(elm))}> x</p>
                             </div>

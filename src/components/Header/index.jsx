@@ -40,7 +40,7 @@ export const Header = ({ open, menu }) => {
                 {search.events.length > 0 && value &&
                     <div className='searchDivWrapper'>
                         {search.events?.map((elm, i) => {
-                            if (elm.sessions.length) {
+                            if (elm?.sessions.length) {
                                 return <div onClick={() => window.location = (`/Single/${elm._id}`)}>{elm.title}</div>
                             }
                         })}
@@ -64,7 +64,7 @@ export const Header = ({ open, menu }) => {
                         } else if (language === 'ru') {
                             title = elm.name_ru
                         }
-                        return <p id={id == elm._id ? 'activeHeader' : ''} onClick={() => navigation(`/Category/${elm.name}/${elm._id}`)} className='Headertext'>{title}</p>
+                        return <p id={id == elm?._id ? 'activeHeader' : ''} onClick={() => navigation(`/Category/${elm.name}/${elm?._id}`)} className='Headertext'>{title}</p>
                     })}
                 </div>
                 {!openMenu.categoryMenu

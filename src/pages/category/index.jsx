@@ -71,7 +71,7 @@ export const Category = () => {
     if (openMenu?.categoryMenu) {
         return <CategoryMenu onClick={(e) => {
             setTitle(e.hall)
-            setHallId(e._id)
+            setHallId(e?._id)
         }} item={events.hall} close={() => setOpen(!open)} />
     }
     return (
