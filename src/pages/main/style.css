@@ -42,4 +42,9 @@
     .topEventsMain {
         padding: 0 20px;
     }
+
+    .EventTitleMain>h2 {
+        font-size: 25px;
+        text-align: center;
+    }
 }

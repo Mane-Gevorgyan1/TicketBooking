@@ -55,7 +55,7 @@ export const CardSlider = ({ data }) => {
                 image={`http://localhost:8080/images/${elm.image}`}
                 title={elm.title}
                 location={elm.location}
-                date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0].time}`}
+                date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
                 data={elm}
                 price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
             />

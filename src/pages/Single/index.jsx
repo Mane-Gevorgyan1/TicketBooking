@@ -29,6 +29,8 @@ export const Single = () => {
         dispatch(GetSinglPage(id))
     }, [])
 
+    console.log(recomended);
+
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
@@ -136,7 +138,7 @@ export const Single = () => {
                 <div className='singltextWrapper'>
                     <div className='sponsorDiv'>
                         {event?.sponsors?.map((elm, i) => {
-                            return <img className='sposnorsImg' src={`${process.env.REACT_APP_IMAGE}/${elm.image}`} />
+                            return <img alt='' className='sposnorsImg' src={`${process.env.REACT_APP_IMAGE}/${elm.image}`} />
                         })}
                     </div>
                     <p className='singlTitle'>{languageData?.title}</p >

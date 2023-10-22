@@ -9,7 +9,7 @@ export const ALLEvents = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const events = useSelector((st) => st.getRandomEvents)
-
+console.log(events);
     useEffect(() => {
         dispatch(GetRandomEvents())
     }, [dispatch])
@@ -35,7 +35,7 @@ export const ALLEvents = () => {
                             key={i}
                             id={elm._id}
                             data={elm}
-                            date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0].time}`}
+                            date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
                             price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceEnd} AMD`}
                         />
                     )
