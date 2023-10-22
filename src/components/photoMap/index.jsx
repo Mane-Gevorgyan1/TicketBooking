@@ -64,123 +64,167 @@ const PhotoCoordinatesByColor = ({ secion, }) => {
                     if (r >= 100 && g <= 30 && b <= 30) {
                         id = coordinates.length
                         let row = 1
+                        let row2 = 1
                         let section = 0
                         if (y === 885) {
                             row = 1
+                            row2 = 1
                         }
                         else if (y === 866) {
                             row = 2
+                            row2 = 2
                         }
                         else if (y === 847) {
                             row = 3
+                            row2 = 3
                         }
                         else if (y === 828) {
                             row = 4
+                            row2 = 4
                         }
                         else if (y === 809) {
                             row = 5
+                            row2 = 5
                         }
                         else if (y === 789) {
                             row = 6
+                            row2 = 6
                         }
                         else if (y === 770) {
                             row = 7
+                            row2 = 7
                         }
+
                         else if (y === 751) {
                             row = 8
+                            row2 = 8
+
                         }
                         else if (y === 732) {
                             row = 9
+                            row2 = 9
                         }
                         else if (y === 713) {
                             row = 10
+                            row2 = 10
                         }
                         else if (y === 674) {
                             row = 11
+                            row2 = 1
                         }
                         else if (y === 655) {
                             row = 12
+                            row2 = 2
                         }
                         else if (y === 635) {
                             row = 13
+                            row2 = 3
                         }
                         else if (y === 616) {
                             row = 14
+                            row2 = 4
                         }
                         else if (y === 597) {
                             row = 15
+                            row2 = 5
                         }
                         else if (y === 559) {
                             row = 16
+                            row2 = 1
                         }
                         else if (y === 540) {
                             row = 17
+                            row2 = 2
                         }
                         else if (y === 521) {
                             row = 18
+                            row2 = 3
                         }
                         else if (y === 502) {
                             row = 19
+                            row2 = 4
                         }
                         else if (y === 483) {
                             row = 20
+                            row2 = 5
                         }
                         else if (y === 432) {
                             row = 1
+                            row2 = 1
                         }
                         else if (y === 413) {
                             row = 2
+                            row2 = 2
                         }
                         else if (y === 394) {
                             row = 3
+                            row2 = 3
                         }
                         else if (y === 375) {
                             row = 4
+                            row2 = 4
                         }
                         else if (y === 355) {
                             row = 5
+                            row2 = 5
                         }
                         else if (y === 336) {
                             row = 6
+                            row2 = 6
+
                         }
                         else if (y === 317) {
                             row = 7
+                            row2 = 7
+
                         }
                         else if (y === 273) {
                             row = 8
+                            row2 = 1
                         }
                         else if (y === 253) {
                             row = 9
+                            row2 = 2
                         }
                         else if (y === 234) {
                             row = 10
+                            row2 = 3
                         }
                         else if (y === 215) {
                             row = 11
+                            row2 = 4
                         }
                         else if (y === 196) {
                             row = 12
+                            row2 = 5
                         }
                         else if (y === 177) {
                             row = 13
+                            row2 = 6
                         }
                         else if (y === 158) {
                             row = 14
+                            row2 = 7
                         }
                         else if (y === 139) {
                             row = 15
+                            row2 = 8
                         }
                         else if (y === 120) {
                             row = 16
+                            row2 = 9
                         }
                         else if (y === 101) {
                             row = 17
+                            row2 = 10
                         }
                         else if (y === 82) {
                             row = 18
+                            row2 = 11
                         }
                         else if (y === 62) {
                             row = 19
+                            row2 = 1
                         }
 
                         if ((id <= 2005 && id >= 1998) || (id <= 1961 && id >= 1953) || (id <= 1915 && id >= 1906) || (id <= 1867 && id >= 1858) || (id <= 1816 && id >= 1806) || (id <= 1764 && id >= 1754) || (id <= 1711 && id >= 1701) || (id <= 1655 && id >= 1644) || (id <= 1598 && id >= 1587) || (id <= 1541 && id >= 1530)) {
@@ -253,7 +297,7 @@ const PhotoCoordinatesByColor = ({ secion, }) => {
                             section = 23
                         }
                         let item = secion.filter((elm) => elm.section === section);
-                        let rows = item[0]?.price.filter((elm) => elm?.row === row);
+                        let rows = item[0]?.price.filter((elm) => elm?.row === row2);
                         let price = 0
                         if (rows?.length) {
                             price = rows[0].price

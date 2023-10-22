@@ -1114,7 +1114,7 @@ const AramKhachatryan = ({ secion }) => {
         { "id": 124, "price": "", "row": 1, "section": 13, "seat": 32 },
         { "id": 117, "price": "", "row": 1, "section": 13, "seat": 33 },
         { "id": 110, "price": "", "row": 1, "section": 13, "seat": 34 },
-        { "id": 184, "price": "", "row": 2, "section": 13, "seat": 66 },
+        { "id": 184, "price": "", "row": 2, "section": 17, "seat": 66 },
 
         { "id": 148, "price": "", "row": 2, "section": 13, "seat": 21 },
         { "id": 144, "price": "", "row": 2, "section": 13, "seat": 22 },
@@ -1352,6 +1352,8 @@ const AramKhachatryan = ({ secion }) => {
         { "id": 239, "price": "", "row": 4, "section": 18, "seat": 73 },
         { "id": 232, "price": "", "row": 4, "section": 18, "seat": 72 },
         { "id": 228, "price": "", "row": 4, "section": 18, "seat": 71 },
+        { "id": 293, "price": "", "row": 4, "section": 18, "seat": 71 },
+
 
         { "id": 1274, "price": "", "row": 1, "section": 6, "seat": 37 },
         { "id": 1264, "price": "", "row": 1, "section": 6, "seat": 36 },
@@ -1406,17 +1408,17 @@ const AramKhachatryan = ({ secion }) => {
         { "id": 1232, "price": "", "row": 7, "section": 6, "seat": 57 },
         { "id": 1248, "price": "", "row": 7, "section": 6, "seat": 58 },
 
-        { "id": 337, "price": "", "row": 2, "section": 1, "seat": 76 },
-        { "id": 315, "price": "", "row": 2, "section": 1, "seat": 75 },
-        { "id": 295, "price": "", "row": 2, "section": 1, "seat": 74 },
-        { "id": 286, "price": "", "row": 2, "section": 1, "seat": 73 },
-        { "id": 276, "price": "", "row": 2, "section": 1, "seat": 72 },
-        { "id": 266, "price": "", "row": 2, "section": 1, "seat": 71 },
-        { "id": 256, "price": "", "row": 2, "section": 1, "seat": 70 },
-        { "id": 245, "price": "", "row": 2, "section": 1, "seat": 69 },
-        { "id": 237, "price": "", "row": 2, "section": 1, "seat": 68 },
-        { "id": 231, "price": "", "row": 2, "section": 1, "seat": 67 },
-        { "id": 227, "price": "", "row": 2, "section": 1, "seat": 66 },
+        { "id": 337, "price": "", "row": 2, "section": 18, "seat": 76 },
+        { "id": 315, "price": "", "row": 2, "section": 18, "seat": 75 },
+        { "id": 295, "price": "", "row": 2, "section": 18, "seat": 74 },
+        { "id": 286, "price": "", "row": 2, "section": 18, "seat": 73 },
+        { "id": 276, "price": "", "row": 2, "section": 18, "seat": 72 },
+        { "id": 266, "price": "", "row": 2, "section": 18, "seat": 71 },
+        { "id": 256, "price": "", "row": 2, "section": 18, "seat": 70 },
+        { "id": 245, "price": "", "row": 2, "section": 18, "seat": 69 },
+        { "id": 237, "price": "", "row": 2, "section": 18, "seat": 68 },
+        { "id": 231, "price": "", "row": 2, "section": 18, "seat": 67 },
+        { "id": 227, "price": "", "row": 2, "section": 18, "seat": 66 },
 
         { "id": 1105, "price": "", "row": 8, "section": 6, "seat": 43 },
         { "id": 1124, "price": "", "row": 8, "section": 6, "seat": 44 },
@@ -1470,12 +1472,8 @@ const AramKhachatryan = ({ secion }) => {
 
     const getPrice = (y, i, x) => {
         setPosition({ x, y })
-        let row = null
-        let seat = 0
-        let price = null
         let item = seansArr.find((elm) => elm.id === i)
         console.log(i)
-        price = 0
         setActiveTicket({
             row: item?.row,
             price: item?.price,
@@ -1531,35 +1529,34 @@ const AramKhachatryan = ({ secion }) => {
     return (
 
         <div className='hallWrapper'>
-
             <div className='hall' >
                 <div >
                     <img alt='' src={require('../../assets/AramKhachatryan.png')} />
                     {coordinatesState.map((e, i) => {
-                        // if (seansArr[2040 - i].price)
-                        return <button
-                            key={i}
-                            onMouseOver={() => {
-                                getPrice(e.y, i, e.x)
-                                setActiveButton(i)
-                            }}
-                            style={
-                                {
-                                    top: e?.y - 4,
-                                    left: e?.x - 4,
-                                    backgroundColor: e.active && 'green'
+                        if (seansArr.find((e) => e.id == i)?.price)
+                            return <button
+                                key={i}
+                                onMouseOver={() => {
+                                    getPrice(e.y, i, e.x)
+                                    setActiveButton(i)
+                                }}
+                                style={
+                                    {
+                                        top: e?.y - 4,
+                                        left: e?.x - 4,
+                                        backgroundColor: e.active && 'green'
+                                    }
                                 }
-                            }
-                            id='seatStyle'
-                            className={[
-                                i == activeButton ? 'activeButton' : '',
-                                e.active ? "addTicketButton" : '']}
-                            onMouseLeave={() => {
-                                setShowModal(false)
-                                setActiveButton(null)
-                            }}
-                            onClick={() => addTicket(i)}
-                        />
+                                id='seatStyle'
+                                className={[
+                                    i == activeButton ? 'activeButton' : '',
+                                    e.active ? "addTicketButton" : '']}
+                                onMouseLeave={() => {
+                                    setShowModal(false)
+                                    setActiveButton(null)
+                                }}
+                                onClick={() => addTicket(i)}
+                            />
                     })}
 
                     {showModal &&

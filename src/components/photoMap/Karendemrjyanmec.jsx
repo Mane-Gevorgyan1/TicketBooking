@@ -11,1476 +11,36 @@ const AramKhachatryan = ({ secion }) => {
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
 
-    // useEffect(() => {
-    //     let arr = [...seansArr]
-    //     secion.map((elm, index) => {
-    //         arr.map((e, i) => {
-    //             if (e.section === elm.section) {
-    //                 e.price = elm.price
-    //             }
-    //         })
-    //     })
-    //     setSeansArr(arr)
-    // }, [])
 
-    const [seansArr, setSeansArr] = useState([
-        { "id": 1247, "price": "", "row": 7, "section": 1, "seat": 1 },
-        { "id": 1231, "price": "", "row": 7, "section": 1, "seat": 2 },
-        { "id": 1213, "price": "", "row": 7, "section": 1, "seat": 3 },
-        { "id": 1195, "price": "", "row": 7, "section": 1, "seat": 4 },
-        { "id": 1175, "price": "", "row": 7, "section": 1, "seat": 5 },
-        { "id": 1162, "price": "", "row": 7, "section": 1, "seat": 6 },
-        { "id": 1141, "price": "", "row": 7, "section": 1, "seat": 7 },
-        { "id": 1120, "price": "", "row": 7, "section": 1, "seat": 8 },
-
-        { "id": 1265, "price": "", "row": 5, "section": 1, "seat": 1 },
-        { "id": 1253, "price": "", "row": 5, "section": 1, "seat": 2 },
-        { "id": 1237, "price": "", "row": 5, "section": 1, "seat": 3 },
-        { "id": 1225, "price": "", "row": 5, "section": 1, "seat": 4 },
-        { "id": 1210, "price": "", "row": 5, "section": 1, "seat": 5 },
-        { "id": 1197, "price": "", "row": 5, "section": 1, "seat": 6 },
-        { "id": 1180, "price": "", "row": 5, "section": 1, "seat": 7 },
-        { "id": 1169, "price": "", "row": 5, "section": 1, "seat": 8 },
-
-        { "id": 1272, "price": "", "row": 6, "section": 1, "seat": 1 },
-        { "id": 1259, "price": "", "row": 6, "section": 1, "seat": 2 },
-        { "id": 1243, "price": "", "row": 6, "section": 1, "seat": 3 },
-        { "id": 1227, "price": "", "row": 6, "section": 1, "seat": 4 },
-        { "id": 1209, "price": "", "row": 6, "section": 1, "seat": 5 },
-        { "id": 1196, "price": "", "row": 6, "section": 1, "seat": 6 },
-        { "id": 1179, "price": "", "row": 6, "section": 1, "seat": 7 },
-        { "id": 1165, "price": "", "row": 6, "section": 1, "seat": 8 },
-        { "id": 1147, "price": "", "row": 6, "section": 1, "seat": 9 },
-
-        { "id": 1254, "price": "", "row": 4, "section": 1, "seat": 2 },
-        { "id": 1266, "price": "", "row": 4, "section": 1, "seat": 1 },
-        { "id": 1239, "price": "", "row": 4, "section": 1, "seat": 3 },
-        { "id": 1228, "price": "", "row": 4, "section": 1, "seat": 4 },
-        { "id": 1214, "price": "", "row": 4, "section": 1, "seat": 5 },
-        { "id": 1201, "price": "", "row": 4, "section": 1, "seat": 6 },
-        { "id": 1187, "price": "", "row": 4, "section": 1, "seat": 7 },
-
-        { "id": 1275, "price": "", "row": 3, "section": 1, "seat": 1 },
-        { "id": 1267, "price": "", "row": 3, "section": 1, "seat": 2 },
-        { "id": 1257, "price": "", "row": 3, "section": 1, "seat": 3 },
-        { "id": 1244, "price": "", "row": 3, "section": 1, "seat": 4 },
-        { "id": 1234, "price": "", "row": 3, "section": 1, "seat": 5 },
-        { "id": 1219, "price": "", "row": 3, "section": 1, "seat": 6 },
-        { "id": 1207, "price": "", "row": 3, "section": 1, "seat": 7 },
-
-        { "id": 1276, "price": "", "row": 2, "section": 1, "seat": 1 },
-        { "id": 1270, "price": "", "row": 2, "section": 1, "seat": 2 },
-        { "id": 1260, "price": "", "row": 2, "section": 1, "seat": 3 },
-        { "id": 1249, "price": "", "row": 2, "section": 1, "seat": 4 },
-        { "id": 1235, "price": "", "row": 2, "section": 1, "seat": 5 },
-        { "id": 1223, "price": "", "row": 2, "section": 1, "seat": 6 },
-
-        { "id": 1221, "price": "", "row": 1, "section": 2, "seat": 5 },
-        { "id": 1215, "price": "", "row": 1, "section": 2, "seat": 6 },
-        { "id": 1205, "price": "", "row": 1, "section": 2, "seat": 7 },
-        { "id": 1193, "price": "", "row": 1, "section": 2, "seat": 8 },
-        { "id": 1188, "price": "", "row": 1, "section": 2, "seat": 9 },
-        { "id": 1180, "price": "", "row": 1, "section": 2, "seat": 10 },
-        { "id": 1176, "price": "", "row": 1, "section": 2, "seat": 11 },
-
-        { "id": 1203, "price": "", "row": 2, "section": 2, "seat": 7 },
-        { "id": 1191, "price": "", "row": 2, "section": 2, "seat": 8 },
-        { "id": 1182, "price": "", "row": 2, "section": 2, "seat": 9 },
-        { "id": 1173, "price": "", "row": 2, "section": 2, "seat": 10 },
-        { "id": 1161, "price": "", "row": 2, "section": 2, "seat": 11 },
-        { "id": 1151, "price": "", "row": 2, "section": 2, "seat": 12 },
-        { "id": 1137, "price": "", "row": 2, "section": 2, "seat": 13 },
-
-        { "id": 1181, "price": "", "row": 3, "section": 2, "seat": 8 },
-        { "id": 1171, "price": "", "row": 3, "section": 2, "seat": 9 },
-        { "id": 1155, "price": "", "row": 3, "section": 2, "seat": 10 },
-        { "id": 1143, "price": "", "row": 3, "section": 2, "seat": 11 },
-        { "id": 1126, "price": "", "row": 3, "section": 2, "seat": 12 },
-        { "id": 1118, "price": "", "row": 3, "section": 2, "seat": 13 },
-        { "id": 1106, "price": "", "row": 3, "section": 2, "seat": 14 },
-
-        { "id": 1157, "price": "", "row": 4, "section": 2, "seat": 8 },
-        { "id": 1142, "price": "", "row": 4, "section": 2, "seat": 9 },
-        { "id": 1125, "price": "", "row": 4, "section": 2, "seat": 10 },
-        { "id": 1112, "price": "", "row": 4, "section": 2, "seat": 11 },
-        { "id": 1112, "price": "", "row": 4, "section": 2, "seat": 12 },
-        { "id": 1100, "price": "", "row": 4, "section": 2, "seat": 13 },
-        { "id": 1083, "price": "", "row": 4, "section": 2, "seat": 14 },
-        { "id": 1075, "price": "", "row": 4, "section": 2, "seat": 15 },
-
-        { "id": 1128, "price": "", "row": 5, "section": 2, "seat": 9 },
-        { "id": 1114, "price": "", "row": 5, "section": 2, "seat": 10 },
-        { "id": 1099, "price": "", "row": 5, "section": 2, "seat": 11 },
-        { "id": 1080, "price": "", "row": 5, "section": 2, "seat": 12 },
-        { "id": 1069, "price": "", "row": 5, "section": 2, "seat": 13 },
-        { "id": 1059, "price": "", "row": 5, "section": 2, "seat": 14 },
-        { "id": 1043, "price": "", "row": 5, "section": 2, "seat": 15 },
-        { "id": 1032, "price": "", "row": 5, "section": 2, "seat": 16 },
-
-        { "id": 1107, "price": "", "row": 6, "section": 2, "seat": 10 },
-        { "id": 1091, "price": "", "row": 6, "section": 2, "seat": 11 },
-        { "id": 1073, "price": "", "row": 6, "section": 2, "seat": 12 },
-        { "id": 1061, "price": "", "row": 6, "section": 2, "seat": 13 },
-        { "id": 1039, "price": "", "row": 6, "section": 2, "seat": 14 },
-        { "id": 1026, "price": "", "row": 6, "section": 2, "seat": 15 },
-        { "id": 1017, "price": "", "row": 6, "section": 2, "seat": 16 },
-        { "id": 1001, "price": "", "row": 6, "section": 2, "seat": 17 },
-
-        { "id": 1079, "price": "", "row": 7, "section": 2, "seat": 9 },
-        { "id": 1065, "price": "", "row": 7, "section": 2, "seat": 10 },
-        { "id": 1051, "price": "", "row": 7, "section": 2, "seat": 11 },
-        { "id": 1031, "price": "", "row": 7, "section": 2, "seat": 12 },
-        { "id": 1016, "price": "", "row": 7, "section": 2, "seat": 13 },
-        { "id": 995, "price": "", "row": 7, "section": 2, "seat": 14 },
-        { "id": 986, "price": "", "row": 7, "section": 2, "seat": 15 },
-        { "id": 972, "price": "", "row": 7, "section": 2, "seat": 16 },
-        { "id": 957, "price": "", "row": 7, "section": 2, "seat": 17 },
-
-        { "id": 1025, "price": "", "row": 8, "section": 2, "seat": 1 },
-        { "id": 1009, "price": "", "row": 8, "section": 2, "seat": 2 },
-        { "id": 991, "price": "", "row": 8, "section": 2, "seat": 3 },
-        { "id": 982, "price": "", "row": 8, "section": 2, "seat": 4 },
-        { "id": 964, "price": "", "row": 8, "section": 2, "seat": 5 },
-        { "id": 944, "price": "", "row": 8, "section": 2, "seat": 6 },
-        { "id": 932, "price": "", "row": 8, "section": 2, "seat": 7 },
-        { "id": 922, "price": "", "row": 8, "section": 2, "seat": 8 },
-
-        { "id": 1035, "price": "", "row": 9, "section": 2, "seat": 1 },
-        { "id": 1015, "price": "", "row": 9, "section": 2, "seat": 2 },
-        { "id": 990, "price": "", "row": 9, "section": 2, "seat": 3 },
-        { "id": 975, "price": "", "row": 9, "section": 2, "seat": 4 },
-        { "id": 956, "price": "", "row": 9, "section": 2, "seat": 5 },
-        { "id": 942, "price": "", "row": 9, "section": 2, "seat": 6 },
-        { "id": 928, "price": "", "row": 9, "section": 2, "seat": 7 },
-        { "id": 908, "price": "", "row": 9, "section": 2, "seat": 8 },
-        { "id": 897, "price": "", "row": 9, "section": 2, "seat": 9 },
-
-        { "id": 994, "price": "", "row": 10, "section": 2, "seat": 1 },
-        { "id": 974, "price": "", "row": 10, "section": 2, "seat": 2 },
-        { "id": 950, "price": "", "row": 10, "section": 2, "seat": 3 },
-        { "id": 938, "price": "", "row": 10, "section": 2, "seat": 4 },
-        { "id": 918, "price": "", "row": 10, "section": 2, "seat": 5 },
-        { "id": 903, "price": "", "row": 10, "section": 2, "seat": 6 },
-        { "id": 887, "price": "", "row": 10, "section": 2, "seat": 7 },
-        { "id": 868, "price": "", "row": 10, "section": 2, "seat": 8 },
-        { "id": 859, "price": "", "row": 10, "section": 2, "seat": 9 },
-
-        { "id": 889, "price": "", "row": 11, "section": 2, "seat": 1 },
-        { "id": 867, "price": "", "row": 11, "section": 2, "seat": 2 },
-        { "id": 857, "price": "", "row": 11, "section": 2, "seat": 3 },
-        { "id": 843, "price": "", "row": 11, "section": 2, "seat": 4 },
-        { "id": 830, "price": "", "row": 11, "section": 2, "seat": 5 },
-        { "id": 802, "price": "", "row": 12, "section": 2, "seat": 1 },
-
-
-        { "id": 1166, "price": "", "row": 1, "section": 2, "seat": 12 },
-        { "id": 1158, "price": "", "row": 1, "section": 2, "seat": 13 },
-        { "id": 1152, "price": "", "row": 1, "section": 2, "seat": 14 },
-        { "id": 1148, "price": "", "row": 1, "section": 2, "seat": 15 },
-        { "id": 1138, "price": "", "row": 1, "section": 2, "seat": 16 },
-        { "id": 1135, "price": "", "row": 1, "section": 2, "seat": 17 },
-        { "id": 1133, "price": "", "row": 1, "section": 2, "seat": 18 },
-        { "id": 1129, "price": "", "row": 1, "section": 2, "seat": 19 },
-
-        { "id": 1121, "price": "", "row": 2, "section": 3, "seat": 14 },
-        { "id": 1115, "price": "", "row": 2, "section": 3, "seat": 15 },
-        { "id": 1108, "price": "", "row": 2, "section": 3, "seat": 16 },
-        { "id": 1103, "price": "", "row": 2, "section": 3, "seat": 17 },
-        { "id": 1097, "price": "", "row": 2, "section": 3, "seat": 18 },
-        { "id": 1095, "price": "", "row": 2, "section": 3, "seat": 19 },
-        { "id": 1092, "price": "", "row": 2, "section": 3, "seat": 20 },
-        { "id": 1089, "price": "", "row": 2, "section": 3, "seat": 21 },
-        { "id": 1085, "price": "", "row": 2, "section": 3, "seat": 22 },
-
-        { "id": 1084, "price": "", "row": 3, "section": 3, "seat": 15 },
-        { "id": 1077, "price": "", "row": 3, "section": 3, "seat": 16 },
-        { "id": 1071, "price": "", "row": 3, "section": 3, "seat": 17 },
-        { "id": 1066, "price": "", "row": 3, "section": 3, "seat": 18 },
-        { "id": 1062, "price": "", "row": 3, "section": 3, "seat": 19 },
-        { "id": 1056, "price": "", "row": 3, "section": 3, "seat": 20 },
-        { "id": 1052, "price": "", "row": 3, "section": 3, "seat": 21 },
-        { "id": 1049, "price": "", "row": 3, "section": 3, "seat": 22 },
-        { "id": 1045, "price": "", "row": 3, "section": 3, "seat": 23 },
-        { "id": 1040, "price": "", "row": 3, "section": 3, "seat": 24 },
-
-        { "id": 1055, "price": "", "row": 4, "section": 3, "seat": 16 },
-        { "id": 1044, "price": "", "row": 4, "section": 3, "seat": 17 },
-        { "id": 1037, "price": "", "row": 4, "section": 3, "seat": 18 },
-        { "id": 1027, "price": "", "row": 4, "section": 3, "seat": 19 },
-        { "id": 1023, "price": "", "row": 4, "section": 3, "seat": 20 },
-        { "id": 1018, "price": "", "row": 4, "section": 3, "seat": 21 },
-        { "id": 1011, "price": "", "row": 4, "section": 3, "seat": 22 },
-        { "id": 1007, "price": "", "row": 4, "section": 3, "seat": 23 },
-        { "id": 1005, "price": "", "row": 4, "section": 3, "seat": 24 },
-        { "id": 1002, "price": "", "row": 4, "section": 3, "seat": 25 },
-        { "id": 997, "price": "", "row": 4, "section": 3, "seat": 26 },
-
-        { "id": 1010, "price": "", "row": 5, "section": 3, "seat": 17 },
-        { "id": 996, "price": "", "row": 5, "section": 3, "seat": 18 },
-        { "id": 988, "price": "", "row": 5, "section": 3, "seat": 19 },
-        { "id": 984, "price": "", "row": 5, "section": 3, "seat": 20 },
-        { "id": 977, "price": "", "row": 5, "section": 3, "seat": 21 },
-        { "id": 970, "price": "", "row": 5, "section": 3, "seat": 22 },
-        { "id": 966, "price": "", "row": 5, "section": 3, "seat": 23 },
-        { "id": 962, "price": "", "row": 5, "section": 3, "seat": 24 },
-        { "id": 958, "price": "", "row": 5, "section": 3, "seat": 25 },
-        { "id": 952, "price": "", "row": 5, "section": 3, "seat": 26 },
-        { "id": 948, "price": "", "row": 5, "section": 3, "seat": 27 },
-
-        { "id": 976, "price": "", "row": 6, "section": 3, "seat": 18 },
-        { "id": 968, "price": "", "row": 6, "section": 3, "seat": 19 },
-        { "id": 951, "price": "", "row": 6, "section": 3, "seat": 20 },
-        { "id": 945, "price": "", "row": 6, "section": 3, "seat": 21 },
-        { "id": 940, "price": "", "row": 6, "section": 3, "seat": 22 },
-        { "id": 934, "price": "", "row": 6, "section": 3, "seat": 23 },
-        { "id": 929, "price": "", "row": 6, "section": 3, "seat": 24 },
-        { "id": 923, "price": "", "row": 6, "section": 3, "seat": 25 },
-        { "id": 919, "price": "", "row": 6, "section": 3, "seat": 26 },
-        { "id": 916, "price": "", "row": 6, "section": 3, "seat": 27 },
-        { "id": 913, "price": "", "row": 6, "section": 3, "seat": 28 },
-        { "id": 909, "price": "", "row": 6, "section": 3, "seat": 29 },
-
-        { "id": 933, "price": "", "row": 7, "section": 3, "seat": 18 },
-        { "id": 926, "price": "", "row": 7, "section": 3, "seat": 19 },
-        { "id": 912, "price": "", "row": 7, "section": 3, "seat": 20 },
-        { "id": 906, "price": "", "row": 7, "section": 3, "seat": 21 },
-        { "id": 900, "price": "", "row": 7, "section": 3, "seat": 22 },
-        { "id": 895, "price": "", "row": 7, "section": 3, "seat": 23 },
-        { "id": 890, "price": "", "row": 7, "section": 3, "seat": 24 },
-        { "id": 885, "price": "", "row": 7, "section": 3, "seat": 25 },
-        { "id": 881, "price": "", "row": 7, "section": 3, "seat": 26 },
-        { "id": 879, "price": "", "row": 7, "section": 3, "seat": 27 },
-        { "id": 877, "price": "", "row": 7, "section": 3, "seat": 28 },
-        { "id": 873, "price": "", "row": 7, "section": 3, "seat": 29 },
-
-        { "id": 899, "price": "", "row": 8, "section": 3, "seat": 9 },
-        { "id": 893, "price": "", "row": 8, "section": 3, "seat": 10 },
-        { "id": 883, "price": "", "row": 8, "section": 3, "seat": 11 },
-        { "id": 872, "price": "", "row": 8, "section": 3, "seat": 12 },
-        { "id": 865, "price": "", "row": 8, "section": 3, "seat": 13 },
-        { "id": 861, "price": "", "row": 8, "section": 3, "seat": 14 },
-        { "id": 854, "price": "", "row": 8, "section": 3, "seat": 15 },
-        { "id": 851, "price": "", "row": 8, "section": 3, "seat": 16 },
-        { "id": 849, "price": "", "row": 8, "section": 3, "seat": 17 },
-        { "id": 844, "price": "", "row": 8, "section": 3, "seat": 18 },
-        { "id": 841, "price": "", "row": 8, "section": 3, "seat": 19 },
-        { "id": 836, "price": "", "row": 8, "section": 3, "seat": 20 },
-        { "id": 837, "price": "", "row": 8, "section": 3, "seat": 21 },
-
-        { "id": 871, "price": "", "row": 9, "section": 3, "seat": 10 },
-        { "id": 863, "price": "", "row": 9, "section": 3, "seat": 11 },
-        { "id": 853, "price": "", "row": 9, "section": 3, "seat": 12 },
-        { "id": 847, "price": "", "row": 9, "section": 3, "seat": 13 },
-        { "id": 835, "price": "", "row": 9, "section": 3, "seat": 14 },
-        { "id": 831, "price": "", "row": 9, "section": 3, "seat": 15 },
-        { "id": 827, "price": "", "row": 9, "section": 3, "seat": 16 },
-        { "id": 824, "price": "", "row": 9, "section": 3, "seat": 17 },
-        { "id": 820, "price": "", "row": 9, "section": 3, "seat": 18 },
-        { "id": 817, "price": "", "row": 9, "section": 3, "seat": 19 },
-        { "id": 811, "price": "", "row": 9, "section": 3, "seat": 20 },
-        { "id": 809, "price": "", "row": 9, "section": 3, "seat": 21 },
-        { "id": 807, "price": "", "row": 9, "section": 3, "seat": 22 },
-        { "id": 805, "price": "", "row": 9, "section": 3, "seat": 23 },
-
-        { "id": 833, "price": "", "row": 10, "section": 3, "seat": 10 },
-        { "id": 826, "price": "", "row": 10, "section": 3, "seat": 11 },
-        { "id": 822, "price": "", "row": 10, "section": 3, "seat": 12 },
-        { "id": 814, "price": "", "row": 10, "section": 3, "seat": 13 },
-        { "id": 803, "price": "", "row": 10, "section": 3, "seat": 14 },
-        { "id": 798, "price": "", "row": 10, "section": 3, "seat": 15 },
-        { "id": 794, "price": "", "row": 10, "section": 3, "seat": 16 },
-        { "id": 792, "price": "", "row": 10, "section": 3, "seat": 17 },
-        { "id": 788, "price": "", "row": 10, "section": 3, "seat": 18 },
-        { "id": 785, "price": "", "row": 10, "section": 3, "seat": 19 },
-        { "id": 782, "price": "", "row": 10, "section": 3, "seat": 20 },
-        { "id": 780, "price": "", "row": 10, "section": 3, "seat": 21 },
-        { "id": 777, "price": "", "row": 10, "section": 3, "seat": 22 },
-
-        { "id": 813, "price": "", "row": 11, "section": 3, "seat": 6 },
-        { "id": 800, "price": "", "row": 11, "section": 3, "seat": 7 },
-        { "id": 796, "price": "", "row": 11, "section": 3, "seat": 8 },
-        { "id": 790, "price": "", "row": 11, "section": 3, "seat": 9 },
-        { "id": 784, "price": "", "row": 11, "section": 3, "seat": 10 },
-        { "id": 774, "price": "", "row": 11, "section": 3, "seat": 11 },
-        { "id": 771, "price": "", "row": 11, "section": 3, "seat": 12 },
-        { "id": 767, "price": "", "row": 11, "section": 3, "seat": 13 },
-        { "id": 764, "price": "", "row": 11, "section": 3, "seat": 14 },
-        { "id": 759, "price": "", "row": 11, "section": 3, "seat": 15 },
-        { "id": 754, "price": "", "row": 11, "section": 3, "seat": 16 },
-        { "id": 752, "price": "", "row": 11, "section": 3, "seat": 17 },
-        { "id": 749, "price": "", "row": 11, "section": 3, "seat": 18 },
-        { "id": 745, "price": "", "row": 11, "section": 3, "seat": 19 },
-
-        { "id": 776, "price": "", "row": 12, "section": 3, "seat": 2 },
-        { "id": 769, "price": "", "row": 12, "section": 3, "seat": 3 },
-        { "id": 763, "price": "", "row": 12, "section": 3, "seat": 4 },
-        { "id": 756, "price": "", "row": 12, "section": 3, "seat": 5 },
-        { "id": 748, "price": "", "row": 12, "section": 3, "seat": 6 },
-        { "id": 742, "price": "", "row": 12, "section": 3, "seat": 7 },
-        { "id": 736, "price": "", "row": 12, "section": 3, "seat": 8 },
-        { "id": 733, "price": "", "row": 12, "section": 3, "seat": 9 },
-        { "id": 729, "price": "", "row": 12, "section": 3, "seat": 10 },
-        { "id": 725, "price": "", "row": 12, "section": 3, "seat": 11 },
-        { "id": 721, "price": "", "row": 12, "section": 3, "seat": 12 },
-        { "id": 719, "price": "", "row": 12, "section": 3, "seat": 13 },
-        { "id": 716, "price": "", "row": 12, "section": 3, "seat": 14 },
-
-        { "id": 758, "price": "", "row": 13, "section": 3, "seat": 1 },
-        { "id": 744, "price": "", "row": 13, "section": 3, "seat": 2 },
-        { "id": 739, "price": "", "row": 13, "section": 3, "seat": 3 },
-        { "id": 731, "price": "", "row": 13, "section": 3, "seat": 4 },
-        { "id": 431, "price": "", "row": 13, "section": 3, "seat": 5 },
-        { "id": 724, "price": "", "row": 13, "section": 3, "seat": 6 },
-        { "id": 715, "price": "", "row": 13, "section": 3, "seat": 7 },
-        { "id": 711, "price": "", "row": 13, "section": 3, "seat": 8 },
-        { "id": 709, "price": "", "row": 13, "section": 3, "seat": 9 },
-        { "id": 706, "price": "", "row": 13, "section": 3, "seat": 10 },
-        { "id": 703, "price": "", "row": 13, "section": 3, "seat": 11 },
-        { "id": 700, "price": "", "row": 13, "section": 3, "seat": 12 },
-        { "id": 698, "price": "", "row": 13, "section": 3, "seat": 13 },
-        { "id": 696, "price": "", "row": 13, "section": 3, "seat": 14 },
-        { "id": 694, "price": "", "row": 13, "section": 3, "seat": 15 },
-
-        { "id": 684, "price": "", "row": 14, "section": 3, "seat": 1 },
-        { "id": 681, "price": "", "row": 14, "section": 3, "seat": 2 },
-        { "id": 678, "price": "", "row": 14, "section": 3, "seat": 3 },
-
-        { "id": 1130, "price": "", "row": 1, "section": 4, "seat": 20 },
-        { "id": 1134, "price": "", "row": 1, "section": 4, "seat": 21 },
-        { "id": 1136, "price": "", "row": 1, "section": 4, "seat": 22 },
-        { "id": 1139, "price": "", "row": 1, "section": 4, "seat": 23 },
-        { "id": 1149, "price": "", "row": 1, "section": 4, "seat": 24 },
-        { "id": 1153, "price": "", "row": 1, "section": 4, "seat": 25 },
-        { "id": 1159, "price": "", "row": 1, "section": 4, "seat": 26 },
-        { "id": 1167, "price": "", "row": 1, "section": 4, "seat": 27 },
-
-        { "id": 1086, "price": "", "row": 2, "section": 4, "seat": 23 },
-        { "id": 1090, "price": "", "row": 2, "section": 4, "seat": 24 },
-        { "id": 1093, "price": "", "row": 2, "section": 4, "seat": 25 },
-        { "id": 1096, "price": "", "row": 2, "section": 4, "seat": 26 },
-        { "id": 1098, "price": "", "row": 2, "section": 4, "seat": 27 },
-        { "id": 1104, "price": "", "row": 2, "section": 4, "seat": 28 },
-        { "id": 1109, "price": "", "row": 2, "section": 4, "seat": 29 },
-        { "id": 1116, "price": "", "row": 2, "section": 4, "seat": 30 },
-        { "id": 1122, "price": "", "row": 2, "section": 4, "seat": 31 },
-
-        { "id": 1041, "price": "", "row": 3, "section": 4, "seat": 25 },
-        { "id": 1046, "price": "", "row": 3, "section": 4, "seat": 26 },
-        { "id": 1050, "price": "", "row": 3, "section": 4, "seat": 27 },
-        { "id": 1053, "price": "", "row": 3, "section": 4, "seat": 28 },
-        { "id": 1057, "price": "", "row": 3, "section": 4, "seat": 29 },
-        { "id": 1063, "price": "", "row": 3, "section": 4, "seat": 30 },
-        { "id": 1067, "price": "", "row": 3, "section": 4, "seat": 31 },
-        { "id": 1072, "price": "", "row": 3, "section": 4, "seat": 32 },
-        { "id": 1078, "price": "", "row": 3, "section": 4, "seat": 33 },
-        { "id": 1087, "price": "", "row": 3, "section": 4, "seat": 34 },
-
-        { "id": 998, "price": "", "row": 4, "section": 4, "seat": 27 },
-        { "id": 1003, "price": "", "row": 4, "section": 4, "seat": 28 },
-        { "id": 1006, "price": "", "row": 4, "section": 4, "seat": 29 },
-        { "id": 1008, "price": "", "row": 4, "section": 4, "seat": 30 },
-        { "id": 1012, "price": "", "row": 4, "section": 4, "seat": 31 },
-        { "id": 1019, "price": "", "row": 4, "section": 4, "seat": 32 },
-        { "id": 1024, "price": "", "row": 4, "section": 4, "seat": 33 },
-        { "id": 1028, "price": "", "row": 4, "section": 4, "seat": 34 },
-        { "id": 1038, "price": "", "row": 4, "section": 4, "seat": 35 },
-        { "id": 1047, "price": "", "row": 4, "section": 4, "seat": 36 },
-        { "id": 1058, "price": "", "row": 4, "section": 4, "seat": 37 },
-
-        { "id": 949, "price": "", "row": 5, "section": 4, "seat": 28 },
-        { "id": 953, "price": "", "row": 5, "section": 4, "seat": 29 },
-        { "id": 959, "price": "", "row": 5, "section": 4, "seat": 30 },
-        { "id": 963, "price": "", "row": 5, "section": 4, "seat": 31 },
-        { "id": 967, "price": "", "row": 5, "section": 4, "seat": 32 },
-        { "id": 971, "price": "", "row": 5, "section": 4, "seat": 33 },
-        { "id": 978, "price": "", "row": 5, "section": 4, "seat": 34 },
-        { "id": 985, "price": "", "row": 5, "section": 4, "seat": 35 },
-        { "id": 989, "price": "", "row": 5, "section": 4, "seat": 36 },
-        { "id": 999, "price": "", "row": 5, "section": 4, "seat": 37 },
-        { "id": 1013, "price": "", "row": 5, "section": 4, "seat": 38 },
-
-        { "id": 910, "price": "", "row": 6, "section": 4, "seat": 30 },
-        { "id": 914, "price": "", "row": 6, "section": 4, "seat": 31 },
-        { "id": 917, "price": "", "row": 6, "section": 4, "seat": 32 },
-        { "id": 920, "price": "", "row": 6, "section": 4, "seat": 33 },
-        { "id": 924, "price": "", "row": 6, "section": 4, "seat": 34 },
-        { "id": 930, "price": "", "row": 6, "section": 4, "seat": 35 },
-        { "id": 935, "price": "", "row": 6, "section": 4, "seat": 36 },
-        { "id": 941, "price": "", "row": 6, "section": 4, "seat": 37 },
-        { "id": 946, "price": "", "row": 6, "section": 4, "seat": 38 },
-        { "id": 954, "price": "", "row": 6, "section": 4, "seat": 39 },
-        { "id": 969, "price": "", "row": 6, "section": 4, "seat": 40 },
-        { "id": 979, "price": "", "row": 6, "section": 4, "seat": 41 },
-
-        { "id": 874, "price": "", "row": 7, "section": 4, "seat": 30 },
-        { "id": 878, "price": "", "row": 7, "section": 4, "seat": 31 },
-        { "id": 880, "price": "", "row": 7, "section": 4, "seat": 32 },
-        { "id": 882, "price": "", "row": 7, "section": 4, "seat": 33 },
-        { "id": 886, "price": "", "row": 7, "section": 4, "seat": 34 },
-        { "id": 891, "price": "", "row": 7, "section": 4, "seat": 35 },
-        { "id": 896, "price": "", "row": 7, "section": 4, "seat": 36 },
-        { "id": 901, "price": "", "row": 7, "section": 4, "seat": 37 },
-        { "id": 907, "price": "", "row": 7, "section": 4, "seat": 38 },
-        { "id": 915, "price": "", "row": 7, "section": 4, "seat": 39 },
-        { "id": 927, "price": "", "row": 7, "section": 4, "seat": 40 },
-        { "id": 936, "price": "", "row": 7, "section": 4, "seat": 41 },
-
-        { "id": 838, "price": "", "row": 8, "section": 4, "seat": 22 },
-        { "id": 839, "price": "", "row": 8, "section": 4, "seat": 23 },
-        { "id": 842, "price": "", "row": 8, "section": 4, "seat": 24 },
-        { "id": 845, "price": "", "row": 8, "section": 4, "seat": 25 },
-        { "id": 850, "price": "", "row": 8, "section": 4, "seat": 26 },
-        { "id": 852, "price": "", "row": 8, "section": 4, "seat": 27 },
-        { "id": 855, "price": "", "row": 8, "section": 4, "seat": 28 },
-        { "id": 862, "price": "", "row": 8, "section": 4, "seat": 29 },
-        { "id": 866, "price": "", "row": 8, "section": 4, "seat": 30 },
-        { "id": 875, "price": "", "row": 8, "section": 4, "seat": 31 },
-        { "id": 884, "price": "", "row": 8, "section": 4, "seat": 32 },
-        { "id": 894, "price": "", "row": 8, "section": 4, "seat": 33 },
-        { "id": 902, "price": "", "row": 8, "section": 4, "seat": 34 },
-
-        { "id": 806, "price": "", "row": 9, "section": 4, "seat": 24 },
-        { "id": 808, "price": "", "row": 9, "section": 4, "seat": 25 },
-        { "id": 810, "price": "", "row": 9, "section": 4, "seat": 26 },
-        { "id": 812, "price": "", "row": 9, "section": 4, "seat": 27 },
-        { "id": 818, "price": "", "row": 9, "section": 4, "seat": 28 },
-        { "id": 821, "price": "", "row": 9, "section": 4, "seat": 29 },
-        { "id": 825, "price": "", "row": 9, "section": 4, "seat": 30 },
-        { "id": 828, "price": "", "row": 9, "section": 4, "seat": 31 },
-        { "id": 832, "price": "", "row": 9, "section": 4, "seat": 32 },
-        { "id": 840, "price": "", "row": 9, "section": 4, "seat": 33 },
-        { "id": 848, "price": "", "row": 9, "section": 4, "seat": 34 },
-        { "id": 856, "price": "", "row": 9, "section": 4, "seat": 35 },
-        { "id": 864, "price": "", "row": 9, "section": 4, "seat": 36 },
-        { "id": 876, "price": "", "row": 9, "section": 4, "seat": 37 },
-
-        { "id": 778, "price": "", "row": 10, "section": 4, "seat": 23 },
-        { "id": 781, "price": "", "row": 10, "section": 4, "seat": 24 },
-        { "id": 783, "price": "", "row": 10, "section": 4, "seat": 25 },
-        { "id": 786, "price": "", "row": 10, "section": 4, "seat": 26 },
-        { "id": 789, "price": "", "row": 10, "section": 4, "seat": 27 },
-        { "id": 793, "price": "", "row": 10, "section": 4, "seat": 28 },
-        { "id": 795, "price": "", "row": 10, "section": 4, "seat": 29 },
-        { "id": 799, "price": "", "row": 10, "section": 4, "seat": 30 },
-        { "id": 804, "price": "", "row": 10, "section": 4, "seat": 31 },
-        { "id": 815, "price": "", "row": 10, "section": 4, "seat": 32 },
-        { "id": 823, "price": "", "row": 10, "section": 4, "seat": 33 },
-        { "id": 829, "price": "", "row": 10, "section": 4, "seat": 34 },
-        { "id": 834, "price": "", "row": 10, "section": 4, "seat": 35 },
-
-        { "id": 746, "price": "", "row": 11, "section": 4, "seat": 20 },
-        { "id": 750, "price": "", "row": 11, "section": 4, "seat": 21 },
-        { "id": 753, "price": "", "row": 11, "section": 4, "seat": 22 },
-        { "id": 755, "price": "", "row": 11, "section": 4, "seat": 23 },
-        { "id": 760, "price": "", "row": 11, "section": 4, "seat": 24 },
-        { "id": 765, "price": "", "row": 11, "section": 4, "seat": 25 },
-        { "id": 768, "price": "", "row": 11, "section": 4, "seat": 26 },
-        { "id": 772, "price": "", "row": 11, "section": 4, "seat": 27 },
-        { "id": 775, "price": "", "row": 11, "section": 4, "seat": 28 },
-        { "id": 787, "price": "", "row": 11, "section": 4, "seat": 29 },
-        { "id": 791, "price": "", "row": 11, "section": 4, "seat": 30 },
-        { "id": 797, "price": "", "row": 11, "section": 4, "seat": 31 },
-        { "id": 801, "price": "", "row": 11, "section": 4, "seat": 32 },
-        { "id": 816, "price": "", "row": 11, "section": 4, "seat": 33 },
-
-        { "id": 717, "price": "", "row": 12, "section": 4, "seat": 15 },
-        { "id": 720, "price": "", "row": 12, "section": 4, "seat": 16 },
-        { "id": 722, "price": "", "row": 12, "section": 4, "seat": 17 },
-        { "id": 726, "price": "", "row": 12, "section": 4, "seat": 18 },
-        { "id": 730, "price": "", "row": 12, "section": 4, "seat": 19 },
-        { "id": 734, "price": "", "row": 12, "section": 4, "seat": 20 },
-        { "id": 737, "price": "", "row": 12, "section": 4, "seat": 21 },
-        { "id": 743, "price": "", "row": 12, "section": 4, "seat": 22 },
-        { "id": 751, "price": "", "row": 12, "section": 4, "seat": 23 },
-        { "id": 757, "price": "", "row": 12, "section": 4, "seat": 24 },
-        { "id": 766, "price": "", "row": 12, "section": 4, "seat": 25 },
-        { "id": 770, "price": "", "row": 12, "section": 4, "seat": 26 },
-        { "id": 779, "price": "", "row": 12, "section": 4, "seat": 27 },
-
-        { "id": 695, "price": "", "row": 13, "section": 4, "seat": 16 },
-        { "id": 697, "price": "", "row": 13, "section": 4, "seat": 17 },
-        { "id": 699, "price": "", "row": 13, "section": 4, "seat": 18 },
-        { "id": 701, "price": "", "row": 13, "section": 4, "seat": 19 },
-        { "id": 704, "price": "", "row": 13, "section": 4, "seat": 20 },
-        { "id": 707, "price": "", "row": 13, "section": 4, "seat": 21 },
-        { "id": 710, "price": "", "row": 13, "section": 4, "seat": 22 },
-        { "id": 712, "price": "", "row": 13, "section": 4, "seat": 23 },
-        { "id": 718, "price": "", "row": 13, "section": 4, "seat": 24 },
-        { "id": 727, "price": "", "row": 13, "section": 4, "seat": 25 },
-        { "id": 732, "price": "", "row": 13, "section": 4, "seat": 26 },
-        { "id": 740, "price": "", "row": 13, "section": 4, "seat": 27 },
-        { "id": 747, "price": "", "row": 13, "section": 4, "seat": 28 },
-        { "id": 761, "price": "", "row": 13, "section": 4, "seat": 29 },
-
-        { "id": 679, "price": "", "row": 14, "section": 4, "seat": 4 },
-        { "id": 682, "price": "", "row": 14, "section": 4, "seat": 5 },
-        { "id": 685, "price": "", "row": 14, "section": 4, "seat": 6 },
-
-        { "id": 1177, "price": "", "row": 1, "section": 5, "seat": 28 },
-        { "id": 1189, "price": "", "row": 1, "section": 5, "seat": 29 },
-        { "id": 1194, "price": "", "row": 1, "section": 5, "seat": 30 },
-        { "id": 1206, "price": "", "row": 1, "section": 5, "seat": 31 },
-        { "id": 1216, "price": "", "row": 1, "section": 5, "seat": 32 },
-        { "id": 1222, "price": "", "row": 1, "section": 5, "seat": 33 },
-
-        { "id": 1140, "price": "", "row": 2, "section": 5, "seat": 32 },
-        { "id": 1154, "price": "", "row": 2, "section": 5, "seat": 33 },
-        { "id": 1163, "price": "", "row": 2, "section": 5, "seat": 34 },
-        { "id": 1174, "price": "", "row": 2, "section": 5, "seat": 35 },
-        { "id": 1183, "price": "", "row": 2, "section": 5, "seat": 36 },
-        { "id": 1192, "price": "", "row": 2, "section": 5, "seat": 37 },
-        { "id": 1204, "price": "", "row": 2, "section": 5, "seat": 38 },
-
-        { "id": 1110, "price": "", "row": 3, "section": 5, "seat": 35 },
-        { "id": 1119, "price": "", "row": 3, "section": 5, "seat": 36 },
-        { "id": 1131, "price": "", "row": 3, "section": 5, "seat": 37 },
-        { "id": 1139, "price": "", "row": 3, "section": 5, "seat": 38 },
-        { "id": 1144, "price": "", "row": 3, "section": 5, "seat": 39 },
-        { "id": 1156, "price": "", "row": 3, "section": 5, "seat": 40 },
-        { "id": 1172, "price": "", "row": 3, "section": 5, "seat": 41 },
-        { "id": 1184, "price": "", "row": 3, "section": 5, "seat": 42 },
-
-        { "id": 1076, "price": "", "row": 4, "section": 5, "seat": 38 },
-        { "id": 1088, "price": "", "row": 4, "section": 5, "seat": 39 },
-        { "id": 1101, "price": "", "row": 4, "section": 5, "seat": 40 },
-        { "id": 1113, "price": "", "row": 4, "section": 5, "seat": 41 },
-        { "id": 1127, "price": "", "row": 4, "section": 5, "seat": 42 },
-        { "id": 1145, "price": "", "row": 4, "section": 5, "seat": 43 },
-        { "id": 1160, "price": "", "row": 4, "section": 5, "seat": 44 },
-        { "id": 1033, "price": "", "row": 5, "section": 5, "seat": 39 },
-        { "id": 1048, "price": "", "row": 5, "section": 5, "seat": 40 },
-        { "id": 1060, "price": "", "row": 5, "section": 5, "seat": 41 },
-
-        { "id": 1070, "price": "", "row": 5, "section": 5, "seat": 42 },
-        { "id": 1081, "price": "", "row": 5, "section": 5, "seat": 43 },
-        { "id": 1102, "price": "", "row": 5, "section": 5, "seat": 44 },
-        { "id": 1117, "price": "", "row": 5, "section": 5, "seat": 45 },
-        { "id": 1132, "price": "", "row": 5, "section": 5, "seat": 46 },
-
-        { "id": 1004, "price": "", "row": 6, "section": 5, "seat": 42 },
-        { "id": 1020, "price": "", "row": 6, "section": 5, "seat": 43 },
-        { "id": 1029, "price": "", "row": 6, "section": 5, "seat": 44 },
-        { "id": 1042, "price": "", "row": 6, "section": 5, "seat": 45 },
-        { "id": 1064, "price": "", "row": 6, "section": 5, "seat": 46 },
-        { "id": 1074, "price": "", "row": 6, "section": 5, "seat": 47 },
-        { "id": 1094, "price": "", "row": 6, "section": 5, "seat": 48 },
-        { "id": 1111, "price": "", "row": 6, "section": 5, "seat": 49 },
-
-        { "id": 960, "price": "", "row": 7, "section": 5, "seat": 42 },
-        { "id": 973, "price": "", "row": 7, "section": 5, "seat": 43 },
-        { "id": 987, "price": "", "row": 7, "section": 5, "seat": 44 },
-        { "id": 1000, "price": "", "row": 7, "section": 5, "seat": 45 },
-        { "id": 1021, "price": "", "row": 7, "section": 5, "seat": 46 },
-        { "id": 1034, "price": "", "row": 7, "section": 5, "seat": 47 },
-        { "id": 1054, "price": "", "row": 7, "section": 5, "seat": 48 },
-        { "id": 1068, "price": "", "row": 7, "section": 5, "seat": 49 },
-        { "id": 1082, "price": "", "row": 7, "section": 5, "seat": 50 },
-
-        { "id": 925, "price": "", "row": 8, "section": 5, "seat": 35 },
-        { "id": 937, "price": "", "row": 8, "section": 5, "seat": 36 },
-        { "id": 947, "price": "", "row": 8, "section": 5, "seat": 37 },
-        { "id": 965, "price": "", "row": 8, "section": 5, "seat": 38 },
-        { "id": 983, "price": "", "row": 8, "section": 5, "seat": 39 },
-        { "id": 992, "price": "", "row": 8, "section": 5, "seat": 40 },
-        { "id": 1014, "price": "", "row": 8, "section": 5, "seat": 41 },
-        { "id": 1030, "price": "", "row": 8, "section": 5, "seat": 42 },
-
-        { "id": 898, "price": "", "row": 9, "section": 5, "seat": 38 },
-        { "id": 911, "price": "", "row": 9, "section": 5, "seat": 39 },
-        { "id": 931, "price": "", "row": 9, "section": 5, "seat": 40 },
-        { "id": 943, "price": "", "row": 9, "section": 5, "seat": 41 },
-        { "id": 961, "price": "", "row": 9, "section": 5, "seat": 42 },
-        { "id": 980, "price": "", "row": 9, "section": 5, "seat": 43 },
-        { "id": 993, "price": "", "row": 9, "section": 5, "seat": 44 },
-        { "id": 1022, "price": "", "row": 9, "section": 5, "seat": 45 },
-        { "id": 1036, "price": "", "row": 9, "section": 5, "seat": 46 },
-
-        { "id": 860, "price": "", "row": 10, "section": 5, "seat": 36 },
-        { "id": 869, "price": "", "row": 10, "section": 5, "seat": 37 },
-        { "id": 888, "price": "", "row": 10, "section": 5, "seat": 38 },
-        { "id": 904, "price": "", "row": 10, "section": 5, "seat": 39 },
-        { "id": 921, "price": "", "row": 10, "section": 5, "seat": 40 },
-        { "id": 939, "price": "", "row": 10, "section": 5, "seat": 41 },
-        { "id": 955, "price": "", "row": 10, "section": 5, "seat": 42 },
-        { "id": 981, "price": "", "row": 10, "section": 5, "seat": 43 },
-
-        { "id": 846, "price": "", "row": 11, "section": 5, "seat": 34 },
-        { "id": 858, "price": "", "row": 11, "section": 5, "seat": 35 },
-        { "id": 870, "price": "", "row": 11, "section": 5, "seat": 36 },
-        { "id": 892, "price": "", "row": 11, "section": 5, "seat": 37 },
-        { "id": 905, "price": "", "row": 11, "section": 5, "seat": 38 },
-
-        { "id": 819, "price": "", "row": 12, "section": 5, "seat": 28 },
-
-        { "id": 773, "price": "", "row": 1, "section": 7, "seat": 1 },
-        { "id": 762, "price": "", "row": 1, "section": 7, "seat": 2 },
-        { "id": 741, "price": "", "row": 1, "section": 7, "seat": 3 },
-        { "id": 723, "price": "", "row": 1, "section": 7, "seat": 4 },
-        { "id": 708, "price": "", "row": 1, "section": 7, "seat": 5 },
-        { "id": 693, "price": "", "row": 1, "section": 7, "seat": 6 },
-        { "id": 689, "price": "", "row": 1, "section": 7, "seat": 7 },
-        { "id": 677, "price": "", "row": 1, "section": 7, "seat": 8 },
-        { "id": 670, "price": "", "row": 1, "section": 7, "seat": 9 },
-        { "id": 660, "price": "", "row": 1, "section": 7, "seat": 10 },
-        { "id": 648, "price": "", "row": 1, "section": 7, "seat": 11 },
-
-
-
-        { "id": 632, "price": "", "row": 1, "section": 7, "seat": 12 },
-        { "id": 617, "price": "", "row": 1, "section": 7, "seat": 13 },
-        { "id": 604, "price": "", "row": 1, "section": 7, "seat": 14 },
-        { "id": 590, "price": "", "row": 1, "section": 7, "seat": 15 },
-        { "id": 573, "price": "", "row": 1, "section": 7, "seat": 16 },
-
-        { "id": 735, "price": "", "row": 2, "section": 7, "seat": 1 },
-        { "id": 714, "price": "", "row": 2, "section": 7, "seat": 2 },
-        { "id": 702, "price": "", "row": 2, "section": 7, "seat": 3 },
-        { "id": 691, "price": "", "row": 2, "section": 7, "seat": 4 },
-        { "id": 680, "price": "", "row": 2, "section": 7, "seat": 5 },
-        { "id": 669, "price": "", "row": 2, "section": 7, "seat": 6 },
-        { "id": 655, "price": "", "row": 2, "section": 7, "seat": 7 },
-        { "id": 641, "price": "", "row": 2, "section": 7, "seat": 8 },
-        { "id": 618, "price": "", "row": 2, "section": 7, "seat": 9 },
-        { "id": 603, "price": "", "row": 2, "section": 7, "seat": 10 },
-        { "id": 589, "price": "", "row": 2, "section": 7, "seat": 11 },
-        { "id": 571, "price": "", "row": 2, "section": 7, "seat": 12 },
-        { "id": 559, "price": "", "row": 2, "section": 7, "seat": 13 },
-        { "id": 541, "price": "", "row": 2, "section": 7, "seat": 14 },
-        { "id": 531, "price": "", "row": 2, "section": 7, "seat": 15 },
-
-        { "id": 687, "price": "", "row": 1, "section": 8, "seat": 1 },
-        { "id": 675, "price": "", "row": 1, "section": 8, "seat": 2 },
-        { "id": 672, "price": "", "row": 1, "section": 8, "seat": 3 },
-        { "id": 667, "price": "", "row": 1, "section": 8, "seat": 4 },
-        { "id": 661, "price": "", "row": 1, "section": 8, "seat": 5 },
-        { "id": 657, "price": "", "row": 1, "section": 8, "seat": 6 },
-        { "id": 652, "price": "", "row": 1, "section": 8, "seat": 7 },
-        { "id": 646, "price": "", "row": 1, "section": 8, "seat": 8 },
-        { "id": 644, "price": "", "row": 1, "section": 8, "seat": 9 },
-        { "id": 638, "price": "", "row": 1, "section": 8, "seat": 10 },
-        { "id": 633, "price": "", "row": 1, "section": 8, "seat": 11 },
-        { "id": 628, "price": "", "row": 1, "section": 8, "seat": 12 },
-        { "id": 626, "price": "", "row": 1, "section": 8, "seat": 13 },
-        { "id": 623, "price": "", "row": 1, "section": 8, "seat": 14 },
-
-        { "id": 665, "price": "", "row": 2, "section": 8, "seat": 1 },
-        { "id": 656, "price": "", "row": 2, "section": 8, "seat": 2 },
-        { "id": 649, "price": "", "row": 2, "section": 8, "seat": 3 },
-        { "id": 642, "price": "", "row": 2, "section": 8, "seat": 4 },
-        { "id": 630, "price": "", "row": 2, "section": 8, "seat": 5 },
-        { "id": 620, "price": "", "row": 2, "section": 8, "seat": 6 },
-        { "id": 614, "price": "", "row": 2, "section": 8, "seat": 7 },
-        { "id": 609, "price": "", "row": 2, "section": 8, "seat": 8 },
-        { "id": 606, "price": "", "row": 2, "section": 8, "seat": 9 },
-        { "id": 597, "price": "", "row": 2, "section": 8, "seat": 10 },
-        { "id": 593, "price": "", "row": 2, "section": 8, "seat": 11 },
-        { "id": 591, "price": "", "row": 2, "section": 8, "seat": 12 },
-        { "id": 584, "price": "", "row": 2, "section": 8, "seat": 13 },
-        { "id": 580, "price": "", "row": 2, "section": 8, "seat": 14 },
-
-        { "id": 636, "price": "", "row": 3, "section": 8, "seat": 1 },
-        { "id": 619, "price": "", "row": 3, "section": 8, "seat": 2 },
-        { "id": 612, "price": "", "row": 3, "section": 8, "seat": 3 },
-        { "id": 605, "price": "", "row": 3, "section": 8, "seat": 4 },
-        { "id": 595, "price": "", "row": 3, "section": 8, "seat": 5 },
-        { "id": 579, "price": "", "row": 3, "section": 8, "seat": 6 },
-        { "id": 577, "price": "", "row": 3, "section": 8, "seat": 7 },
-        { "id": 569, "price": "", "row": 3, "section": 8, "seat": 8 },
-        { "id": 566, "price": "", "row": 3, "section": 8, "seat": 9 },
-        { "id": 560, "price": "", "row": 3, "section": 8, "seat": 10 },
-        { "id": 556, "price": "", "row": 3, "section": 8, "seat": 11 },
-        { "id": 552, "price": "", "row": 3, "section": 8, "seat": 12 },
-        { "id": 547, "price": "", "row": 3, "section": 8, "seat": 13 },
-        { "id": 544, "price": "", "row": 3, "section": 8, "seat": 14 },
-        { "id": 542, "price": "", "row": 3, "section": 8, "seat": 15 },
-
-        { "id": 599, "price": "", "row": 4, "section": 8, "seat": 1 },
-        { "id": 583, "price": "", "row": 4, "section": 8, "seat": 2 },
-        { "id": 574, "price": "", "row": 4, "section": 8, "seat": 3 },
-        { "id": 565, "price": "", "row": 4, "section": 8, "seat": 4 },
-        { "id": 555, "price": "", "row": 4, "section": 8, "seat": 5 },
-        { "id": 546, "price": "", "row": 4, "section": 8, "seat": 6 },
-        { "id": 537, "price": "", "row": 4, "section": 8, "seat": 7 },
-        { "id": 533, "price": "", "row": 4, "section": 8, "seat": 8 },
-        { "id": 527, "price": "", "row": 4, "section": 8, "seat": 9 },
-        { "id": 528, "price": "", "row": 4, "section": 8, "seat": 10 },
-        { "id": 518, "price": "", "row": 4, "section": 8, "seat": 11 },
-        { "id": 514, "price": "", "row": 4, "section": 8, "seat": 12 },
-        { "id": 512, "price": "", "row": 4, "section": 8, "seat": 13 },
-        { "id": 508, "price": "", "row": 4, "section": 8, "seat": 14 },
-        { "id": 504, "price": "", "row": 4, "section": 8, "seat": 15 },
-
-        { "id": 563, "price": "", "row": 5, "section": 8, "seat": 1 },
-        { "id": 551, "price": "", "row": 5, "section": 8, "seat": 2 },
-        { "id": 539, "price": "", "row": 5, "section": 8, "seat": 3 },
-        { "id": 532, "price": "", "row": 5, "section": 8, "seat": 4 },
-        { "id": 524, "price": "", "row": 5, "section": 8, "seat": 5 },
-        { "id": 516, "price": "", "row": 5, "section": 8, "seat": 6 },
-        { "id": 507, "price": "", "row": 5, "section": 8, "seat": 7 },
-        { "id": 502, "price": "", "row": 5, "section": 8, "seat": 8 },
-        { "id": 496, "price": "", "row": 5, "section": 8, "seat": 9 },
-        { "id": 494, "price": "", "row": 5, "section": 8, "seat": 10 },
-        { "id": 488, "price": "", "row": 5, "section": 8, "seat": 11 },
-        { "id": 486, "price": "", "row": 5, "section": 8, "seat": 12 },
-        { "id": 482, "price": "", "row": 5, "section": 8, "seat": 13 },
-        { "id": 478, "price": "", "row": 5, "section": 8, "seat": 14 },
-        { "id": 475, "price": "", "row": 5, "section": 8, "seat": 15 },
-        { "id": 472, "price": "", "row": 5, "section": 8, "seat": 16 },
-
-        { "id": 529, "price": "", "row": 6, "section": 8, "seat": 1 },
-        { "id": 520, "price": "", "row": 6, "section": 8, "seat": 2 },
-        { "id": 506, "price": "", "row": 6, "section": 8, "seat": 3 },
-        { "id": 499, "price": "", "row": 6, "section": 8, "seat": 4 },
-        { "id": 492, "price": "", "row": 6, "section": 8, "seat": 5 },
-        { "id": 484, "price": "", "row": 6, "section": 8, "seat": 6 },
-        { "id": 474, "price": "", "row": 6, "section": 8, "seat": 7 },
-        { "id": 468, "price": "", "row": 6, "section": 8, "seat": 8 },
-        { "id": 464, "price": "", "row": 6, "section": 8, "seat": 9 },
-        { "id": 458, "price": "", "row": 6, "section": 8, "seat": 10 },
-        { "id": 455, "price": "", "row": 6, "section": 8, "seat": 11 },
-        { "id": 451, "price": "", "row": 6, "section": 8, "seat": 12 },
-        { "id": 447, "price": "", "row": 6, "section": 8, "seat": 13 },
-        { "id": 444, "price": "", "row": 6, "section": 8, "seat": 14 },
-        { "id": 442, "price": "", "row": 6, "section": 8, "seat": 15 },
-        { "id": 437, "price": "", "row": 6, "section": 8, "seat": 16 },
-
-        { "id": 598, "price": "", "row": 7, "section": 8, "seat": 1 },
-        { "id": 498, "price": "", "row": 7, "section": 8, "seat": 1 },
-        { "id": 490, "price": "", "row": 7, "section": 8, "seat": 2 },
-
-        { "id": 480, "price": "", "row": 7, "section": 8, "seat": 3 },
-        { "id": 467, "price": "", "row": 7, "section": 8, "seat": 4 },
-        { "id": 462, "price": "", "row": 7, "section": 8, "seat": 5 },
-        { "id": 454, "price": "", "row": 7, "section": 8, "seat": 6 },
-        { "id": 446, "price": "", "row": 7, "section": 8, "seat": 7 },
-        { "id": 436, "price": "", "row": 7, "section": 8, "seat": 8 },
-        { "id": 432, "price": "", "row": 7, "section": 8, "seat": 9 },
-        { "id": 426, "price": "", "row": 7, "section": 8, "seat": 10 },
-        { "id": 422, "price": "", "row": 7, "section": 8, "seat": 11 },
-        { "id": 419, "price": "", "row": 7, "section": 8, "seat": 12 },
-        { "id": 415, "price": "", "row": 7, "section": 8, "seat": 13 },
-        { "id": 412, "price": "", "row": 7, "section": 8, "seat": 14 },
-        { "id": 406, "price": "", "row": 7, "section": 8, "seat": 15 },
-        { "id": 402, "price": "", "row": 7, "section": 8, "seat": 16 },
-        { "id": 400, "price": "", "row": 7, "section": 8, "seat": 17 },
-
-        { "id": 466, "price": "", "row": 8, "section": 8, "seat": 1 },
-        { "id": 460, "price": "", "row": 8, "section": 8, "seat": 2 },
-        { "id": 450, "price": "", "row": 8, "section": 8, "seat": 3 },
-        { "id": 435, "price": "", "row": 8, "section": 8, "seat": 4 },
-        { "id": 430, "price": "", "row": 8, "section": 8, "seat": 5 },
-        { "id": 424, "price": "", "row": 8, "section": 8, "seat": 6 },
-        { "id": 414, "price": "", "row": 8, "section": 8, "seat": 7 },
-        { "id": 405, "price": "", "row": 8, "section": 8, "seat": 8 },
-        { "id": 398, "price": "", "row": 8, "section": 8, "seat": 9 },
-        { "id": 393, "price": "", "row": 8, "section": 8, "seat": 10 },
-        { "id": 388, "price": "", "row": 8, "section": 8, "seat": 11 },
-        { "id": 383, "price": "", "row": 8, "section": 8, "seat": 12 },
-        { "id": 380, "price": "", "row": 8, "section": 8, "seat": 13 },
-        { "id": 374, "price": "", "row": 8, "section": 8, "seat": 14 },
-        { "id": 369, "price": "", "row": 8, "section": 8, "seat": 15 },
-        { "id": 366, "price": "", "row": 8, "section": 8, "seat": 16 },
-        { "id": 364, "price": "", "row": 8, "section": 8, "seat": 17 },
-
-        { "id": 434, "price": "", "row": 9, "section": 8, "seat": 1 },
-        { "id": 428, "price": "", "row": 9, "section": 8, "seat": 2 },
-        { "id": 418, "price": "", "row": 9, "section": 8, "seat": 3 },
-        { "id": 404, "price": "", "row": 9, "section": 8, "seat": 4 },
-        { "id": 395, "price": "", "row": 9, "section": 8, "seat": 5 },
-        { "id": 387, "price": "", "row": 9, "section": 8, "seat": 6 },
-        { "id": 379, "price": "", "row": 9, "section": 8, "seat": 7 },
-        { "id": 368, "price": "", "row": 9, "section": 8, "seat": 8 },
-        { "id": 360, "price": "", "row": 9, "section": 8, "seat": 9 },
-        { "id": 358, "price": "", "row": 9, "section": 8, "seat": 10 },
-        { "id": 351, "price": "", "row": 9, "section": 8, "seat": 11 },
-        { "id": 347, "price": "", "row": 9, "section": 8, "seat": 12 },
-        { "id": 344, "price": "", "row": 9, "section": 8, "seat": 13 },
-        { "id": 340, "price": "", "row": 9, "section": 8, "seat": 14 },
-        { "id": 335, "price": "", "row": 9, "section": 8, "seat": 15 },
-        { "id": 332, "price": "", "row": 9, "section": 8, "seat": 16 },
-        { "id": 328, "price": "", "row": 9, "section": 8, "seat": 17 },
-
-        { "id": 410, "price": "", "row": 10, "section": 8, "seat": 1 },
-        { "id": 394, "price": "", "row": 10, "section": 8, "seat": 2 },
-        { "id": 385, "price": "", "row": 10, "section": 8, "seat": 3 },
-        { "id": 373, "price": "", "row": 10, "section": 8, "seat": 4 },
-        { "id": 362, "price": "", "row": 10, "section": 8, "seat": 5 },
-        { "id": 355, "price": "", "row": 10, "section": 8, "seat": 6 },
-        { "id": 346, "price": "", "row": 10, "section": 8, "seat": 7 },
-        { "id": 339, "price": "", "row": 10, "section": 8, "seat": 8 },
-        { "id": 327, "price": "", "row": 10, "section": 8, "seat": 9 },
-        { "id": 322, "price": "", "row": 10, "section": 8, "seat": 10 },
-        { "id": 320, "price": "", "row": 10, "section": 8, "seat": 11 },
-        { "id": 316, "price": "", "row": 10, "section": 8, "seat": 12 },
-        { "id": 312, "price": "", "row": 10, "section": 8, "seat": 13 },
-        { "id": 308, "price": "", "row": 10, "section": 8, "seat": 14 },
-        { "id": 304, "price": "", "row": 10, "section": 8, "seat": 15 },
-        { "id": 302, "price": "", "row": 10, "section": 8, "seat": 16 },
-        { "id": 300, "price": "", "row": 10, "section": 8, "seat": 17 },
-        { "id": 296, "price": "", "row": 10, "section": 8, "seat": 18 },
-
-        { "id": 624, "price": "", "row": 1, "section": 9, "seat": 15 },
-        { "id": 627, "price": "", "row": 1, "section": 9, "seat": 16 },
-        { "id": 629, "price": "", "row": 1, "section": 9, "seat": 17 },
-        { "id": 634, "price": "", "row": 1, "section": 9, "seat": 18 },
-        { "id": 639, "price": "", "row": 1, "section": 9, "seat": 19 },
-        { "id": 645, "price": "", "row": 1, "section": 9, "seat": 20 },
-        { "id": 647, "price": "", "row": 1, "section": 9, "seat": 21 },
-        { "id": 653, "price": "", "row": 1, "section": 9, "seat": 22 },
-        { "id": 658, "price": "", "row": 1, "section": 9, "seat": 23 },
-        { "id": 662, "price": "", "row": 1, "section": 9, "seat": 24 },
-        { "id": 668, "price": "", "row": 1, "section": 9, "seat": 25 },
-        { "id": 673, "price": "", "row": 1, "section": 9, "seat": 26 },
-        { "id": 676, "price": "", "row": 1, "section": 9, "seat": 27 },
-
-        { "id": 581, "price": "", "row": 2, "section": 9, "seat": 15 },
-        { "id": 585, "price": "", "row": 2, "section": 9, "seat": 16 },
-        { "id": 592, "price": "", "row": 2, "section": 9, "seat": 17 },
-        { "id": 594, "price": "", "row": 2, "section": 9, "seat": 18 },
-        { "id": 598, "price": "", "row": 2, "section": 9, "seat": 19 },
-        { "id": 607, "price": "", "row": 2, "section": 9, "seat": 20 },
-        { "id": 610, "price": "", "row": 2, "section": 9, "seat": 21 },
-        { "id": 615, "price": "", "row": 2, "section": 9, "seat": 22 },
-        { "id": 621, "price": "", "row": 2, "section": 9, "seat": 23 },
-        { "id": 631, "price": "", "row": 2, "section": 9, "seat": 24 },
-        { "id": 643, "price": "", "row": 2, "section": 9, "seat": 25 },
-        { "id": 650, "price": "", "row": 2, "section": 9, "seat": 26 },
-        { "id": 659, "price": "", "row": 2, "section": 9, "seat": 27 },
-        { "id": 666, "price": "", "row": 2, "section": 9, "seat": 28 },
-
-        { "id": 543, "price": "", "row": 3, "section": 9, "seat": 16 },
-        { "id": 545, "price": "", "row": 3, "section": 9, "seat": 17 },
-        { "id": 548, "price": "", "row": 3, "section": 9, "seat": 18 },
-        { "id": 553, "price": "", "row": 3, "section": 9, "seat": 19 },
-        { "id": 557, "price": "", "row": 3, "section": 9, "seat": 20 },
-        { "id": 561, "price": "", "row": 3, "section": 9, "seat": 21 },
-        { "id": 567, "price": "", "row": 3, "section": 9, "seat": 22 },
-        { "id": 570, "price": "", "row": 3, "section": 9, "seat": 23 },
-        { "id": 578, "price": "", "row": 3, "section": 9, "seat": 24 },
-        { "id": 582, "price": "", "row": 3, "section": 9, "seat": 25 },
-        { "id": 596, "price": "", "row": 3, "section": 9, "seat": 26 },
-        { "id": 608, "price": "", "row": 3, "section": 9, "seat": 27 },
-        { "id": 613, "price": "", "row": 3, "section": 9, "seat": 28 },
-        { "id": 622, "price": "", "row": 3, "section": 9, "seat": 29 },
-        { "id": 637, "price": "", "row": 3, "section": 9, "seat": 30 },
-
-        { "id": 505, "price": "", "row": 4, "section": 9, "seat": 16 },
-        { "id": 509, "price": "", "row": 4, "section": 9, "seat": 17 },
-        { "id": 513, "price": "", "row": 4, "section": 9, "seat": 18 },
-        { "id": 515, "price": "", "row": 4, "section": 9, "seat": 19 },
-        { "id": 519, "price": "", "row": 4, "section": 9, "seat": 20 },
-        { "id": 523, "price": "", "row": 4, "section": 9, "seat": 21 },
-        { "id": 528, "price": "", "row": 4, "section": 9, "seat": 22 },
-        { "id": 534, "price": "", "row": 4, "section": 9, "seat": 23 },
-        { "id": 538, "price": "", "row": 4, "section": 9, "seat": 24 },
-        { "id": 549, "price": "", "row": 4, "section": 9, "seat": 25 },
-        { "id": 558, "price": "", "row": 4, "section": 9, "seat": 26 },
-        { "id": 568, "price": "", "row": 4, "section": 9, "seat": 27 },
-        { "id": 575, "price": "", "row": 4, "section": 9, "seat": 28 },
-        { "id": 586, "price": "", "row": 4, "section": 9, "seat": 29 },
-        { "id": 600, "price": "", "row": 4, "section": 9, "seat": 30 },
-
-        { "id": 473, "price": "", "row": 5, "section": 9, "seat": 17 },
-        { "id": 476, "price": "", "row": 5, "section": 9, "seat": 18 },
-        { "id": 479, "price": "", "row": 5, "section": 9, "seat": 19 },
-        { "id": 483, "price": "", "row": 5, "section": 9, "seat": 20 },
-        { "id": 487, "price": "", "row": 5, "section": 9, "seat": 21 },
-        { "id": 489, "price": "", "row": 5, "section": 9, "seat": 22 },
-        { "id": 495, "price": "", "row": 5, "section": 9, "seat": 23 },
-        { "id": 497, "price": "", "row": 5, "section": 9, "seat": 24 },
-        { "id": 503, "price": "", "row": 5, "section": 9, "seat": 25 },
-        { "id": 510, "price": "", "row": 5, "section": 9, "seat": 26 },
-        { "id": 517, "price": "", "row": 5, "section": 9, "seat": 27 },
-        { "id": 525, "price": "", "row": 5, "section": 9, "seat": 28 },
-        { "id": 535, "price": "", "row": 5, "section": 9, "seat": 29 },
-        { "id": 540, "price": "", "row": 5, "section": 9, "seat": 30 },
-        { "id": 554, "price": "", "row": 5, "section": 9, "seat": 31 },
-
-        { "id": 545, "price": "", "row": 5, "section": 9, "seat": 32 },
-        { "id": 564, "price": "", "row": 5, "section": 9, "seat": 33 },
-        { "id": 538, "price": "", "row": 6, "section": 9, "seat": 17 },
-        { "id": 438, "price": "", "row": 6, "section": 9, "seat": 18 },
-        { "id": 443, "price": "", "row": 6, "section": 9, "seat": 19 },
-
-        { "id": 445, "price": "", "row": 6, "section": 9, "seat": 20 },
-        { "id": 448, "price": "", "row": 6, "section": 9, "seat": 21 },
-        { "id": 452, "price": "", "row": 6, "section": 9, "seat": 22 },
-        { "id": 456, "price": "", "row": 6, "section": 9, "seat": 23 },
-        { "id": 459, "price": "", "row": 6, "section": 9, "seat": 24 },
-        { "id": 465, "price": "", "row": 6, "section": 9, "seat": 25 },
-        { "id": 469, "price": "", "row": 6, "section": 9, "seat": 26 },
-        { "id": 477, "price": "", "row": 6, "section": 9, "seat": 27 },
-        { "id": 485, "price": "", "row": 6, "section": 9, "seat": 28 },
-        { "id": 493, "price": "", "row": 6, "section": 9, "seat": 29 },
-        { "id": 500, "price": "", "row": 6, "section": 9, "seat": 30 },
-        { "id": 511, "price": "", "row": 6, "section": 9, "seat": 31 },
-        { "id": 521, "price": "", "row": 6, "section": 9, "seat": 32 },
-        { "id": 530, "price": "", "row": 6, "section": 9, "seat": 33 },
-
-        { "id": 401, "price": "", "row": 7, "section": 9, "seat": 18 },
-        { "id": 403, "price": "", "row": 7, "section": 9, "seat": 19 },
-        { "id": 407, "price": "", "row": 7, "section": 9, "seat": 20 },
-        { "id": 443, "price": "", "row": 7, "section": 9, "seat": 21 },
-        { "id": 416, "price": "", "row": 7, "section": 9, "seat": 22 },
-        { "id": 420, "price": "", "row": 7, "section": 9, "seat": 23 },
-        { "id": 423, "price": "", "row": 7, "section": 9, "seat": 24 },
-        { "id": 427, "price": "", "row": 7, "section": 9, "seat": 25 },
-        { "id": 433, "price": "", "row": 7, "section": 9, "seat": 26 },
-        { "id": 439, "price": "", "row": 7, "section": 9, "seat": 27 },
-        { "id": 449, "price": "", "row": 7, "section": 9, "seat": 28 },
-        { "id": 457, "price": "", "row": 7, "section": 9, "seat": 29 },
-        { "id": 463, "price": "", "row": 7, "section": 9, "seat": 30 },
-        { "id": 470, "price": "", "row": 7, "section": 9, "seat": 31 },
-        { "id": 481, "price": "", "row": 7, "section": 9, "seat": 32 },
-        { "id": 491, "price": "", "row": 7, "section": 9, "seat": 33 },
-        { "id": 501, "price": "", "row": 7, "section": 9, "seat": 34 },
-
-        { "id": 365, "price": "", "row": 8, "section": 9, "seat": 18 },
-        { "id": 367, "price": "", "row": 8, "section": 9, "seat": 19 },
-        { "id": 370, "price": "", "row": 8, "section": 9, "seat": 20 },
-        { "id": 375, "price": "", "row": 8, "section": 9, "seat": 21 },
-        { "id": 381, "price": "", "row": 8, "section": 9, "seat": 22 },
-        { "id": 384, "price": "", "row": 8, "section": 9, "seat": 23 },
-        { "id": 389, "price": "", "row": 8, "section": 9, "seat": 24 },
-        { "id": 392, "price": "", "row": 8, "section": 9, "seat": 25 },
-        { "id": 399, "price": "", "row": 8, "section": 9, "seat": 26 },
-        { "id": 408, "price": "", "row": 8, "section": 9, "seat": 27 },
-        { "id": 417, "price": "", "row": 8, "section": 9, "seat": 28 },
-        { "id": 425, "price": "", "row": 8, "section": 9, "seat": 29 },
-        { "id": 431, "price": "", "row": 8, "section": 9, "seat": 30 },
-        { "id": 440, "price": "", "row": 8, "section": 9, "seat": 31 },
-        { "id": 453, "price": "", "row": 8, "section": 9, "seat": 32 },
-        { "id": 461, "price": "", "row": 8, "section": 9, "seat": 33 },
-        { "id": 471, "price": "", "row": 8, "section": 9, "seat": 34 },
-
-        { "id": 329, "price": "", "row": 9, "section": 9, "seat": 18 },
-        { "id": 333, "price": "", "row": 9, "section": 9, "seat": 19 },
-        { "id": 336, "price": "", "row": 9, "section": 9, "seat": 20 },
-        { "id": 341, "price": "", "row": 9, "section": 9, "seat": 21 },
-        { "id": 345, "price": "", "row": 9, "section": 9, "seat": 22 },
-        { "id": 348, "price": "", "row": 9, "section": 9, "seat": 23 },
-        { "id": 352, "price": "", "row": 9, "section": 9, "seat": 24 },
-        { "id": 358, "price": "", "row": 9, "section": 9, "seat": 25 },
-        { "id": 359, "price": "", "row": 9, "section": 9, "seat": 26 },
-        { "id": 361, "price": "", "row": 9, "section": 9, "seat": 27 },
-        { "id": 371, "price": "", "row": 9, "section": 9, "seat": 28 },
-        { "id": 382, "price": "", "row": 9, "section": 9, "seat": 29 },
-        { "id": 390, "price": "", "row": 9, "section": 9, "seat": 30 },
-        { "id": 396, "price": "", "row": 9, "section": 9, "seat": 31 },
-        { "id": 409, "price": "", "row": 9, "section": 9, "seat": 32 },
-        { "id": 421, "price": "", "row": 9, "section": 9, "seat": 33 },
-        { "id": 429, "price": "", "row": 9, "section": 9, "seat": 34 },
-        { "id": 441, "price": "", "row": 9, "section": 9, "seat": 35 },
-
-        { "id": 297, "price": "", "row": 10, "section": 9, "seat": 19 },
-        { "id": 301, "price": "", "row": 10, "section": 9, "seat": 20 },
-        { "id": 303, "price": "", "row": 10, "section": 9, "seat": 21 },
-        { "id": 305, "price": "", "row": 10, "section": 9, "seat": 22 },
-        { "id": 309, "price": "", "row": 10, "section": 9, "seat": 23 },
-        { "id": 313, "price": "", "row": 10, "section": 9, "seat": 24 },
-        { "id": 317, "price": "", "row": 10, "section": 9, "seat": 25 },
-        { "id": 321, "price": "", "row": 10, "section": 9, "seat": 26 },
-        { "id": 323, "price": "", "row": 10, "section": 9, "seat": 27 },
-        { "id": 330, "price": "", "row": 10, "section": 9, "seat": 28 },
-        { "id": 342, "price": "", "row": 10, "section": 9, "seat": 29 },
-        { "id": 349, "price": "", "row": 10, "section": 9, "seat": 30 },
-        { "id": 356, "price": "", "row": 10, "section": 9, "seat": 31 },
-        { "id": 363, "price": "", "row": 10, "section": 9, "seat": 32 },
-        { "id": 376, "price": "", "row": 10, "section": 9, "seat": 33 },
-        { "id": 386, "price": "", "row": 10, "section": 9, "seat": 34 },
-        { "id": 397, "price": "", "row": 10, "section": 9, "seat": 35 },
-        { "id": 411, "price": "", "row": 10, "section": 9, "seat": 36 },
-
-        { "id": 576, "price": "", "row": 1, "section": 10, "seat": 1 },
-        { "id": 587, "price": "", "row": 1, "section": 10, "seat": 2 },
-        { "id": 601, "price": "", "row": 1, "section": 10, "seat": 3 },
-        { "id": 611, "price": "", "row": 1, "section": 10, "seat": 4 },
-        { "id": 625, "price": "", "row": 1, "section": 10, "seat": 5 },
-        { "id": 640, "price": "", "row": 1, "section": 10, "seat": 6 },
-        { "id": 654, "price": "", "row": 1, "section": 10, "seat": 7 },
-        { "id": 663, "price": "", "row": 1, "section": 10, "seat": 8 },
-        { "id": 671, "price": "", "row": 1, "section": 10, "seat": 9 },
-        { "id": 683, "price": "", "row": 1, "section": 10, "seat": 10 },
-        { "id": 688, "price": "", "row": 1, "section": 10, "seat": 11 },
-        { "id": 692, "price": "", "row": 1, "section": 10, "seat": 12 },
-        { "id": 705, "price": "", "row": 1, "section": 10, "seat": 13 },
-        { "id": 713, "price": "", "row": 1, "section": 10, "seat": 14 },
-        { "id": 728, "price": "", "row": 1, "section": 10, "seat": 15 },
-        { "id": 738, "price": "", "row": 1, "section": 10, "seat": 16 },
-
-        { "id": 526, "price": "", "row": 2, "section": 10, "seat": 1 },
-        { "id": 536, "price": "", "row": 2, "section": 10, "seat": 2 },
-        { "id": 550, "price": "", "row": 2, "section": 10, "seat": 3 },
-        { "id": 562, "price": "", "row": 2, "section": 10, "seat": 4 },
-        { "id": 572, "price": "", "row": 2, "section": 10, "seat": 5 },
-        { "id": 588, "price": "", "row": 2, "section": 10, "seat": 6 },
-        { "id": 602, "price": "", "row": 2, "section": 10, "seat": 7 },
-        { "id": 616, "price": "", "row": 2, "section": 10, "seat": 8 },
-        { "id": 635, "price": "", "row": 2, "section": 10, "seat": 9 },
-        { "id": 651, "price": "", "row": 2, "section": 10, "seat": 10 },
-        { "id": 664, "price": "", "row": 2, "section": 10, "seat": 11 },
-        { "id": 674, "price": "", "row": 2, "section": 10, "seat": 12 },
-        { "id": 686, "price": "", "row": 2, "section": 10, "seat": 13 },
-        { "id": 690, "price": "", "row": 2, "section": 10, "seat": 14 },
-
-        { "id": 281, "price": "", "row": 1, "section": 11, "seat": 1 },
-        { "id": 272, "price": "", "row": 1, "section": 11, "seat": 2 },
-        { "id": 263, "price": "", "row": 1, "section": 11, "seat": 3 },
-        { "id": 254, "price": "", "row": 1, "section": 11, "seat": 4 },
-        { "id": 246, "price": "", "row": 1, "section": 11, "seat": 5 },
-
-        { "id": 357, "price": "", "row": 1, "section": 11, "seat": 6 },
-        { "id": 338, "price": "", "row": 1, "section": 11, "seat": 7 },
-        { "id": 318, "price": "", "row": 1, "section": 11, "seat": 8 },
-        { "id": 299, "price": "", "row": 1, "section": 11, "seat": 9 },
-        { "id": 288, "price": "", "row": 1, "section": 11, "seat": 10 },
-        { "id": 279, "price": "", "row": 1, "section": 11, "seat": 11 },
-        { "id": 269, "price": "", "row": 1, "section": 11, "seat": 12 },
-        { "id": 259, "price": "", "row": 1, "section": 11, "seat": 13 },
-        { "id": 250, "price": "", "row": 1, "section": 11, "seat": 14 },
-        { "id": 243, "price": "", "row": 1, "section": 11, "seat": 15 },
-        { "id": 235, "price": "", "row": 1, "section": 11, "seat": 16 },
-
-        { "id": 378, "price": "", "row": 2, "section": 11, "seat": 1 },
-        { "id": 354, "price": "", "row": 2, "section": 11, "seat": 2 },
-        { "id": 334, "price": "", "row": 2, "section": 11, "seat": 3 },
-        { "id": 314, "price": "", "row": 2, "section": 11, "seat": 4 },
-        { "id": 294, "price": "", "row": 2, "section": 11, "seat": 5 },
-        { "id": 285, "price": "", "row": 2, "section": 11, "seat": 6 },
-        { "id": 275, "price": "", "row": 2, "section": 11, "seat": 7 },
-        { "id": 265, "price": "", "row": 2, "section": 11, "seat": 8 },
-        { "id": 253, "price": "", "row": 2, "section": 11, "seat": 9 },
-        { "id": 244, "price": "", "row": 2, "section": 11, "seat": 10 },
-        { "id": 236, "price": "", "row": 2, "section": 11, "seat": 11 },
-
-        { "id": 377, "price": "", "row": 3, "section": 11, "seat": 1 },
-        { "id": 353, "price": "", "row": 3, "section": 11, "seat": 2 },
-        { "id": 326, "price": "", "row": 3, "section": 11, "seat": 3 },
-        { "id": 311, "price": "", "row": 3, "section": 11, "seat": 4 },
-        { "id": 292, "price": "", "row": 3, "section": 11, "seat": 5 },
-        { "id": 284, "price": "", "row": 3, "section": 11, "seat": 6 },
-        { "id": 271, "price": "", "row": 3, "section": 11, "seat": 7 },
-        { "id": 262, "price": "", "row": 3, "section": 11, "seat": 8 },
-        { "id": 249, "price": "", "row": 3, "section": 11, "seat": 9 },
-        { "id": 240, "price": "", "row": 3, "section": 11, "seat": 10 },
-
-        { "id": 372, "price": "", "row": 4, "section": 11, "seat": 1 },
-        { "id": 350, "price": "", "row": 4, "section": 11, "seat": 2 },
-        { "id": 324, "price": "", "row": 4, "section": 11, "seat": 3 },
-        { "id": 306, "price": "", "row": 4, "section": 11, "seat": 4 },
-        { "id": 290, "price": "", "row": 4, "section": 11, "seat": 5 },
-        { "id": 278, "price": "", "row": 4, "section": 11, "seat": 6 },
-        { "id": 267, "price": "", "row": 4, "section": 11, "seat": 7 },
-        { "id": 257, "price": "", "row": 4, "section": 11, "seat": 8 },
-        { "id": 247, "price": "", "row": 4, "section": 11, "seat": 9 },
-        { "id": 238, "price": "", "row": 4, "section": 11, "seat": 10 },
-
-        { "id": 223, "price": "", "row": 1, "section": 12, "seat": 17 },
-        { "id": 219, "price": "", "row": 1, "section": 12, "seat": 18 },
-        { "id": 214, "price": "", "row": 1, "section": 12, "seat": 19 },
-        { "id": 207, "price": "", "row": 1, "section": 12, "seat": 20 },
-        { "id": 198, "price": "", "row": 1, "section": 12, "seat": 21 },
-        { "id": 192, "price": "", "row": 1, "section": 12, "seat": 22 },
-        { "id": 185, "price": "", "row": 1, "section": 12, "seat": 23 },
-        { "id": 179, "price": "", "row": 1, "section": 12, "seat": 24 },
-        { "id": 170, "price": "", "row": 1, "section": 12, "seat": 25 },
-
-        { "id": 221, "price": "", "row": 2, "section": 12, "seat": 12 },
-        { "id": 218, "price": "", "row": 2, "section": 12, "seat": 13 },
-        { "id": 212, "price": "", "row": 2, "section": 12, "seat": 14 },
-        { "id": 204, "price": "", "row": 2, "section": 12, "seat": 15 },
-        { "id": 196, "price": "", "row": 2, "section": 12, "seat": 16 },
-        { "id": 188, "price": "", "row": 2, "section": 12, "seat": 17 },
-        { "id": 180, "price": "", "row": 2, "section": 12, "seat": 18 },
-        { "id": 172, "price": "", "row": 2, "section": 12, "seat": 19 },
-        { "id": 164, "price": "", "row": 2, "section": 12, "seat": 20 },
-
-        { "id": 225, "price": "", "row": 3, "section": 12, "seat": 11 },
-        { "id": 220, "price": "", "row": 3, "section": 12, "seat": 12 },
-        { "id": 216, "price": "", "row": 3, "section": 12, "seat": 13 },
-        { "id": 209, "price": "", "row": 3, "section": 12, "seat": 14 },
-        { "id": 201, "price": "", "row": 3, "section": 12, "seat": 15 },
-        { "id": 191, "price": "", "row": 3, "section": 12, "seat": 16 },
-        { "id": 182, "price": "", "row": 3, "section": 12, "seat": 17 },
-        { "id": 175, "price": "", "row": 3, "section": 12, "seat": 18 },
-        { "id": 166, "price": "", "row": 3, "section": 12, "seat": 19 },
-        { "id": 159, "price": "", "row": 3, "section": 12, "seat": 20 },
-
-        { "id": 222, "price": "", "row": 4, "section": 12, "seat": 11 },
-        { "id": 217, "price": "", "row": 4, "section": 12, "seat": 12 },
-        { "id": 210, "price": "", "row": 4, "section": 12, "seat": 13 },
-        { "id": 202, "price": "", "row": 4, "section": 12, "seat": 14 },
-        { "id": 194, "price": "", "row": 4, "section": 12, "seat": 15 },
-        { "id": 186, "price": "", "row": 4, "section": 12, "seat": 16 },
-        { "id": 176, "price": "", "row": 4, "section": 12, "seat": 17 },
-        { "id": 168, "price": "", "row": 4, "section": 12, "seat": 18 },
-        { "id": 161, "price": "", "row": 4, "section": 12, "seat": 19 },
-        { "id": 155, "price": "", "row": 4, "section": 12, "seat": 20 },
-
-        { "id": 153, "price": "", "row": 1, "section": 13, "seat": 26 },
-        { "id": 150, "price": "", "row": 1, "section": 13, "seat": 27 },
-        { "id": 146, "price": "", "row": 1, "section": 13, "seat": 28 },
-        { "id": 141, "price": "", "row": 1, "section": 13, "seat": 29 },
-        { "id": 135, "price": "", "row": 1, "section": 13, "seat": 30 },
-        { "id": 130, "price": "", "row": 1, "section": 13, "seat": 31 },
-        { "id": 124, "price": "", "row": 1, "section": 13, "seat": 32 },
-        { "id": 117, "price": "", "row": 1, "section": 13, "seat": 33 },
-        { "id": 110, "price": "", "row": 1, "section": 13, "seat": 34 },
-        { "id": 184, "price": "", "row": 2, "section": 13, "seat": 66 },
-
-        { "id": 148, "price": "", "row": 2, "section": 13, "seat": 21 },
-        { "id": 144, "price": "", "row": 2, "section": 13, "seat": 22 },
-        { "id": 139, "price": "", "row": 2, "section": 13, "seat": 23 },
-        { "id": 133, "price": "", "row": 2, "section": 13, "seat": 24 },
-        { "id": 126, "price": "", "row": 2, "section": 13, "seat": 25 },
-        { "id": 116, "price": "", "row": 2, "section": 13, "seat": 26 },
-        { "id": 108, "price": "", "row": 2, "section": 13, "seat": 27 },
-        { "id": 101, "price": "", "row": 2, "section": 13, "seat": 28 },
-        { "id": 96, "price": "", "row": 2, "section": 13, "seat": 29 },
-
-        { "id": 143, "price": "", "row": 3, "section": 13, "seat": 21 },
-        { "id": 138, "price": "", "row": 3, "section": 13, "seat": 22 },
-        { "id": 131, "price": "", "row": 3, "section": 13, "seat": 23 },
-        { "id": 122, "price": "", "row": 3, "section": 13, "seat": 24 },
-        { "id": 115, "price": "", "row": 3, "section": 13, "seat": 25 },
-        { "id": 106, "price": "", "row": 3, "section": 13, "seat": 26 },
-        { "id": 99, "price": "", "row": 3, "section": 13, "seat": 27 },
-        { "id": 90, "price": "", "row": 3, "section": 13, "seat": 28 },
-        { "id": 82, "price": "", "row": 3, "section": 13, "seat": 29 },
-        { "id": 71, "price": "", "row": 3, "section": 13, "seat": 30 },
-
-        { "id": 137, "price": "", "row": 4, "section": 13, "seat": 21 },
-        { "id": 129, "price": "", "row": 4, "section": 13, "seat": 22 },
-        { "id": 120, "price": "", "row": 4, "section": 13, "seat": 23 },
-        { "id": 112, "price": "", "row": 4, "section": 13, "seat": 24 },
-        { "id": 103, "price": "", "row": 4, "section": 13, "seat": 25 },
-        { "id": 93, "price": "", "row": 4, "section": 13, "seat": 26 },
-        { "id": 85, "price": "", "row": 4, "section": 13, "seat": 27 },
-        { "id": 75, "price": "", "row": 4, "section": 13, "seat": 28 },
-        { "id": 61, "price": "", "row": 4, "section": 13, "seat": 29 },
-        { "id": 53, "price": "", "row": 4, "section": 13, "seat": 30 },
-
-        { "id": 95, "price": "", "row": 1, "section": 14, "seat": 35 },
-        { "id": 91, "price": "", "row": 1, "section": 14, "seat": 36 },
-        { "id": 86, "price": "", "row": 1, "section": 14, "seat": 37 },
-        { "id": 80, "price": "", "row": 1, "section": 14, "seat": 38 },
-        { "id": 78, "price": "", "row": 1, "section": 14, "seat": 39 },
-        { "id": 72, "price": "", "row": 1, "section": 14, "seat": 40 },
-        { "id": 69, "price": "", "row": 1, "section": 14, "seat": 41 },
-        { "id": 66, "price": "", "row": 1, "section": 14, "seat": 42 },
-        { "id": 65, "price": "", "row": 1, "section": 14, "seat": 43 },
-
-        { "id": 77, "price": "", "row": 2, "section": 14, "seat": 30 },
-        { "id": 68, "price": "", "row": 2, "section": 14, "seat": 31 },
-        { "id": 57, "price": "", "row": 2, "section": 14, "seat": 32 },
-        { "id": 55, "price": "", "row": 2, "section": 14, "seat": 33 },
-        { "id": 51, "price": "", "row": 2, "section": 14, "seat": 34 },
-        { "id": 48, "price": "", "row": 2, "section": 14, "seat": 35 },
-        { "id": 45, "price": "", "row": 2, "section": 14, "seat": 36 },
-        { "id": 41, "price": "", "row": 2, "section": 14, "seat": 37 },
-        { "id": 39, "price": "", "row": 2, "section": 14, "seat": 38 },
-
-        { "id": 50, "price": "", "row": 3, "section": 14, "seat": 31 },
-        { "id": 43, "price": "", "row": 3, "section": 14, "seat": 32 },
-        { "id": 34, "price": "", "row": 3, "section": 14, "seat": 33 },
-        { "id": 32, "price": "", "row": 3, "section": 14, "seat": 34 },
-        { "id": 29, "price": "", "row": 3, "section": 14, "seat": 35 },
-        { "id": 27, "price": "", "row": 3, "section": 14, "seat": 36 },
-        { "id": 24, "price": "", "row": 3, "section": 14, "seat": 37 },
-        { "id": 21, "price": "", "row": 3, "section": 14, "seat": 38 },
-        { "id": 18, "price": "", "row": 3, "section": 14, "seat": 39 },
-
-        { "id": 31, "price": "", "row": 4, "section": 14, "seat": 31 },
-        { "id": 26, "price": "", "row": 4, "section": 14, "seat": 32 },
-        { "id": 20, "price": "", "row": 4, "section": 14, "seat": 33 },
-        { "id": 14, "price": "", "row": 4, "section": 14, "seat": 34 },
-        { "id": 12, "price": "", "row": 4, "section": 14, "seat": 35 },
-        { "id": 10, "price": "", "row": 4, "section": 14, "seat": 36 },
-        { "id": 8, "price": "", "row": 4, "section": 14, "seat": 37 },
-        { "id": 6, "price": "", "row": 4, "section": 14, "seat": 38 },
-        { "id": 4, "price": "", "row": 4, "section": 14, "seat": 39 },
-        { "id": 2, "price": "", "row": 4, "section": 14, "seat": 40 },
-
-        { "id": 59, "price": "", "row": 1, "section": 15, "seat": 44 },
-        { "id": 60, "price": "", "row": 1, "section": 15, "seat": 45 },
-        { "id": 62, "price": "", "row": 1, "section": 15, "seat": 46 },
-        { "id": 67, "price": "", "row": 1, "section": 15, "seat": 47 },
-        { "id": 70, "price": "", "row": 1, "section": 15, "seat": 48 },
-        { "id": 73, "price": "", "row": 1, "section": 15, "seat": 49 },
-        { "id": 79, "price": "", "row": 1, "section": 15, "seat": 50 },
-        { "id": 81, "price": "", "row": 1, "section": 15, "seat": 51 },
-        { "id": 87, "price": "", "row": 1, "section": 15, "seat": 52 },
-
-        { "id": 36, "price": "", "row": 2, "section": 15, "seat": 39 },
-        { "id": 38, "price": "", "row": 2, "section": 15, "seat": 40 },
-        { "id": 40, "price": "", "row": 2, "section": 15, "seat": 41 },
-        { "id": 42, "price": "", "row": 2, "section": 15, "seat": 42 },
-        { "id": 46, "price": "", "row": 2, "section": 15, "seat": 43 },
-        { "id": 49, "price": "", "row": 2, "section": 15, "seat": 44 },
-        { "id": 52, "price": "", "row": 2, "section": 15, "seat": 45 },
-        { "id": 56, "price": "", "row": 2, "section": 15, "seat": 46 },
-        { "id": 58, "price": "", "row": 2, "section": 15, "seat": 47 },
-
-        { "id": 16, "price": "", "row": 3, "section": 15, "seat": 40 },
-        { "id": 17, "price": "", "row": 3, "section": 15, "seat": 41 },
-        { "id": 19, "price": "", "row": 3, "section": 15, "seat": 42 },
-        { "id": 22, "price": "", "row": 3, "section": 15, "seat": 43 },
-        { "id": 25, "price": "", "row": 3, "section": 15, "seat": 44 },
-        { "id": 28, "price": "", "row": 3, "section": 15, "seat": 45 },
-        { "id": 30, "price": "", "row": 3, "section": 15, "seat": 46 },
-        { "id": 33, "price": "", "row": 3, "section": 15, "seat": 47 },
-        { "id": 35, "price": "", "row": 3, "section": 15, "seat": 48 },
-        { "id": 44, "price": "", "row": 3, "section": 15, "seat": 49 },
-
-        { "id": 0, "price": "", "row": 4, "section": 15, "seat": 41 },
-        { "id": 1, "price": "", "row": 4, "section": 15, "seat": 42 },
-        { "id": 3, "price": "", "row": 4, "section": 15, "seat": 43 },
-        { "id": 5, "price": "", "row": 4, "section": 15, "seat": 44 },
-        { "id": 7, "price": "", "row": 4, "section": 15, "seat": 45 },
-        { "id": 9, "price": "", "row": 4, "section": 15, "seat": 46 },
-        { "id": 11, "price": "", "row": 4, "section": 15, "seat": 47 },
-        { "id": 13, "price": "", "row": 4, "section": 15, "seat": 48 },
-        { "id": 15, "price": "", "row": 4, "section": 15, "seat": 49 },
-        { "id": 23, "price": "", "row": 4, "section": 15, "seat": 50 },
-
-        { "id": 100, "price": "", "row": 1, "section": 16, "seat": 53 },
-        { "id": 105, "price": "", "row": 1, "section": 16, "seat": 54 },
-        { "id": 111, "price": "", "row": 1, "section": 16, "seat": 55 },
-        { "id": 118, "price": "", "row": 1, "section": 16, "seat": 56 },
-        { "id": 125, "price": "", "row": 1, "section": 16, "seat": 57 },
-        { "id": 128, "price": "", "row": 1, "section": 16, "seat": 58 },
-        { "id": 136, "price": "", "row": 1, "section": 16, "seat": 59 },
-        { "id": 142, "price": "", "row": 1, "section": 16, "seat": 60 },
-        { "id": 147, "price": "", "row": 1, "section": 16, "seat": 61 },
-
-        { "id": 84, "price": "", "row": 2, "section": 16, "seat": 48 },
-        { "id": 89, "price": "", "row": 2, "section": 16, "seat": 49 },
-        { "id": 97, "price": "", "row": 2, "section": 16, "seat": 50 },
-        { "id": 102, "price": "", "row": 2, "section": 16, "seat": 51 },
-        { "id": 109, "price": "", "row": 2, "section": 16, "seat": 52 },
-        { "id": 119, "price": "", "row": 2, "section": 16, "seat": 53 },
-        { "id": 127, "price": "", "row": 2, "section": 16, "seat": 54 },
-        { "id": 134, "price": "", "row": 2, "section": 16, "seat": 55 },
-        { "id": 140, "price": "", "row": 2, "section": 16, "seat": 56 },
-
-        { "id": 63, "price": "", "row": 3, "section": 16, "seat": 50 },
-        { "id": 74, "price": "", "row": 3, "section": 16, "seat": 51 },
-        { "id": 83, "price": "", "row": 3, "section": 16, "seat": 52 },
-        { "id": 92, "price": "", "row": 3, "section": 16, "seat": 53 },
-        { "id": 98, "price": "", "row": 3, "section": 16, "seat": 54 },
-        { "id": 107, "price": "", "row": 3, "section": 16, "seat": 55 },
-        { "id": 114, "price": "", "row": 3, "section": 16, "seat": 56 },
-        { "id": 123, "price": "", "row": 3, "section": 16, "seat": 57 },
-        { "id": 132, "price": "", "row": 3, "section": 16, "seat": 58 },
-
-        { "id": 37, "price": "", "row": 4, "section": 16, "seat": 51 },
-        { "id": 47, "price": "", "row": 4, "section": 16, "seat": 52 },
-        { "id": 54, "price": "", "row": 4, "section": 16, "seat": 53 },
-        { "id": 64, "price": "", "row": 4, "section": 16, "seat": 54 },
-        { "id": 76, "price": "", "row": 4, "section": 16, "seat": 55 },
-        { "id": 88, "price": "", "row": 4, "section": 16, "seat": 56 },
-        { "id": 94, "price": "", "row": 4, "section": 16, "seat": 57 },
-        { "id": 104, "price": "", "row": 4, "section": 16, "seat": 58 },
-        { "id": 113, "price": "", "row": 4, "section": 16, "seat": 59 },
-        { "id": 121, "price": "", "row": 4, "section": 16, "seat": 60 },
-
-        { "id": 157, "price": "", "row": 1, "section": 17, "seat": 62 },
-        { "id": 163, "price": "", "row": 1, "section": 17, "seat": 63 },
-        { "id": 171, "price": "", "row": 1, "section": 17, "seat": 64 },
-        { "id": 177, "price": "", "row": 1, "section": 17, "seat": 65 },
-        { "id": 184, "price": "", "row": 1, "section": 17, "seat": 66 },
-        { "id": 193, "price": "", "row": 1, "section": 17, "seat": 67 },
-        { "id": 199, "price": "", "row": 1, "section": 17, "seat": 68 },
-        { "id": 206, "price": "", "row": 1, "section": 17, "seat": 69 },
-        { "id": 215, "price": "", "row": 1, "section": 17, "seat": 70 },
-
-        { "id": 152, "price": "", "row": 2, "section": 17, "seat": 57 },
-        { "id": 158, "price": "", "row": 2, "section": 17, "seat": 58 },
-        { "id": 165, "price": "", "row": 2, "section": 17, "seat": 59 },
-        { "id": 173, "price": "", "row": 2, "section": 17, "seat": 60 },
-        { "id": 181, "price": "", "row": 2, "section": 17, "seat": 61 },
-        { "id": 189, "price": "", "row": 2, "section": 17, "seat": 62 },
-        { "id": 197, "price": "", "row": 2, "section": 17, "seat": 63 },
-        { "id": 205, "price": "", "row": 2, "section": 17, "seat": 64 },
-        { "id": 213, "price": "", "row": 2, "section": 17, "seat": 65 },
-
-        { "id": 149, "price": "", "row": 3, "section": 17, "seat": 59 },
-        { "id": 154, "price": "", "row": 3, "section": 17, "seat": 60 },
-        { "id": 160, "price": "", "row": 3, "section": 17, "seat": 61 },
-        { "id": 167, "price": "", "row": 3, "section": 17, "seat": 62 },
-        { "id": 174, "price": "", "row": 3, "section": 17, "seat": 63 },
-        { "id": 183, "price": "", "row": 3, "section": 17, "seat": 64 },
-        { "id": 190, "price": "", "row": 3, "section": 17, "seat": 65 },
-        { "id": 200, "price": "", "row": 3, "section": 17, "seat": 66 },
-        { "id": 208, "price": "", "row": 3, "section": 17, "seat": 67 },
-
-        { "id": 145, "price": "", "row": 4, "section": 17, "seat": 61 },
-        { "id": 151, "price": "", "row": 4, "section": 17, "seat": 62 },
-        { "id": 156, "price": "", "row": 4, "section": 17, "seat": 63 },
-        { "id": 162, "price": "", "row": 4, "section": 17, "seat": 64 },
-        { "id": 169, "price": "", "row": 4, "section": 17, "seat": 65 },
-        { "id": 178, "price": "", "row": 4, "section": 17, "seat": 66 },
-        { "id": 187, "price": "", "row": 4, "section": 17, "seat": 67 },
-        { "id": 195, "price": "", "row": 4, "section": 17, "seat": 68 },
-        { "id": 203, "price": "", "row": 4, "section": 17, "seat": 69 },
-        { "id": 211, "price": "", "row": 4, "section": 17, "seat": 70 },
-
-        { "id": 289, "price": "", "row": 1, "section": 18, "seat": 86 },
-        { "id": 282, "price": "", "row": 1, "section": 18, "seat": 85 },
-        { "id": 273, "price": "", "row": 1, "section": 18, "seat": 84 },
-        { "id": 264, "price": "", "row": 1, "section": 18, "seat": 83 },
-        { "id": 255, "price": "", "row": 1, "section": 18, "seat": 82 },
-        { "id": 319, "price": "", "row": 1, "section": 18, "seat": 81 },
-        { "id": 298, "price": "", "row": 1, "section": 18, "seat": 80 },
-        { "id": 287, "price": "", "row": 1, "section": 18, "seat": 79 },
-        { "id": 277, "price": "", "row": 1, "section": 18, "seat": 78 },
-        { "id": 270, "price": "", "row": 1, "section": 18, "seat": 77 },
-        { "id": 260, "price": "", "row": 1, "section": 18, "seat": 76 },
-        { "id": 251, "price": "", "row": 1, "section": 18, "seat": 75 },
-        { "id": 242, "price": "", "row": 1, "section": 18, "seat": 74 },
-        { "id": 234, "price": "", "row": 1, "section": 18, "seat": 73 },
-        { "id": 230, "price": "", "row": 1, "section": 18, "seat": 72 },
-        { "id": 226, "price": "", "row": 1, "section": 18, "seat": 71 },
-
-        { "id": 331, "price": "", "row": 3, "section": 18, "seat": 78 },
-        { "id": 310, "price": "", "row": 3, "section": 18, "seat": 77 },
-        { "id": 298, "price": "", "row": 3, "section": 18, "seat": 76 },
-        { "id": 283, "price": "", "row": 3, "section": 18, "seat": 75 },
-        { "id": 274, "price": "", "row": 3, "section": 18, "seat": 74 },
-        { "id": 261, "price": "", "row": 3, "section": 18, "seat": 73 },
-        { "id": 252, "price": "", "row": 3, "section": 18, "seat": 72 },
-        { "id": 241, "price": "", "row": 3, "section": 18, "seat": 71 },
-        { "id": 233, "price": "", "row": 3, "section": 18, "seat": 70 },
-        { "id": 229, "price": "", "row": 3, "section": 18, "seat": 69 },
-        { "id": 224, "price": "", "row": 3, "section": 18, "seat": 68 },
-
-        { "id": 325, "price": "", "row": 4, "section": 18, "seat": 80 },
-        { "id": 307, "price": "", "row": 4, "section": 18, "seat": 79 },
-        { "id": 291, "price": "", "row": 4, "section": 18, "seat": 78 },
-        { "id": 280, "price": "", "row": 4, "section": 18, "seat": 77 },
-        { "id": 268, "price": "", "row": 4, "section": 18, "seat": 76 },
-        { "id": 258, "price": "", "row": 4, "section": 18, "seat": 75 },
-        { "id": 248, "price": "", "row": 4, "section": 18, "seat": 74 },
-        { "id": 239, "price": "", "row": 4, "section": 18, "seat": 73 },
-        { "id": 232, "price": "", "row": 4, "section": 18, "seat": 72 },
-        { "id": 228, "price": "", "row": 4, "section": 18, "seat": 71 },
-
-        { "id": 1274, "price": "", "row": 1, "section": 6, "seat": 37 },
-        { "id": 1264, "price": "", "row": 1, "section": 6, "seat": 36 },
-        { "id": 1252, "price": "", "row": 1, "section": 6, "seat": 35 },
-
-        { "id": 1241, "price": "", "row": 1, "section": 6, "seat": 34 },
-        { "id": 1277, "price": "", "row": 2, "section": 6, "seat": 44 },
-        { "id": 1271, "price": "", "row": 2, "section": 6, "seat": 43 },
-        { "id": 1261, "price": "", "row": 2, "section": 6, "seat": 42 },
-        { "id": 1250, "price": "", "row": 2, "section": 6, "seat": 41 },
-        { "id": 1236, "price": "", "row": 2, "section": 6, "seat": 40 },
-        { "id": 1224, "price": "", "row": 2, "section": 6, "seat": 39 },
-        { "id": 1208, "price": "", "row": 3, "section": 6, "seat": 43 },
-        { "id": 1220, "price": "", "row": 3, "section": 6, "seat": 44 },
-        { "id": 1233, "price": "", "row": 3, "section": 6, "seat": 45 },
-        { "id": 1245, "price": "", "row": 3, "section": 6, "seat": 46 },
-
-        { "id": 1258, "price": "", "row": 3, "section": 6, "seat": 47 },
-        { "id": 1268, "price": "", "row": 3, "section": 6, "seat": 48 },
-
-        { "id": 1190, "price": "", "row": 4, "section": 6, "seat": 45 },
-        { "id": 1202, "price": "", "row": 4, "section": 6, "seat": 46 },
-        { "id": 1217, "price": "", "row": 4, "section": 6, "seat": 47 },
-        { "id": 1229, "price": "", "row": 4, "section": 6, "seat": 48 },
-        { "id": 1242, "price": "", "row": 4, "section": 6, "seat": 49 },
-        { "id": 1255, "price": "", "row": 4, "section": 6, "seat": 50 },
-        { "id": 1269, "price": "", "row": 4, "section": 6, "seat": 51 },
-
-        { "id": 1170, "price": "", "row": 5, "section": 6, "seat": 47 },
-        { "id": 1185, "price": "", "row": 5, "section": 6, "seat": 48 },
-        { "id": 1198, "price": "", "row": 5, "section": 6, "seat": 49 },
-        { "id": 1211, "price": "", "row": 5, "section": 6, "seat": 50 },
-        { "id": 1226, "price": "", "row": 5, "section": 6, "seat": 51 },
-        { "id": 1238, "price": "", "row": 5, "section": 6, "seat": 52 },
-        { "id": 1256, "price": "", "row": 5, "section": 6, "seat": 53 },
-
-        { "id": 1150, "price": "", "row": 6, "section": 6, "seat": 50 },
-        { "id": 1168, "price": "", "row": 6, "section": 6, "seat": 51 },
-        { "id": 1186, "price": "", "row": 6, "section": 6, "seat": 52 },
-        { "id": 1199, "price": "", "row": 6, "section": 6, "seat": 53 },
-        { "id": 1212, "price": "", "row": 6, "section": 6, "seat": 54 },
-        { "id": 1230, "price": "", "row": 6, "section": 6, "seat": 55 },
-        { "id": 1246, "price": "", "row": 6, "section": 6, "seat": 56 },
-        { "id": 1262, "price": "", "row": 6, "section": 6, "seat": 57 },
-
-        { "id": 1123, "price": "", "row": 7, "section": 6, "seat": 51 },
-        { "id": 1146, "price": "", "row": 7, "section": 6, "seat": 52 },
-        { "id": 1164, "price": "", "row": 7, "section": 6, "seat": 53 },
-        { "id": 1178, "price": "", "row": 7, "section": 6, "seat": 54 },
-        { "id": 1200, "price": "", "row": 7, "section": 6, "seat": 55 },
-        { "id": 1218, "price": "", "row": 7, "section": 6, "seat": 56 },
-        { "id": 1232, "price": "", "row": 7, "section": 6, "seat": 57 },
-        { "id": 1248, "price": "", "row": 7, "section": 6, "seat": 58 },
-
-        { "id": 337, "price": "", "row": 2, "section": 1, "seat": 76 },
-        { "id": 315, "price": "", "row": 2, "section": 1, "seat": 75 },
-        { "id": 295, "price": "", "row": 2, "section": 1, "seat": 74 },
-        { "id": 286, "price": "", "row": 2, "section": 1, "seat": 73 },
-        { "id": 276, "price": "", "row": 2, "section": 1, "seat": 72 },
-        { "id": 266, "price": "", "row": 2, "section": 1, "seat": 71 },
-        { "id": 256, "price": "", "row": 2, "section": 1, "seat": 70 },
-        { "id": 245, "price": "", "row": 2, "section": 1, "seat": 69 },
-        { "id": 237, "price": "", "row": 2, "section": 1, "seat": 68 },
-        { "id": 231, "price": "", "row": 2, "section": 1, "seat": 67 },
-        { "id": 227, "price": "", "row": 2, "section": 1, "seat": 66 },
-
-        { "id": 1105, "price": "", "row": 8, "section": 6, "seat": 43 },
-        { "id": 1124, "price": "", "row": 8, "section": 6, "seat": 44 },
-
-        { "id": 1273, "price": "", "row": 1, "section": 1, "seat": 1 },
-        { "id": 1263, "price": "", "row": 1, "section": 1, "seat": 2 },
-        { "id": 1251, "price": "", "row": 1, "section": 1, "seat": 3 },
-        { "id": 1240, "price": "", "row": 1, "section": 1, "seat": 4 },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ])
-
-
-    const getPrice = (y, i, x) => {
+    const getPrice = (y, i, x, price, row) => {
+        console.log(x, y)
         setPosition({ x, y })
-        let row = null
         let seat = 0
-        let price = null
-        let item = seansArr.find((elm) => elm.id === i)
-        console.log(i)
-        price = 0
+        let result = []
+        let index = 0
+        if ((i >= 676 && i <= 6622)) {
+            if ((i > 3228 && i < 4438) || (i >= 703 && i <= 755) || (i >= 785 && i <= 835) || (i >= 852 && i <= 901) || (i >= 936 && i <= 983) || (i >= 1020 && i <= 1063) || (i >= 1104 && i <= 1147) || (i >= 1208 && i <= 1249)) {
+                result = coordinatesState.filter((elm) => elm.y === y);
+                index = result.findIndex((elm) => elm.x === x)
+                seat = result.length - (result.length - index - 1)
+            }
+            else {
+                result = coordinatesState.filter((elm) => elm.x === x);
+                index = result.findIndex((elm) => elm.y === y)
+                seat = result.length - (index)
+            }
+        }
+        else {
+            console.log('22')
+            result = coordinatesState.filter((elm) => elm.y === y);
+            index = result.findIndex((elm) => elm.x === x)
+            seat = result.length - (result.length - index - 1)
+        }
         setActiveTicket({
-            row: item?.row,
-            price: item?.price,
-            bench: item?.seat,
-            id: i
+            row: row,
+            price: price,
+            bench: seat,
+            id: i,
         })
         setShowModal(true)
     }
@@ -1500,34 +60,506 @@ const AramKhachatryan = ({ secion }) => {
     useEffect(() => {
         const image = new Image()
         image.src = require('../../assets/hamalir7000.png')
+        if (!coordinatesState.length && secion.length > 0)
+            image.onload = () => {
+                const canvas = document.createElement('canvas')
+                canvas.width = image.width
+                canvas.height = image.height
+                const ctx = canvas.getContext('2d')
+                ctx.drawImage(image, 0, 0, image.width, image.height)
 
-        image.onload = () => {
-            const canvas = document.createElement('canvas')
-            canvas.width = image.width
-            canvas.height = image.height
-            const ctx = canvas.getContext('2d')
-            ctx.drawImage(image, 0, 0, image.width, image.height)
+                const imageData = ctx.getImageData(0, 0, image.width, image.height)
+                const pixelData = imageData.data
+                const coordinates = []
+                let id = 0
+                for (let y = 0; y < image.height; y++) {
+                    for (let x = 0; x < image.width; x++) {
+                        const offset = (y * image.width + x) * 4
+                        const r = pixelData[offset]
+                        const g = pixelData[offset + 1]
+                        const b = pixelData[offset + 2]
+                        if (r >= 100 && g <= 30 && b <= 30) {
+                            id = coordinates.length
+                            let row = 1
+                            let row2 = 1
+                            let section = 0
+                            if (y === 626) {
+                                row = 1
+                                row2 = 1
+                            }
+                            else if (y === 601) {
+                                row = 2
+                                row2 = 2
+                            }
+                            else if (y === 577) {
+                                row = 3
+                                row2 = 3
+                            }
+                            else if (y === 552) {
+                                row = 4
+                                row2 = 4
+                            }
+                            else if (y === 527) {
+                                row = 5
+                                row2 = 5
+                            }
+                            else if (y === 503) {
+                                row = 6
+                                row2 = 6
+                            }
+                            else if (y === 478) {
+                                row = 7
+                                row2 = 7
+                            }
+                            else if (y === 419) {
+                                row = 8
+                                row2 = 1
+                            }
+                            else if (y === 395) {
+                                row = 9
+                                row2 = 2
+                            }
+                            else if (y === 370) {
+                                row = 10
+                                row2 = 3
+                            }
+                            else if (y === 346) {
+                                row = 11
+                                row2 = 4
+                            }
+                            else if (y === 321) {
+                                row = 12
+                                row2 = 5
+                            }
+                            else if (y === 296) {
+                                row = 13
+                                row2 = 6
+                            }
+                            else if (y === 272) {
+                                row = 14
+                                row2 = 7
+                            }
+                            else if (y === 247) {
+                                row = 15
+                                row2 = 8
+                            }
+                            else if (y === 223) {
+                                row = 16
+                                row2 = 9
+                            }
+                            else if (y === 198) {
+                                row = 17
+                                row2 = 10
+                            }
+                            else if (y === 174) {
+                                row = 18
+                                row2 = 11
+                            }
+                            else if (x === 515) {
+                                row = 9
+                                row2 = 1
+                            }
+                            else if (x === 492) {
+                                row = 10
+                                row2 = 2
+                            }
+                            else if (x === 469) {
+                                row = 11
+                                row2 = 3
+                            }
+                            else if (x === 445) {
+                                row = 12
+                                row2 = 3
+                            }
+                            else if (x === 422) {
+                                row = 13
+                                row2 = 4
+                            }
+                            else if (x === 398) {
+                                row = 14
+                                row2 = 5
+                            }
+                            else if (x === 375) {
+                                row = 15
+                                row2 = 6
+                            }
+                            else if (x === 352) {
+                                row = 16
+                                row2 = 7
+                            }
+                            else if (x === 328) {
+                                row = 17
+                                row2 = 8
+                            }
 
-            const imageData = ctx.getImageData(0, 0, image.width, image.height)
-            const pixelData = imageData.data
-            const coordinates = []
+                            else if (x === 305) {
+                                row = 18
+                                row2 = 9
+                            }
+                            else if (x === 281) {
+                                row = 19
+                                row2 = 10
+                            }
+                            else if (x === 258) {
+                                row = 20
+                                row2 = 11
+                            }
+                            else if (x === 235) {
+                                row = 21
+                                row2 = 12
+                            }
+                            else if (x === 211) {
+                                row = 22
+                                row2 = 13
+                            }
+                            else if (x === 188) {
+                                row = 23
+                                row2 = 14
+                            }
+                            else if (x === 164) {
+                                row = 24
+                                row2 = 15
+                            }
+                            else if (x === 141) {
+                                row = 25
+                                row2 = 16
+                            }
+                            else if (x === 118) {
+                                row = 26
+                                row2 = 17
+                            }
+                            else if (x === 579) {
+                                row = 8
+                                row2 = 8
+                            }
+                            else if (x === 603) {
+                                row = 7
+                                row2 = 7
+                            }
+                            else if (x === 626) {
+                                row = 6
+                                row2 = 6
+                            }
+                            else if (x === 650) {
+                                row = 5
+                                row2 = 5
+                            }
+                            else if (x === 673) {
+                                row = 4
+                                row2 = 4
+                            }
+                            else if (x === 696) {
+                                row = 3
+                                row2 = 3
+                            }
+                            else if (x === 720) {
+                                row = 2
+                                row2 = 2
+                            }
+                            else if (x === 743) {
+                                row = 1
+                                row2 = 1
+                            }
+                            else if (y === 1496) {
+                                row = 1
+                                row2 = 1
+                            }
+                            else if (y === 1473) {
+                                row = 2
+                                row2 = 2
+                            }
+                            else if (y === 1449) {
+                                row = 3
+                                row2 = 3
+                            }
+                            else if (y === 1426) {
+                                row = 4
+                                row2 = 4
+                            }
+                            else if (y === 1402) {
+                                row = 5
+                                row2 = 5
+                            }
+                            else if (y === 1379) {
+                                row = 6
+                                row2 = 6
+                            }
+                            else if (y === 1356) {
+                                row = 7
+                                row2 = 7
+                            }
+                            else if (y === 1332) {
+                                row = 8
+                                row2 = 8
+                            }
+                            else if (y === 1309) {
+                                row = 9
+                                row2 = 9
+                            }
+                            else if (y === 1285) {
+                                row = 10
+                                row2 = 10
+                            }
+                            else if (x === 1841) {
+                                row = 1
+                                row2 = 1
+                            }
+                            else if (x === 1865) {
+                                row = 2
+                                row2 = 2
+                            }
+                            else if (x === 1888) {
+                                row = 3
+                                row2 = 3
+                            }
+                            else if (x === 1912) {
+                                row = 4
+                                row2 = 4
+                            }
+                            else if (x === 1935) {
+                                row = 5
+                                row2 = 5
+                            }
+                            else if (x === 1958) {
+                                row = 6
+                                row2 = 6
+                            }
+                            else if (x === 1982) {
+                                row = 7
+                                row2 = 7
+                            }
+                            else if (x === 2005) {
+                                row = 8
+                                row2 = 8
+                            }
+                            else if (x === 2072) {
+                                row = 9
+                                row2 = 1
+                            }
+                            else if (x === 2095) {
+                                row = 10
+                                row2 = 2
+                            }
 
-            for (let y = 0; y < image.height; y++) {
-                for (let x = 0; x < image.width; x++) {
-                    const offset = (y * image.width + x) * 4
-                    const r = pixelData[offset]
-                    const g = pixelData[offset + 1]
-                    const b = pixelData[offset + 2]
+                            else if (x === 2119) {
+                                row = 11
+                                row2 = 3
+                            }
+                            else if (x === 2142) {
+                                row = 12
+                                row2 = 4
+                            }
+                            else if (x === 2166) {
+                                row = 13
+                                row2 = 5
+                            }
+                            else if (x === 2189) {
+                                row = 14
+                                row2 = 6
+                            }
+                            else if (x === 2212) {
+                                row = 15
+                                row2 = 7
+                            }
+                            else if (x === 2236) {
+                                row = 16
+                                row2 = 8
+                            }
+                            else if (x === 2259) {
+                                row = 17
+                                row2 = 9
+                            }
+                            else if (x === 2282) {
+                                row = 18
+                                row2 = 10
+                            }
+                            else if (x === 2306) {
+                                row = 19
+                                row2 = 11
+                            }
+                            else if (x === 2329) {
+                                row = 20
+                                row2 = 12
+                            }
+                            else if (x === 2353) {
+                                row = 21
+                                row2 = 13
+                            }
+                            else if (x === 2376) {
+                                row = 22
+                                row2 = 14
+                            }
 
-                    if (r >= 100 && g <= 35 && b <= 35) {
-                        coordinates.push({ x, y, active: false, id: coordinates.length })
+                            else if (x === 2399) {
+                                row = 23
+                                row2 = 15
+                            }
+
+                            else if (x === 2423) {
+                                row = 24
+                                row2 = 16
+                            }
+                            else if (x === 2446) {
+                                row = 25
+                                row2 = 17
+                            }
+                            else if (x === 2470) {
+                                row = 26
+                                row2 = 18
+                            }
+                            else if (x === 2493) {
+                                row = 27
+                                row2 = 19
+                            }
+                            else if (x === 2516) {
+                                row = 28
+                                row2 = 20
+                            }
+                            else if (x === 2540) {
+                                row = 29
+                                row2 = 21
+                            }
+
+
+
+
+
+
+                            if ((id >= 703 && id <= 711) || (id >= 785 && id <= 792) || (id >= 852 && id <= 859) || (id >= 936 && id <= 942) || (id <= 1025 && id >= 1020) || (id <= 1212 && id >= 1208) || (id <= 1109 && id >= 1104 && (x >= 933 && x <= 1005))) {
+
+                                section = 5
+                            }
+                            else if (((id >= 712 && id <= 729) || (id >= 793 && id <= 810) || (id >= 860 && id <= 876) || (id >= 943 && id <= 959) || (id <= 1041 && id >= 1026) || (id <= 1125 && id >= 1100 && (x >= 1055 && x < 2212)) || (id <= 1228 && id >= 1213))) {
+                                section = 6
+                            }
+                            else if ((id >= 730 && id <= 746) || (id >= 811 && id <= 827) || (id >= 877 && id <= 893) || (id >= 960 && id <= 976) || (id <= 1057 && id >= 1042) || (id <= 1141 && id >= 1126) || (id <= 1244 && id >= 1229)) {
+                                section = 7
+                            }
+                            else if ((id >= 747 && id <= 755) || (id >= 828 && id <= 835) || (id >= 894 && id <= 901) || (id >= 977 && id <= 983) || (id <= 1063 && id >= 1058) || (id <= 1147 && id >= 1142) || (id <= 1249 && id >= 1245)) {
+                                section = 8
+                            }
+                            else if ((id <= 646 && id >= 632) || (id <= 602 && id >= 588) || (id <= 558 && id >= 544) || (id <= 514 && id >= 500) || (id <= 458 && id >= 438) || (id <= 396 && id >= 376) || (id <= 334 && id >= 314) || (id <= 271 && id >= 251) || (id <= 209 && id >= 189) || (id <= 147 && id >= 128) || (id <= 86 && id >= 67)) {
+                                section = 4
+                            }
+                            else if ((id <= 660 && id >= 647) || (id <= 616 && id >= 603) || (id <= 572 && id >= 559) || (id <= 528 && id >= 515) || (id <= 478 && id >= 459) || (id <= 416 && id >= 397) || (id <= 354 && id >= 335) || (id <= 292 && id >= 272) || (id <= 230 && id >= 210) || (id <= 168 && id >= 148) || (id <= 108 && id >= 87)) {
+                                section = 3
+                            }
+                            else if ((id <= 675 && id >= 661) || (id <= 631 && id >= 617) || (id <= 587 && id >= 573) || (id <= 543 && id >= 529) || (id <= 499 && id >= 479) || (id <= 437 && id >= 417) || (id <= 375 && id >= 355) || (id <= 313 && id >= 293) || (id <= 250 && id >= 231) || (id <= 188 && id >= 169) || (id <= 127 && id >= 109)) {
+                                section = 2
+                            }
+                            else if (id <= 66 && id >= 0) {
+                                section = 1
+                                row = 19
+                                row2 = 1
+                            }
+                            else if ((id == 676 || id == 677) || (id >= 678 && id <= 683) || (id >= 690 && id <= 696) || (id >= 756 && id <= 762) || (id >= 770 && id <= 776) || (id >= 836 && id <= 843) || (id >= 902 && id <= 909) || (id >= 918 && id <= 926) || (id >= 984 && id <= 992) || (id >= 1002 && id <= 1010) || (id >= 1064 && id <= 1073) || (id >= 1084 && id <= 1093) || (id >= 1148 && id <= 1157) || (id >= 1180 && id <= 1190) || (id >= 1256 && id <= 1266) || (id >= 1290 && id <= 1300) || (id >= 1324 && id <= 1335) || (id >= 1359 && id <= 1370) || (id >= 1395 && id <= 1406)) {
+                                section = 9
+                            }
+                            else if ((y <= 948 && y >= 722) && (x >= 118 && x <= 445)) {
+                                section = 10
+                            }
+                            else if ((y <= 1227 && y >= 993) && (x >= 71 && x <= 515)) {
+                                section = 11
+                            }
+                            else if ((y <= 1507 && y >= 1273) && (x >= 47 && x <= 445)) {
+                                section = 12
+                            }
+                            else if ((y <= 1780 && y >= 1546) && (x >= 71 && x <= 515)) {
+                                section = 13
+                            }
+                            else if ((y <= 2046 && y >= 1825) && (x >= 118 && x <= 445)) {
+                                section = 14
+                            }
+                            else if ((y <= 2313 && y >= 2092) && (x >= 258 && x <= 515)) {
+                                section = 15
+                            }
+                            else if ((y <= 801 && y >= 606) && (x >= 579 && x <= 696)) {
+                                section = 16
+                            } else if ((y >= 1974 && y <= 2169) && (x >= 579 && x <= 696)) {
+                                section = 22
+                            }
+                            else if (x >= 579 && x <= 743) {
+                                if (y >= 844 && y <= 1026) {
+                                    section = 17
+                                }
+                                else if (y >= 1071 && y <= 1253) {
+                                    section = 18
+                                }
+                                else if (y >= 1298 && y <= 1480) {
+                                    section = 19
+                                }
+                                else if (y >= 1519 && y <= 1701) {
+                                    section = 20
+                                }
+                                else if (y >= 1747 && y <= 1929) {
+                                    section = 21
+                                }
+                            }
+                            else if ((y >= 1285 && y <= 1496) && (x >= 918 && x <= 1236)) {
+                                section = 23
+                            }
+                            else if ((y >= 1285 && y <= 1496) && (x >= 1285 && x <= 1605)) {
+                                section = 24
+                            }
+                            else if ((y >= 617 && y <= 799) && (x >= 1888 && x <= 2005)) {
+                                section = 25
+                            }
+                            else if ((y >= 1973 && y <= 2155) && (x >= 1888 && x <= 2005)) {
+                                section = 31
+                            }
+                            else if (x >= 1841 && x <= 2005) {
+                                if (y >= 845 && y <= 1027) {
+                                    section = 26
+                                }
+                                if (y >= 1069 && y <= 1251) {
+                                    section = 27
+                                }
+                                if (y >= 1297 && y <= 1479) {
+                                    section = 28
+                                }
+                                if (y >= 1524 && y <= 1706) {
+                                    section = 29
+                                }
+                                if (y >= 1747 && y <= 1929) {
+                                    section = 30
+                                }
+                            }
+                            else if ((y >= 463 && y <= 697) && (x >= 2072 && x <= 2329)) {
+                                section = 32
+                            }
+                            else if ((y >= 728 && y <= 962) && (x >= 2142 && x <= 2470)) {
+                                section = 33
+                            }
+                            else if ((y >= 1006 && y <= 1227) && (x >= 2072 && x <= 2516)) {
+                                section = 34
+                            }
+                            else if ((y >= 1273 && y <= 1507) && (x >= 2142 && x <= 2540)) {
+                                section = 35
+                            }
+                            else if ((y >= 1546 && y <= 1780) && (x >= 2072 && x <= 2516)) {
+                                section = 36
+                            }
+                            else if ((y >= 1825 && y <= 2046) && (x >= 2142 && x <= 2470)) {
+                                section = 37
+                            }
+                            else if ((y >= 2092 && y <= 2326) && (x >= 2072 && x <= 2329)) {
+                                section = 38
+                            }
+
+                            let item = secion?.filter((elm) => elm.section === section);
+                            let rows = item[0]?.price.filter((elm) => elm?.row === row2);
+
+                            let price = 0
+                            if (rows?.length) {
+                                price = rows[0].price
+                            }
+                            coordinates.push({ x, y, active: false, id: coordinates.length, row: row, section: section, price: price })
+                        }
                     }
                 }
-            }
-            console.log(coordinates.length)
-            setCoordinatesState(coordinates)
-        };
-    }, []);
+                setCoordinatesState(coordinates)
+            };
+    }, [secion]);
 
 
     return (
@@ -1538,30 +570,30 @@ const AramKhachatryan = ({ secion }) => {
                 <div >
                     <img alt='' src={require('../../assets/hamalir7000.png')} />
                     {coordinatesState.map((e, i) => {
-                        // if (seansArr[2040 - i].price)
-                        return <button
-                            key={i}
-                            onMouseOver={() => {
-                                getPrice(e.y, i, e.x)
-                                setActiveButton(i)
-                            }}
-                            style={
-                                {
-                                    top: e?.y - 4,
-                                    left: e?.x - 4,
-                                    backgroundColor: e.active && 'green'
+                        if (e.price)
+                            return <button
+                                key={i}
+                                onMouseOver={() => {
+                                    getPrice(e.y, i, e.x, e.price, e.row)
+                                    setActiveButton(i)
+                                }}
+                                style={
+                                    {
+                                        top: e?.y - 4,
+                                        left: e?.x - 4,
+                                        backgroundColor: e.active && 'green'
+                                    }
                                 }
-                            }
-                            id='seatStyle'
-                            className={[
-                                i == activeButton ? 'activeButton' : '',
-                                e.active ? "addTicketButton" : '']}
-                            onMouseLeave={() => {
-                                setShowModal(false)
-                                setActiveButton(null)
-                            }}
-                            onClick={() => addTicket(i)}
-                        />
+                                id='seatStyle'
+                                className={[
+                                    i == activeButton ? 'activeButton' : '',
+                                    e.active ? "addTicketButton" : '']}
+                                onMouseLeave={() => {
+                                    setShowModal(false)
+                                    setActiveButton(null)
+                                }}
+                                onClick={() => addTicket(i)}
+                            />
                     })}
 
                     {showModal &&
