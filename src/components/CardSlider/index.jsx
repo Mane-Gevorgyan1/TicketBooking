@@ -52,7 +52,7 @@ export const CardSlider = ({ data }) => {
                 return <EachTopEvent
                     id={elm?._id}
                     key={i}
-                    image={`http://localhost:8080/images/${elm.image}`}
+                    image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
                     title={elm.title}
                     location={elm.location}
                     date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
