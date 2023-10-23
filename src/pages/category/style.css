@@ -6,6 +6,10 @@
     margin-top: 60px;
 }
 
+.rdrDateDisplayWrapper {
+    display: none !important;
+}
+
 .CateogryButton {
     border-radius: 40px;
     background: #000;

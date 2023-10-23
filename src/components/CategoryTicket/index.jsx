@@ -3,7 +3,7 @@ import { Date, Location, TicketIcon } from '../svg'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-export const CategoryTicket = ({ image, title, date, location, price, genre, onClick, data }) => {
+export const CategoryTicket = ({ image, date, location, price, genre, onClick, data }) => {
     const [languageData, setLanguageData] = useState({ title: '' })
     const { language } = useSelector((st) => st.StaticReducer)
     useEffect(() => {

@@ -36,26 +36,41 @@ export const Category = () => {
     const [activeButton, setActiveButton] = useState('Բոլորը')
     const [selectedDate, setSelectedDate] = useState([{ startDate: '', endDate: '', key: 'selection', },])
 
+    // useEffect(() => {
+    //     let date = new Date(selectedDate[0].endDate)
+    //     let startDate = new Date(selectedDate[0].startDate)
+    //     let statDate = ''
+    //     let endDate = ''
+    //     if (selectedDate[0].endDate) {
+    //         endDate = `${date.getFullYear()}-${date.getDate()}-${date.getMonth() + 1}`
+    //     }
+    //     if (selectedDate[0].startDate) {
+    //         statDate = `${startDate.getFullYear()}-${startDate.getDate()}-${startDate.getMonth() + 1}`
+    //     }
+    //     setStartDate(statDate)
+    //     setEndDate(endDate)
+    // }, [selectedDate])
+
     useEffect(() => {
+        window.scrollTo(0, 0)
+        dispatch(GetHall())
         let date = new Date(selectedDate[0].endDate)
         let startDate = new Date(selectedDate[0].startDate)
         let statDate = ''
         let endDate = ''
         if (selectedDate[0].endDate) {
-            endDate = `${date.getFullYear()}-${date.getDate() + 1}-${date.getMonth() + 1}`
+            endDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
         }
         if (selectedDate[0].startDate) {
-            statDate = `${startDate.getFullYear()}-${startDate.getDate()}-${startDate.getMonth() + 1}`
+            statDate = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`
         }
-        setStartDate(statDate)
-        setEndDate(endDate)
-    }, [selectedDate])
-
-    useEffect(() => {
-        window.scrollTo(0, 0)
-        dispatch(GetHall())
-        dispatch(GetAllEvents(page, { category: id, subcategory: subcategoryId, startDate, endDate, hall: hallId }))
-    }, [startDate, endDate, id, subcategoryId, page, hallId])
+        dispatch(GetAllEvents(page, {
+            category: id, subcategory: subcategoryId, date: {
+                startDate: statDate,
+                endDate
+            }, hall: hallId
+        }))
+    }, [selectedDate, id, subcategoryId, page, hallId])
 
     useEffect(() => {
         dispatch(SubCategory({ id: id }))
@@ -130,7 +145,7 @@ export const Category = () => {
                                 setTitle(language === 'am' ? e?.hall :
                                     language === 'ru' ? e?.hall_ru :
                                         e?.hall_en)
-                                setHallId(e._id)
+                                setHallId(e?._id)
                             }} title={title} />
                         </div>
                     }
@@ -178,12 +193,11 @@ export const Category = () => {
                             data={elm.eventId}
                             onClick={() => navigation(`/Single/${elm?.eventId?._id}`)}
                             key={i}
-                            id={elm?._id}
+                            id={elm?.eventId?._id}
                             image={elm?.eventId?.image}
                             date={`${day}-${month}-${dateObject.getFullYear()}`}
                             location={elm?.hallId?.location}
                             price={`${elm?.priceStart} - ${elm?.priceEnd} AMD`}
-                            title={elm?.eventId?.title}
                         />
                     })}
                 </div>

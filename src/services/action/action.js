@@ -3,8 +3,8 @@ import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGet
 import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
 import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
 
-const api = 'https://api.shinetickets.com/'
-// https://api.shinetickets.com/
+const api = 'https://api.shinetickets.com'
+// 'https://api.shinetickets.com/'
 export const OpenCategoryMenu = (data) => {
     return {
         type: 'OpenCategoryMenu',
@@ -80,6 +80,7 @@ export const SearchAction = (search) => {
 }
 
 export const GetAllEvents = (page, data) => {
+    console.log(data)
     return (dispatch) => {
         dispatch(StartGetCategoris())
         axios.post(`${api}/filterEvents?currentPage=${page}`, data).then((r) => {
