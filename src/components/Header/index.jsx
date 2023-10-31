@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { CloseSvg, MenuSvg, Search, Translate } from '../svg'
 import { ChangeLanguageAction, GetCategory, OpenCategoryMenu, SearchAction } from '../../services/action/action'
+import { PuffLoader } from 'react-spinners'
 
 export const Header = ({ open, menu }) => {
     const dispatch = useDispatch()
@@ -29,7 +30,6 @@ export const Header = ({ open, menu }) => {
     useEffect(() => {
         dispatch(GetCategory())
     }, [dispatch])
-
     if (serchInput) {
         return <div className='headerContainer' >
             <div>
@@ -37,15 +37,29 @@ export const Header = ({ open, menu }) => {
                     setSearchInput(false)
                     setValue('')
                 }} />
-                {search.events.length > 0 && value &&
-                    <div className='searchDivWrapper'>
-                        {search.events?.map((elm, i) => {
-                            if (elm?.sessions.length) {
-                                return <div onClick={() => window.location = (`/Single/${elm._id}`)}>{elm.title}</div>
-                            }
-                        })}
+
+                {search.loading ?
+                    <div className='searchDivWrapper' id='LoadingSearch'>
+                        <PuffLoader />
+                    </div> :
+                    <div>
+                        {search.events.length > 0 && value &&
+                            <div className='searchDivWrapper'>
+                                {search.events?.map((elm, i) => {
+                                    if (elm?.sessions.length) {
+                                        return <div onClick={() => window.location = (`/Single/${elm._id}`)}>{elm.title}</div>
+                                    }
+                                })}
+                            </div>
+                        }
+                        {search.events.length == 0 && value &&
+                            <div className='searchDivWrapper'>
+                                <div className='notfoundSearch'>not found</div>
+                            </div>
+                        }
                     </div>
                 }
+
             </div>
         </div >
     }

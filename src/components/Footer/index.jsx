@@ -29,6 +29,7 @@ export const Footer = ({ menu }) => {
                             }
                             return <p onClick={() => navigation(`/Category/${elm?.name}/${elm?._id}`)} className='Headertext'>{title}</p>
                         })}
+                        <p onClick={() => navigation(`/PrivacyPolicy`)} className='Headertext'>Privacy Policy</p>
                     </div>
                 }
                 <div className='eachFooterColumn'>
