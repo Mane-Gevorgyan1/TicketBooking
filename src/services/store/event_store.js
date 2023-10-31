@@ -124,4 +124,5 @@ export default {
             price: '10.000 - 30.000 AMD'
         },
     ],
+    valid: false,
 }

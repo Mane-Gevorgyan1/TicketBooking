@@ -1,10 +1,11 @@
 import axios from "axios"
 import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartSearch, StartSubCategory } from "./StartAction"
 import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
-import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage } from "./SuccessAction"
+import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
 
-const api = 'https://api.shinetickets.com'
+// const api = 'http://localhost:8080'
 // 'https://api.shinetickets.com/'
+
 export const OpenCategoryMenu = (data) => {
     return {
         type: 'OpenCategoryMenu',
@@ -15,7 +16,7 @@ export const OpenCategoryMenu = (data) => {
 export const GetTopEvents = () => {
     return (dispatch) => {
         dispatch(StartGetGetTopEvents())
-        axios.get(`${api}/getTopEvents`).then((r) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/getTopEvents`).then((r) => {
             if (r.data.success) {
                 dispatch(SuccessGetTopEvents(r.data.events))
             }
@@ -32,7 +33,7 @@ export const GetTopEvents = () => {
 export const GetGenerealEvents = () => {
     return (dispatch) => {
         dispatch(StartGetGeneralEvents())
-        axios.get(`${api}/getGeneralEvents`).then((r) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/getGeneralEvents`).then((r) => {
             if (r.data.success) {
                 dispatch(SuccessGetGeneralEvents(r.data.events))
             }
@@ -49,7 +50,7 @@ export const GetGenerealEvents = () => {
 export const GetSinglPage = (id) => {
     return (dispatch) => {
         dispatch(StartGetSinglPage())
-        axios.get(`${api}/singleEvent/${id}`).then((r) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/singleEvent/${id}`).then((r) => {
             if (r.data.success) {
                 dispatch(SuccessSinglPage(r.data))
             } else {
@@ -65,7 +66,7 @@ export const GetSinglPage = (id) => {
 export const SearchAction = (search) => {
     return (dispatch) => {
         dispatch(StartSearch())
-        axios.post(`${api}/search`, { search: search }).then((r) => {
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/search`, { search: search }).then((r) => {
             if (r.data.success) {
                 dispatch(SuccessSearch(r.data.events))
             }
@@ -79,11 +80,23 @@ export const SearchAction = (search) => {
     }
 }
 
+export const EventValidity = () => {
+    return (dispatch) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/eventValidity`)
+            .then((r) => {
+                dispatch(eventValidity(r.data.valid))
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+    }
+}
+
 export const GetAllEvents = (page, data) => {
     console.log(data)
     return (dispatch) => {
         dispatch(StartGetCategoris())
-        axios.post(`${api}/filterEvents?currentPage=${page}`, data).then((r) => {
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/filterEvents?currentPage=${page}`, data).then((r) => {
             if (r.data.success) {
                 dispatch(SuccessGetCategoris(r.data))
             }
@@ -100,7 +113,7 @@ export const GetAllEvents = (page, data) => {
 export const GetRandomEvents = () => {
     return (dispatch) => {
         dispatch(StartGetRadnomEvents())
-        axios.get(`${api}/randomEvents`).then((r) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/randomEvents`).then((r) => {
             if (r.data.success) {
                 dispatch(SuccessGetRandomEvents(r.data.randomEvents))
             }
@@ -131,7 +144,7 @@ export const RemoveTicketsAction = (data) => {
 export const GetCategory = () => {
     return (dispatch) => {
         dispatch(StartGetCategory())
-        axios.get(`${api}/getCategories`).then((r) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/getCategories`).then((r) => {
             if (r.data.success) {
                 dispatch(SuccessGetCategory(r.data.categories))
             }
@@ -148,7 +161,7 @@ export const GetCategory = () => {
 export const SubCategory = (data) => {
     return (dispatch) => {
         dispatch(StartSubCategory())
-        axios.post(`${api}/getSubcategories`, data).then((r) => {
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/getSubcategories`, data).then((r) => {
             dispatch(SuccessGetSubCategory(r.data.category))
         })
             .catch((error) => {
@@ -159,7 +172,7 @@ export const SubCategory = (data) => {
 
 export const GetHall = () => {
     return (dispatch) => {
-        axios.get(`${api}/getAllHalls`).then((r) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/getAllHalls`).then((r) => {
             dispatch(SuccessGetHall(r.data.halls))
         })
     }

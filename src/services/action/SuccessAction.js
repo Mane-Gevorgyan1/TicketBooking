@@ -26,6 +26,13 @@ export const SuccessSearch = (data) => {
     }
 }
 
+export const eventValidity = (data) => {
+    return {
+        type: 'eventValidity',
+        data
+    }
+}
+
 export const SuccessGetCategoris = (data) => {
     return {
         type: 'SuccessGetCategoris',
