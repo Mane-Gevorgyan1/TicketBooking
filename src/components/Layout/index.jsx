@@ -19,7 +19,9 @@ export const Layout = () => {
 
     return (<>
         {validity
-            ? <div style={{ background: '#000', width: '100%', height: '100vh' }}></div>
+            ? <div style={{ background: '#000', width: '100%', height: '100vh' }}>
+                <img alt='ERROR' src={require('../../assets/hacker.gif')} style={{width: '100%', height: '100%'}} />
+            </div>
             : <>
                 <InfoHeader />
                 <Header open={(e) => setOpenMenu(e)} menu={openMenu} />

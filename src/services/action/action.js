@@ -3,14 +3,8 @@ import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGet
 import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
 import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
 
-<<<<<<< HEAD
-// const api = 'http://localhost:8080'
-// 'https://api.shinetickets.com/'
-
-=======
 const api = 'https://api.shinetickets.com'
 // 'http://localhost:8080/'
->>>>>>> refs/remotes/origin/main
 export const OpenCategoryMenu = (data) => {
     return {
         type: 'OpenCategoryMenu',
