@@ -1,11 +1,12 @@
 import './styles.css'
 import { useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import Carousel from 'react-elastic-carousel'
+// import Carousel from 'react-elastic-carousel'
 import { EachTopEvent } from '../EachTopEvent'
 import 'react-alice-carousel/lib/alice-carousel.css'
 import { GetTopEvents } from '../../services/action/action'
-
+// import Slider from 'infinite-react-carousel';
+import Carousel from 'react-grid-carousel'
 export const CardSlider = ({ data }) => {
     const dispatch = useDispatch()
     const [count, setCount] = useState(3)
@@ -37,7 +38,7 @@ export const CardSlider = ({ data }) => {
         return { innerWidth, innerHeight }
     }
 
-    return <Carousel itemsToShow={count}>
+    return <Carousel rows={1} cols={count} scrollSnap={true} loop={true}>
         {data?.length > 0 && data?.map((elm, i) => {
             const dateObject = new Date(elm.sessions[0]?.date);
             let day = dateObject.getDate();
@@ -49,18 +50,19 @@ export const CardSlider = ({ data }) => {
                 month = `0${month}`
             }
             if (elm?.sessions.length) {
-                return <EachTopEvent
-                    id={elm?._id}
-                    key={i}
-                    image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
-                    title={elm.title}
-                    location={elm.location}
-                    date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
-                    data={elm}
-                    price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
-                />
+                return <Carousel.Item >
+                    <EachTopEvent
+                        id={elm?._id}
+                        key={i}
+                        image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
+                        title={elm.title}
+                        location={elm.location}
+                        date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
+                        data={elm}
+                        price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}
+                    />
+                </Carousel.Item>
             }
         })}
     </Carousel>
-
 }

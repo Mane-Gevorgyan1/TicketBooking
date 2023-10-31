@@ -39,7 +39,7 @@ export const Main = () => {
             </div>
             <ALLEvents />
             <SearchEvent />
-            <MainAbout />
+            {/* <MainAbout /> */}
         </div>
     )
 }

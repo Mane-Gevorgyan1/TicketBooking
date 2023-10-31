@@ -181,11 +181,19 @@
 
 }
 
+#LoadingSearch {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+}
+
 .searchDivWrapper>div {
     height: 40px;
     display: flex;
     align-items: center;
     padding: 0 20px;
+
 }
 
 .searchDivWrapper>div:hover {
@@ -212,13 +220,10 @@
     }
 }
 
-/* @media screen and (max-width: 1200px) {
-    .header {
-        padding: 5px 80px;
-    }
-
-} */
-
+.notfoundSearch {
+    display: flex;
+    justify-content: center;
+}
 
 @media screen and (max-width: 1000px) {
     .socialm {
