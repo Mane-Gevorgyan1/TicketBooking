@@ -8,16 +8,18 @@ import { ALLEvents } from '../../components/AllEvents'
 import { useDispatch, useSelector } from 'react-redux'
 import { CardSlider } from '../../components/CardSlider'
 import { SearchEvent } from '../../components/SearchEvent'
-import { GetGenerealEvents } from '../../services/action/action'
+import { GetAllAds, GetGenerealEvents } from '../../services/action/action'
 
 export const Main = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const topEvents = useSelector((st) => st.topEvents)
     const general = useSelector((st) => st.general)
+    const { getAds } = useSelector((st) => st)
 
     useEffect(() => {
         dispatch(GetGenerealEvents())
+        dispatch(GetAllAds())
     }, [])
 
     if (general?.loading) {
@@ -38,7 +40,7 @@ export const Main = () => {
                 </div>
             </div>
             <ALLEvents />
-            <SearchEvent />
+            <SearchEvent data={getAds.ads} />
             {/* <MainAbout /> */}
         </div>
     )

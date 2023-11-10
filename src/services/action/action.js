@@ -1,9 +1,11 @@
 import axios from "axios"
 import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartSearch, StartSubCategory } from "./StartAction"
 import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
-import { SuccessGetCategoris, SuccessGetCategory, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
+import { SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
 
 const api = 'https://api.shinetickets.com'
+// const api = 'http://localhost:8080'
+
 // 'http://localhost:8080/'
 export const OpenCategoryMenu = (data) => {
     return {
@@ -187,5 +189,14 @@ export const ChangeLanguageAction = (data) => {
     return {
         type: 'ChangeLanguageAction',
         data
+    }
+}
+
+
+export const GetAllAds = () => {
+    return (dispatch) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/getAllAds`).then((r) => {
+            dispatch(SuccessGetAllAds(r.data))
+        })
     }
 }

@@ -67,3 +67,10 @@ export const SuccessGetHall = (data) => {
         data
     }
 }
+
+export const SuccessGetAllAds = (data) => {
+    return {
+        type: 'SuccessGetAllAds',
+        data
+    }
+}

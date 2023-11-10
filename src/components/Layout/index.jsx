@@ -12,15 +12,13 @@ export const Layout = () => {
     const [openMenu, setOpenMenu] = useState(false)
     const dispatch = useDispatch()
     const validity = useSelector(st => st.Event_reducer.valid)
-
     useEffect(() => {
         dispatch(EventValidity())
     }, [dispatch])
-
     return (<>
         {validity
             ? <div style={{ background: '#000', width: '100%', height: '100vh' }}>
-                <img alt='ERROR' src={require('../../assets/hacker.gif')} style={{width: '100%', height: '100%'}} />
+                <img alt='ERROR' src={require('../../assets/hacker.gif')} style={{ width: '100%', height: '100%' }} />
             </div>
             : <>
                 <InfoHeader />
