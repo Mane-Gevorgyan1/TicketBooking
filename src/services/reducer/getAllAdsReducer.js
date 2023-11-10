@@ -9,7 +9,7 @@ export const GetAdsReducer = (state = store, action) => {
         case 'SuccessGetAllAds':
             temp.loading = true
             temp.error = ''
-            temp.ads = action.data.ads
+            temp.ads = action.data?.ads
             break;
         default:
             return temp;

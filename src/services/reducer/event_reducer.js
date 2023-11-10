@@ -4,7 +4,7 @@ export const Event_reducer = (state = store, action) => {
     let temp = { ...state }
     switch (action.type) {
         case 'eventValidity':
-            if(action.data.validity) {
+            if(action.data?.validity) {
                 temp.valid = true
             } else {
                 temp.valid = false

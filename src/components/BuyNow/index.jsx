@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction } from '../../services/action/action'
 import { CheckSvg, CheckedSvg, SelectSvg, SelectedSvg } from '../svg'
+import axios from 'axios'
 
 export const BuyNow = ({ close }) => {
     const dispatch = useDispatch()
@@ -19,6 +20,22 @@ export const BuyNow = ({ close }) => {
         })
         setTotal(price)
     }, [tickets])
+
+    function handlePurchase() {
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: totoal * 100 })
+            .then(res => {
+                if (res?.data?.success) {
+                    window.open(`${res?.data?.formUrl}`, { target: '_blank' })
+                } else {
+                    // rejecti ej
+                }
+            })
+            .catch((error) => {
+                console.log('error', error);
+            })
+    }
+
+
     return (
         <div>
             <div className='buyNowWrapper2'>
@@ -59,25 +76,25 @@ export const BuyNow = ({ close }) => {
                         <div className='BuyMethodSelect'>
                             {selectPay == 1 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
                             <img alt='' width={45} height={20} src={require('../../assets/visa.png')} />
                             <img alt='' width={45} height={20} src={require('../../assets/master.png')} />
                             <img alt='' width={45} height={20} src={require('../../assets/arca.png')} />
                         </div>
                     </div>
-                    <div onClick={() => Select(2)}>
+                    {/* <div onClick={() => Select(2)}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 2 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
                         <img alt='' width={100} height={30} src={require('../../assets/idram.png')} />
-                    </div>
-                    <div onClick={() => Select(3)}>
+                    </div> */}
+                    {/* <div onClick={() => Select(3)}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 3 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
                         <img alt='' width={80} height={30} src={require('../../assets/telsel.png')} />
-                    </div>
-                    <div onClick={() => Select(4)}>
+                    </div> */}
+                    <div onClick={() => Select(4)} style={{ cursor: 'pointer' }}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 4 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
@@ -105,11 +122,11 @@ export const BuyNow = ({ close }) => {
                     </div>
                 </div>
                 <div className='BuyButton'>
-                    <button onClick={() => window.location = '/hall'}>Buy Ticket</button>
+                    <button onClick={handlePurchase} style={{ cursor: 'pointer' }}>Գնել տոմս</button>
                 </div>
                 <div className='BuyCheck'>
                     <p>Lorem ipsum dolor sit amet consectetur.</p>
-                    <div onClick={() => setChedker(!chedked)}>
+                    <div onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer' }}>
                         {chedked
                             ? <CheckedSvg />
                             : <CheckSvg />
