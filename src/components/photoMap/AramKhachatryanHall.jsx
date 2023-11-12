@@ -1427,33 +1427,6 @@ const AramKhachatryan = ({ secion }) => {
         { "id": 1251, "price": "", "row": 1, "section": 1, "seat": 3 },
         { "id": 1240, "price": "", "row": 1, "section": 1, "seat": 4 },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     ])
 
     useEffect(() => {

@@ -24,6 +24,7 @@ export const Single = () => {
     let { recomended } = getSinglPage?.events
     const [openPopUp, setOpenPopUp] = useState(false)
     const [openBuy, setOpenBuy] = useState(false)
+    const tickets = useSelector((st) => st.tiketsForBuy)
     const [languageData, setLanguageData] = useState({ title: '', description: '' })
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -65,18 +66,20 @@ export const Single = () => {
                         setOpen={setOpenPopUp}
                         type='hall'
                         openCard={() => {
-                            setOpenBuy(true)
+                            if (tickets.tickets.length) {
+                                setOpenBuy(true)
+                            }
                         }}
                     >
                         {/* <Hall buy={() => setOpenBuy(true)} /> */}
                         {event.sessions[0]?.hallId._id === '652a6e93cebdd7a4ac8fc020' &&
-                            <PhotoCoordinatesByColor secion={getSinglPage.events.event?.sessions[0]?.price} />
+                            <PhotoCoordinatesByColor sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
                         {event.sessions[0]?.hallId?._id === '653554d8709652928c006a15' &&
-                            <KarenDemerchyanMec secion={getSinglPage.events.event?.sessions[0]?.price} />
+                            <KarenDemerchyanMec sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
                         {event.sessions[0]?.hallId?._id === '6535520e0dc8b78f78b56997' &&
-                            <AramKhachatryan secion={getSinglPage.events.event?.sessions[0]?.price} />
+                            <AramKhachatryan sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
                         {event.sessions[0]?.hallId?._id === '653563a0369cf9fb4627aaf8' &&
                             <Hall buy={() => setOpenBuy(true)} section={getSinglPage.events.event?.sessions[0]?.price} />

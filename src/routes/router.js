@@ -5,6 +5,7 @@ import { Category } from "../pages/category"
 import { Single } from "../pages/Single"
 import { Page404 } from "../pages/404"
 import { PrivatePolice } from "../components/privatePolice"
+import { StatusPage } from "../pages/StatusPage/index.jsx"
 
 export const Router = () => {
     return (
@@ -15,6 +16,7 @@ export const Router = () => {
                     <Route path="/Category/:id/:id" element={<Category />} />
                     <Route path="/Single/:id" element={<Single />} />
                     <Route path="/PrivacyPolicy" element={<PrivatePolice />} />
+                    <Route path="/StatusPage" element={<StatusPage />} />
 
                     <Route path='*' element={<Page404 />} />
                 </Route>
@@ -22,3 +24,4 @@ export const Router = () => {
         </BrowserRouter>
     )
 }
+// StatusPage

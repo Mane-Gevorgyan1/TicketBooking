@@ -8,7 +8,8 @@ import { ALLEvents } from '../../components/AllEvents'
 import { useDispatch, useSelector } from 'react-redux'
 import { CardSlider } from '../../components/CardSlider'
 import { SearchEvent } from '../../components/SearchEvent'
-import { GetAllAds, GetGenerealEvents } from '../../services/action/action'
+import { GetAllAds, GetGenerealEvents, StatusSuccessAction } from '../../services/action/action'
+import { useNavigate } from 'react-router-dom'
 
 export const Main = () => {
     const dispatch = useDispatch()
@@ -16,6 +17,7 @@ export const Main = () => {
     const topEvents = useSelector((st) => st.topEvents)
     const general = useSelector((st) => st.general)
     const { getAds } = useSelector((st) => st)
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(GetGenerealEvents())
@@ -33,6 +35,10 @@ export const Main = () => {
     return (
         <div className='mainPage'>
             <Carusel />
+            {/* <button onClick={() => {
+                dispatch(StatusSuccessAction())
+                navigate('/StatusPage')
+            }}>sss</button> */}
             <div className='EventTitleMain'>
                 <h2 style={{ marginBottom: 50 }}>{t('TopEvents')}</h2>
                 <div className='topEventsMain'>

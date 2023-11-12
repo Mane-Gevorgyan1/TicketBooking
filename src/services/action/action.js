@@ -200,3 +200,51 @@ export const GetAllAds = () => {
         })
     }
 }
+
+export const StatusSuccessAction = () => {
+    return {
+        type: "StatusSuccessAction",
+    }
+}
+export const StatusErrorAction = () => {
+    return {
+        type: "StatusErrorAction",
+    }
+}
+
+export const ClearStatusAction = () => {
+    return {
+        type: 'ClearStatusAction'
+    }
+}
+
+export const AddDate = (data) => {
+    console.log(data, 'data')
+    return {
+        type: 'AddDate',
+        data
+    }
+}
+
+export const ClearDataBuy = () => {
+    return {
+        type: 'ClearDataBuy'
+    }
+}
+
+export const ButTickets = (data) => {
+    return (dispatch) => {
+        dispatch(StartGetCategoris())
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/buyTicket`, data).then((r) => {
+            if (r.data.success) {
+                // dispatch(SuccessGetCategoris(r.data))
+            }
+            else {
+                // dispatch(ErrorGetCategoris())
+            }
+        })
+            .catch((error) => {
+                // dispatch(ErrorGetCategoris())
+            })
+    }
+}

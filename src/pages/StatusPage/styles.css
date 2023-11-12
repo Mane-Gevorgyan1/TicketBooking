@@ -1,0 +1,13 @@
+.statusDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.Statustext {
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 40px;
+}

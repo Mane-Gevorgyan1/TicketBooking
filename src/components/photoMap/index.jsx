@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 import { PuffLoader } from 'react-spinners'
 
-const PhotoCoordinatesByColor = ({ secion, }) => {
+const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID }) => {
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
@@ -14,7 +14,7 @@ const PhotoCoordinatesByColor = ({ secion, }) => {
     const [loading, setLoading] = useState(true)
     const { tickets } = useSelector((st) => st.tiketsForBuy)
 
-    const getPrice = (y, i, x, price, row) => {
+    const getPrice = (y, i, x, price, row, id) => {
         setPosition({ x, y })
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);
@@ -25,9 +25,11 @@ const PhotoCoordinatesByColor = ({ secion, }) => {
             price: price,
             bench: seat,
             id: i,
+            sessionId: sessionID,
         })
         setShowModal(true)
     }
+
 
     const addTicket = (i) => {
         let data = [...coordinatesState]
@@ -302,7 +304,8 @@ const PhotoCoordinatesByColor = ({ secion, }) => {
                         if (rows?.length) {
                             price = rows[0].price
                         }
-                        coordinates.push({ x, y, active: false, id: coordinates.length, row: row, section: section, price: price })
+                        let sold = soldTickets.findIndex((elm) => elm.id == id)
+                        coordinates.push({ x, y, active: false, id: coordinates.length, row: row, section: section, price: price, sold: sold >= 0, id: id })
                     }
                 }
             }
@@ -322,11 +325,11 @@ const PhotoCoordinatesByColor = ({ secion, }) => {
                 <div >
                     <img alt='' src={require('../../assets/ActualPlan.png')} />
                     {coordinatesState?.map((e, i) => {
-                        if (e.price)
+                        if (e.price && !e.sold)
                             return <button
                                 key={i}
                                 onMouseOver={() => {
-                                    getPrice(e.y, i, e.x, e.price, e.row)
+                                    getPrice(e.y, i, e.x, e.price, e.row, e.id)
                                     setActiveButton(i)
                                 }}
                                 style={

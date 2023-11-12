@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 
-const AramKhachatryan = ({ secion }) => {
+const AramKhachatryan = ({ secion, soldTickets, sessionID }) => {
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
@@ -39,6 +39,7 @@ const AramKhachatryan = ({ secion }) => {
             price: price,
             bench: seat,
             id: i,
+            sessionId: sessionID,
         })
         setShowModal(true)
     }
@@ -551,7 +552,8 @@ const AramKhachatryan = ({ secion }) => {
                             if (rows?.length) {
                                 price = rows[0].price
                             }
-                            coordinates.push({ x, y, active: false, id: coordinates.length, row: row, section: section, price: price })
+                            let sold = soldTickets.findIndex((elm) => elm.id == id)
+                            coordinates.push({ x, y, active: false, id: coordinates.length, row: row, section: section, price: price, sold: sold >= 0, id: id })
                         }
                     }
                 }
@@ -567,7 +569,7 @@ const AramKhachatryan = ({ secion }) => {
                 <div >
                     <img alt='' src={require('../../assets/hamalir7000.png')} />
                     {coordinatesState.map((e, i) => {
-                        if (e.price)
+                        if (e.price && !e.sold)
                             return <button
                                 key={i}
                                 onMouseOver={() => {

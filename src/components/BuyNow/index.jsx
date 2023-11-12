@@ -1,7 +1,7 @@
 import './style.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { RemoveTicketsAction } from '../../services/action/action'
+import { AddDate, RemoveTicketsAction } from '../../services/action/action'
 import { CheckSvg, CheckedSvg, SelectSvg, SelectedSvg } from '../svg'
 import axios from 'axios'
 
@@ -11,7 +11,26 @@ export const BuyNow = ({ close }) => {
     const Select = (i) => { setSelectPay(i) }
     const [totoal, setTotal] = useState(0)
     const [chedked, setChedker] = useState(false)
-    const [selectPay, setSelectPay] = useState(null)
+    const [selectPay, setSelectPay] = useState(1)
+    const [name, setName] = useState('')
+    const [number, setNumber] = useState('')
+    const [email, setEmail] = useState('')
+    const [additional, setAdditional] = useState('')
+    const [address, setAddress] = useState('')
+    const [error, setError] = useState({
+        name: '',
+        email: '',
+        phonNumber: '',
+        checked: '',
+        address: ''
+    })
+
+    function ValidateEmail(mail) {
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+            return (true)
+        }
+        return (false)
+    }
 
     useEffect(() => {
         let price = 0
@@ -20,11 +39,20 @@ export const BuyNow = ({ close }) => {
         })
         setTotal(price)
     }, [tickets])
-
     function handlePurchase() {
+        dispatch(AddDate({
+            tickets: tickets.tickets,
+            name: name,
+            email: email,
+            number,
+            address,
+            sessionId: tickets.tickets[0].sessionId
+            // order: res?.data?.orderID
+        }))
         axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: totoal * 100 })
             .then(res => {
                 if (res?.data?.success) {
+
                     window.open(`${res?.data?.formUrl}`, { target: '_blank' })
                 } else {
                     // rejecti ej
@@ -36,6 +64,66 @@ export const BuyNow = ({ close }) => {
     }
 
 
+    const validation = () => {
+        let send = false
+        let item = { ...error }
+        if (!name) {
+            item.name = 'error'
+            send = false
+        }
+        else {
+            send = true
+            item.name = ''
+
+        }
+        if (!number) {
+            item.phonNumber = 'error'
+            send = false
+
+        }
+        else {
+            send = true
+            item.phonNumber = ''
+
+        }
+        if (!ValidateEmail(email)) {
+            item.email = 'error'
+            send = false
+        }
+        else {
+            send = true
+            item.email = ''
+
+        }
+        if (!chedked) {
+            item.checked = 'error'
+            send = false
+        }
+        else {
+            item.checked = ''
+            send = true
+        }
+        if (selectPay == 2) {
+            console.log('22')
+            if (!address) {
+                item.address = 'error'
+                send = false
+            }
+            else {
+                send = true
+                item.address = ''
+
+            }
+        }
+
+        if (send) {
+            console.log('22')
+            handlePurchase()
+        }
+        console.log(item)
+        setError(item)
+    }
+
     return (
         <div>
             <div className='buyNowWrapper2'>
@@ -46,9 +134,6 @@ export const BuyNow = ({ close }) => {
                     <div className='BuyNowTitle'>
                         <p>Lorem ipsum dolor sit amet consectetur.</p>
                     </div>
-                    {/* <div className='BuyNowDate'>
-                    <p>14.09.2023  /  19:00</p>
-                </div> */}
                     <div>
                         <div className='BuyNowTickert' id='BuyNowTickert'>
                             <p className='Seat'>Seat</p>
@@ -76,27 +161,18 @@ export const BuyNow = ({ close }) => {
                         <div className='BuyMethodSelect'>
                             {selectPay == 1 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
-                            <img alt='' width={45} height={20} src={require('../../assets/visa.png')} />
-                            <img alt='' width={45} height={20} src={require('../../assets/master.png')} />
-                            <img alt='' width={45} height={20} src={require('../../assets/arca.png')} />
+                        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 10 }}>
+                            <img alt='' width={45} height={20} src={require('../../assets/MIR_logo.png')} />
+                            <img alt='' width={45} height={20} src={require('../../assets/amex_logo.png')} />
+                            <img alt='' width={45} height={20} src={require('../../assets/arca_logo.png')} />
+                            <img alt='' width={45} height={20} src={require('../../assets/mastercard_logo.png')} />
+                            <img alt='' width={45} height={20} src={require('../../assets/visa_logo.png')} />
+
                         </div>
                     </div>
-                    {/* <div onClick={() => Select(2)}>
+                    <div onClick={() => Select(2)} style={{ cursor: 'pointer' }}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 2 ? <SelectedSvg /> : <SelectSvg />}
-                        </div>
-                        <img alt='' width={100} height={30} src={require('../../assets/idram.png')} />
-                    </div> */}
-                    {/* <div onClick={() => Select(3)}>
-                        <div className='BuyMethodSelect'>
-                            {selectPay == 3 ? <SelectedSvg /> : <SelectSvg />}
-                        </div>
-                        <img alt='' width={80} height={30} src={require('../../assets/telsel.png')} />
-                    </div> */}
-                    <div onClick={() => Select(4)} style={{ cursor: 'pointer' }}>
-                        <div className='BuyMethodSelect'>
-                            {selectPay == 4 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
                         <img alt='' width={80} height={30} src={require('../../assets/take.png')} />
                     </div>
@@ -105,31 +181,39 @@ export const BuyNow = ({ close }) => {
                     <div className='BuyInputsName'>
                         <div className='InputsBuy'>
                             <label>Name Surname</label>
-                            <input />
+                            <input id={error.name != '' ? 'errorInut' : 'inout'} value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className='InputsBuy'>
                             <label>Phone Number</label>
-                            <input />
+                            <input id={error.phonNumber != '' ? 'errorInut' : 'inout'} value={number} type='number' onChange={(e) => setNumber(e.target.value)} />
                         </div>
                     </div>
                     <div className='InputsBuy'>
                         <label>E-mail</label>
-                        <input />
+                        <input id={error.email != '' ? 'errorInut' : 'inout'} value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className='InputsBuy'>
                         <label>Additional notes</label>
-                        <textarea />
+                        <textarea value={additional} onChange={(e) => setAdditional(e.target.value)} />
                     </div>
+                    {selectPay == 2 &&
+                        <div className='InputsBuy'>
+                            <label>Address</label>
+                            <input id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
+
+                        </div>
+                    }
                 </div>
                 <div className='BuyButton'>
-                    <button onClick={handlePurchase} style={{ cursor: 'pointer' }}>Գնել տոմս</button>
+                    <button
+                        disabled={chedked} onClick={validation} style={{ cursor: 'pointer' }}>Գնել տոմս</button>
                 </div>
                 <div className='BuyCheck'>
                     <p>Lorem ipsum dolor sit amet consectetur.</p>
                     <div onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer' }}>
                         {chedked
                             ? <CheckedSvg />
-                            : <CheckSvg />
+                            : <CheckSvg error={error.checked == ''} />
                         }
                     </div>
                 </div>

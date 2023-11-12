@@ -69,6 +69,10 @@
     min-width: 170px;
 }
 
+#errorInut {
+    border: 1px solid red;
+}
+
 .Seat {
     color: #000;
     font-family: Kanit;
