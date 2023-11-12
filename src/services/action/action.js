@@ -202,6 +202,7 @@ export const GetAllAds = () => {
 }
 
 export const StatusSuccessAction = () => {
+    window.location.reload()
     return {
         type: "StatusSuccessAction",
     }

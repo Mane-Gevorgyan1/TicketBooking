@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 import { PuffLoader } from 'react-spinners'
 
-const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID }) => {
+const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID, eventId }) => {
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})
@@ -23,9 +23,13 @@ const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID }) => {
         setActiveTicket({
             row: row,
             price: price,
-            bench: seat,
-            id: i,
+            seat,
+            seatId: i,
             sessionId: sessionID,
+            parterre: true,
+            amphitheater: false,
+            lodge: false,
+            eventId: eventId,
         })
         setShowModal(true)
     }
@@ -336,7 +340,7 @@ const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID }) => {
                                     {
                                         top: e?.y - 4,
                                         left: e?.x - 4,
-                                        backgroundColor: tickets.find((elm) => elm.id == e.id) && 'green'
+                                        backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green'
                                     }
                                 }
                                 id='seatStyle'

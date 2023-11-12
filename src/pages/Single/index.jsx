@@ -73,7 +73,7 @@ export const Single = () => {
                     >
                         {/* <Hall buy={() => setOpenBuy(true)} /> */}
                         {event.sessions[0]?.hallId._id === '652a6e93cebdd7a4ac8fc020' &&
-                            <PhotoCoordinatesByColor sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
+                            <PhotoCoordinatesByColor eventId={getSinglPage.events.event?._id} sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
                         {event.sessions[0]?.hallId?._id === '653554d8709652928c006a15' &&
                             <KarenDemerchyanMec sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />

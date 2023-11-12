@@ -1,7 +1,7 @@
 import './style.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AddDate, RemoveTicketsAction } from '../../services/action/action'
+import { AddDate, RemoveTicketsAction, StatusSuccessAction } from '../../services/action/action'
 import { CheckSvg, CheckedSvg, SelectSvg, SelectedSvg } from '../svg'
 import axios from 'axios'
 
@@ -40,22 +40,35 @@ export const BuyNow = ({ close }) => {
         setTotal(price)
     }, [tickets])
     function handlePurchase() {
-        dispatch(AddDate({
-            tickets: tickets.tickets,
-            name: name,
-            email: email,
-            number,
-            address,
-            sessionId: tickets.tickets[0].sessionId
-            // order: res?.data?.orderID
-        }))
-        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: totoal * 100 })
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, {
+            amount: totoal * 100, data: {
+                tickets: tickets.tickets,
+                buyerName: name,
+                buyerEmail: email,
+                buyerPhone: number,
+                deliveryLocation: address,
+                sessionId: tickets.tickets[0].sessionId,
+                paymentMethod: selectPay === 1 ? 'online' : 'cash',
+                buyerNotes: additional,
+                // order: res?.data?.orderID,
+            }
+        })
             .then(res => {
+                console.log(res?.data);
                 if (res?.data?.success) {
-
-                    window.open(`${res?.data?.formUrl}`, { target: '_blank' })
+                    dispatch(StatusSuccessAction())
+                    dispatch(AddDate({
+                        tickets: tickets.tickets,
+                        name: name,
+                        email: email,
+                        number,
+                        address,
+                        sessionId: tickets.tickets[0].sessionId,
+                        order: res?.data?.orderID,
+                    }))
+                    window.open(`${res?.data?.formUrl}`)
                 } else {
-                    // rejecti ej
+                    window.open(``)
                 }
             })
             .catch((error) => {
@@ -74,17 +87,14 @@ export const BuyNow = ({ close }) => {
         else {
             send = true
             item.name = ''
-
         }
         if (!number) {
             item.phonNumber = 'error'
             send = false
-
         }
         else {
             send = true
             item.phonNumber = ''
-
         }
         if (!ValidateEmail(email)) {
             item.email = 'error'
@@ -93,7 +103,6 @@ export const BuyNow = ({ close }) => {
         else {
             send = true
             item.email = ''
-
         }
         if (!chedked) {
             item.checked = 'error'
@@ -117,10 +126,8 @@ export const BuyNow = ({ close }) => {
         }
 
         if (send) {
-            console.log('22')
             handlePurchase()
         }
-        console.log(item)
         setError(item)
     }
 
@@ -206,7 +213,7 @@ export const BuyNow = ({ close }) => {
                 </div>
                 <div className='BuyButton'>
                     <button
-                        disabled={chedked} onClick={validation} style={{ cursor: 'pointer' }}>Գնել տոմս</button>
+                        onClick={validation} style={{ cursor: 'pointer' }}>Գնել տոմս</button>
                 </div>
                 <div className='BuyCheck'>
                     <p>Lorem ipsum dolor sit amet consectetur.</p>
