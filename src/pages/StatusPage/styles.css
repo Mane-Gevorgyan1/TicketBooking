@@ -3,7 +3,12 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 50px;
+    gap: 30px;
+}
+
+.statusDiv>a {
+    color: #000;
+    margin-bottom: 40px;
 }
 
 .Statustext {
@@ -14,4 +19,16 @@
 
 .goHome {
     color: #000;
+}
+
+.successPage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.successPage>img {
+    width: 400px;
 }

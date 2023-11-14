@@ -12,6 +12,7 @@ export const StatusReducer = (state = store, action) => {
             break
         case 'ClearStatusAction':
             temp.status = 0
+            break;
         default:
             return temp;
     }

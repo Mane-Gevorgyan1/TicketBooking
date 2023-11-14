@@ -201,12 +201,33 @@ export const GetAllAds = () => {
     }
 }
 
+export const CreateCurrentTicket = (data) => {
+    return () => {
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/createCurrentTicket`, data)
+    }
+}
+
+export const GetCurrentTicket = () => {
+    return (dispatch) => {
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/getCurrentTicket`, { orderId: localStorage.getItem('orderId') })
+            .then(res => {
+                if (res.data.success) {
+                    dispatch(ButTickets(res.data.ticket))
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+}
+
 export const StatusSuccessAction = () => {
     window.location.reload()
     return {
         type: "StatusSuccessAction",
     }
 }
+
 export const StatusErrorAction = () => {
     return {
         type: "StatusErrorAction",
@@ -235,17 +256,15 @@ export const ClearDataBuy = () => {
 
 export const ButTickets = (data) => {
     return (dispatch) => {
-        dispatch(StartGetCategoris())
-        axios.post(`${process.env.REACT_APP_HOSTNAME}/buyTicket`, data).then((r) => {
-            if (r.data.success) {
-                // dispatch(SuccessGetCategoris(r.data))
-            }
-            else {
-                // dispatch(ErrorGetCategoris())
-            }
-        })
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/buyTicket`, data)
+            .then(r => {
+                if (r.data.success) {
+                    localStorage.clear()
+                    window.location = '/'
+                }
+            })
             .catch((error) => {
-                // dispatch(ErrorGetCategoris())
+                console.log(error);
             })
     }
 }

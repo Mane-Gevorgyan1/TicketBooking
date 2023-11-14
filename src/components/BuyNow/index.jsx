@@ -1,7 +1,7 @@
 import './style.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AddDate, RemoveTicketsAction, StatusSuccessAction } from '../../services/action/action'
+import { AddDate, CreateCurrentTicket, RemoveTicketsAction, StatusSuccessAction } from '../../services/action/action'
 import { CheckSvg, CheckedSvg, SelectSvg, SelectedSvg } from '../svg'
 import axios from 'axios'
 
@@ -9,7 +9,7 @@ export const BuyNow = ({ close }) => {
     const dispatch = useDispatch()
     const tickets = useSelector((st) => st.tiketsForBuy)
     const Select = (i) => { setSelectPay(i) }
-    const [totoal, setTotal] = useState(0)
+    const [total, setTotal] = useState(0)
     const [chedked, setChedker] = useState(false)
     const [selectPay, setSelectPay] = useState(1)
     const [name, setName] = useState('')
@@ -39,43 +39,35 @@ export const BuyNow = ({ close }) => {
         })
         setTotal(price)
     }, [tickets])
+
     function handlePurchase() {
-        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, {
-            amount: totoal * 100, data: {
-                tickets: tickets.tickets,
-                buyerName: name,
-                buyerEmail: email,
-                buyerPhone: number,
-                deliveryLocation: address,
-                sessionId: tickets.tickets[0].sessionId,
-                paymentMethod: selectPay === 1 ? 'online' : 'cash',
-                buyerNotes: additional,
-                // order: res?.data?.orderID,
-            }
-        })
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: total * 100 })
             .then(res => {
-                console.log(res?.data);
                 if (res?.data?.success) {
-                    dispatch(StatusSuccessAction())
-                    dispatch(AddDate({
+                    localStorage.setItem('orderId', res?.data?.orderId)
+                    window.open(`${res?.data?.formUrl}`, { target: '_blank' })
+                    dispatch(CreateCurrentTicket({
                         tickets: tickets.tickets,
-                        name: name,
-                        email: email,
-                        number,
-                        address,
+                        buyerName: name,
+                        buyerEmail: email,
+                        buyerPhone: number,
+                        deliveryLocation: address,
                         sessionId: tickets.tickets[0].sessionId,
-                        order: res?.data?.orderID,
+                        paymentMethod: selectPay === 1 ? 'online' : 'cash',
+                        buyerNotes: additional,
+                        orderId: res?.data?.orderId,
                     }))
-                    window.open(`${res?.data?.formUrl}`)
+                    setTimeout(() => {
+                        dispatch(StatusSuccessAction())
+                    }, 5000)
                 } else {
-                    window.open(``)
+                    window.open(`/`)
                 }
             })
             .catch((error) => {
                 console.log('error', error);
             })
     }
-
 
     const validation = () => {
         let send = false
@@ -161,7 +153,7 @@ export const BuyNow = ({ close }) => {
                     </div>
                 </div>
                 <div className='buyNowTotalPrice'>
-                    <p>Total : <span>{totoal} AMD</span></p>
+                    <p>Total : <span>{total} AMD</span></p>
                 </div>
                 <div className='BuyMethod'>
                     <div onClick={() => Select(1)}>
