@@ -14,7 +14,30 @@ const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID, eventId }) =>
     const [loading, setLoading] = useState(true)
     const { tickets } = useSelector((st) => st.tiketsForBuy)
 
-    const getPrice = (y, i, x, price, row, id) => {
+
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight,
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
+
+    const getPrice = (y, i, x, price, row) => {
         setPosition({ x, y })
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);
@@ -35,15 +58,43 @@ const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID, eventId }) =>
     }
 
 
-    const addTicket = (i) => {
+    const addTicket = (y, i, x, price, row) => {
         let data = [...coordinatesState]
+        // data[i].active = !data[i].active
+        let seat = 0
+        const result = coordinatesState.filter((elm) => elm.y === y);
+        const index = result.findIndex((elm) => elm.x === x)
+        seat = result.length - (result.length - index - 1)
+        let item = {}
         data[i].active = !data[i].active
-        if (data[i].active) {
-            dispatch(SetTicketsAction(activeTicket))
+        if (windowSize.width <= 768) {
+            setShowModal(true)
+            setTimeout(() => {
+                setShowModal(false)
+            }, 5000)
+            item = {
+                row: row,
+                price: price,
+                seat,
+                seatId: i,
+                sessionId: sessionID,
+                parterre: true,
+                amphitheater: false,
+                lodge: false,
+                eventId: eventId,
+            }
         }
         else {
-            dispatch(RemoveTicketsAction(activeTicket))
+            item = activeTicket
         }
+        if (data[i].active) {
+            dispatch(SetTicketsAction(item))
+        }
+        else {
+            setShowModal(false)
+            dispatch(RemoveTicketsAction(item))
+        }
+
         setCoordinatesState(data)
     }
 
@@ -332,6 +383,7 @@ const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID, eventId }) =>
                         if (e.price && !e.sold)
                             return <button
                                 key={i}
+
                                 onMouseOver={() => {
                                     getPrice(e.y, i, e.x, e.price, e.row, e.id)
                                     setActiveButton(i)
@@ -351,14 +403,14 @@ const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID, eventId }) =>
                                     setShowModal(false)
                                     setActiveButton(null)
                                 }}
-                                onClick={() => addTicket(i)}
+                                onClick={() => addTicket(e.y, i, e.x, e.price, e.row, e.id)}
                             />
                     })}
                     {showModal &&
                         <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
                             <p className='Teatertext'>շարք {activeTicket.row}</p>
-                            <p className='Teatertext'>տեղ {activeTicket.bench}</p>
-                            <p className='Teatertext'>դրամ {activeTicket.price}</p>
+                            <p className='Teatertext'>տեղ {activeTicket.seat}</p>
+                            <p className='Teatertext'>{activeTicket.price} դրամ</p>
                         </div>
                     }
                 </div>

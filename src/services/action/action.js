@@ -88,7 +88,6 @@ export const EventValidity = () => {
                 dispatch(eventValidity(r.data?.valid))
             })
             .catch((error) => {
-                console.log(error);
             })
     }
 }
@@ -215,9 +214,6 @@ export const GetCurrentTicket = () => {
                     dispatch(ButTickets(res.data.ticket))
                 }
             })
-            .catch(error => {
-                console.log(error);
-            })
     }
 }
 
@@ -241,7 +237,6 @@ export const ClearStatusAction = () => {
 }
 
 export const AddDate = (data) => {
-    console.log(data, 'data')
     return {
         type: 'AddDate',
         data
@@ -264,7 +259,6 @@ export const ButTickets = (data) => {
                 }
             })
             .catch((error) => {
-                console.log(error);
             })
     }
 }

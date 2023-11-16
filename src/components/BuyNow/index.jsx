@@ -65,7 +65,6 @@ export const BuyNow = ({ close }) => {
                 }
             })
             .catch((error) => {
-                console.log('error', error);
             })
     }
 
@@ -105,7 +104,6 @@ export const BuyNow = ({ close }) => {
             send = true
         }
         if (selectPay == 2) {
-            console.log('22')
             if (!address) {
                 item.address = 'error'
                 send = false
@@ -141,7 +139,7 @@ export const BuyNow = ({ close }) => {
                         {tickets?.tickets?.map((elm, i) => (
                             <div className='BuyNowTickert' key={i}>
                                 {elm.row > 0 ?
-                                    <p className='BuyNowTickertPrive' id='parter'>Parter  {elm?.row}  Line  {elm?.bench}  Seat</p> :
+                                    <p className='BuyNowTickertPrive' id='parter'>Parter  {elm?.row}  Line  {elm?.seat}  Seat</p> :
                                     <p className='BuyNowTickertPrive' id='parter'>  {elm?.row} </p>
 
                                 }
