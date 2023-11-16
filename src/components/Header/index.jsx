@@ -59,9 +59,8 @@ export const Header = ({ open, menu }) => {
                         }
                     </div>
                 }
-
             </div>
-        </div >
+        </div>
     }
 
     return (
@@ -94,7 +93,13 @@ export const Header = ({ open, menu }) => {
                                 setOpenLanguage(!openLanguage)
                             }}
                         >
-                            <Translate />
+                            {localStorage.getItem('lang') === 'am'
+                                ? <img alt='' style={{ width: 20, height: 20 }} src={require('../../assets/armenia.png')} />
+                                : localStorage.getItem('lang') === 'en'
+                                    ? <img alt='' style={{ width: 20, height: 20 }} src={require('../../assets/united-kingdom.png')} />
+                                    : <img alt='' style={{ width: 20, height: 20 }} src={require('../../assets/russia.png')} />
+                            }
+
                             {openLanguage
                                 && <div className='translateDiv'>
                                     <div onClick={() => dispatch(ChangeLanguageAction('am'))} className='languageWrapper'>
@@ -112,7 +117,6 @@ export const Header = ({ open, menu }) => {
                                     <div onClick={() => dispatch(ChangeLanguageAction('en'))} className='languageWrapper'>
                                         <div className='languageWrapperImg'>
                                             <img alt='' style={{ width: 20, height: 20 }} src={require('../../assets/united-kingdom.png')} />
-
                                         </div>
                                         <p>English</p>
                                     </div>

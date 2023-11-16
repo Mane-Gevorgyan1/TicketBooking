@@ -12,7 +12,7 @@ export const Footer = ({ menu }) => {
         <div className='footerWrapper'>
             <div className='footerColumns'>
                 <div className='eachFooterColumn'>
-                    <p>Copyrigh© 2023 shineticket.am | ALL RIGHTS RESERVED</p>
+                    <p>Copyrigh© 2023 shinetickets.com | ALL RIGHTS RESERVED</p>
                 </div>
                 {!menu
                     && <div className='eachFooterColumnn'>
@@ -39,7 +39,7 @@ export const Footer = ({ menu }) => {
                 </div>
                 <div className='FotterMobile'>
                     <div className='eachFooterColumnn'>
-                        <p>Copyrigh© 2023 shineticket.am | ALL RIGHTS RESERVED</p>
+                        <p>Copyrigh© 2023 shinetickets.com | ALL RIGHTS RESERVED</p>
                     </div>
                     <div className='eachFooterColumnn'>
                         <MobilFb />
