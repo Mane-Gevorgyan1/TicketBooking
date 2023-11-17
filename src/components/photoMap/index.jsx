@@ -60,7 +60,6 @@ const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID, eventId }) =>
 
     const addTicket = (y, i, x, price, row) => {
         let data = [...coordinatesState]
-        // data[i].active = !data[i].active
         let seat = 0
         const result = coordinatesState.filter((elm) => elm.y === y);
         const index = result.findIndex((elm) => elm.x === x)

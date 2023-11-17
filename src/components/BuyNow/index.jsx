@@ -41,7 +41,7 @@ export const BuyNow = ({ close }) => {
     }, [tickets])
 
     function handlePurchase() {
-        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: total * 100 })
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: 100 })
             .then(res => {
                 if (res?.data?.success) {
                     localStorage.setItem('orderId', res?.data?.orderId)
@@ -114,7 +114,6 @@ export const BuyNow = ({ close }) => {
 
             }
         }
-
         if (send) {
             handlePurchase()
         }
@@ -139,7 +138,7 @@ export const BuyNow = ({ close }) => {
                         {tickets?.tickets?.map((elm, i) => (
                             <div className='BuyNowTickert' key={i}>
                                 {elm.row > 0 ?
-                                    <p className='BuyNowTickertPrive' id='parter'>Parter  {elm?.row}  Line  {elm?.seat}  Seat</p> :
+                                    <p className='BuyNowTickertPrive' id='parter'>Parter, Line  {elm?.row}   Seat {elm?.seat}</p> :
                                     <p className='BuyNowTickertPrive' id='parter'>  {elm?.row} </p>
 
                                 }
@@ -203,7 +202,10 @@ export const BuyNow = ({ close }) => {
                 </div>
                 <div className='BuyButton'>
                     <button
-                        onClick={validation} style={{ cursor: 'pointer' }}>Գնել տոմս</button>
+                        onClick={validation} style={{ cursor: 'pointer' }}
+
+
+                    >Գնել տոմս</button>
                 </div>
                 <div className='BuyCheck'>
                     <p>Lorem ipsum dolor sit amet consectetur.</p>

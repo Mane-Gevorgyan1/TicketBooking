@@ -76,10 +76,10 @@ export const Single = () => {
                             <PhotoCoordinatesByColor eventId={getSinglPage.events.event?._id} sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
                         {event.sessions[0]?.hallId?._id === '653554d8709652928c006a15' &&
-                            <KarenDemerchyanMec sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
+                            <KarenDemerchyanMec eventId={getSinglPage.events.event?._id} sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
                         {event.sessions[0]?.hallId?._id === '6535520e0dc8b78f78b56997' &&
-                            <AramKhachatryan sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
+                            <AramKhachatryan eventId={getSinglPage.events.event?._id} sessionID={getSinglPage.events.event?.sessions[0]._id} soldTickets={getSinglPage.events.event?.sessions[0]?.soldTickets} secion={getSinglPage.events.event?.sessions[0]?.price} />
                         }
                         {event.sessions[0]?.hallId?._id === '653563a0369cf9fb4627aaf8' &&
                             <Hall buy={() => setOpenBuy(true)} section={getSinglPage.events.event?.sessions[0]?.price} />
