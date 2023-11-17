@@ -4,8 +4,6 @@ import { useDispatch } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 
 const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID }) => {
-    console.log(sessionID, '2')
-    console.log(soldTickets)
     const dispatch = useDispatch()
     const [coordinatesState, setCoordinatesState] = useState([])
     const [activeTicket, setActiveTicket] = useState({})

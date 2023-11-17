@@ -1,11 +1,13 @@
 import './style.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { AddDate, CreateCurrentTicket, RemoveTicketsAction, StatusSuccessAction } from '../../services/action/action'
+import { CreateCurrentTicket, RemoveTicketsAction, StatusSuccessAction } from '../../services/action/action'
 import { CheckSvg, CheckedSvg, SelectSvg, SelectedSvg } from '../svg'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { PuffLoader } from 'react-spinners'
 
-export const BuyNow = ({ close }) => {
+export const BuyNow = () => {
     const dispatch = useDispatch()
     const tickets = useSelector((st) => st.tiketsForBuy)
     const Select = (i) => { setSelectPay(i) }
@@ -32,6 +34,8 @@ export const BuyNow = ({ close }) => {
         return (false)
     }
 
+    const [loading, setLoading] = useState(false)
+
     useEffect(() => {
         let price = 0
         tickets.tickets?.map((elm, i) => {
@@ -41,9 +45,11 @@ export const BuyNow = ({ close }) => {
     }, [tickets])
 
     function handlePurchase() {
+        setLoading(true)
         axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: 100 })
             .then(res => {
                 if (res?.data?.success) {
+                    setLoading(false)
                     localStorage.setItem('orderId', res?.data?.orderId)
                     window.open(`${res?.data?.formUrl}`, { target: '_blank' })
                     dispatch(CreateCurrentTicket({
@@ -103,7 +109,7 @@ export const BuyNow = ({ close }) => {
             item.checked = ''
             send = true
         }
-        if (selectPay == 2) {
+        if (selectPay == 3) {
             if (!address) {
                 item.address = 'error'
                 send = false
@@ -115,10 +121,38 @@ export const BuyNow = ({ close }) => {
             }
         }
         if (send) {
-            handlePurchase()
+            if (selectPay === 2) {
+                console.log('222')
+                setLoading(true)
+                dispatch(CreateCurrentTicket({
+                    tickets: tickets.tickets,
+                    buyerName: name,
+                    buyerEmail: email,
+                    buyerPhone: number,
+                    deliveryLocation: address,
+                    sessionId: tickets.tickets[0].sessionId,
+                    paymentMethod: selectPay === 1 ? 'online' : 'cash',
+                    buyerNotes: additional,
+                    orderId: generateOrderNumber(),
+                }))
+                setLoading(false)
+                window.location = `/telCell/${total}`
+            }
+            else {
+                handlePurchase()
+            }
         }
         setError(item)
     }
+
+
+    const generateOrderNumber = () => {
+        const timestamp = Date.now()
+        const randomNum = Math.floor(Math.random() * 1000)
+        return `tel-${timestamp}-${randomNum}`
+    }
+
+
 
     return (
         <div>
@@ -153,7 +187,7 @@ export const BuyNow = ({ close }) => {
                     <p>Total : <span>{total} AMD</span></p>
                 </div>
                 <div className='BuyMethod'>
-                    <div onClick={() => Select(1)}>
+                    <div className='selectPay' onClick={() => Select(1)}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 1 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
@@ -166,9 +200,15 @@ export const BuyNow = ({ close }) => {
 
                         </div>
                     </div>
-                    <div onClick={() => Select(2)} style={{ cursor: 'pointer' }}>
+                    <div className='selectPay' onClick={() => Select(2)} style={{ cursor: 'pointer' }}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 2 ? <SelectedSvg /> : <SelectSvg />}
+                        </div>
+                        <img alt='' width={80} height={50} src={require('../../assets/TelCell.jpg')} />
+                    </div>
+                    <div className='selectPay' onClick={() => Select(3)} style={{ cursor: 'pointer' }}>
+                        <div className='BuyMethodSelect'>
+                            {selectPay == 3 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
                         <img alt='' width={80} height={30} src={require('../../assets/take.png')} />
                     </div>
@@ -192,20 +232,27 @@ export const BuyNow = ({ close }) => {
                         <label>Additional notes</label>
                         <textarea value={additional} onChange={(e) => setAdditional(e.target.value)} />
                     </div>
-                    {selectPay == 2 &&
+                    {selectPay == 3 &&
                         <div className='InputsBuy'>
                             <label>Address</label>
                             <input id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
-
                         </div>
                     }
                 </div>
                 <div className='BuyButton'>
-                    <button
-                        onClick={validation} style={{ cursor: 'pointer' }}
+
+                    <button disabled={loading} onClick={validation} style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
 
-                    >Գնել տոմս</button>
+                        {
+                            !loading ? 'Գնել տոմս' :
+
+                                <div style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                    <PuffLoader size={28} color="#FEE827" />
+                                </div>
+                        }
+
+                    </button>
                 </div>
                 <div className='BuyCheck'>
                     <p>Lorem ipsum dolor sit amet consectetur.</p>
@@ -216,7 +263,7 @@ export const BuyNow = ({ close }) => {
                         }
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }

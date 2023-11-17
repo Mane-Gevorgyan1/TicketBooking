@@ -207,12 +207,10 @@ export const GetCurrentTicket = () => {
         axios.post(`${process.env.REACT_APP_HOSTNAME}/getCurrentTicket`, { orderId: localStorage.getItem('orderId') })
             .then(res => {
                 if (res.data.success) {
-                    console.log('GetCurrentTicket', res.data.ticket)
                     dispatch(ButTickets(res.data.ticket))
                 }
             })
             .catch((error) => {
-                console.log('error', error)
             })
     }
 }
@@ -250,20 +248,15 @@ export const ClearDataBuy = () => {
 }
 
 export const ButTickets = (data) => {
-    console.log('111')
     return (dispatch) => {
-        console.log('222', data)
         axios.post(`${process.env.REACT_APP_HOSTNAME}/buyTicket`, data)
             .then(r => {
-                console.log(r)
                 if (r.data.success) {
-
                     localStorage.clear()
                     window.location = '/'
                 }
             })
             .catch((error) => {
-                console.log(error, 'error')
             })
     }
 }

@@ -2,17 +2,19 @@ import './style.css'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { FbSvg, InstagramSvg, MobilFb, MobileI, MobileT, TwitterSvg } from '../svg'
+import { useTranslation } from 'react-i18next'
 
 export const Footer = ({ menu }) => {
     const navigation = useNavigate()
     const getCategory = useSelector((st) => st.getCategory)
     const { language } = useSelector((st) => st.StaticReducer)
+    const { t } = useTranslation()
 
     return (
         <div className='footerWrapper'>
             <div className='footerColumns'>
                 <div className='eachFooterColumn'>
-                    <p>Copyrigh© 2023 shinetickets.com | ALL RIGHTS RESERVED</p>
+                    <p>{t('Copyright')} © 2023 shinetickets.com | {t('ALLRIGHTSRESERVED')}</p>
                 </div>
                 {!menu
                     && <div className='eachFooterColumnn'>
@@ -29,7 +31,7 @@ export const Footer = ({ menu }) => {
                             }
                             return <p onClick={() => navigation(`/Category/${elm?.name}/${elm?._id}`)} className='Headertext'>{title}</p>
                         })}
-                        <p onClick={() => navigation(`/PrivacyPolicy`)} className='Headertext'>Privacy Policy</p>
+                        <p onClick={() => navigation(`/PrivacyPolicy`)} className='Headertext'>{t('PrivacyPolicy')}</p>
                     </div>
                 }
                 <div className='eachFooterColumn'>
@@ -39,7 +41,7 @@ export const Footer = ({ menu }) => {
                 </div>
                 <div className='FotterMobile'>
                     <div className='eachFooterColumnn'>
-                        <p>Copyrigh© 2023 shinetickets.com | ALL RIGHTS RESERVED</p>
+                        <p>{t('Copyright')} © 2023 shinetickets.com | {t('ALLRIGHTSRESERVED')}</p>
                     </div>
                     <div className='eachFooterColumnn'>
                         <MobilFb />

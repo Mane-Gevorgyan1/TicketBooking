@@ -7,6 +7,8 @@ import { Page404 } from "../pages/404"
 import { PrivatePolice } from "../components/privatePolice"
 import { StatusPage } from "../pages/StatusPage/index.jsx"
 import { StatusPageReject } from "../pages/StatusPage/reject.jsx"
+import { TelCell } from "../components/TelCell/index.jsx"
+import { GetTelcellData } from "../pages/StatusPage/telcellData.jsx"
 
 export const Router = () => {
     return (
@@ -19,6 +21,9 @@ export const Router = () => {
                     <Route path="/PrivacyPolicy" element={<PrivatePolice />} />
                     <Route path="/StatusPage" element={<StatusPage />} />
                     <Route path="/Reject" element={<StatusPageReject />} />
+                    <Route path="/telCell/:price" element={<TelCell />} />
+                    <Route path="/telcellData" element={<GetTelcellData />} />
+
                     <Route path='*' element={<Page404 />} />
                 </Route>
             </Routes>

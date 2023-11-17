@@ -36,20 +36,6 @@ export const Category = () => {
     const [activeButton, setActiveButton] = useState('Բոլորը')
     const [selectedDate, setSelectedDate] = useState([{ startDate: '', endDate: '', key: 'selection', },])
 
-    // useEffect(() => {
-    //     let date = new Date(selectedDate[0].endDate)
-    //     let startDate = new Date(selectedDate[0].startDate)
-    //     let statDate = ''
-    //     let endDate = ''
-    //     if (selectedDate[0].endDate) {
-    //         endDate = `${date.getFullYear()}-${date.getDate()}-${date.getMonth() + 1}`
-    //     }
-    //     if (selectedDate[0].startDate) {
-    //         statDate = `${startDate.getFullYear()}-${startDate.getDate()}-${startDate.getMonth() + 1}`
-    //     }
-    //     setStartDate(statDate)
-    //     setEndDate(endDate)
-    // }, [selectedDate])
 
     useEffect(() => {
         window.scrollTo(0, 0)
