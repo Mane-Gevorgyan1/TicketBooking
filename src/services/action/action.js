@@ -1,12 +1,24 @@
 import axios from "axios"
 import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartGetTelStatus, StartSearch, StartSubCategory } from "./StartAction"
 import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTelStatus, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
-import { SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
+import { SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetFeedback, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
 
 export const OpenCategoryMenu = (data) => {
     return {
         type: 'OpenCategoryMenu',
         data
+    }
+}
+
+export const GetFeedback = () => {
+    return (dispatch) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/getFeedback`).then((r) => {
+            if (r.data.success) {
+                dispatch(SuccessGetFeedback(r.data.feedback))
+            }
+        })
+            .catch((error) => {
+            })
     }
 }
 

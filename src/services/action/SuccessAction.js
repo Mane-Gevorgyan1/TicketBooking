@@ -82,3 +82,10 @@ export const SuccessGetTellStatus = (data) => {
         data
     }
 }
+
+export const SuccessGetFeedback = (data) => {
+    return {
+        type: 'SuccessGetFeedback',
+        data
+    }
+}
