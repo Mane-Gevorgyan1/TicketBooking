@@ -42,3 +42,9 @@ export const ErrorGetRandomEvetns = () => {
         type: 'ErrorGetRandomEvetns'
     }
 }
+
+export const ErrorGetTelStatus = () => {
+    return {
+        type: "ErrorGetTelStatus"
+    }
+}

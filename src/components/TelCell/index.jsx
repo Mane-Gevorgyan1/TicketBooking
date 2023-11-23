@@ -3,30 +3,44 @@ import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import CryptoJS from 'crypto-js'
 import { Buffer } from "buffer"
+import { CreateCurrentTicket } from "../../services/action/action"
 
 export const TelCell = () => {
 
     const [price, setPrice] = useState()
-
+    const params = useParams()
+    const issuerId = params.issuerId
 
     useEffect(() => {
         if (price) {
+            const popup = window.open('https://shinetickets.com');
             document.getElementById('form').submit()
+            if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+                alert('Pop-up blocked. Please enable pop-ups for this site.');
+            }
+            else {
+                window.location = '/'
+            }
+
+            // dispatch(CreateCurrentTicket({
+            //     // tickets: tickets.tickets,
+            //     // buyerName: name,
+            //     // buyerEmail: email,
+            //     // buyerPhone: number,
+            //     // deliveryLocation: address,
+            //     // sessionId: tickets.tickets[0].sessionId,
+            //     // paymentMethod: selectPay === 1 ? 'online' : 'cash',
+            //     // buyerNotes: additional,
+            //     // orderId: res?.data?.orderId,
+            //     paymentMethod: 'TelCell'
+
+            // }))
         }
+
         setPrice(params.price)
-        window.location = '/'
     }, [price])
 
-    const generateOrderNumber = () => {
-        const timestamp = Date.now()
-        const randomNum = Math.floor(Math.random() * 1000)
-        return `ORD-${timestamp}-${randomNum}`
-    }
-
-
-
-    const issuerId = generateOrderNumber()
-    const encodedProduct = new Buffer.from('222').toString('base64')
+    const encodedProduct = new Buffer.from('Ticket111').toString('base64')
     const encodedIssuerId = new Buffer.from(issuerId).toString('base64')
     const security_code = getTelcellSecurityCode(
         process.env.REACT_APP_TELCELL_SHOP_KEY,
@@ -42,7 +56,8 @@ export const TelCell = () => {
         return CryptoJS.MD5(shop_key + issuer + currency + price + product + issuer_id + valid_days).toString();
     }
 
-    const params = useParams()
+
+
 
     return (
         <form id='form' style={{ margin: "20px" }} target="_blank" action="https://telcellmoney.am/invoices" method="POST" >
@@ -55,7 +70,7 @@ export const TelCell = () => {
             <input type="hidden" name="valid_days" value="1" />
             <input type="hidden" name="lang" value="am" />
             <input type="hidden" name="security_code" value={security_code} />
-
+            <button type="submit">Оплатить</button>
         </form>
     )
 }

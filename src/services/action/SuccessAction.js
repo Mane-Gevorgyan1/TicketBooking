@@ -74,3 +74,11 @@ export const SuccessGetAllAds = (data) => {
         data
     }
 }
+
+
+export const SuccessGetTellStatus = (data) => {
+    return {
+        type: 'SuccessGetTellStatus',
+        data
+    }
+}

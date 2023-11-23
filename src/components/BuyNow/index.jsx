@@ -8,6 +8,12 @@ import { useNavigate } from 'react-router-dom'
 import { PuffLoader } from 'react-spinners'
 
 export const BuyNow = () => {
+    const generateOrderNumber = () => {
+        const timestamp = Date.now()
+        const randomNum = Math.floor(Math.random() * 1000)
+        return `tel-${timestamp}-${randomNum}`
+    }
+
     const dispatch = useDispatch()
     const tickets = useSelector((st) => st.tiketsForBuy)
     const Select = (i) => { setSelectPay(i) }
@@ -19,6 +25,8 @@ export const BuyNow = () => {
     const [email, setEmail] = useState('')
     const [additional, setAdditional] = useState('')
     const [address, setAddress] = useState('')
+    const issuerId = generateOrderNumber()
+    const [delivery, setDelivery] = useState(false)
     const [error, setError] = useState({
         name: '',
         email: '',
@@ -59,9 +67,10 @@ export const BuyNow = () => {
                         buyerPhone: number,
                         deliveryLocation: address,
                         sessionId: tickets.tickets[0].sessionId,
-                        paymentMethod: selectPay === 1 ? 'online' : 'cash',
                         buyerNotes: additional,
                         orderId: res?.data?.orderId,
+                        paymentMethod: 'ACBA',
+                        delivery,
                     }))
                     setTimeout(() => {
                         dispatch(StatusSuccessAction())
@@ -122,7 +131,6 @@ export const BuyNow = () => {
         }
         if (send) {
             if (selectPay === 2) {
-                console.log('222')
                 setLoading(true)
                 dispatch(CreateCurrentTicket({
                     tickets: tickets.tickets,
@@ -131,12 +139,15 @@ export const BuyNow = () => {
                     buyerPhone: number,
                     deliveryLocation: address,
                     sessionId: tickets.tickets[0].sessionId,
-                    paymentMethod: selectPay === 1 ? 'online' : 'cash',
+                    paymentMethod: 'Telcell',
                     buyerNotes: additional,
-                    orderId: generateOrderNumber(),
+                    orderId: issuerId,
+                    // issuer_id: issuerId,
+                    // sum:
+
                 }))
                 setLoading(false)
-                window.location = `/telCell/${total}`
+                window.location = `/telCell/${total}/${issuerId}`
             }
             else {
                 handlePurchase()
@@ -146,11 +157,6 @@ export const BuyNow = () => {
     }
 
 
-    const generateOrderNumber = () => {
-        const timestamp = Date.now()
-        const randomNum = Math.floor(Math.random() * 1000)
-        return `tel-${timestamp}-${randomNum}`
-    }
 
 
 
@@ -169,25 +175,28 @@ export const BuyNow = () => {
                             <p className='Seat'>Seat</p>
                             <p className='Seat'>Price</p>
                         </div>
-                        {tickets?.tickets?.map((elm, i) => (
-                            <div className='BuyNowTickert' key={i}>
+                        {tickets?.tickets?.map((elm, i) => {
+                            console.log(elm)
+                            return <div className='BuyNowTickert' key={i}>
                                 {elm.row > 0 ?
-                                    <p className='BuyNowTickertPrive' id='parter'>Parter, Line  {elm?.row}   Seat {elm?.seat}</p> :
+                                    <p className='BuyNowTickertPrive' id='parter'>{elm.parterre && 'parterre'} {elm.lodge && 'lodge'} {elm.amphitheater && 'amphitheater'} , Line  {elm?.row}   Seat {elm?.seat}</p> :
                                     <p className='BuyNowTickertPrive' id='parter'>  {elm?.row} </p>
-
                                 }
 
                                 <p className='BuyNowTickertPrive' id='Amd' > {elm?.price} AMD</p>
                                 <p style={{ cursor: 'pointer' }} onClick={() => dispatch(RemoveTicketsAction(elm))}> x</p>
                             </div>
-                        ))}
+                        })}
                     </div>
                 </div>
                 <div className='buyNowTotalPrice'>
                     <p>Total : <span>{total} AMD</span></p>
                 </div>
                 <div className='BuyMethod'>
-                    <div className='selectPay' onClick={() => Select(1)}>
+                    <div className='selectPay' onClick={() => {
+                        setDelivery(false)
+                        Select(1)
+                    }}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 1 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
@@ -200,13 +209,19 @@ export const BuyNow = () => {
 
                         </div>
                     </div>
-                    <div className='selectPay' onClick={() => Select(2)} style={{ cursor: 'pointer' }}>
+                    <div className='selectPay' onClick={() => {
+                        Select(2)
+                        setDelivery(false)
+                    }} style={{ cursor: 'pointer' }}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 2 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
                         <img alt='' width={80} height={50} src={require('../../assets/TelCell.jpg')} />
                     </div>
-                    <div className='selectPay' onClick={() => Select(3)} style={{ cursor: 'pointer' }}>
+                    <div className='selectPay' onClick={() => {
+                        setDelivery(true)
+                        Select(3)
+                    }} style={{ cursor: 'pointer' }}>
                         <div className='BuyMethodSelect'>
                             {selectPay == 3 ? <SelectedSvg /> : <SelectSvg />}
                         </div>

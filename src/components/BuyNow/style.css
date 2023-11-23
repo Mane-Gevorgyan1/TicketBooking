@@ -46,7 +46,7 @@
 
 .BuyNowTickert {
     display: flex;
-    width: 50%;
+    width: 70%;
     justify-content: space-between;
     margin-bottom: 10px;
     gap: 30px;
@@ -215,7 +215,7 @@
     }
 
     .BuyNowTickert {
-        width: 60%;
+        width: 70%;
     }
 }
 

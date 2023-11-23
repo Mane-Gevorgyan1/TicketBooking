@@ -45,3 +45,9 @@ export const StartGetRadnomEvents = () => {
         type: 'StartGetRadnomEvents'
     }
 }
+
+export const StartGetTelStatus = () => {
+    return {
+        type: 'StartGetTelStatus'
+    }
+}

@@ -1,7 +1,7 @@
 import axios from "axios"
-import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartSearch, StartSubCategory } from "./StartAction"
-import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
-import { SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
+import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartGetTelStatus, StartSearch, StartSubCategory } from "./StartAction"
+import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTelStatus, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
+import { SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
 
 export const OpenCategoryMenu = (data) => {
     return {
@@ -257,6 +257,23 @@ export const ButTickets = (data) => {
                 }
             })
             .catch((error) => {
+            })
+    }
+}
+
+export const GetTicketStatus = (data) => {
+    return (dispatch) => {
+        dispatch(StartGetTelStatus())
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/getTicketStatus`, data).then((r) => {
+            if (r.data.success) {
+                dispatch(SuccessGetTellStatus(r.data))
+            }
+            else {
+                dispatch(ErrorGetTelStatus())
+            }
+        })
+            .catch((error) => {
+                dispatch(ErrorGetTelStatus())
             })
     }
 }

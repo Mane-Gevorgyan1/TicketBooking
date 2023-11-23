@@ -8,7 +8,7 @@ import { PrivatePolice } from "../components/privatePolice"
 import { StatusPage } from "../pages/StatusPage/index.jsx"
 import { StatusPageReject } from "../pages/StatusPage/reject.jsx"
 import { TelCell } from "../components/TelCell/index.jsx"
-import { GetTelcellData } from "../pages/StatusPage/telcellData.jsx"
+import { StatusACBA } from '../pages/StatusPage/telcellData.jsx'
 
 export const Router = () => {
     return (
@@ -19,11 +19,10 @@ export const Router = () => {
                     <Route path="/Category/:id/:id" element={<Category />} />
                     <Route path="/Single/:id" element={<Single />} />
                     <Route path="/PrivacyPolicy" element={<PrivatePolice />} />
-                    <Route path="/StatusPage" element={<StatusPage />} />
+                    <Route path="/StatusPage " element={<StatusPage />} />
                     <Route path="/Reject" element={<StatusPageReject />} />
-                    <Route path="/telCell/:price" element={<TelCell />} />
-                    <Route path="/telcellData" element={<GetTelcellData />} />
-
+                    <Route path="/telCell/:price/:issuerId" element={<TelCell />} />
+                    <Route path="/StatusACBA" element={<StatusACBA />} />
                     <Route path='*' element={<Page404 />} />
                 </Route>
             </Routes>
