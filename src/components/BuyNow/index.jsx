@@ -6,6 +6,8 @@ import { CheckSvg, CheckedSvg, SelectSvg, SelectedSvg } from '../svg'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { PuffLoader } from 'react-spinners'
+import CryptoJS from 'crypto-js'
+import { Buffer } from "buffer"
 
 export const BuyNow = () => {
     const generateOrderNumber = () => {
@@ -142,23 +144,45 @@ export const BuyNow = () => {
                     paymentMethod: 'Telcell',
                     buyerNotes: additional,
                     orderId: issuerId,
-                    // issuer_id: issuerId,
-                    // sum:
-
                 }))
                 setLoading(false)
-                window.location = `/telCell/${total}/${issuerId}`
-            }
-            else {
+
+                function getTelcellSecurityCode(shop_key, issuer, currency, price, product, issuer_id, valid_days) {
+                    return CryptoJS.MD5(shop_key + issuer + currency + price + product + issuer_id + valid_days).toString();
+                }
+
+                const encodedProduct = new Buffer.from('Ticket111').toString('base64')
+                const encodedIssuerId = new Buffer.from(issuerId).toString('base64')
+                const security_code = getTelcellSecurityCode(
+                    process.env.REACT_APP_TELCELL_SHOP_KEY,
+                    process.env.REACT_APP_TELCELL_ISSUER,
+                    "֏",
+                    total,
+                    encodedProduct,
+                    encodedIssuerId,
+                    "1"
+                )
+
+                document.getElementById('telcellForm').innerHTML = `
+                <form id='form' style={{ margin: "20px" }} target="_blank" action="https://telcellmoney.am/invoices" method="POST" >
+                    <input type="hidden" name="action" value="PostInvoice" />
+                    <input type="hidden" name="issuer" value=${process.env.REACT_APP_TELCELL_ISSUER} />
+                    <input type="hidden" name="currency" value="֏" />
+                    <input type="hidden" name="price" value=${total} />
+                    <input type="hidden" name="product" value=${encodedProduct} />
+                    <input type="hidden" name="issuer_id" value=${encodedIssuerId} />
+                    <input type="hidden" name="valid_days" value="1" />
+                    <input type="hidden" name="lang" value="am" />
+                    <input type="hidden" name="security_code" value=${security_code} />
+                </form>`
+                document.getElementById('form').submit()
+                window.location.reload()
+            } else {
                 handlePurchase()
             }
         }
         setError(item)
     }
-
-
-
-
 
     return (
         <div>
@@ -172,25 +196,25 @@ export const BuyNow = () => {
                     </div>
                     <div>
                         <div className='BuyNowTickert' id='BuyNowTickert'>
-                            <p className='Seat'>Seat</p>
-                            <p className='Seat'>Price</p>
+                            <p className='Seat'>Տեղը</p>
+                            <p className='Seat' style={{ marginRight: '15px' }}>Գինը</p>
                         </div>
                         {tickets?.tickets?.map((elm, i) => {
-                            console.log(elm)
                             return <div className='BuyNowTickert' key={i}>
                                 {elm.row > 0 ?
-                                    <p className='BuyNowTickertPrive' id='parter'>{elm.parterre && 'parterre'} {elm.lodge && 'lodge'} {elm.amphitheater && 'amphitheater'} , Line  {elm?.row}   Seat {elm?.seat}</p> :
-                                    <p className='BuyNowTickertPrive' id='parter'>  {elm?.row} </p>
+                                    <p className='BuyNowTickertPrive' id='parter'>{elm?.parterre && 'Պարտեր'} {elm?.lodge && 'Օթյակ'} {elm?.amphitheater && 'Ամֆիթատրոն'}, շարք {elm?.row}, տեղ {elm?.seat}</p> :
+                                    <p className='BuyNowTickertPrive' id='parter'>{elm?.row}</p>
                                 }
-
-                                <p className='BuyNowTickertPrive' id='Amd' > {elm?.price} AMD</p>
-                                <p style={{ cursor: 'pointer' }} onClick={() => dispatch(RemoveTicketsAction(elm))}> x</p>
+                                <div className='deleteTicket'>
+                                    <p className='BuyNowTickertPrive' id='Amd' >{elm?.price} դրամ</p>
+                                    <p style={{ cursor: 'pointer' }} onClick={() => dispatch(RemoveTicketsAction(elm))}> x</p>
+                                </div>
                             </div>
                         })}
                     </div>
                 </div>
                 <div className='buyNowTotalPrice'>
-                    <p>Total : <span>{total} AMD</span></p>
+                    <p>Ընդհանուր: <span>{total} դրամ</span></p>
                 </div>
                 <div className='BuyMethod'>
                     <div className='selectPay' onClick={() => {
@@ -206,7 +230,6 @@ export const BuyNow = () => {
                             <img alt='' width={45} height={20} src={require('../../assets/arca_logo.png')} />
                             <img alt='' width={45} height={20} src={require('../../assets/mastercard_logo.png')} />
                             <img alt='' width={45} height={20} src={require('../../assets/visa_logo.png')} />
-
                         </div>
                     </div>
                     <div className='selectPay' onClick={() => {
@@ -231,42 +254,37 @@ export const BuyNow = () => {
                 <div className='BuyInputs'>
                     <div className='BuyInputsName'>
                         <div className='InputsBuy'>
-                            <label>Name Surname</label>
+                            <label>Անուն, Ազգանուն</label>
                             <input id={error.name != '' ? 'errorInut' : 'inout'} value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className='InputsBuy'>
-                            <label>Phone Number</label>
+                            <label>Հեռախոսահամար</label>
                             <input id={error.phonNumber != '' ? 'errorInut' : 'inout'} value={number} type='number' onChange={(e) => setNumber(e.target.value)} />
                         </div>
                     </div>
                     <div className='InputsBuy'>
-                        <label>E-mail</label>
+                        <label>Էլ. հասցե</label>
                         <input id={error.email != '' ? 'errorInut' : 'inout'} value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className='InputsBuy'>
-                        <label>Additional notes</label>
+                        <label>Նշումներ</label>
                         <textarea value={additional} onChange={(e) => setAdditional(e.target.value)} />
                     </div>
                     {selectPay == 3 &&
                         <div className='InputsBuy'>
-                            <label>Address</label>
+                            <label>Առաքման հասցե</label>
                             <input id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
                         </div>
                     }
                 </div>
                 <div className='BuyButton'>
-
                     <button disabled={loading} onClick={validation} style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-
-
-                        {
-                            !loading ? 'Գնել տոմս' :
-
-                                <div style={{ justifyContent: 'center', alignItems: 'center' }}>
-                                    <PuffLoader size={28} color="#FEE827" />
-                                </div>
+                        {!loading
+                            ? 'Գնել տոմս'
+                            : <div style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <PuffLoader size={28} color="#FEE827" />
+                            </div>
                         }
-
                     </button>
                 </div>
                 <div className='BuyCheck'>
@@ -274,11 +292,12 @@ export const BuyNow = () => {
                     <div onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer' }}>
                         {chedked
                             ? <CheckedSvg />
-                            : <CheckSvg error={error.checked == ''} />
+                            : <CheckSvg error={error?.checked == ''} />
                         }
                     </div>
                 </div>
-            </div >
-        </div >
+                <div id='telcellForm' />
+            </div>
+        </div>
     )
 }

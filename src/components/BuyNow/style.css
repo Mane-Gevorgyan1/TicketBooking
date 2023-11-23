@@ -46,14 +46,16 @@
 
 .BuyNowTickert {
     display: flex;
-    width: 70%;
+    width: 100%;
     justify-content: space-between;
     margin-bottom: 10px;
     gap: 30px;
 }
 
-#BuyNowTickert {
-    justify-content: space-evenly;
+.deleteTicket {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .BuyNowTickertPrive {
@@ -170,8 +172,6 @@
 
 .BuyMethodSelect {
     margin-top: 4px;
-    margin-right: 20px;
-
 }
 
 .buyNowTotalPrice {
@@ -214,9 +214,9 @@
         font-size: 22px;
     }
 
-    .BuyNowTickert {
+    /* .BuyNowTickert {
         width: 70%;
-    }
+    } */
 }
 
 

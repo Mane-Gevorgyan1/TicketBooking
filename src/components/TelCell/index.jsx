@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import CryptoJS from 'crypto-js'
 import { Buffer } from "buffer"
-import { CreateCurrentTicket } from "../../services/action/action"
 
 export const TelCell = () => {
-
     const [price, setPrice] = useState()
     const params = useParams()
     const issuerId = params.issuerId
@@ -21,20 +18,6 @@ export const TelCell = () => {
             else {
                 window.location = '/'
             }
-
-            // dispatch(CreateCurrentTicket({
-            //     // tickets: tickets.tickets,
-            //     // buyerName: name,
-            //     // buyerEmail: email,
-            //     // buyerPhone: number,
-            //     // deliveryLocation: address,
-            //     // sessionId: tickets.tickets[0].sessionId,
-            //     // paymentMethod: selectPay === 1 ? 'online' : 'cash',
-            //     // buyerNotes: additional,
-            //     // orderId: res?.data?.orderId,
-            //     paymentMethod: 'TelCell'
-
-            // }))
         }
 
         setPrice(params.price)
@@ -55,9 +38,6 @@ export const TelCell = () => {
     function getTelcellSecurityCode(shop_key, issuer, currency, price, product, issuer_id, valid_days) {
         return CryptoJS.MD5(shop_key + issuer + currency + price + product + issuer_id + valid_days).toString();
     }
-
-
-
 
     return (
         <form id='form' style={{ margin: "20px" }} target="_blank" action="https://telcellmoney.am/invoices" method="POST" >
