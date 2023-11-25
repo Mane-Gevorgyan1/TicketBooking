@@ -12,6 +12,28 @@ const AramKhachatryan = ({ secion, soldTickets, sessionID }) => {
     const [activeButton, setActiveButton] = useState(null)
 
 
+
+    const [windowSize, setWindowSize] = useState({
+        width: window.innerWidth,
+        height: window.innerHeight,
+    });
+
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight,
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+
     const getPrice = (y, i, x, price, row) => {
         setPosition({ x, y })
         let seat = 0
@@ -37,16 +59,42 @@ const AramKhachatryan = ({ secion, soldTickets, sessionID }) => {
         setActiveTicket({
             row: row,
             price: price,
-            bench: seat,
-            id: i,
+            seat: seat,
+            seatId: i,
             sessionId: sessionID,
+            parterre: true,
+            amphitheater: false,
+            lodge: false,
+            eventId: false,
         })
         setShowModal(true)
     }
 
-    const addTicket = (i) => {
+    const addTicket = (y, i, x, price, row) => {
         let data = [...coordinatesState]
         data[i].active = !data[i].active
+        let seat = 0
+        const result = coordinatesState.filter((elm) => elm.y === y);
+        const index = result.findIndex((elm) => elm.x === x)
+        seat = result.length - (result.length - index - 1)
+        let item = {}
+        if (windowSize.width <= 768) {
+            setShowModal(true)
+            setTimeout(() => {
+                setShowModal(false)
+            }, 5000)
+            item = {
+                row: row,
+                price: price,
+                seat,
+                seatId: i,
+                sessionId: sessionID,
+                parterre: true,
+                amphitheater: false,
+                lodge: false,
+                eventId: false,
+            }
+        }
         if (data[i].active) {
             dispatch(SetTicketsAction(activeTicket))
         }
@@ -82,346 +130,342 @@ const AramKhachatryan = ({ secion, soldTickets, sessionID }) => {
                             let row = 1
                             let row2 = 1
                             let section = 0
-                            if (y === 626) {
+                            if (y === 625) {
                                 row = 1
                                 row2 = 1
                             }
-                            else if (y === 601) {
+                            else if (y === 600) {
                                 row = 2
                                 row2 = 2
                             }
-                            else if (y === 577) {
+                            else if (y === 576) {
                                 row = 3
                                 row2 = 3
                             }
-                            else if (y === 552) {
+                            else if (y === 551) {
                                 row = 4
                                 row2 = 4
                             }
-                            else if (y === 527) {
+                            else if (y === 526) {
                                 row = 5
                                 row2 = 5
                             }
-                            else if (y === 503) {
+                            else if (y === 502) {
                                 row = 6
                                 row2 = 6
                             }
-                            else if (y === 478) {
+                            else if (y === 477) {
                                 row = 7
                                 row2 = 7
                             }
-                            else if (y === 419) {
+                            else if (y === 418) {
                                 row = 8
                                 row2 = 1
                             }
-                            else if (y === 395) {
+                            else if (y === 394) {
                                 row = 9
                                 row2 = 2
                             }
-                            else if (y === 370) {
+                            else if (y === 369) {
                                 row = 10
                                 row2 = 3
                             }
-                            else if (y === 346) {
+                            else if (y === 345) {
                                 row = 11
                                 row2 = 4
                             }
-                            else if (y === 321) {
+                            else if (y === 320) {
                                 row = 12
                                 row2 = 5
                             }
-                            else if (y === 296) {
+                            else if (y === 295) {
                                 row = 13
                                 row2 = 6
                             }
-                            else if (y === 272) {
+                            else if (y === 271) {
                                 row = 14
                                 row2 = 7
                             }
-                            else if (y === 247) {
+                            else if (y === 246) {
                                 row = 15
                                 row2 = 8
                             }
-                            else if (y === 223) {
+                            else if (y === 222) {
                                 row = 16
                                 row2 = 9
                             }
-                            else if (y === 198) {
+                            else if (y === 197) {
                                 row = 17
                                 row2 = 10
                             }
-                            else if (y === 174) {
+                            else if (y === 173) {
                                 row = 18
                                 row2 = 11
                             }
-                            else if (x === 515) {
+                            else if (x === 514) {
                                 row = 9
                                 row2 = 1
                             }
-                            else if (x === 492) {
+                            else if (x === 491) {
                                 row = 10
                                 row2 = 2
                             }
-                            else if (x === 469) {
+                            else if (x === 468) {
                                 row = 11
                                 row2 = 3
                             }
-                            else if (x === 445) {
+                            else if (x === 444) {
                                 row = 12
                                 row2 = 3
                             }
-                            else if (x === 422) {
+                            else if (x === 421) {
                                 row = 13
                                 row2 = 4
                             }
-                            else if (x === 398) {
+                            else if (x === 397) {
                                 row = 14
                                 row2 = 5
                             }
-                            else if (x === 375) {
+                            else if (x === 374) {
                                 row = 15
                                 row2 = 6
                             }
-                            else if (x === 352) {
+                            else if (x === 351) {
                                 row = 16
                                 row2 = 7
                             }
-                            else if (x === 328) {
+                            else if (x === 327) {
                                 row = 17
                                 row2 = 8
                             }
 
-                            else if (x === 305) {
+                            else if (x === 304) {
                                 row = 18
                                 row2 = 9
                             }
-                            else if (x === 281) {
+                            else if (x === 280) {
                                 row = 19
                                 row2 = 10
                             }
-                            else if (x === 258) {
+                            else if (x === 257) {
                                 row = 20
                                 row2 = 11
                             }
-                            else if (x === 235) {
+                            else if (x === 234) {
                                 row = 21
                                 row2 = 12
                             }
-                            else if (x === 211) {
+                            else if (x === 210) {
                                 row = 22
                                 row2 = 13
                             }
-                            else if (x === 188) {
+                            else if (x === 187) {
                                 row = 23
                                 row2 = 14
                             }
-                            else if (x === 164) {
+                            else if (x === 163) {
                                 row = 24
                                 row2 = 15
                             }
-                            else if (x === 141) {
+                            else if (x === 140) {
                                 row = 25
                                 row2 = 16
                             }
-                            else if (x === 118) {
+                            else if (x === 117) {
                                 row = 26
                                 row2 = 17
                             }
-                            else if (x === 579) {
+                            else if (x === 578) {
                                 row = 8
                                 row2 = 8
                             }
-                            else if (x === 603) {
+                            else if (x === 602) {
                                 row = 7
                                 row2 = 7
                             }
-                            else if (x === 626) {
+                            else if (x === 625) {
                                 row = 6
                                 row2 = 6
                             }
-                            else if (x === 650) {
+                            else if (x === 649) {
                                 row = 5
                                 row2 = 5
                             }
-                            else if (x === 673) {
+                            else if (x === 672) {
                                 row = 4
                                 row2 = 4
                             }
-                            else if (x === 696) {
+                            else if (x === 695) {
                                 row = 3
                                 row2 = 3
                             }
-                            else if (x === 720) {
+                            else if (x === 719) {
                                 row = 2
                                 row2 = 2
                             }
-                            else if (x === 743) {
+                            else if (x === 742) {
                                 row = 1
                                 row2 = 1
                             }
-                            else if (y === 1496) {
+                            else if (y === 1495) {
                                 row = 1
                                 row2 = 1
                             }
-                            else if (y === 1473) {
+                            else if (y === 1472) {
                                 row = 2
                                 row2 = 2
                             }
-                            else if (y === 1449) {
+                            else if (y === 1448) {
                                 row = 3
                                 row2 = 3
                             }
-                            else if (y === 1426) {
+                            else if (y === 1425) {
                                 row = 4
                                 row2 = 4
                             }
-                            else if (y === 1402) {
+                            else if (y === 1401) {
                                 row = 5
                                 row2 = 5
                             }
-                            else if (y === 1379) {
+                            else if (y === 1378) {
                                 row = 6
                                 row2 = 6
                             }
-                            else if (y === 1356) {
+                            else if (y === 1355) {
                                 row = 7
                                 row2 = 7
                             }
-                            else if (y === 1332) {
+                            else if (y === 1331) {
                                 row = 8
                                 row2 = 8
                             }
-                            else if (y === 1309) {
+                            else if (y === 1308) {
                                 row = 9
                                 row2 = 9
                             }
-                            else if (y === 1285) {
+                            else if (y === 1284) {
                                 row = 10
                                 row2 = 10
                             }
-                            else if (x === 1841) {
+                            else if (x === 1840) {
                                 row = 1
                                 row2 = 1
                             }
-                            else if (x === 1865) {
+                            else if (x === 1864) {
                                 row = 2
                                 row2 = 2
                             }
-                            else if (x === 1888) {
+                            else if (x === 1887) {
                                 row = 3
                                 row2 = 3
                             }
-                            else if (x === 1912) {
+                            else if (x === 1911) {
                                 row = 4
                                 row2 = 4
                             }
-                            else if (x === 1935) {
+                            else if (x === 1934) {
                                 row = 5
                                 row2 = 5
                             }
-                            else if (x === 1958) {
+                            else if (x === 1957) {
                                 row = 6
                                 row2 = 6
                             }
-                            else if (x === 1982) {
+                            else if (x === 1981) {
                                 row = 7
                                 row2 = 7
                             }
-                            else if (x === 2005) {
+                            else if (x === 2004) {
                                 row = 8
                                 row2 = 8
                             }
-                            else if (x === 2072) {
+                            else if (x === 2071) {
                                 row = 9
                                 row2 = 1
                             }
-                            else if (x === 2095) {
+                            else if (x === 2094) {
                                 row = 10
                                 row2 = 2
                             }
 
-                            else if (x === 2119) {
+                            else if (x === 2118) {
                                 row = 11
                                 row2 = 3
                             }
-                            else if (x === 2142) {
+                            else if (x === 2141) {
                                 row = 12
                                 row2 = 4
                             }
-                            else if (x === 2166) {
+                            else if (x === 2165) {
                                 row = 13
                                 row2 = 5
                             }
-                            else if (x === 2189) {
+                            else if (x === 2188) {
                                 row = 14
                                 row2 = 6
                             }
-                            else if (x === 2212) {
+                            else if (x === 2211) {
                                 row = 15
                                 row2 = 7
                             }
-                            else if (x === 2236) {
+                            else if (x === 2235) {
                                 row = 16
                                 row2 = 8
                             }
-                            else if (x === 2259) {
+                            else if (x === 2258) {
                                 row = 17
                                 row2 = 9
                             }
-                            else if (x === 2282) {
+                            else if (x === 2281) {
                                 row = 18
                                 row2 = 10
                             }
-                            else if (x === 2306) {
+                            else if (x === 2305) {
                                 row = 19
                                 row2 = 11
                             }
-                            else if (x === 2329) {
+                            else if (x === 2328) {
                                 row = 20
                                 row2 = 12
                             }
-                            else if (x === 2353) {
+                            else if (x === 2352) {
                                 row = 21
                                 row2 = 13
                             }
-                            else if (x === 2376) {
+                            else if (x === 2375) {
                                 row = 22
                                 row2 = 14
                             }
 
-                            else if (x === 2399) {
+                            else if (x === 2398) {
                                 row = 23
                                 row2 = 15
                             }
 
-                            else if (x === 2423) {
+                            else if (x === 2422) {
                                 row = 24
                                 row2 = 16
                             }
-                            else if (x === 2446) {
+                            else if (x === 2445) {
                                 row = 25
                                 row2 = 17
                             }
-                            else if (x === 2470) {
+                            else if (x === 2469) {
                                 row = 26
                                 row2 = 18
                             }
-                            else if (x === 2493) {
+                            else if (x === 2492) {
                                 row = 27
                                 row2 = 19
                             }
-                            else if (x === 2516) {
+                            else if (x === 2515) {
                                 row = 28
                                 row2 = 20
                             }
-                            else if (x === 2540) {
+                            else if (x === 2539) {
                                 row = 29
                                 row2 = 21
                             }
-
-
-
-
 
 
                             if ((id >= 703 && id <= 711) || (id >= 785 && id <= 792) || (id >= 852 && id <= 859) || (id >= 936 && id <= 942) || (id <= 1025 && id >= 1020) || (id <= 1212 && id >= 1208) || (id <= 1109 && id >= 1104 && (x >= 933 && x <= 1005))) {
@@ -445,11 +489,12 @@ const AramKhachatryan = ({ secion, soldTickets, sessionID }) => {
                             }
                             else if ((id <= 675 && id >= 661) || (id <= 631 && id >= 617) || (id <= 587 && id >= 573) || (id <= 543 && id >= 529) || (id <= 499 && id >= 479) || (id <= 437 && id >= 417) || (id <= 375 && id >= 355) || (id <= 313 && id >= 293) || (id <= 250 && id >= 231) || (id <= 188 && id >= 169) || (id <= 127 && id >= 109)) {
                                 section = 2
+
                             }
                             else if (id <= 66 && id >= 0) {
                                 section = 1
-                                row = 19
-                                row2 = 1
+                                // row = 19
+                                // row2 = 1
                             }
                             else if ((id == 676 || id == 677) || (id >= 678 && id <= 683) || (id >= 690 && id <= 696) || (id >= 756 && id <= 762) || (id >= 770 && id <= 776) || (id >= 836 && id <= 843) || (id >= 902 && id <= 909) || (id >= 918 && id <= 926) || (id >= 984 && id <= 992) || (id >= 1002 && id <= 1010) || (id >= 1064 && id <= 1073) || (id >= 1084 && id <= 1093) || (id >= 1148 && id <= 1157) || (id >= 1180 && id <= 1190) || (id >= 1256 && id <= 1266) || (id >= 1290 && id <= 1300) || (id >= 1324 && id <= 1335) || (id >= 1359 && id <= 1370) || (id >= 1395 && id <= 1406)) {
                                 section = 9
@@ -547,7 +592,6 @@ const AramKhachatryan = ({ secion, soldTickets, sessionID }) => {
 
                             let item = secion?.filter((elm) => elm.section === section);
                             let rows = item[0]?.price.filter((elm) => elm?.row === row2);
-
                             let price = 0
                             if (rows?.length) {
                                 price = rows[0].price
@@ -573,7 +617,9 @@ const AramKhachatryan = ({ secion, soldTickets, sessionID }) => {
                             return <button
                                 key={i}
                                 onMouseOver={() => {
-                                    getPrice(e.y, i, e.x, e.price, e.row)
+                                    // getPrice(e.y, i, e.x, e.price, e.row)
+                                    getPrice(e.y, i, e.x, e.price, e.row, e.id)
+
                                     setActiveButton(i)
                                 }}
                                 style={
@@ -591,15 +637,17 @@ const AramKhachatryan = ({ secion, soldTickets, sessionID }) => {
                                     setShowModal(false)
                                     setActiveButton(null)
                                 }}
-                                onClick={() => addTicket(i)}
+                                // onClick={() => addTicket(i)}
+                                onClick={() => addTicket(e.y, i, e.x, e.price, e.row, e.id)}
+
                             />
                     })}
 
                     {showModal &&
                         <div style={{ top: position.y, left: position.x, position: 'absolute' }} className='parter'>
                             <p className='Teatertext'>շարք {activeTicket.row}</p>
-                            <p className='Teatertext'>տեղ {activeTicket.bench}</p>
-                            <p className='Teatertext'>դրամ {activeTicket.price}</p>
+                            <p className='Teatertext'>տեղ {activeTicket.seat}</p>
+                            <p className='Teatertext'> {activeTicket.price} դրամ</p>
                         </div>
                     }
                 </div>

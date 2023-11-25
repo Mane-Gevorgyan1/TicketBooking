@@ -6,19 +6,23 @@ import { Date, Location, TicketIcon } from '../svg'
 
 export const EachTicket = ({ id, date, price, data }) => {
     const navigation = useNavigate()
-    const [languageData, setLanguageData] = useState({ title: '' })
+    const [languageData, setLanguageData] = useState({ title: '', location: '' })
     const { language } = useSelector((st) => st.StaticReducer)
 
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
             item.title = data?.title
+            item.location = data?.sessions[0]?.hallId?.location
         }
         else if (language === 'en') {
             item.title = data?.title_en
+            item.location = data?.sessions[0]?.hallId?.location_en
+
         }
         else if (language === 'ru') {
             item.title = data?.title_ru
+            item.location = data?.sessions[0]?.hallId?.location_ru
         }
         setLanguageData(item)
     }, [language, data])
@@ -39,7 +43,7 @@ export const EachTicket = ({ id, date, price, data }) => {
                 </div>
                 <div className='ticketTextWrapper'>
                     <Location />
-                    <p className='ticketTextp'>{data?.sessions[0]?.hallId?.location}</p>
+                    <p className='ticketTextp'>{languageData?.location}</p>
                 </div>
                 <div className='ticketTextWrapper'>
                     <TicketIcon />

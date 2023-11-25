@@ -54,7 +54,7 @@ export const Carusel = () => {
                 }
                 item.push(
                     <div key={i} className='CaruselItem' onClick={() => navigation(`Single/${elm._id}`)}>
-                        <div className='Desckription'>
+                        {/* <div className='Desckription'>
                             <p className='titleCarusel'>{title}</p>
                             <div>
                                 <span>{truncateText(description, 30)}</span>
@@ -71,7 +71,7 @@ export const Carusel = () => {
                                     }
                                 </div>
                             </div>
-                        </div>
+                        </div> */}
                         <img src={`${process.env.REACT_APP_IMAGE}/${elm.image}`} alt='' height={400} width={'99%'} onDragStart={handleDragStart} role="presentation" />
                     </div>
                 )

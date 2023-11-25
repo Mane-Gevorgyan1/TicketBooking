@@ -7,8 +7,6 @@ export const StatusACBA = () => {
     const { status } = useSelector((st) => st.status)
     const dispatch = useDispatch()
     const [loading, setLoading] = useState(false)
-    // console.log(window.location?.href?.split('order=')[1])
-    // let orderID = window.location?.href?.split('order=')[1]
     useEffect(() => {
         if (!localStorage.getItem('orderId')) {
             window.location = '/'

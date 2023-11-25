@@ -1,13 +1,14 @@
 import './style.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { CreateCurrentTicket, RemoveTicketsAction, StatusSuccessAction } from '../../services/action/action'
 import { CheckSvg, CheckedSvg, SelectSvg, SelectedSvg } from '../svg'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import { PuffLoader } from 'react-spinners'
 import CryptoJS from 'crypto-js'
 import { Buffer } from "buffer"
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 export const BuyNow = () => {
     const generateOrderNumber = () => {
@@ -15,6 +16,14 @@ export const BuyNow = () => {
         const randomNum = Math.floor(Math.random() * 1000)
         return `tel-${timestamp}-${randomNum}`
     }
+    const scrollRef = useRef();
+
+    const scrollToBottom = () => {
+        if (scrollRef.current) {
+            const container = scrollRef.current;
+            container.scrollTop = container.scrollHeight;
+        }
+    };
 
     const dispatch = useDispatch()
     const tickets = useSelector((st) => st.tiketsForBuy)
@@ -56,7 +65,7 @@ export const BuyNow = () => {
 
     function handlePurchase() {
         setLoading(true)
-        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: 100 })
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/registerPayment`, { amount: total * 100 })
             .then(res => {
                 if (res?.data?.success) {
                     setLoading(false)
@@ -76,7 +85,7 @@ export const BuyNow = () => {
                     }))
                     setTimeout(() => {
                         dispatch(StatusSuccessAction())
-                    }, 5000)
+                    }, 3000)
                 } else {
                     window.open(`/`)
                 }
@@ -86,52 +95,47 @@ export const BuyNow = () => {
     }
 
     const validation = () => {
-        let send = false
         let item = { ...error }
         if (!name) {
             item.name = 'error'
-            send = false
         }
-        else {
-            send = true
+        else if (name) {
             item.name = ''
         }
         if (!number) {
             item.phonNumber = 'error'
-            send = false
         }
-        else {
-            send = true
+        else if (number.length < 11) {
+            item.phonNumber = 'error'
+        }
+        else if (number) {
             item.phonNumber = ''
         }
         if (!ValidateEmail(email)) {
             item.email = 'error'
-            send = false
         }
-        else {
-            send = true
+        else if (ValidateEmail(email)) {
             item.email = ''
         }
         if (!chedked) {
             item.checked = 'error'
-            send = false
+            scrollToBottom()
         }
-        else {
+        else if (chedked) {
             item.checked = ''
-            send = true
         }
         if (selectPay == 3) {
             if (!address) {
                 item.address = 'error'
-                send = false
             }
             else {
-                send = true
                 item.address = ''
 
             }
         }
-        if (send) {
+        if (
+            item.name == '' && item.address == '' && item.checked == '' && item.email == '' && item.phonNumber == ''
+        ) {
             if (selectPay === 2) {
                 setLoading(true)
                 dispatch(CreateCurrentTicket({
@@ -151,7 +155,7 @@ export const BuyNow = () => {
                     return CryptoJS.MD5(shop_key + issuer + currency + price + product + issuer_id + valid_days).toString();
                 }
 
-                const encodedProduct = new Buffer.from('Ticket111').toString('base64')
+                const encodedProduct = new Buffer.from('Ticket payment').toString('base64')
                 const encodedIssuerId = new Buffer.from(issuerId).toString('base64')
                 const security_code = getTelcellSecurityCode(
                     process.env.REACT_APP_TELCELL_SHOP_KEY,
@@ -186,14 +190,8 @@ export const BuyNow = () => {
 
     return (
         <div>
-            <div className='buyNowWrapper2'>
-                <div className='BuyNowHeader'>
-                    <p>Lorem ipsum dolor sit amet consectetur.</p>
-                </div>
+            <div ref={scrollRef} className='buyNowWrapper2'>
                 <div className='BuyNowWrapper'>
-                    <div className='BuyNowTitle'>
-                        <p>Lorem ipsum dolor sit amet consectetur.</p>
-                    </div>
                     <div>
                         <div className='BuyNowTickert' id='BuyNowTickert'>
                             <p className='Seat'>Տեղը</p>
@@ -202,7 +200,7 @@ export const BuyNow = () => {
                         {tickets?.tickets?.map((elm, i) => {
                             return <div className='BuyNowTickert' key={i}>
                                 {elm.row > 0 ?
-                                    <p className='BuyNowTickertPrive' id='parter'>{elm?.parterre && 'Պարտեր'} {elm?.lodge && 'Օթյակ'} {elm?.amphitheater && 'Ամֆիթատրոն'}, շարք {elm?.row}, տեղ {elm?.seat}</p> :
+                                    <p className='BuyNowTickertPrive' id='parter'>{elm?.parterre && 'Պարտեր'} {elm?.lodge && 'Օթյակ'} {elm?.amphitheater && 'Ամֆիթատրոն'} {elm?.stage && 'Թատերահարթակ'}, շարք {elm?.row}, տեղ {elm?.seat}</p> :
                                     <p className='BuyNowTickertPrive' id='parter'>{elm?.row}</p>
                                 }
                                 <div className='deleteTicket'>
@@ -257,9 +255,14 @@ export const BuyNow = () => {
                             <label>Անուն, Ազգանուն</label>
                             <input id={error.name != '' ? 'errorInut' : 'inout'} value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
-                        <div className='InputsBuy'>
+                        <div>
                             <label>Հեռախոսահամար</label>
-                            <input id={error.phonNumber != '' ? 'errorInut' : 'inout'} value={number} type='number' onChange={(e) => setNumber(e.target.value)} />
+                            <PhoneInput
+                                country={'am'}
+                                value={number}
+                                onChange={phone => setNumber(phone)}
+                                isValid={error.phonNumber == ''}
+                            />
                         </div>
                     </div>
                     <div className='InputsBuy'>

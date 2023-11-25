@@ -12,6 +12,10 @@
     background-color: #FEE827;
 }
 
+.alice-carousel__stage-item {
+    cursor: pointer;
+}
+
 .Desckription {
     width: 35%;
     height: 100%;
