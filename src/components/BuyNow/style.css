@@ -11,6 +11,12 @@
     margin-bottom: 40px;
 }
 
+.delivery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .BuyNowHeader>p {
     color: #000;
     font-family: Kanit;
@@ -88,6 +94,7 @@
 .BuyInputsName {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .BuyInputsName>div {
@@ -223,6 +230,14 @@
 @media screen and (max-width: 768px) {
     .BuyNowTitle>p {
         font-size: 16px
+    }
+
+    .BuyInputsName>div {
+        width: 100%;
+    }
+
+    .react-tel-input .form-control {
+        width: 100% !important;
     }
 
     .buyNowTotalPrice>p {

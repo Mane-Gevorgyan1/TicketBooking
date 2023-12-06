@@ -15,6 +15,7 @@ import { GetAdsReducer } from './getAllAdsReducer'
 import { StatusReducer } from './StatusReducer'
 import { ByTicketDateReducer } from './ByTicketDateReducer'
 import { GetTelReducerStatus } from './GetTelReducerStatus'
+import { CreatTicketReducer } from './CreatTicketReducer'
 
 export default combineReducers({
     Ticket_reducer,
@@ -33,4 +34,5 @@ export default combineReducers({
     status: StatusReducer,
     byTicketDate: ByTicketDateReducer,
     getTell: GetTelReducerStatus,
+    creatTicket: CreatTicketReducer,
 })

@@ -51,3 +51,9 @@ export const StartGetTelStatus = () => {
         type: 'StartGetTelStatus'
     }
 }
+
+export const StartCreatTicket = () => {
+    return {
+        type: 'StartCreatTicket'
+    }
+}

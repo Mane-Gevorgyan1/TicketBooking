@@ -1,7 +1,7 @@
 import axios from "axios"
-import { StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartGetTelStatus, StartSearch, StartSubCategory } from "./StartAction"
-import { ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTelStatus, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
-import { SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetFeedback, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
+import { StartCreatTicket, StartGetCategoris, StartGetCategory, StartGetGeneralEvents, StartGetGetTopEvents, StartGetRadnomEvents, StartGetSinglPage, StartGetTelStatus, StartSearch, StartSubCategory } from "./StartAction"
+import { ErrorCreatTicket, ErrorGetCategoris, ErrorGetCategory, ErrorGetGeneralEvents, ErrorGetRandomEvetns, ErrorGetSubCategory, ErrorGetTelStatus, ErrorGetTopEvents, ErrorSearch, ErrorSinglPage } from "./ErrorAction"
+import { SuccessCreatTicket, SuccessGetAllAds, SuccessGetCategoris, SuccessGetCategory, SuccessGetEventValidity, SuccessGetFeedback, SuccessGetGeneralEvents, SuccessGetHall, SuccessGetRandomEvents, SuccessGetSubCategory, SuccessGetTellStatus, SuccessGetTopEvents, SuccessSearch, SuccessSinglPage, eventValidity } from "./SuccessAction"
 
 export const OpenCategoryMenu = (data) => {
     return {
@@ -209,8 +209,20 @@ export const GetAllAds = () => {
 }
 
 export const CreateCurrentTicket = (data) => {
-    return () => {
-        axios.post(`${process.env.REACT_APP_HOSTNAME}/createCurrentTicket`, data)
+
+    return (dispatch) => {
+        dispatch(StartCreatTicket())
+        axios.post(`${process.env.REACT_APP_HOSTNAME}/createCurrentTicket`, data).then((r) => {
+            if (r.data.success) {
+                dispatch(SuccessCreatTicket(r))
+            }
+            else {
+                dispatch(ErrorCreatTicket())
+            }
+        })
+            .catch((error) => {
+                dispatch(ErrorCreatTicket())
+            })
     }
 }
 
@@ -218,6 +230,7 @@ export const GetCurrentTicket = () => {
     return (dispatch) => {
         axios.post(`${process.env.REACT_APP_HOSTNAME}/getCurrentTicket`, { orderId: localStorage.getItem('orderId') })
             .then(res => {
+                console.log(res.data)
                 if (res.data.success) {
                     dispatch(ButTickets(res.data.ticket))
                 }
@@ -260,9 +273,11 @@ export const ClearDataBuy = () => {
 }
 
 export const ButTickets = (data) => {
+    console.log(data, 'data')
     return (dispatch) => {
         axios.post(`${process.env.REACT_APP_HOSTNAME}/buyTicket`, data)
             .then(r => {
+                console.log(r)
                 if (r.data.success) {
                     localStorage.clear()
                     window.location = '/'

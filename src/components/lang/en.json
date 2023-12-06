@@ -11,5 +11,19 @@
     "Showall": "Show all",
     "PrivacyPolicy": "Privacy Policy",
     "Copyright": "Copyright",
-    "ALLRIGHTSRESERVED": "ALL RIGHTS RESERVED"
+    "ALLRIGHTSRESERVED": "ALL RIGHTS RESERVED",
+    "Termsandconditions": "I have read and agree to the terms and conditions",
+    "NameSurname": "Name Surname",
+    "PhoneNumber": "Phone Number",
+    "Email": "Email",
+    "Notes": "Notes",
+    "Deliveryaddress": "Delivery address",
+    "Totoal": "Totoal",
+    "Price": "Price",
+    "Place": "Place",
+    "Parterre": "Parterre",
+    "Amphitheater": "Amphitheater",
+    "Lodge": "Lodge",
+    "Stage": "Stage",
+    "Line": "Line"
 }

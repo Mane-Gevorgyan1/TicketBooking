@@ -50,13 +50,16 @@ export const CardSlider = ({ data }) => {
                 month = `0${month}`
             }
             if (elm?.sessions.length) {
+                console.log(elm)
                 return <Carousel.Item >
                     <EachTopEvent
                         id={elm?._id}
                         key={i}
                         image={`${process.env.REACT_APP_IMAGE}/${elm.image}`}
                         title={elm.title}
-                        location={elm.location}
+                        location={elm?.sessions[0]?.hallId?.location}
+                        location_en={elm?.sessions[0]?.hallId?.location_en}
+                        location_ru={elm?.sessions[0]?.hallId?.location_ru}
                         date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
                         data={elm}
                         price={`${elm.sessions[0]?.priceStart} - ${elm.sessions[0]?.priceEnd} AMD`}

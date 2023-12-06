@@ -9,6 +9,7 @@ import CryptoJS from 'crypto-js'
 import { Buffer } from "buffer"
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
+import { useTranslation } from 'react-i18next'
 
 export const BuyNow = () => {
     const generateOrderNumber = () => {
@@ -23,7 +24,11 @@ export const BuyNow = () => {
             const container = scrollRef.current;
             container.scrollTop = container.scrollHeight;
         }
+
     };
+
+    const { t } = useTranslation()
+
 
     const dispatch = useDispatch()
     const tickets = useSelector((st) => st.tiketsForBuy)
@@ -37,6 +42,7 @@ export const BuyNow = () => {
     const [additional, setAdditional] = useState('')
     const [address, setAddress] = useState('')
     const issuerId = generateOrderNumber()
+    const { creatTicket } = useSelector((st) => st)
     const [delivery, setDelivery] = useState(false)
     const [error, setError] = useState({
         name: '',
@@ -80,7 +86,7 @@ export const BuyNow = () => {
                         sessionId: tickets.tickets[0].sessionId,
                         buyerNotes: additional,
                         orderId: res?.data?.orderId,
-                        paymentMethod: 'ACBA',
+                        paymentMethod: 'CREDIT CARD',
                         delivery,
                     }))
                     setTimeout(() => {
@@ -95,6 +101,7 @@ export const BuyNow = () => {
     }
 
     const validation = () => {
+        console.log(selectPay)
         let item = { ...error }
         if (!name) {
             item.name = 'error'
@@ -181,12 +188,35 @@ export const BuyNow = () => {
                 </form>`
                 document.getElementById('form').submit()
                 window.location.reload()
-            } else {
+            }
+            else if (selectPay === 3) {
+                dispatch(CreateCurrentTicket({
+                    tickets: tickets.tickets,
+                    buyerName: name,
+                    buyerEmail: email,
+                    buyerPhone: number,
+                    deliveryLocation: address,
+                    sessionId: tickets.tickets[0].sessionId,
+                    buyerNotes: additional,
+                    orderId: issuerId,
+                    paymentMethod: 'CASH',
+                    delivery: true,
+                }))
+                localStorage.setItem('orderId', issuerId)
+            }
+            else {
                 handlePurchase()
             }
         }
         setError(item)
     }
+
+    useEffect(() => {
+        if (creatTicket.status && selectPay == 3) {
+            window.location = `/StatusACBA`
+        }
+    }, [creatTicket])
+
 
     return (
         <div>
@@ -194,17 +224,17 @@ export const BuyNow = () => {
                 <div className='BuyNowWrapper'>
                     <div>
                         <div className='BuyNowTickert' id='BuyNowTickert'>
-                            <p className='Seat'>Տեղը</p>
-                            <p className='Seat' style={{ marginRight: '15px' }}>Գինը</p>
+                            <p className='Seat'>{t('Place')}</p>
+                            <p className='Seat' style={{ marginRight: '15px' }}>{t('Price')}</p>
                         </div>
                         {tickets?.tickets?.map((elm, i) => {
                             return <div className='BuyNowTickert' key={i}>
                                 {elm.row > 0 ?
-                                    <p className='BuyNowTickertPrive' id='parter'>{elm?.parterre && 'Պարտեր'} {elm?.lodge && 'Օթյակ'} {elm?.amphitheater && 'Ամֆիթատրոն'} {elm?.stage && 'Թատերահարթակ'}, շարք {elm?.row}, տեղ {elm?.seat}</p> :
+                                    <p className='BuyNowTickertPrive' id='parter'>{elm?.parterre && t('Parterre')} {elm?.lodge && t('Lodge')} {elm?.amphitheater && 'Amphitheater'} {elm?.stage && 'Stage'}, {t('Line')} {elm?.row}, {t('Place')} {elm?.seat}</p> :
                                     <p className='BuyNowTickertPrive' id='parter'>{elm?.row}</p>
                                 }
                                 <div className='deleteTicket'>
-                                    <p className='BuyNowTickertPrive' id='Amd' >{elm?.price} դրամ</p>
+                                    <p className='BuyNowTickertPrive' id='Amd' >{elm?.price} AMD</p>
                                     <p style={{ cursor: 'pointer' }} onClick={() => dispatch(RemoveTicketsAction(elm))}> x</p>
                                 </div>
                             </div>
@@ -212,7 +242,7 @@ export const BuyNow = () => {
                     </div>
                 </div>
                 <div className='buyNowTotalPrice'>
-                    <p>Ընդհանուր: <span>{total} դրամ</span></p>
+                    <p>{t('Total')}: <span>{total} AMD</span></p>
                 </div>
                 <div className='BuyMethod'>
                     <div className='selectPay' onClick={() => {
@@ -246,17 +276,17 @@ export const BuyNow = () => {
                         <div className='BuyMethodSelect'>
                             {selectPay == 3 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
-                        <img alt='' width={80} height={30} src={require('../../assets/take.png')} />
+                        <img width={40} height={40} src={require('../../assets/2489756.png')} />
                     </div>
                 </div>
                 <div className='BuyInputs'>
                     <div className='BuyInputsName'>
                         <div className='InputsBuy'>
-                            <label>Անուն, Ազգանուն</label>
+                            <label>{t('NameSurname')}</label>
                             <input id={error.name != '' ? 'errorInut' : 'inout'} value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div>
-                            <label>Հեռախոսահամար</label>
+                            <label>{t('PhoneNumber')}</label>
                             <PhoneInput
                                 country={'am'}
                                 value={number}
@@ -266,16 +296,29 @@ export const BuyNow = () => {
                         </div>
                     </div>
                     <div className='InputsBuy'>
-                        <label>Էլ. հասցե</label>
+                        <label>{t('Email')}</label>
                         <input id={error.email != '' ? 'errorInut' : 'inout'} value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className='InputsBuy'>
-                        <label>Նշումներ</label>
+                        <label>{t('Notes')}</label>
                         <textarea value={additional} onChange={(e) => setAdditional(e.target.value)} />
                     </div>
-                    {selectPay == 3 &&
+                    {/* 
+                    {selectPay != 3 &&
+                        <div onClick={() => setDelivery(!delivery)} style={{ cursor: 'pointer' }} className='delivery'>
+                            {delivery
+                                ? <CheckedSvg error={true} />
+                                : <CheckSvg error={true} />
+                            }
+                            <div>
+                                <img width={70} height={30} src={require('../../assets/take.png')} />
+                            </div>
+                        </div>
+                    } */}
+
+                    {delivery &&
                         <div className='InputsBuy'>
-                            <label>Առաքման հասցե</label>
+                            <label>{t('Deliveryaddress')}</label>
                             <input id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
                         </div>
                     }
@@ -283,7 +326,7 @@ export const BuyNow = () => {
                 <div className='BuyButton'>
                     <button disabled={loading} onClick={validation} style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         {!loading
-                            ? 'Գնել տոմս'
+                            ? t('BuyTicket')
                             : <div style={{ justifyContent: 'center', alignItems: 'center' }}>
                                 <PuffLoader size={28} color="#FEE827" />
                             </div>
@@ -291,7 +334,7 @@ export const BuyNow = () => {
                     </button>
                 </div>
                 <div className='BuyCheck'>
-                    <p>Lorem ipsum dolor sit amet consectetur.</p>
+                    <a style={{ color: 'black' }} href='https://shinetickets.com/PrivacyPolicy'>{t('Termsandconditions')}</a>
                     <div onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer' }}>
                         {chedked
                             ? <CheckedSvg />

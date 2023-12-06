@@ -11,5 +11,19 @@
     "Showall": "Показать все",
     "PrivacyPolicy": "Политика конфиденциальности",
     "Copyright": "Авторские права",
-    "ALLRIGHTSRESERVED": "Все права защищены"
+    "ALLRIGHTSRESERVED": "Все права защищены",
+    "Termsandconditions": "Я прочитал и согласен с условиями и положениями",
+    "NameSurname": "Имя Фамилия",
+    "PhoneNumber": "Номер телефона",
+    "Email": "Электронная почта",
+    "Notes": "Заметки",
+    "Deliveryaddress": "Адрес доставки",
+    "Totoal": "Общее",
+    "Price": "Цена",
+    "Place": "Место",
+    "Parterre": "партер",
+    "Amphitheater": "Амфитеатр",
+    "Lodge": "Ложа",
+    "Stage": "Ярус",
+    "Line": "Линия"
 }

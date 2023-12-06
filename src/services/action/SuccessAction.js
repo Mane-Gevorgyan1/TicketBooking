@@ -89,3 +89,10 @@ export const SuccessGetFeedback = (data) => {
         data
     }
 }
+
+export const SuccessCreatTicket = (data) => {
+    return {
+        type: "SuccessCreatTicket",
+        data
+    }
+}

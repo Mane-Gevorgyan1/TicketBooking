@@ -48,3 +48,9 @@ export const ErrorGetTelStatus = () => {
         type: "ErrorGetTelStatus"
     }
 }
+
+export const ErrorCreatTicket = () => {
+    return {
+        type: 'ErrorCreatTicket'
+    }
+}

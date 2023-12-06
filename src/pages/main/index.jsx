@@ -15,6 +15,7 @@ export const Main = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const topEvents = useSelector((st) => st.topEvents)
+    console.log(topEvents?.events)
     const general = useSelector((st) => st.general)
     const { getAds } = useSelector((st) => st)
     const navigate = useNavigate()
@@ -35,10 +36,6 @@ export const Main = () => {
     return (
         <div className='mainPage'>
             <Carusel />
-            {/* <button onClick={() => {
-                dispatch(StatusSuccessAction())
-                navigate('/StatusPage')
-            }}>sss</button> */}
             <div className='EventTitleMain'>
                 <h2 style={{ marginBottom: 50 }}>{t('TopEvents')}</h2>
                 <div className='topEventsMain'>
@@ -47,7 +44,6 @@ export const Main = () => {
             </div>
             <ALLEvents />
             <SearchEvent data={getAds.ads} />
-            {/* <MainAbout /> */}
         </div>
     )
 }
