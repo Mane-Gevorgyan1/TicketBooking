@@ -117,18 +117,20 @@ export const GetAllEvents = (page, data) => {
     }
 }
 
-export const GetRandomEvents = () => {
+export const GetRandomEvents = (page) => {
     return (dispatch) => {
         dispatch(StartGetRadnomEvents())
-        axios.get(`${process.env.REACT_APP_HOSTNAME}/randomEvents`).then((r) => {
+        axios.get(`${process.env.REACT_APP_HOSTNAME}/randomEvents?currentPage=${page}`).then((r) => {
+            console.log(r)
             if (r.data.success) {
-                dispatch(SuccessGetRandomEvents(r.data.randomEvents))
+                dispatch(SuccessGetRandomEvents(r.data.allEvents, r.data.totalPages))
             }
             else {
                 dispatch(ErrorGetRandomEvetns())
             }
         })
             .catch((error) => {
+                console.log(error, 'error')
                 dispatch(ErrorGetRandomEvetns())
             })
     }
@@ -230,7 +232,6 @@ export const GetCurrentTicket = () => {
     return (dispatch) => {
         axios.post(`${process.env.REACT_APP_HOSTNAME}/getCurrentTicket`, { orderId: localStorage.getItem('orderId') })
             .then(res => {
-                console.log(res.data)
                 if (res.data.success) {
                     dispatch(ButTickets(res.data.ticket))
                 }
@@ -273,11 +274,9 @@ export const ClearDataBuy = () => {
 }
 
 export const ButTickets = (data) => {
-    console.log(data, 'data')
     return (dispatch) => {
         axios.post(`${process.env.REACT_APP_HOSTNAME}/buyTicket`, data)
             .then(r => {
-                console.log(r)
                 if (r.data.success) {
                     localStorage.clear()
                     window.location = '/'

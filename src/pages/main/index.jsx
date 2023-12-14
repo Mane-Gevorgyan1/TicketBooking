@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { PuffLoader } from 'react-spinners'
 import { useTranslation } from 'react-i18next'
 import { Carusel } from '../../components/Slider'
-import { MainAbout } from '../../components/MainAbout'
 import { ALLEvents } from '../../components/AllEvents'
 import { useDispatch, useSelector } from 'react-redux'
 import { CardSlider } from '../../components/CardSlider'
@@ -15,7 +14,6 @@ export const Main = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const topEvents = useSelector((st) => st.topEvents)
-    console.log(topEvents?.events)
     const general = useSelector((st) => st.general)
     const { getAds } = useSelector((st) => st)
     const navigate = useNavigate()

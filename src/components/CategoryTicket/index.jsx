@@ -20,9 +20,7 @@ export const CategoryTicket = ({ image, date, location, price, genre, onClick, d
         setLanguageData(item)
     }, [language])
     return <div className='Categoryticket' onClick={() => onClick()}>
-        <div>
-            <img alt='' className='CategoryImg' src={`${process.env.REACT_APP_IMAGE}/${image}`} />
-        </div>
+        <img alt='' className='CategoryImg' src={`${process.env.REACT_APP_IMAGE}/${image}`} />
         <div className='CategoryText'>
             <div className='ticketTextWrapper'>
                 <p className='ticketTitle'>{languageData.title}</p>

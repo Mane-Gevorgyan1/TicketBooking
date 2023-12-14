@@ -28,7 +28,8 @@
     width: 130px;
     height: 165px;
     transition: .5s;
-    object-fit: cover;
+    object-fit: fill;
+    border-radius: 6px;
 }
 
 .CategoryImg:hover {

@@ -5,15 +5,20 @@
     /* border-radius: 6px; */
     border-top-left-radius: 6px;
     border-bottom-left-radius: 6px;
-    background-color: #000000
+    background-color: #000000;
+    border-radius: 6px;
 }
 
 .alice-carousel__dots-item:not(.__custom).__active {
-    background-color: #FEE827;
+    background-color: #FEE827 !important;
+    width: 20px !important;
+    height: 8px !important;
+    border-radius: 6px !important;
 }
 
-.alice-carousel__stage-item {
+.alice-carousel__stage-item * {
     cursor: pointer;
+    border-radius: 6px;
 }
 
 .Desckription {

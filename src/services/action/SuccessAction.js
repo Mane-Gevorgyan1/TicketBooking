@@ -54,10 +54,11 @@ export const SuccessGetSubCategory = (data) => {
     }
 }
 
-export const SuccessGetRandomEvents = (data) => {
+export const SuccessGetRandomEvents = (data, totalPages) => {
     return {
         type: "SuccessGetRandomEvents",
-        data
+        data,
+        totalPages
     }
 }
 

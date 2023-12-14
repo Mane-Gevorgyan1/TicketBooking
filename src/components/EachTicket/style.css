@@ -19,7 +19,8 @@
     width: 92px;
     height: 102px;
     transition: .5s;
-    object-fit: cover;
+    object-fit: fill;
+    border-radius: 4px;
 }
 
 .Ticketimg:hover {

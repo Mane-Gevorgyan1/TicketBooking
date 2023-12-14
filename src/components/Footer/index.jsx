@@ -26,7 +26,7 @@ export const Footer = ({ menu }) => {
                 </div>
                 {!menu
                     && <div className='eachFooterColumnn'>
-                        {getCategory?.category?.map(elm => {
+                        {/* {getCategory?.category?.map(elm => {
                             let title = ''
                             if (language === 'am') {
                                 title = elm?.name
@@ -38,7 +38,8 @@ export const Footer = ({ menu }) => {
                                 title = elm?.name_ru
                             }
                             return <p onClick={() => navigation(`/Category/${elm?.name}/${elm?._id}`)} className='Headertext'>{title}</p>
-                        })}
+                        })} */}
+                        <p className='Headertext'></p>
                         <p onClick={() => navigation(`/PrivacyPolicy`)} className='Headertext'>{t('PrivacyPolicy')}</p>
                     </div>
                 }

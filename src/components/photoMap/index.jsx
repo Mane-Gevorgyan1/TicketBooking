@@ -456,7 +456,6 @@ const PhotoCoordinatesByColor = ({ secion, soldTickets, sessionID, eventId }) =>
                         if (e.price && !e.sold)
                             return <button
                                 key={i}
-
                                 onMouseOver={() => {
                                     getPrice(e.y, i, e.x, e.price, e.row, e.id, e.parterre, e.amphitheater, e.lodge)
                                     setActiveButton(i)

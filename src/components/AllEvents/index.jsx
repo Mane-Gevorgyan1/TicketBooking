@@ -4,13 +4,14 @@ import { EachTicket } from "../EachTicket"
 import { useTranslation } from "react-i18next"
 import { useDispatch, useSelector } from "react-redux"
 import { GetRandomEvents } from "../../services/action/action"
+import { Button } from '../Button'
 
 export const ALLEvents = () => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
     const events = useSelector((st) => st.getRandomEvents)
     useEffect(() => {
-        dispatch(GetRandomEvents())
+        dispatch(GetRandomEvents(1))
     }, [dispatch])
 
     return (
@@ -19,7 +20,7 @@ export const ALLEvents = () => {
                 <h2>{t('AllEvents')}</h2>
             </div>
             <div className="Allevents">
-                {events?.events.length > 0 && events?.events?.map((elm, i) => {
+                {events?.events?.length > 0 && events?.events?.map((elm, i) => {
                     const dateObject = new Date(elm?.sessions[0]?.date)
                     let day = dateObject.getDate()
                     let month = dateObject.getMonth() + 1
@@ -43,6 +44,11 @@ export const ALLEvents = () => {
                     }
                 })}
             </div>
+            {
+                <div className='AllEnvetsButtonWrapper'>
+                    <Button onClick={() => window.location = (`/allEvents`)} title={t('Showall')} />
+                </div>
+            }
         </div>
     )
 }

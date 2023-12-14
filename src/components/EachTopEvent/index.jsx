@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-export const EachTopEvent = ({ id, image, title, location, location_en, location_ru, date, price, data }) => {
-    console.log(location, location_en, location_ru)
+export const EachTopEvent = ({ id, image, location, location_en, location_ru, date, price, data }) => {
     const { t } = useTranslation()
     const { language } = useSelector((st) => st.StaticReducer)
     const [languageData, setLanguageData] = useState({ title: '', location: '' })
@@ -36,9 +35,11 @@ export const EachTopEvent = ({ id, image, title, location, location_en, location
             </div>
             <div className='topEventDetails'>
                 <h3>{languageData?.title}</h3>
-                <span>{languageData?.location}</span>
-                <span>{date}</span>
-                <span>{price}</span>
+                <div className='topEventDetailsInfo'>
+                    <span>{languageData?.location}</span>
+                    <span>{date}</span>
+                    <span>{price}</span>
+                </div>
                 <Button onClick={() => window.location = (`/Single/${id}`)} title={t('BuyTicket')} />
             </div>
         </div>

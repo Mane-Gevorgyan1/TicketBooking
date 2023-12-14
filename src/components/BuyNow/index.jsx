@@ -32,6 +32,7 @@ export const BuyNow = () => {
 
     const dispatch = useDispatch()
     const tickets = useSelector((st) => st.tiketsForBuy)
+    const getSinglPage = useSelector((st) => st.getSinglPage)
     const Select = (i) => { setSelectPay(i) }
     const [total, setTotal] = useState(0)
     const [chedked, setChedker] = useState(false)
@@ -101,7 +102,6 @@ export const BuyNow = () => {
     }
 
     const validation = () => {
-        console.log(selectPay)
         let item = { ...error }
         if (!name) {
             item.name = 'error'
@@ -217,29 +217,43 @@ export const BuyNow = () => {
         }
     }, [creatTicket])
 
-
     return (
-        <div>
+        <div className='buyNowWrapper3'>
             <div ref={scrollRef} className='buyNowWrapper2'>
+                <p className='deliverText'>
+                    Առաքումն անվճար է։ Վճարումն կատարվում է կանխիկ առաքման ժամանակ։
+                </p>
+                <p className='deliverText'>
+                    Առցանց վճարման դեպքում տոմսը կստնաք նշված էլ. հասցեյին
+                </p>
+                <p className='buyNowTitle'>{getSinglPage.events.event.title}</p>
+                <p className='buyNowDate'>{getSinglPage?.events?.event.sessions[0].date.slice(0, 10)}  /  {getSinglPage?.events?.event?.sessions[0].time}</p>
                 <div className='BuyNowWrapper'>
-                    <div>
-                        <div className='BuyNowTickert' id='BuyNowTickert'>
-                            <p className='Seat'>{t('Place')}</p>
-                            <p className='Seat' style={{ marginRight: '15px' }}>{t('Price')}</p>
-                        </div>
-                        {tickets?.tickets?.map((elm, i) => {
-                            return <div className='BuyNowTickert' key={i}>
+                    {tickets?.tickets?.map((elm, i) => {
+                        return <div className='BuyNowTickertDiv'>
+
+                            <div id={i == 0 && "firstChild" || i == tickets?.tickets?.length - 1 && 'lastChild'} className='BuyNowTickert' key={i}>
+                                <div className='BuyNowTickertNumber'>
+                                    {i + 1}.
+                                </div>
                                 {elm.row > 0 ?
-                                    <p className='BuyNowTickertPrive' id='parter'>{elm?.parterre && t('Parterre')} {elm?.lodge && t('Lodge')} {elm?.amphitheater && 'Amphitheater'} {elm?.stage && 'Stage'}, {t('Line')} {elm?.row}, {t('Place')} {elm?.seat}</p> :
+                                    <p className='BuyNowTickertPrive' id='parter'>{elm?.parterre && t('Parterre')} {elm?.lodge && t('Lodge')} {elm?.amphitheater && t('Amphitheater')} {elm?.stage && 'Stage'}, {t('Line')} {elm?.row}, {t('Place')} {elm?.seat}</p> :
                                     <p className='BuyNowTickertPrive' id='parter'>{elm?.row}</p>
                                 }
                                 <div className='deleteTicket'>
-                                    <p className='BuyNowTickertPrive' id='Amd' >{elm?.price} AMD</p>
-                                    <p style={{ cursor: 'pointer' }} onClick={() => dispatch(RemoveTicketsAction(elm))}> x</p>
+                                    <p className='BuyNowTickertPrive' id='Amd' >{elm?.price}</p>
                                 </div>
                             </div>
-                        })}
-                    </div>
+                            <p className='removeTicket' onClick={() => dispatch(RemoveTicketsAction(elm))}>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M13.0306 11.9695C13.1715 12.1104 13.2506 12.3015 13.2506 12.5007C13.2506 12.7 13.1715 12.8911 13.0306 13.032C12.8897 13.1729 12.6986 13.252 12.4993 13.252C12.3001 13.252 12.109 13.1729 11.9681 13.032L7.99997 9.06261L4.0306 13.0307C3.8897 13.1716 3.69861 13.2508 3.49935 13.2508C3.30009 13.2508 3.10899 13.1716 2.9681 13.0307C2.8272 12.8898 2.74805 12.6987 2.74805 12.4995C2.74805 12.3002 2.8272 12.1091 2.9681 11.9682L6.93747 8.00011L2.96935 4.03073C2.82845 3.88984 2.7493 3.69874 2.7493 3.49948C2.7493 3.30023 2.82845 3.10913 2.96935 2.96823C3.11024 2.82734 3.30134 2.74818 3.5006 2.74818C3.69986 2.74818 3.89095 2.82734 4.03185 2.96823L7.99997 6.93761L11.9693 2.96761C12.1102 2.82671 12.3013 2.74756 12.5006 2.74756C12.6999 2.74756 12.8909 2.82671 13.0318 2.96761C13.1727 3.10851 13.2519 3.2996 13.2519 3.49886C13.2519 3.69812 13.1727 3.88921 13.0318 4.03011L9.06247 8.00011L13.0306 11.9695Z" fill="black" />
+                                </svg>
+
+                            </p>
+
+                        </div>
+                    })}
+
                 </div>
                 <div className='buyNowTotalPrice'>
                     <p>{t('Total')}: <span>{total} AMD</span></p>
@@ -252,14 +266,15 @@ export const BuyNow = () => {
                         <div className='BuyMethodSelect'>
                             {selectPay == 1 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
-                        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 10 }}>
-                            <img alt='' width={45} height={20} src={require('../../assets/MIR_logo.png')} />
-                            <img alt='' width={45} height={20} src={require('../../assets/amex_logo.png')} />
-                            <img alt='' width={45} height={20} src={require('../../assets/arca_logo.png')} />
-                            <img alt='' width={45} height={20} src={require('../../assets/mastercard_logo.png')} />
-                            <img alt='' width={45} height={20} src={require('../../assets/visa_logo.png')} />
+                        <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: 10, flexWrap: 'wrap' }}>
+                            <img alt='' width={80} height={34} src={require('../../assets/MIR_logo.png')} />
+                            <img alt='' width={55} height={34} src={require('../../assets/amex_logo.png')} />
+                            <img alt='' width={55} height={34} src={require('../../assets/mastercard_logo.png')} />
+                            <img alt='' width={80} height={34} src={require('../../assets/visa_logo.png')} />
+                            <img alt='' width={55} height={34} src={require('../../assets/arca_logo.png')} />
                         </div>
                     </div>
+                    <p className='ticketInfno'>{t('Youwillreceive')}</p>
                     <div className='selectPay' onClick={() => {
                         Select(2)
                         setDelivery(false)
@@ -267,8 +282,10 @@ export const BuyNow = () => {
                         <div className='BuyMethodSelect'>
                             {selectPay == 2 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
-                        <img alt='' width={80} height={50} src={require('../../assets/TelCell.jpg')} />
+                        <img alt='' width={65} height={34} src={require('../../assets/TelCell.png')} />
                     </div>
+                    <p className='ticketInfno'>{t('Youwillreceive')}</p>
+
                     <div className='selectPay' onClick={() => {
                         setDelivery(true)
                         Select(3)
@@ -276,17 +293,19 @@ export const BuyNow = () => {
                         <div className='BuyMethodSelect'>
                             {selectPay == 3 ? <SelectedSvg /> : <SelectSvg />}
                         </div>
-                        <img width={40} height={40} src={require('../../assets/2489756.png')} />
+                        <img width={68} height={34} src={require('../../assets/22.png')} />
+
                     </div>
+                    <p className='ticketInfno'>{t('Shippingisfree')}</p>
                 </div>
                 <div className='BuyInputs'>
                     <div className='BuyInputsName'>
                         <div className='InputsBuy'>
-                            <label>{t('NameSurname')}</label>
+                            <label>{t('NameSurname')}<span className='span'>*</span></label>
                             <input id={error.name != '' ? 'errorInut' : 'inout'} value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
-                        <div>
-                            <label>{t('PhoneNumber')}</label>
+                        <div className='InputsBuy'>
+                            <label>{t('PhoneNumber')} <span className='span'>*</span></label>
                             <PhoneInput
                                 country={'am'}
                                 value={number}
@@ -296,35 +315,22 @@ export const BuyNow = () => {
                         </div>
                     </div>
                     <div className='InputsBuy'>
-                        <label>{t('Email')}</label>
+                        <label>{t('Email')} <span className='span'>*</span></label>
                         <input id={error.email != '' ? 'errorInut' : 'inout'} value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div className='InputsBuy'>
-                        <label>{t('Notes')}</label>
+                        <label>{t('Notes')} </label>
                         <textarea value={additional} onChange={(e) => setAdditional(e.target.value)} />
                     </div>
-                    {/* 
-                    {selectPay != 3 &&
-                        <div onClick={() => setDelivery(!delivery)} style={{ cursor: 'pointer' }} className='delivery'>
-                            {delivery
-                                ? <CheckedSvg error={true} />
-                                : <CheckSvg error={true} />
-                            }
-                            <div>
-                                <img width={70} height={30} src={require('../../assets/take.png')} />
-                            </div>
-                        </div>
-                    } */}
-
                     {delivery &&
                         <div className='InputsBuy'>
-                            <label>{t('Deliveryaddress')}</label>
+                            <label>{t('Deliveryaddress')} <span className='span'>*</span></label>
                             <input id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
                         </div>
                     }
                 </div>
                 <div className='BuyButton'>
-                    <button disabled={loading} onClick={validation} style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <button disabled={loading} onClick={validation} >
                         {!loading
                             ? t('BuyTicket')
                             : <div style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -334,13 +340,13 @@ export const BuyNow = () => {
                     </button>
                 </div>
                 <div className='BuyCheck'>
-                    <a style={{ color: 'black' }} href='https://shinetickets.com/PrivacyPolicy'>{t('Termsandconditions')}</a>
-                    <div onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer' }}>
+                    <div onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer', height: 24 }}>
                         {chedked
                             ? <CheckedSvg />
                             : <CheckSvg error={error?.checked == ''} />
                         }
                     </div>
+                    <a className='textDD' style={{ color: 'black', textDecoration: 'none' }} href='https://shinetickets.com/PrivacyPolicy'>{t('Termsandconditions')}</a>
                 </div>
                 <div id='telcellForm' />
             </div>

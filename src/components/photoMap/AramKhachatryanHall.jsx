@@ -1,6 +1,6 @@
 import './style.css'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { RemoveTicketsAction, SetTicketsAction } from '../../services/action/action'
 
 const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID }) => {
@@ -10,6 +10,8 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID }) => {
     const [position, setPosition] = useState({ x: '', y: '' })
     const [showModal, setShowModal] = useState(false)
     const [activeButton, setActiveButton] = useState(null)
+    const { tickets } = useSelector((st) => st.tiketsForBuy)
+
     const [windowSize, setWindowSize] = useState({
         width: window.innerWidth,
         height: window.innerHeight,
@@ -1564,7 +1566,8 @@ const AramKhachatryan = ({ secion, eventId, soldTickets, sessionID }) => {
                                         {
                                             top: e?.y - 4,
                                             left: e?.x - 4,
-                                            backgroundColor: e.active && 'green'
+                                            // backgroundColor: e.active && 'green'
+                                            backgroundColor: tickets.find((elm) => elm.seatId == e.id) && 'green'
                                         }
                                     }
                                     id='seatStyle'

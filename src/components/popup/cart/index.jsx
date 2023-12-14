@@ -28,7 +28,8 @@ export const CartPopup = ({ open, setOpen, children, openCard, show = true, type
                     <CloseIcon />
                 </div>
                 {children}
-                {type == 'hall' &&
+
+                {type == 'hall' && tickets.tickets.length > 0 &&
                     show &&
                     <div className='cartLine' onClick={() => {
                         if (!openBuy) {
@@ -36,7 +37,7 @@ export const CartPopup = ({ open, setOpen, children, openCard, show = true, type
                         }
                     }
                     }>
-                        <div ><Cart />{tickets?.tickets?.length}</div>
+                        Continue
                     </div>
                 }
 

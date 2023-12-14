@@ -3,6 +3,13 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 2%;
+    margin-top: 40px;
+}
+
+.AllEnvetsButtonWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 60px;
 }
 

@@ -49,6 +49,7 @@ export const Single = () => {
         setLanguageData(item)
     }, [language, event])
 
+
     if (getSinglPage.loading) {
         return (
             <div className='loading'>

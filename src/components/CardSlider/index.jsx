@@ -38,7 +38,15 @@ export const CardSlider = ({ data }) => {
         return { innerWidth, innerHeight }
     }
 
-    return <Carousel rows={1} cols={count} scrollSnap={true} loop={true}>
+    return <Carousel
+        rows={1}
+        cols={count}
+        scrollSnap={true}
+        loop={true}
+        autoplay={3500}
+
+    >
+
         {data?.length > 0 && data?.map((elm, i) => {
             const dateObject = new Date(elm.sessions[0]?.date);
             let day = dateObject.getDate();
@@ -50,7 +58,6 @@ export const CardSlider = ({ data }) => {
                 month = `0${month}`
             }
             if (elm?.sessions.length) {
-                console.log(elm)
                 return <Carousel.Item >
                     <EachTopEvent
                         id={elm?._id}
