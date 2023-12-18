@@ -10,6 +10,13 @@ export const OpenCategoryMenu = (data) => {
     }
 }
 
+export const OpenCaldendar = (data) => {
+    return {
+        type: "OpenCaldendar",
+        data
+    }
+}
+
 export const GetFeedback = () => {
     return (dispatch) => {
         axios.get(`${process.env.REACT_APP_HOSTNAME}/getFeedback`).then((r) => {
@@ -121,7 +128,6 @@ export const GetRandomEvents = (page) => {
     return (dispatch) => {
         dispatch(StartGetRadnomEvents())
         axios.get(`${process.env.REACT_APP_HOSTNAME}/randomEvents?currentPage=${page}`).then((r) => {
-            console.log(r)
             if (r.data.success) {
                 dispatch(SuccessGetRandomEvents(r.data.allEvents, r.data.totalPages))
             }
@@ -130,7 +136,6 @@ export const GetRandomEvents = (page) => {
             }
         })
             .catch((error) => {
-                console.log(error, 'error')
                 dispatch(ErrorGetRandomEvetns())
             })
     }

@@ -120,7 +120,10 @@ export const Single = () => {
                 recomended?.length > 0 &&
                 <div className='EventTitle' style={{ flexDirection: 'column', marginBottom: 40 }}>
                     <h2 style={{ margin: "50px  0" }}>{t('RecommendTickets')}</h2>
-                    <CardSlider data={recomended} />
+                    <div className='topEventsMain'>
+                        <CardSlider data={recomended} />
+
+                    </div>
                 </div>
             }
         </div >

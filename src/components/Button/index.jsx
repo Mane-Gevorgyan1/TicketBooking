@@ -1,7 +1,7 @@
 import './style.css'
 
-export const Button = ({ title, onClick }) => {
+export const Button = ({ title, onClick, all }) => {
     return (
-        <button className='button' onClick={onClick}>{title}</button>
+        <button style={all && { width: '100%' }} className='button' onClick={onClick}>{title}</button>
     )
 }

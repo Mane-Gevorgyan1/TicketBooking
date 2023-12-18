@@ -46,7 +46,7 @@ export const ALLEvents = () => {
             </div>
             {
                 <div className='AllEnvetsButtonWrapper'>
-                    <Button onClick={() => window.location = (`/allEvents`)} title={t('Showall')} />
+                    <Button all={true} onClick={() => window.location = (`/allEvents`)} title={t('Showall')} />
                 </div>
             }
         </div>

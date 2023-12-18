@@ -15,10 +15,23 @@
 .react-tel-input .form-control {
     width: 100% !important;
     min-width: 300px;
+    border-color: #000 !important;
+}
+
+.flag-dropdown {
+    border-color: #000 !important;
+
 }
 
 .ticketInfno {
-    display: none;
+    /* display: block; */
+    color: #FF2020;
+    font-family: Arian AMU Serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    margin: 10px 0;
 }
 
 .span {
@@ -275,10 +288,7 @@
 }
 
 .BuyMethod {
-    display: flex;
-    align-items: center;
     margin: 40px 0;
-    justify-content: space-between;
     flex-wrap: wrap;
 }
 
@@ -424,6 +434,7 @@
     .BuyCheck {
         align-items: center;
         justify-content: center;
+        margin-bottom: 60px;
     }
 
     .buyNowTitle {
@@ -446,16 +457,6 @@
 
     }
 
-    .ticketInfno {
-        display: block;
-        color: #FF2020;
-        font-family: Arian AMU Serif;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 18px;
-        margin: 10px 0;
-    }
 
     .InputsBuy>input {
         margin-top: 10px;
@@ -473,5 +474,9 @@
 
     .InputsBuy>textarea {
         margin-top: 10px;
+    }
+
+    .ticketInfno {
+        font-size: 12px;
     }
 }

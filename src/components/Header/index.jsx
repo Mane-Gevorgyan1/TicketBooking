@@ -4,7 +4,7 @@ import { SearchInput } from '../SearchInput'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { CloseSvg, MenuSvg, Search, Translate } from '../svg'
-import { ChangeLanguageAction, GetCategory, OpenCategoryMenu, SearchAction } from '../../services/action/action'
+import { ChangeLanguageAction, GetCategory, OpenCaldendar, OpenCategoryMenu, SearchAction } from '../../services/action/action'
 import { PuffLoader } from 'react-spinners'
 
 export const Header = ({ open, menu }) => {
@@ -80,7 +80,7 @@ export const Header = ({ open, menu }) => {
                         return <p id={id == elm?._id ? 'activeHeader' : ''} onClick={() => navigation(`/Category/${elm.name}/${elm?._id}`)} className='Headertext'>{title}</p>
                     })}
                 </div>
-                {!openMenu.categoryMenu
+                {!openMenu.categoryMenu && !openMenu.openCalendar
                     ? <div className='buttonWrapperHeader'>
                         <div className='buttonWrapperHeaderDiv' onClick={() => setSearchInput(true)}>
                             <Search />
@@ -130,7 +130,10 @@ export const Header = ({ open, menu }) => {
                             }
                         </div>
                     </div>
-                    : <div onClick={() => dispatch(OpenCategoryMenu(false))}>
+                    : <div onClick={() => {
+                        dispatch(OpenCaldendar(false))
+                        dispatch(OpenCategoryMenu(false))
+                    }}>
                         <CloseSvg />
                     </div>
                 }

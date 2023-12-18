@@ -12,6 +12,7 @@ import 'react-phone-input-2/lib/style.css'
 import { useTranslation } from 'react-i18next'
 
 export const BuyNow = () => {
+    const { language } = useSelector((st) => st.StaticReducer)
     const generateOrderNumber = () => {
         const timestamp = Date.now()
         const randomNum = Math.floor(Math.random() * 1000)
@@ -24,7 +25,6 @@ export const BuyNow = () => {
             const container = scrollRef.current;
             container.scrollTop = container.scrollHeight;
         }
-
     };
 
     const { t } = useTranslation()
@@ -45,6 +45,7 @@ export const BuyNow = () => {
     const issuerId = generateOrderNumber()
     const { creatTicket } = useSelector((st) => st)
     const [delivery, setDelivery] = useState(false)
+    let [title, setTitle] = useState()
     const [error, setError] = useState({
         name: '',
         email: '',
@@ -69,6 +70,21 @@ export const BuyNow = () => {
         })
         setTotal(price)
     }, [tickets])
+
+    useEffect(() => {
+        if (language === 'am') {
+            setTitle(getSinglPage.events.event.title)
+        }
+        else if (language === 'en') {
+            setTitle(getSinglPage.events.event.title_en)
+
+
+        }
+        else if (language === 'ru') {
+            setTitle(getSinglPage.events.event.title_ru)
+
+        }
+    }, [language, getSinglPage])
 
     function handlePurchase() {
         setLoading(true)
@@ -221,12 +237,14 @@ export const BuyNow = () => {
         <div className='buyNowWrapper3'>
             <div ref={scrollRef} className='buyNowWrapper2'>
                 <p className='deliverText'>
-                    Առաքումն անվճար է։ Վճարումն կատարվում է կանխիկ առաքման ժամանակ։
+                    {t('freeDelivery')}
                 </p>
-                <p className='deliverText'>
-                    Առցանց վճարման դեպքում տոմսը կստնաք նշված էլ. հասցեյին
-                </p>
-                <p className='buyNowTitle'>{getSinglPage.events.event.title}</p>
+
+
+                <p className='buyNowTitle'>{title}</p>
+
+
+
                 <p className='buyNowDate'>{getSinglPage?.events?.event.sessions[0].date.slice(0, 10)}  /  {getSinglPage?.events?.event?.sessions[0].time}</p>
                 <div className='BuyNowWrapper'>
                     {tickets?.tickets?.map((elm, i) => {

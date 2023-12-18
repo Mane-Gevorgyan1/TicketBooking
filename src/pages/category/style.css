@@ -10,6 +10,15 @@
     display: none !important;
 }
 
+
+.DataPickerDiv {
+    position: absolute;
+    z-index: 999;
+    top: 40px;
+    left: 180px;
+    /* right: 200px; */
+}
+
 .CateogryButton {
     border-radius: 40px;
     background: #000;
@@ -183,6 +192,12 @@
 
 .rdrCalendarWrapper {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: 1px solid #000;
+    border-radius: 6px;
+}
+
+.rdrDay {
+    color: #FEE827 !important;
 }
 
 .FilterWrapperCalendar {

@@ -9,6 +9,8 @@ export const StaticReducer = (state = store, action) => {
         case 'ChangeLanguageAction':
             temp.language = action.data
             break
+        case 'OpenCaldendar':
+            temp.openCalendar = action.data
         default:
             return temp;
     }

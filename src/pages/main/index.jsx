@@ -7,8 +7,7 @@ import { ALLEvents } from '../../components/AllEvents'
 import { useDispatch, useSelector } from 'react-redux'
 import { CardSlider } from '../../components/CardSlider'
 import { SearchEvent } from '../../components/SearchEvent'
-import { GetAllAds, GetGenerealEvents, StatusSuccessAction } from '../../services/action/action'
-import { useNavigate } from 'react-router-dom'
+import { GetAllAds, GetGenerealEvents } from '../../services/action/action'
 
 export const Main = () => {
     const dispatch = useDispatch()
@@ -16,7 +15,6 @@ export const Main = () => {
     const topEvents = useSelector((st) => st.topEvents)
     const general = useSelector((st) => st.general)
     const { getAds } = useSelector((st) => st)
-    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(GetGenerealEvents())

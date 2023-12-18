@@ -1,5 +1,6 @@
 /* eslint-disable */
 export default {
     categoryMenu: false,
-    language: ''
+    language: '',
+    openCalendar: false
 }
