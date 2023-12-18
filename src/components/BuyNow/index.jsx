@@ -42,6 +42,7 @@ export const BuyNow = () => {
     const [email, setEmail] = useState('')
     const [additional, setAdditional] = useState('')
     const [address, setAddress] = useState('')
+    const [disableButton, setDisableButton] = useState(false)
     const issuerId = generateOrderNumber()
     const { creatTicket } = useSelector((st) => st)
     const [delivery, setDelivery] = useState(false)
@@ -53,6 +54,26 @@ export const BuyNow = () => {
         checked: '',
         address: ''
     })
+
+    useEffect(() => {
+        if (selectPay == 3) {
+            if (name == '' || number == '' || address == '' || email == '') {
+                setDisableButton(true)
+            }
+            else {
+                setDisableButton(false)
+            }
+        }
+        else {
+            if (name == '' || number == '' || email == '') {
+                setDisableButton(true)
+            }
+            else {
+                setDisableButton(false)
+            }
+        }
+
+    }, [name, number, address, email, selectPay])
 
     function ValidateEmail(mail) {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
@@ -85,6 +106,8 @@ export const BuyNow = () => {
 
         }
     }, [language, getSinglPage])
+
+
 
     function handlePurchase() {
         setLoading(true)
@@ -336,19 +359,26 @@ export const BuyNow = () => {
                         <label>{t('Email')} <span className='span'>*</span></label>
                         <input id={error.email != '' ? 'errorInut' : 'inout'} value={email} onChange={(e) => setEmail(e.target.value)} />
                     </div>
-                    <div className='InputsBuy'>
-                        <label>{t('Notes')} </label>
-                        <textarea value={additional} onChange={(e) => setAdditional(e.target.value)} />
-                    </div>
                     {delivery &&
                         <div className='InputsBuy'>
                             <label>{t('Deliveryaddress')} <span className='span'>*</span></label>
                             <input id={error.address != '' ? 'errorInut' : 'inout'} value={address} onChange={(e) => setAddress(e.target.value)} />
                         </div>
                     }
+                    <div className='InputsBuy'>
+                        <label>{t('Notes')} </label>
+                        <textarea value={additional} onChange={(e) => setAdditional(e.target.value)} />
+                    </div>
+
                 </div>
                 <div className='BuyButton'>
-                    <button disabled={loading} onClick={validation} >
+                    <button
+                        id={
+                            disableButton &&
+                            'disable'
+                        }
+
+                        disabled={loading} onClick={validation} >
                         {!loading
                             ? t('BuyTicket')
                             : <div style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -358,7 +388,8 @@ export const BuyNow = () => {
                     </button>
                 </div>
                 <div className='BuyCheck'>
-                    <div onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer', height: 24 }}>
+                    <div
+                        onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer', height: 24 }}>
                         {chedked
                             ? <CheckedSvg />
                             : <CheckSvg error={error?.checked == ''} />

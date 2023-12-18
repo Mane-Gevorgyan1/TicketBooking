@@ -21,6 +21,20 @@
 
 .bhRnqO {
     box-shadow: none !important;
+    background-color: transparent !important;
+    top: calc(50% - 63px) !important;
+    right: -30px !important;
+}
+
+.kVtMtA {
+    box-shadow: none !important;
+    background-color: transparent !important;
+    top: calc(50% - 63px) !important;
+    left: -30px !important;
+}
+
+.bhRnqO:hover {
+    /* opacity: 0 !important; */
 }
 
 .kVtMtA {

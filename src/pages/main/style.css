@@ -1,7 +1,7 @@
 .mainPage {
     display: flex;
     flex-direction: column;
-    gap: 70px;
+    gap: 32px;
     padding-bottom: 70px;
 }
 

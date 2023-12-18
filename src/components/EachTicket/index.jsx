@@ -6,23 +6,26 @@ import { Date, Location, TicketIcon } from '../svg'
 
 export const EachTicket = ({ id, date, price, data }) => {
     const navigation = useNavigate()
-    const [languageData, setLanguageData] = useState({ title: '', location: '' })
+    const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '' })
     const { language } = useSelector((st) => st.StaticReducer)
-
+    console.log(data.category.name)
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {
             item.title = data?.title
             item.location = data?.sessions[0]?.hallId?.location
+            item.categorName = data.category.name
         }
         else if (language === 'en') {
             item.title = data?.title_en
             item.location = data?.sessions[0]?.hallId?.location_en
+            item.categorName = data.category.name_en
 
         }
         else if (language === 'ru') {
             item.title = data?.title_ru
             item.location = data?.sessions[0]?.hallId?.location_ru
+            item.categorName = data.category.name_ru
         }
         setLanguageData(item)
     }, [language, data])
@@ -33,8 +36,11 @@ export const EachTicket = ({ id, date, price, data }) => {
                 <img alt='' className='Ticketimg' src={`${process.env.REACT_APP_IMAGE}/${data.image}`} />
             </div>
             <div className='ticketText'>
-                <div className='ticketTextWrapper'>
+                <div className='ticketTextWrapper1'>
                     <p className='ticketTitle'>{languageData?.title}</p>
+                    <div className='ticketTitleCategoru'>
+                        {languageData.categorName}
+                    </div>
                 </div>
 
                 <div className='ticketTextWrapper'>

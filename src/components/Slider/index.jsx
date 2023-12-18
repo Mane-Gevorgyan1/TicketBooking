@@ -94,7 +94,7 @@ export const Carusel = () => {
             mouseTracking
             items={data}
             infinite={data.length > 1}
-            autoPlayInterval={100000}
+            autoPlayInterval={5500}
         />
     );
 }

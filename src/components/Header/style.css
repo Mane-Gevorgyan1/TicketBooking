@@ -9,11 +9,22 @@
     background: #000;
 }
 
+.sssa {
+    display: flex;
+}
+
+.sssa>img {
+    width: 160px;
+    height: 67px;
+    object-fit: contain;
+}
+
 #activeHeader {
-    background: black;
+    border-bottom: 2px solid black;
     color: white;
-    padding: 0 20px;
-    border-radius: 20px;
+    /* padding: 0 20px; */
+    color: black;
+    /* border-radius: 20px; */
 }
 
 .header {
@@ -25,6 +36,10 @@
     margin: 0 auto;
     gap: 10px;
     position: relative;
+}
+
+.Headertext:hover {
+    border-bottom: 2px solid black;
 }
 
 .translateDiv {

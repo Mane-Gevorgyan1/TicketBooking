@@ -26,26 +26,13 @@ export const Footer = ({ menu }) => {
                 </div>
                 {!menu
                     && <div className='eachFooterColumnn'>
-                        {/* {getCategory?.category?.map(elm => {
-                            let title = ''
-                            if (language === 'am') {
-                                title = elm?.name
-                            }
-                            else if (language === 'en') {
-                                title = elm?.name_en
-                            }
-                            else if (language === 'ru') {
-                                title = elm?.name_ru
-                            }
-                            return <p onClick={() => navigation(`/Category/${elm?.name}/${elm?._id}`)} className='Headertext'>{title}</p>
-                        })} */}
                         <p className='Headertext'></p>
                         <p onClick={() => navigation(`/PrivacyPolicy`)} className='Headertext'>{t('PrivacyPolicy')}</p>
                     </div>
                 }
-                <div className='eachFooterColumn'>
+                {/* <div className='eachFooterColumn'>
                     <div onClick={() => window.open(`${feedback?.facebook}`, '_blank')} style={{ cursor: 'pointer' }}>
-                        <FbSvg />
+                        <img src={require('../../assets/fb.png')} />
                     </div>
                     <div onClick={() => window.open(`${feedback?.instagram}`, '_blank')} style={{ cursor: 'pointer' }}>
                         <InstagramSvg />
@@ -53,18 +40,18 @@ export const Footer = ({ menu }) => {
                     <div onClick={() => window.open(`${feedback?.twitter}`, '_blank')} style={{ cursor: 'pointer' }}>
                         <TwitterSvg />
                     </div>
-                </div>
+                </div> */}
                 <div className='FotterMobile'>
                     <div className='eachFooterColumnn'>
                         <p>{t('Copyright')} © 2023 shinetickets.com | {t('ALLRIGHTSRESERVED')}</p>
                     </div>
-                    <div className='eachFooterColumnn'>
+                    {/* <div className='eachFooterColumnn'>
                         <MobilFb onClick={() => window.open(`${feedback?.facebook}`, '_blank')} />
                         <MobileI onClick={() => window.open(`${feedback?.instagram}`, '_blank')} />
                         <MobileT onClick={() => window.open(`${feedback?.twitter}`, '_blank')} />
-                    </div>
+                    </div> */}
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

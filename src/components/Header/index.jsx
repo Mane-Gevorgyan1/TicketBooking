@@ -20,6 +20,8 @@ export const Header = ({ open, menu }) => {
 
     document.body.addEventListener('click', function () {
         setOpenLanguage(false)
+        setSearchInput(false)
+
     });
 
     const { id } = useParams()
@@ -53,7 +55,10 @@ export const Header = ({ open, menu }) => {
                             </div>
                         }
                         {search.events.length == 0 && value &&
-                            <div className='searchDivWrapper'>
+                            <div onClick={(e) => {
+                                e.stopPropagation()
+                                e.preventDefault()
+                            }} className='searchDivWrapper'>
                                 <div className='notfoundSearch'>not found</div>
                             </div>
                         }
@@ -66,7 +71,11 @@ export const Header = ({ open, menu }) => {
     return (
         <div className='headerContainer'>
             <div className="header">
-                <p onClick={() => window.location = '/'} className='title'>Logo</p>
+                {/* <p onClick={() => window.location = '/'} className='title'>Logo</p> */}
+                <div onClick={() => window.location = '/'} className='sssa'>
+                    <img style={{ width: 130, height: 67 }} src={require('../../assets/logo1.png')} />
+                    <img src={require('../../assets/Logo.png')} />
+                </div>
                 <div className='textWrapper'>
                     {getCategory.category.map(elm => {
                         let title = ''
@@ -82,7 +91,11 @@ export const Header = ({ open, menu }) => {
                 </div>
                 {!openMenu.categoryMenu && !openMenu.openCalendar
                     ? <div className='buttonWrapperHeader'>
-                        <div className='buttonWrapperHeaderDiv' onClick={() => setSearchInput(true)}>
+                        <div className='buttonWrapperHeaderDiv' onClick={(e) => {
+                            e.stopPropagation()
+                            e.preventDefault()
+                            setSearchInput(true)
+                        }}>
                             <Search />
                         </div>
                         <div className='Translate'
@@ -144,6 +157,6 @@ export const Header = ({ open, menu }) => {
             <div className='FreeSvg1'>
                 <img alt='' src={require('../../assets/free1.png')} />
             </div>
-        </div>
+        </div >
     )
 }

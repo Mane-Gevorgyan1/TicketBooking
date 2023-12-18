@@ -52,7 +52,7 @@ export const AllEvents = () => {
             statDate = `${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`
         }
         dispatch(GetAllEvents(page, {
-            category: id, subcategory: "all", date: {
+            category: id, subcategory: 'all', date: {
                 startDate: statDate,
                 endDate
             }, hall: hallId
@@ -109,6 +109,7 @@ export const AllEvents = () => {
                         }
                         return <button onClick={() => {
                             setActiveButton(elm?.name)
+                            console.log(elm?._id)
                             setSubcategoryId(elm?._id)
                         }} id={activeButton == elm?.name && 'active'} className='CateogryButton'>{name}</button>
                     })}
@@ -122,10 +123,19 @@ export const AllEvents = () => {
                         <MultySelect item={
                             events?.hall
                         } onClick={(e) => {
-                            setTitle(language === 'am' ? e?.hall :
-                                language === 'ru' ? e?.hall_ru :
-                                    e?.hall_en)
+                            if (e?._id) {
+                                setTitle(language === 'am' ? e?.hall :
+                                    language === 'ru' ? e?.hall_ru :
+                                        e?.hall_en)
+                            }
+                            else {
+                                setTitle(language === 'am' ? 'Բոլորը' :
+                                    language === 'ru' ? 'Все' :
+                                        'All')
+                            }
+                            console.log(e?._id)
                             setHallId(e?._id)
+
                         }} title={title} />
                     </div>
                 }

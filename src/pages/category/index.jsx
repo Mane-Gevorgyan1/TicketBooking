@@ -117,7 +117,11 @@ export const Category = () => {
             }
             <div onClick={() => {
             }} className='FilterWrapper'>
-                <FilterSvg />
+                <div className='filter'>
+                    <FilterSvg />
+                    <p>Filtr</p>
+                </div>
+
                 {id !== '651568e7c6d0c9ab5a69365b' &&
                     <div className='SelectorDivWrapper'>
                         <MultySelect item={
