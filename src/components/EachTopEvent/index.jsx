@@ -47,21 +47,23 @@ export const EachTopEvent = ({ id, image, location, location_en, location_ru, da
                 <img alt='' src={image} />
             </div>
             <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} id={hover ? 'hovertopEventDetails' : ''} className='topEventDetails'>
-                {hover && <h3>{languageData?.title}</h3>}
-                {hover && <div className='topEventDetailsInfo'>
+                {hover1 && <h3>{languageData?.title}</h3>}
+                {hover1 && <div className='topEventDetailsInfo'>
                     <span>{languageData?.location}</span>
                     <span>{date}</span>
                     <span>{price}</span>
                 </div>}
                 {/* <Button onClick={() => window.location = (`/Single/${id}`)} title={t('BuyTicket')} /> */}
             </div>
-            <div onMouseLeave={() => {
-                setHover(false)
-                setHover1(false)
-            }
+            <div
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => {
+                    setHover(false)
+                    setHover1(false)
+                }
 
-            } className='buttonEachEventDiv'>
-                <button onMouseEnter={() => setHover(true)} className='buttonEachEvent' onClick={() => window.location = (`/Single/${id}`)}>{t('BuyTicket')}</button>
+                } className='buttonEachEventDiv'>
+                <button className='buttonEachEvent' onClick={() => window.location = (`/Single/${id}`)}>{t('BuyTicket')}</button>
             </div>
         </div>
     )
