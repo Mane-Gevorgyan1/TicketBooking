@@ -8,7 +8,6 @@ export const EachTicket = ({ id, date, price, data }) => {
     const navigation = useNavigate()
     const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '' })
     const { language } = useSelector((st) => st.StaticReducer)
-    console.log(data.category.name)
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {

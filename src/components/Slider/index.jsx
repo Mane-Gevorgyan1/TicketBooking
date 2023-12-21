@@ -37,7 +37,7 @@ export const Carusel = () => {
                     title = elm.title_ru
                     description = elm.description_ru
                 }
-                const dateObject = new Date(elm?.sessions[0]?.date)
+                const dateObject = new Date(elm?.eventId?.date)
                 let dayOfWeek = dateObject.getDate()
                 const year = dateObject.getFullYear()
                 let month = dateObject.getMonth() + 1
@@ -53,7 +53,7 @@ export const Carusel = () => {
                     minute = `0${minute}`
                 }
                 item.push(
-                    <div key={i} className='CaruselItem' onClick={() => navigation(`Single/${elm._id}`)}>
+                    <div key={i} className='CaruselItem' onClick={() => navigation(`Single/${elm.eventId._id}`)}>
                         {/* <div className='Desckription'>
                             <p className='titleCarusel'>{title}</p>
                             <div>
@@ -72,7 +72,7 @@ export const Carusel = () => {
                                 </div>
                             </div>
                         </div> */}
-                        <img src={`${process.env.REACT_APP_IMAGE}/${elm.image}`} alt='' height={400} width={'99%'} onDragStart={handleDragStart} role="presentation" />
+                        <img src={`${process.env.REACT_APP_IMAGE}/${elm?.eventId?.largeImage}`} alt='' height={400} width={'99%'} onDragStart={handleDragStart} role="presentation" />
                     </div>
                 )
             })
@@ -80,12 +80,12 @@ export const Carusel = () => {
         setData(item)
     }, [general.events, language])
 
-    function truncateText(text, maxLength) {
-        if (text.length > maxLength) {
-            return text.substring(0, maxLength) + '...'
-        }
-        return text
-    }
+    // function truncateText(text, maxLength) {
+    //     if (text.length > maxLength) {
+    //         return text.substring(0, maxLength) + '...'
+    //     }
+    //     return text
+    // }
 
     return (
         <AliceCarousel

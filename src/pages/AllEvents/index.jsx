@@ -109,7 +109,6 @@ export const AllEvents = () => {
                         }
                         return <button onClick={() => {
                             setActiveButton(elm?.name)
-                            console.log(elm?._id)
                             setSubcategoryId(elm?._id)
                         }} id={activeButton == elm?.name && 'active'} className='CateogryButton'>{name}</button>
                     })}
@@ -133,7 +132,6 @@ export const AllEvents = () => {
                                     language === 'ru' ? 'Все' :
                                         'All')
                             }
-                            console.log(e?._id)
                             setHallId(e?._id)
 
                         }} title={title} />

@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux'
 export const CategoryTicket = ({ image, date, location, price, genre, onClick, data }) => {
     const [languageData, setLanguageData] = useState({ title: '', categorName: '' })
     const { language } = useSelector((st) => st.StaticReducer)
-    console.log(data)
     useEffect(() => {
         let item = { ...languageData }
         if (language === 'am') {

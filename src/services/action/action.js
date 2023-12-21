@@ -112,6 +112,7 @@ export const GetAllEvents = (page, data) => {
         dispatch(StartGetCategoris())
         axios.post(`${process.env.REACT_APP_HOSTNAME}/filterEvents?currentPage=${page}`, data).then((r) => {
             if (r.data.success) {
+                console.log(r, 'data')
                 dispatch(SuccessGetCategoris(r.data))
             }
             else {
@@ -119,6 +120,7 @@ export const GetAllEvents = (page, data) => {
             }
         })
             .catch((error) => {
+                console.log(error, 'error')
                 dispatch(ErrorGetCategoris())
             })
     }

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 2%;
+    gap: 8%;
     margin-top: 24px;
 }
 
@@ -17,13 +17,19 @@
     .Allevents {
         padding: 0 80px;
         justify-content: space-between;
+        gap: 2%;
+    }
+
+    .AllEnvetsButtonWrapper {
+        padding: 0 80px;
     }
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1200px) {
     .Allevents {
         /* justify-content: space-between; */
         padding: 0 80px;
+
     }
 }
 

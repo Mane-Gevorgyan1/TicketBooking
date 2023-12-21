@@ -1,10 +1,10 @@
 .searchEvent {
-    width: 100%;
+    width: 48%;
     height: 240px;
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     gap: 30px;
 }
@@ -13,6 +13,11 @@
     height: 240px;
     width: 100%;
     border-radius: 6px;
+}
+
+.SearchEventDiv {
+    display: flex;
+    justify-content: space-between;
 }
 
 .searchEvent>p {
@@ -26,6 +31,12 @@
     line-height: normal;
     line-height: 30px;
     width: 40%;
+}
+
+@media screen and (max-width: 1200px) {
+    .searchEvent>img {
+        padding: 0 80px;
+    }
 }
 
 @media screen and (max-width: 768px) {

@@ -371,7 +371,18 @@ export const BuyNow = () => {
                     </div>
 
                 </div>
+                <div className='BuyCheck'>
+                    <div
+                        onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer', height: 24 }}>
+                        {chedked
+                            ? <CheckedSvg />
+                            : <CheckSvg error={error?.checked == ''} />
+                        }
+                    </div>
+                    <a className='textDD' style={{ color: 'black', textDecoration: 'none' }} href='https://shinetickets.com/PrivacyPolicy'>{t('Termsandconditions')}</a>
+                </div>
                 <div className='BuyButton'>
+
                     <button
                         id={
                             disableButton &&
@@ -387,16 +398,7 @@ export const BuyNow = () => {
                         }
                     </button>
                 </div>
-                <div className='BuyCheck'>
-                    <div
-                        onClick={() => setChedker(!chedked)} style={{ cursor: 'pointer', height: 24 }}>
-                        {chedked
-                            ? <CheckedSvg />
-                            : <CheckSvg error={error?.checked == ''} />
-                        }
-                    </div>
-                    <a className='textDD' style={{ color: 'black', textDecoration: 'none' }} href='https://shinetickets.com/PrivacyPolicy'>{t('Termsandconditions')}</a>
-                </div>
+
                 <div id='telcellForm' />
             </div>
         </div>

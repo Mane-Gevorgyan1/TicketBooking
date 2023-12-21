@@ -29,7 +29,7 @@ export const Category = () => {
     const [open, setOpen] = useState(false)
     const [hallId, setHallId] = useState('')
     const [title, setTitle] = useState(t('Hall'))
-    const [subcategoryId, setSubcategoryId] = useState('')
+    const [subcategoryId, setSubcategoryId] = useState('all')
     const [openCalendar, setOpenCalendar] = useState(false)
     const [activeButton, setActiveButton] = useState('Բոլորը')
     const [selectedDate, setSelectedDate] = useState([{ startDate: '', endDate: '', key: 'selection', },])
