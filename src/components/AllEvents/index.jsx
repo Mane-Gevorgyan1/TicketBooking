@@ -14,6 +14,8 @@ export const ALLEvents = () => {
         dispatch(GetRandomEvents(1))
     }, [dispatch])
 
+
+    let count = 1
     return (
         <div>
             <div className='EventTitle'>
@@ -30,18 +32,25 @@ export const ALLEvents = () => {
                     if (month <= 9) {
                         month = `0${month}`
                     }
-                    if (elm?.sessions.length) {
-                        return (
-                            <EachTicket
-                                key={i}
-                                id={elm?._id}
-                                data={elm}
-                                title={elm.title}
-                                date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
-                                price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceEnd} AMD`}
-                            />
-                        )
+                    // if (elm?.sessions.length) {
+                    let marginTrue = false
+                    if (count == i && elm?.sessions.length) {
+                        console.log(events?.events[2])
+                        // console.log(count, i, elm.title_en)
+                        count += 3
+                        marginTrue = true
                     }
+                    return (
+                        <EachTicket
+                            key={i}
+                            marginTrue={marginTrue}
+                            id={elm?._id}
+                            data={elm}
+                            date={`${day}-${month}-${dateObject.getFullYear()}, ${elm.sessions[0]?.time}`}
+                            price={`${elm?.sessions[0]?.priceStart} - ${elm?.sessions[0]?.priceEnd} AMD`}
+                        />
+                    )
+                    // }
                 })}
             </div>
             {

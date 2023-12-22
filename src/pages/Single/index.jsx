@@ -104,11 +104,11 @@ export const Single = () => {
                     <img src={`${process.env.REACT_APP_IMAGE}/${event?.image}`} alt='' />
                 </div>
                 <div className='singltextWrapper'>
-                    <div className='sponsorDiv'>
+                    {event?.sponsors?.length > 0 && <div className='sponsorDiv'>
                         {event?.sponsors?.map((elm, i) => {
                             return <img alt='' className='sposnorsImg' src={`${process.env.REACT_APP_IMAGE}/${elm.image}`} />
                         })}
-                    </div>
+                    </div>}
                     <p className='singlTitle'>{languageData?.title}</p >
                     <p className='singelText'>{languageData?.description}</p>
                     <div className='buttonWrapperSingl'>

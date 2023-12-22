@@ -284,3 +284,9 @@
         display: none;
     }
 }
+
+@media screen and (min-width: 1200px) {
+    .infoHeader {
+        padding: 0 80px;
+    }
+}

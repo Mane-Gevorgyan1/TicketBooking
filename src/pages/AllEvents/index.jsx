@@ -87,7 +87,7 @@ export const AllEvents = () => {
                 <div onClick={() => {
                     setOpenCalendar(false)
                 }} className='CategoryButtonWrapper'>
-                    {getSubCategory?.data?.subcategories?.length &&
+                    {getSubCategory?.data?.subcategories?.length > 0 &&
                         <button
                             onClick={() => {
                                 setActiveButton('Բոլորը')

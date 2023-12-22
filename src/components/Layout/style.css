@@ -36,3 +36,9 @@
         min-height: calc(100vh - 187px);
     }
 }
+
+@media screen and (min-width: 1200px) {
+    .outlet {
+        padding: 0 50px;
+    }
+}

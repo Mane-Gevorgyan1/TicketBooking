@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Date, Location, TicketIcon } from '../svg'
 
-export const EachTicket = ({ id, date, price, data }) => {
+export const EachTicket = ({ id, date, price, data, marginTrue }) => {
     const navigation = useNavigate()
     const [languageData, setLanguageData] = useState({ title: '', location: '', categorName: '' })
     const { language } = useSelector((st) => st.StaticReducer)
@@ -30,7 +30,7 @@ export const EachTicket = ({ id, date, price, data }) => {
     }, [language, data])
 
     return (
-        <div className='ticket' onClick={() => navigation(`/Single/${id}`)}>
+        <div className='ticket' id={marginTrue ? 'left' : ''} onClick={() => navigation(`/Single/${id}`)}>
             <div>
                 <img alt='' className='Ticketimg' src={`${process.env.REACT_APP_IMAGE}/${data.image}`} />
             </div>

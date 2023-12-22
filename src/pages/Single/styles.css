@@ -1,6 +1,6 @@
 .singlImg>img {
-    width: 500px;
-    height: 300px;
+    width: 440px;
+    height: 520px;
     object-fit: fill;
     border-radius: 10px;
 }
